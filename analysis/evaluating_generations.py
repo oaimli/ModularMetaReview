@@ -1,6 +1,9 @@
-from metrics import summac_scores
 import jsonlines
 import numpy as np
+import sys
+
+sys.path.append("../")
+from utils.metrics import summac_scores
 
 
 if __name__ == "__main__":
