@@ -1,9 +1,11 @@
 from openai import OpenAI
 import time
 import sys
+import os
+
 
 def get_embeddings(sentences):
-    client = OpenAI()
+    client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
     embeddings = []
     for sentence in sentences:
         sentence_embedding = []
@@ -20,6 +22,5 @@ def get_embeddings(sentences):
     return embeddings
 
 if __name__ == "__main__":
-    openai.api_key = "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"
     sentences = ["I am as student.", "a b c d e"]
     print(get_embeddings(sentences))
