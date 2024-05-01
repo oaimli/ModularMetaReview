@@ -19,9 +19,9 @@ if __name__ == "__main__":
     win_docs_zeroshot = []
     win_docs_finetuned = []
     # sentence level
-    dis_zeroshot_to_human = []
-    dis_finetuned_to_human = []
-    dis_zeroshot_to_finetuned = []
+    sim_zeroshot_to_human = []
+    sim_finetuned_to_human = []
+    sim_zeroshot_to_finetuned = []
     for sample in samples:
         source_embeddings_all = []  # m*emb
         source_counts = []
@@ -51,9 +51,9 @@ if __name__ == "__main__":
                 finetuned_sims.append(cosine_sim(source_embedding, finetuned_embedding))
             finetuned_balance.append(np.mean(finetuned_sims))
 
-        dis_zeroshot_to_human.append(cosine_sim(zeroshot_balance, human_written_balance))
-        dis_finetuned_to_human.append(cosine_sim(finetuned_balance, human_written_balance))
-        dis_zeroshot_to_finetuned.append(cosine_sim(zeroshot_balance, finetuned_balance))
+        sim_zeroshot_to_human.append(cosine_sim(zeroshot_balance, human_written_balance))
+        sim_finetuned_to_human.append(cosine_sim(finetuned_balance, human_written_balance))
+        sim_zeroshot_to_finetuned.append(cosine_sim(zeroshot_balance, finetuned_balance))
 
         human_written_balance_doc = []
         zeroshot_balance_doc = []
@@ -89,6 +89,6 @@ if __name__ == "__main__":
             share += 1
     print(share / len(win_docs_zeroshot))
 
-    print("Average similarity of balances, zeroshot and human", np.mean(dis_zeroshot_to_human))
-    print("Average similarity of balances, finetuned and human", np.mean(dis_finetuned_to_human))
-    print("Average similarity of balances, zeroshot and finetuned", np.mean(dis_zeroshot_to_finetuned))
+    print("Average similarity of balances, zeroshot and human", np.mean(sim_zeroshot_to_human))
+    print("Average similarity of balances, finetuned and human", np.mean(sim_finetuned_to_human))
+    print("Average similarity of balances, zeroshot and finetuned", np.mean(sim_zeroshot_to_finetuned))

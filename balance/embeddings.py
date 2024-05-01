@@ -4,6 +4,7 @@ import spacy
 import openai
 from tqdm import tqdm
 import jsonlines
+import random
 
 sys.path.append("../")
 from utils.get_embeddings import get_embeddings
@@ -38,7 +39,7 @@ for human_written_sample, zeroshot_sample, finetuned_sample in zip(human_written
         human_written_sample["mistral_7b_instruct_v02_finetuned"] = finetuned_sample["generation"]
         samples.append(human_written_sample)
 
-samples = samples[:5]
+samples = random.sample(samples, 512)
 
 results = []
 for i, sample in tqdm(enumerate(samples), total=len(samples)):
