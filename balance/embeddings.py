@@ -23,7 +23,7 @@ with jsonlines.open(zeroshot_file) as reader:
     for line in reader:
         zeroshot_samples.append(line)
 finetuned_samples = []
-with jsonlines.open(finetuned_samples) as reader:
+with jsonlines.open(finetuned_file) as reader:
     for line in reader:
         finetuned_samples.append(line)
 
