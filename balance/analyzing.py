@@ -29,7 +29,7 @@ if __name__ == "__main__":
             source_embeddings_all.extend(embeddings)
             source_counts.append(len(embeddings))
         human_written_embeddings = sample["human_written_embeddings"]  # h*emb
-        zeroshot_embeddings = sample["mistral_7b_instruct_v02_zeroshot_sentences"]  # z*emb
+        zeroshot_embeddings = sample["mistral_7b_instruct_v02_zeroshot_embeddings"]  # z*emb
         finetuned_embeddings = sample["mistral_7b_instruct_v02_finetuned_embeddings"]  # f*emb
 
         human_written_balance = []  # m
