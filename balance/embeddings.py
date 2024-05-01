@@ -1,14 +1,14 @@
 import os
-import random
-import json
-import time
 import sys
 import spacy
 import openai
 from tqdm import tqdm
 import jsonlines
 
+sys.path.append("../")
+from utils.get_embeddings import get_embeddings
 
+nlp = spacy.load("en_core_web_sm")
 openai.api_key = "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"
 
 human_written_file = "/data/gpfs/projects/punim0521/MistralX/results/mistral_7b_instruct_v02_peersum/predictions_zeroshot.jsonl"
@@ -38,35 +38,51 @@ for human_written_sample, zeroshot_sample, finetuned_sample in zip(human_written
         human_written_sample["mistral_7b_instruct_v02_finetuned"] = finetuned_sample["generation"]
         samples.append(human_written_sample)
 
-
-nlp = spacy.load("en_core_web_sm")
-
+results = []
 for i, sample in tqdm(enumerate(samples), total=len(samples)):
     source_documents = sample["source"]
+    human_written = sample["human_written"]
+    zeroshot = sample["mistral_7b_instruct_v02_zeroshot"]
+    finetuned = sample["mistral_7b_instruct_v02_finetuned"]
 
-    sentences_source = []
-    summary_words = source_document.split()
-    for sent in nlp(" ".join(summary_words)).sents:
-        sentences_source.append(sent.text)
+    source_sentences = []
+    source_embeddings = []
+    for source_document in source_documents:
+        sentences = []
+        for sent in nlp(source_document).sents:
+            sentences.append(sent.text)
+        source_sentences.append(sentences)
+        source_embeddings.append(get_embeddings(sentences))
+        assert len(source_sentences) == len(source_embeddings)
+    sample["source_sentences"] = source_sentences
+    sample["source_embeddings"] = source_embeddings
 
-    sentences_embeddings = {}
-    for sentence in sentences_source:
-        embedding_error = True
-        sentence_embedding = []
-        while len(sentence_embedding) == 0:
-            try:
-                sentence_embedding = \
-                    openai.Embedding.create(input=sentence, model="text-embedding-ada-002")["data"][0][
-                        "embedding"]
-            except:
-                error = sys.exc_info()[0]
-                print("API error:", error)
-                sentence_embedding = []
-                time.sleep(1)
-        sentences_embeddings[sentence] = sentence_embedding
+    human_written_sentences = []
+    for sent in nlp(human_written).sents:
+        human_written_sentences.append(sent.text)
+    human_written_embeddings = get_embeddings(human_written_sentences)
+    assert len(human_written_sentences) == len(human_written_embeddings)
+    sample["human_written_sentences"] = human_written_sentences
+    sample["human_written_embeddings"] = human_written_embeddings
 
-    with open(os.path.join(save_path, "%d.json" % i), "w") as f:
-        json.dump(sentences_embeddings, f)
+    zeroshot_sentences = []
+    for sent in nlp(zeroshot).sents:
+        zeroshot_sentences.append(sent.text)
+    zeroshot_embeddings = get_embeddings(zeroshot_sentences)
+    assert len(zeroshot_embeddings) == len(zeroshot_sentences)
+    sample["mistral_7b_instruct_v02_zeroshot_sentences"] = zeroshot_sentences
+    sample["mistral_7b_instruct_v02_zeroshot_embeddings"] = zeroshot_embeddings
 
-print("done")
+    finetuned_sentences = []
+    for sent in nlp(finetuned).sents:
+        finetuned_sentences.append(sent.text)
+    finetuned_embeddings = get_embeddings(finetuned_sentences)
+    assert len(finetuned_embeddings) == len(finetuned_sentences)
+    sample["mistral_7b_instruct_v02_finetuned_sentences"] = finetuned_sentences
+    sample["mistral_7b_instruct_v02_finetuned_embeddings"] = finetuned_embeddings
+
+    results.append(sample)
+
+with jsonlines.open(os.path.join("peersum_embeddings.jsonl"), "w") as writer:
+    writer.write_all(samples)
 

@@ -1,18 +1,17 @@
 from openai import OpenAI
 import time
 import sys
-import os
 
 
 def get_embeddings(sentences):
-    client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
+    client = OpenAI(api_key="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")
     embeddings = []
     for sentence in sentences:
         sentence_embedding = []
         while len(sentence_embedding) == 0:
             try:
                 sentence_embedding = \
-                    client.embeddings.create(input=[sentence], model="text-embedding-3-large")["data"][0].embedding
+                    client.embeddings.create(input=[sentence], model="text-embedding-3-large").data[0].embedding
             except:
                 error = sys.exc_info()[0]
                 print("API error:", error)
