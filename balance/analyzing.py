@@ -39,17 +39,17 @@ if __name__ == "__main__":
             human_written_sims = []
             for human_written_embedding in human_written_embeddings:
                 human_written_sims.append(cosine_sim(source_embedding, human_written_embedding))
-            human_written_balance.append(np.max(human_written_sims))
+            human_written_balance.append(np.mean(human_written_sims))
 
             zeroshot_sims = []
             for zeroshot_embedding in zeroshot_embeddings:
                 zeroshot_sims.append(cosine_sim(source_embedding, zeroshot_embedding))
-            zeroshot_balance.append(np.max(zeroshot_sims))
+            zeroshot_balance.append(np.mean(zeroshot_sims))
 
             finetuned_sims = []
             for finetuned_embedding in finetuned_embeddings:
                 finetuned_sims.append(cosine_sim(source_embedding, finetuned_embedding))
-            finetuned_balance.append(np.max(finetuned_sims))
+            finetuned_balance.append(np.mean(finetuned_sims))
 
         sim_zeroshot_to_human.append(cosine_sim(zeroshot_balance, human_written_balance))
         sim_finetuned_to_human.append(cosine_sim(finetuned_balance, human_written_balance))
