@@ -89,6 +89,6 @@ if __name__ == "__main__":
             share += 1
     print(share / len(win_docs_zeroshot))
 
-    print("Average distance of balances, zeroshot and human", np.mean(dis_zeroshot_to_human))
-    print("Average distance of balances, finetuned and human", np.mean(dis_finetuned_to_human))
-    print("Average distance of balances, zeroshot and finetuned", np.mean(dis_zeroshot_to_finetuned))
+    print("Average similarity of balances, zeroshot and human", np.mean(dis_zeroshot_to_human))
+    print("Average similarity of balances, finetuned and human", np.mean(dis_finetuned_to_human))
+    print("Average similarity of balances, zeroshot and finetuned", np.mean(dis_zeroshot_to_finetuned))
