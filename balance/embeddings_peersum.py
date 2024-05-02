@@ -5,12 +5,14 @@ import openai
 from tqdm import tqdm
 import jsonlines
 import random
+from openai import OpenAI
 
 sys.path.append("../")
 from utils.get_embeddings import get_embeddings
 
 nlp = spacy.load("en_core_web_sm")
 openai.api_key = "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"
+client = OpenAI(api_key="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")
 
 human_written_file = "/data/gpfs/projects/punim0521/MistralX/results/mistral_7b_instruct_v02_peersum/predictions_zeroshot.jsonl"
 zeroshot_file  = "/data/gpfs/projects/punim0521/MistralX/results/mistral_7b_instruct_v02_peersum/predictions_zeroshot.jsonl"
@@ -55,7 +57,7 @@ for i, sample in tqdm(enumerate(samples), total=len(samples)):
         for sent in nlp(source_document).sents:
             sentences.append(sent.text)
         source_sentences.append(sentences)
-        source_embeddings.append(get_embeddings(sentences))
+        source_embeddings.append(get_embeddings(sentences, client))
         assert len(source_sentences) == len(source_embeddings)
     sample["source_sentences"] = source_sentences
     sample["source_embeddings"] = source_embeddings
@@ -63,7 +65,7 @@ for i, sample in tqdm(enumerate(samples), total=len(samples)):
     human_written_sentences = []
     for sent in nlp(human_written).sents:
         human_written_sentences.append(sent.text)
-    human_written_embeddings = get_embeddings(human_written_sentences)
+    human_written_embeddings = get_embeddings(human_written_sentences, client)
     assert len(human_written_sentences) == len(human_written_embeddings)
     sample["human_written_sentences"] = human_written_sentences
     sample["human_written_embeddings"] = human_written_embeddings
@@ -71,7 +73,7 @@ for i, sample in tqdm(enumerate(samples), total=len(samples)):
     zeroshot_sentences = []
     for sent in nlp(zeroshot).sents:
         zeroshot_sentences.append(sent.text)
-    zeroshot_embeddings = get_embeddings(zeroshot_sentences)
+    zeroshot_embeddings = get_embeddings(zeroshot_sentences, client)
     assert len(zeroshot_embeddings) == len(zeroshot_sentences)
     sample["mistral_7b_instruct_v02_zeroshot_sentences"] = zeroshot_sentences
     sample["mistral_7b_instruct_v02_zeroshot_embeddings"] = zeroshot_embeddings
@@ -79,7 +81,7 @@ for i, sample in tqdm(enumerate(samples), total=len(samples)):
     finetuned_sentences = []
     for sent in nlp(finetuned).sents:
         finetuned_sentences.append(sent.text)
-    finetuned_embeddings = get_embeddings(finetuned_sentences)
+    finetuned_embeddings = get_embeddings(finetuned_sentences, client)
     assert len(finetuned_embeddings) == len(finetuned_sentences)
     sample["mistral_7b_instruct_v02_finetuned_sentences"] = finetuned_sentences
     sample["mistral_7b_instruct_v02_finetuned_embeddings"] = finetuned_embeddings
