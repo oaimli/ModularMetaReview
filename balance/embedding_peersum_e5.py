@@ -1,19 +1,22 @@
 import os
-import sys
 import spacy
 from tqdm import tqdm
 import jsonlines
 import random
+from sentence_transformers import SentenceTransformer
 
 
 def get_embeddings(sentences, model):
-    model.max_seq_length = 4096
     embeddings = model.encode(sentences, prompt_name="web_search_query")
     return embeddings
 
 
 if __name__ == "__main__":
     nlp = spacy.load("en_core_web_sm")
+
+    # load the embedding model
+    model = SentenceTransformer("intfloat/e5-mistral-7b-instruct")
+    model.max_seq_length = 4096
 
     human_written_file = "/data/gpfs/projects/punim0521/MistralX/results/mistral_7b_instruct_v02_peersum/predictions_zeroshot.jsonl"
     zeroshot_file  = "/data/gpfs/projects/punim0521/MistralX/results/mistral_7b_instruct_v02_peersum/predictions_zeroshot.jsonl"
@@ -42,7 +45,7 @@ if __name__ == "__main__":
             human_written_sample["mistral_7b_instruct_v02_finetuned"] = finetuned_sample["generation"]
             samples.append(human_written_sample)
 
-    samples = random.sample(samples, 512)
+    # samples = random.sample(samples, 512)
 
     results = []
     for i, sample in tqdm(enumerate(samples), total=len(samples)):
@@ -58,7 +61,7 @@ if __name__ == "__main__":
             for sent in nlp(source_document).sents:
                 sentences.append(sent.text)
             source_sentences.append(sentences)
-            source_embeddings.append(get_embeddings_openai(sentences, client))
+            source_embeddings.append(get_embeddings(sentences, model))
             assert len(source_sentences) == len(source_embeddings)
         sample["source_sentences"] = source_sentences
         sample["source_embeddings"] = source_embeddings
@@ -66,7 +69,7 @@ if __name__ == "__main__":
         human_written_sentences = []
         for sent in nlp(human_written).sents:
             human_written_sentences.append(sent.text)
-        human_written_embeddings = get_embeddings_openai(human_written_sentences, client)
+        human_written_embeddings = get_embeddings(human_written_sentences, model)
         assert len(human_written_sentences) == len(human_written_embeddings)
         sample["human_written_sentences"] = human_written_sentences
         sample["human_written_embeddings"] = human_written_embeddings
