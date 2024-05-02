@@ -14,7 +14,7 @@ openai.api_key = "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"
 
 human_written_file = "/data/gpfs/projects/punim0521/MistralX/results/mistral_7b_instruct_v02_peersum/predictions_zeroshot.jsonl"
 zeroshot_file  = "/data/gpfs/projects/punim0521/MistralX/results/mistral_7b_instruct_v02_peersum/predictions_zeroshot.jsonl"
-finetuned_file = "/data/gpfs/projects/punim0521/MistralX/results/mistral_7b_instruct_v02_peersum/predictions_zeroshot.jsonl"
+finetuned_file = "/data/gpfs/projects/punim0521/MistralX/results/mistral_7b_instruct_v02_peersum/predictions_finetuned.jsonl"
 human_written_samples = []
 with jsonlines.open(human_written_file) as reader:
     for line in reader:
@@ -39,7 +39,7 @@ for human_written_sample, zeroshot_sample, finetuned_sample in zip(human_written
         human_written_sample["mistral_7b_instruct_v02_finetuned"] = finetuned_sample["generation"]
         samples.append(human_written_sample)
 
-samples = random.sample(samples, 96)
+samples = random.sample(samples, 512)
 
 results = []
 for i, sample in tqdm(enumerate(samples), total=len(samples)):
