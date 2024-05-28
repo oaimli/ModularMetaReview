@@ -77,6 +77,6 @@ for note in notes:
 print("blind submission", count)
 
 print(len(papers))
-f = open('data/nips_%s.json'%year, 'w')
+f = open('../data/nips_%s.json'%year, 'w')
 f.write(json.dumps(papers))
 f.close()

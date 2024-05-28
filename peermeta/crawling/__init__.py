@@ -1,12 +1,12 @@
 # Step 1, Raw data crawled from websites, stored in the data folder
 # The official OpenReview API: https://openreview-py.readthedocs.io/en/latest/
-# ICLR: https://openreview.net/group?id=ICLR.cc (more reviews for other conferences could be crawled), ICLR 2018-2022
-# NeurIPS: https://proceedings.neurips.cc/ NIPS 2021-2022
+# ICLR: https://openreview.net/group?id=ICLR.cc (more reviews for other conferences could be crawled), ICLR 2018-2024
+# NeurIPS: https://proceedings.neurips.cc/ NIPS 2021-2023
 # there are no review ratings, or confidences for ICLR 2017, NIPS 2019, NIPS 2020
 
-# Step 2, Combine all the data into 'peersum_all' from different conferences in different years, not only source documents but also summaries for summarization
+# Step 2, Combine all the data into 'peermeta_all' from different conferences in different years
 
-# Structure of PeerSum
+# Structure of PeerMeta
 # paper_id: str
 # paper_title: str
 # paper_abstract, str
