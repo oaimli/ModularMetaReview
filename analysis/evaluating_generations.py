@@ -84,5 +84,6 @@ if __name__ == "__main__":
         results.append(sample)
     with jsonlines.open("scores_peersum_mistral_7b_instruct_v02_finetuned.jsonl", "w") as writer:
         writer.write_all(samples)
+    # -0.19557023163739445 0.6354053034140819
 
 
