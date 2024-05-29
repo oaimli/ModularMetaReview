@@ -1,5 +1,5 @@
 import os
-import urllib
+import wget
 import jsonlines
 
 
@@ -15,5 +15,5 @@ with jsonlines.open(f"../data/{conference}.jsonl") as reader:
         id = line["id"]
         if id not in existing_ids:
             url = line["pdf"]
-            urllib.urlretrieve(url, f"{pdf_folder}/{id}.pdf")
+            wget.download(url, out=f"{pdf_folder}/{id}.pdf")
 
