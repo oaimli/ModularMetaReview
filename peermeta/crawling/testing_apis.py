@@ -4,7 +4,7 @@ def get_forum_v1():
     base_url = "https://api.openreview.net"
     client = openreview.Client(baseurl=base_url)
     rcs = client.get_notes(
-            forum="x9jS8pX3dkx")
+            forum="7YfHla7IxBJ")
     for rc in rcs:
         print(rc)
     print()
@@ -20,11 +20,12 @@ def get_all_papers_v2():
         password="limiao5002361995"
     )
 
-    venue_group = client.get_group('NeurIPS.cc/2023/Conference')
+    venue_group = client.get_group('ICLR.cc/2024/Conference')
     submission_name = venue_group.content['submission_name']['value']
     print(submission_name)
-    submissions = client.get_all_notes(invitation=f'NeurIPS.cc/2023/Conference/-/{submission_name}')
-    print(len(submissions))
+    notes = client.get_all_notes(invitation=f'ICLR.cc/2024/Conference/-/{submission_name}')
+    print(len(notes))
 
 if __name__ == "__main__":
     get_all_papers_v2()
+    # get_forum_v1()

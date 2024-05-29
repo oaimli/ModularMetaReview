@@ -1,72 +1,59 @@
 # The first step is getting the paper list from the OpenReview getting data, and then get reviews with forum ids
-import json
+import jsonlines
 import openreview
 import time
+from tqdm import tqdm
 
-year = 2018
-base_url = "https://api.openreview.net"
-client = openreview.Client(baseurl=base_url)
-notes = client.get_all_notes(signature='ICLR.cc/%s/Conference'%year)# using signature to get all submissions
+# API V2
+client = openreview.api.OpenReviewClient(
+    baseurl='https://api2.openreview.net',
+    username="miaoli.cs@gmail.com",
+    password="limiao5002361995"
+    )
 
-invitations = set([])
-for note in notes:
-    invitations.add(note.invitation)
-
-for invitation in invitations:
-    print(invitation, len(client.get_all_notes(invitation=invitation)))
+venue_group = client.get_group('ICLR.cc/2024/Conference')
+submission_name = venue_group.content['submission_name']['value']
+print(submission_name)
+notes = client.get_all_notes(invitation=f'ICLR.cc/2024/Conference/-/{submission_name}')
+print("all papers", len(notes))
 
 papers = []
 count = 0
-for note in notes:
+for note in tqdm(notes):
+    print(note)
     paper = {}
     paper["link"] = "https://openreview.net/forum?id=" + note.forum
     content = note.content
-    # print(content.keys())
-    paper["title"] = content['title']
-    paper["authors"] = content['authors']
-    paper["abstract"] = content['abstract']
-    paper["tl_dr"] = content.get('one-sentence_summary', '')
-    paper["keywords"] = content['keywords']
-
+    paper["title"] = content['title']["value"]
+    paper["authors"] = content['authors']["value"]
+    paper["abstract"] = content['abstract']["value"]
+    paper["tl_dr"] = content.get('TLDR', {"value": ""})["value"]
+    paper["keywords"] = content['keywords']["value"]
     paper["id"] = note.forum
+    paper["pdf"] = "https://openreview.net" + content["pdf"]["value"]
+    paper["venue"] = content['venue']["value"]
 
-    notes = client.get_notes(
-        forum=paper["id"])  # using forum to get notes of each paper, and notes include the paper information, reviews (official and public) and responses.
+    rcs = client.get_notes(forum=paper["id"])
     reviews_commments = []
-    paper_invitations = []
-    time_final_decision = None
-    for note in notes:
-        # print("cdate",time.localtime(note.cdate/1000))
-        # print("tcdate", time.localtime(note.tcdate / 1000))
-        # print("tmdate", time.localtime(note.tmdate / 1000))
-        paper_invitations.append(note.invitation.split("/")[-1])
-        if "Submission" in note.invitation and note.id == id:
-            paper["pdf"] = base_url + note.content["pdf"]
-            paper["number"] = note.number
-        elif "Decision" in note.invitation or "Meta_Review" in note.invitation:
-            # print(note.invitation)
-            time_final_decision = time.localtime(note.tmdate / 1000)
-            paper["final_decision"] = note.to_json()
-            paper["comment"] = note.content['decision']
-            print(paper['comment'])
-        else:
-            reviews_commments.append(note.to_json())
-    # for note in notes:
-    #     if note.cdate != None:
-    #         ntime = time.localtime(note.cdate / 1000)
-    #         if ntime > time_final_decision:
-    #             print(time_final_decision, ntime)
-    print("reviews_comments", len(reviews_commments))
-    invitation_texts = ",".join(sorted(list(set(paper_invitations))))
+    for rc in rcs:
+        print(rc.to_json())
+        decision_note = False
+        if "title" in rc.content.keys():
+            if rc.content["title"]["value"] == "Paper Decision":
+                decision_note = True
+                paper["final_decision"] = rc.to_json()
+                paper["number"] = len(rcs) - 2
+
+        if not decision_note and paper["id"] != rc.id:
+            reviews_commments.append(rc.to_json())
+    print("reviews_comments", len(reviews_commments), len(rcs))
     paper["reviews_commments"] = reviews_commments
-    if "Blind_Submission" in invitation_texts:
-        count += 1
-    # print(paper["final_decision"])
 
     papers.append(paper)
+    count += 1
+    if count % 60 == 0:
+        time.sleep(30)
 
-
-print(len(papers))
-f = open('../data/iclr_%s.json'%year, 'w')
-f.write(json.dumps(papers))
-f.close()
+print("Final", len(papers))
+with jsonlines.open("../data/iclr_2024.jsonl", "w") as writer:
+    writer.write_all(papers)
