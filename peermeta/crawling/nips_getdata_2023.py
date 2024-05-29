@@ -73,6 +73,8 @@ for note in notes:
     # print(paper["final_decision"])
 
     papers.append(paper)
+    if count % 60 == 0:
+        time.sleep(30)
 
 print("blind submission", count)
 

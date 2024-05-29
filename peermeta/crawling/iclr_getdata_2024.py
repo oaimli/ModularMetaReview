@@ -3,10 +3,10 @@ import json
 import openreview
 import time
 
-year = 2021
+year = 2018
 base_url = "https://api.openreview.net"
 client = openreview.Client(baseurl=base_url)
-notes = client.get_all_notes(signature='NeurIPS.cc/%s/Conference'%year)# using signature to get all submissions
+notes = client.get_all_notes(signature='ICLR.cc/%s/Conference'%year)# using signature to get all submissions
 
 invitations = set([])
 for note in notes:
@@ -65,9 +65,8 @@ for note in notes:
 
     papers.append(paper)
 
-print("blind submission", count)
 
 print(len(papers))
-f = open('../data/nips_%s.json'%year, 'w')
+f = open('../data/iclr_%s.json'%year, 'w')
 f.write(json.dumps(papers))
 f.close()

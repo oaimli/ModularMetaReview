@@ -1,10 +1,9 @@
 # The first step is getting the paper list from the OpenReview getting data, and then get reviews with forum ids
-# Data for ICLR 2017 is from PeerRead (https://github.com/allenai/PeerRead), from 2018 data can be obtained from OpenReview
 import json
 import openreview
 import time
 
-year = 2022
+year = 2018
 base_url = "https://api.openreview.net"
 client = openreview.Client(baseurl=base_url)
 notes = client.get_all_notes(signature='ICLR.cc/%s/Conference'%year)# using signature to get all submissions
@@ -68,6 +67,6 @@ for note in notes:
 
 
 print(len(papers))
-f = open('data/iclr_%s.json'%year, 'w')
+f = open('../data/iclr_%s.json'%year, 'w')
 f.write(json.dumps(papers))
 f.close()

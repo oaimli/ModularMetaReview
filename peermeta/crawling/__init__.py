@@ -1,5 +1,5 @@
 # Step 1, Raw data crawled from websites, stored in the data folder
-# The official OpenReview API: https://openreview-py.readthedocs.io/en/latest/
+# The official OpenReview API v2: https://openreview-py.readthedocs.io/en/latest/
 # ICLR: https://openreview.net/group?id=ICLR.cc (more reviews for other conferences could be crawled), ICLR 2018-2024
 # NeurIPS: https://proceedings.neurips.cc/ NIPS 2021-2023
 # there are no review ratings, or confidences for ICLR 2017, NIPS 2019, NIPS 2020
