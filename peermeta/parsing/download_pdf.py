@@ -4,7 +4,8 @@ import jsonlines
 from tqdm import tqdm
 
 
-conference = "iclr_2018"
+conference = "iclr_2019"
+print(conference)
 pdf_folder = f"../data/pdfs_{conference}"
 
 existing_ids = []
@@ -15,10 +16,10 @@ print(existing_ids)
 pdfs = {}
 with jsonlines.open(f"../data/{conference}.jsonl") as reader:
     for line in reader:
-        pdfs[line["id"]] = line["pdf"]
+        if id not in existing_ids:
+            pdfs[line["id"]] = line["pdf"]
 
 for id in tqdm(pdfs.keys()):
-    if id not in existing_ids:
-        url = pdfs[id]
-        wget.download(url, out=f"{pdf_folder}/{id}.pdf")
+    url = pdfs[id]
+    wget.download(url, out=f"{pdf_folder}/{id}.pdf")
 
