@@ -31,28 +31,29 @@ for note in tqdm(notes):
     paper["keywords"] = content['keywords']["value"]
     paper["id"] = note.forum
     paper["pdf"] = "https://openreview.net" + content["pdf"]["value"]
-    paper["venue"] = content['venue']["value"]
+    paper["venue"] = content['venueid']["value"]
 
-    rcs = client.get_notes(forum=paper["id"])
-    reviews_commments = []
-    for rc in rcs:
-        print(rc.to_json())
-        decision_note = False
-        if "title" in rc.content.keys():
-            if rc.content["title"]["value"] == "Paper Decision":
-                decision_note = True
-                paper["final_decision"] = rc.to_json()
-                paper["number"] = len(rcs) - 2
+    if "desk_reject" not in paper["venue"].lower():
+        rcs = client.get_notes(forum=paper["id"])
+        reviews_commments = []
+        for rc in rcs:
+            print(rc.to_json())
+            decision_note = False
+            if "title" in rc.content.keys():
+                if rc.content["title"]["value"] == "Paper Decision":
+                    decision_note = True
+                    paper["final_decision"] = rc.to_json()
+                    paper["number"] = len(rcs) - 2
 
-        if not decision_note and paper["id"] != rc.id:
-            reviews_commments.append(rc.to_json())
-    print("reviews_comments", len(reviews_commments), len(rcs))
-    paper["reviews_commments"] = reviews_commments
+            if not decision_note and paper["id"] != rc.id:
+                reviews_commments.append(rc.to_json())
+        print("reviews_comments", len(reviews_commments), len(rcs))
+        paper["reviews_commments"] = reviews_commments
 
-    papers.append(paper)
-    count += 1
-    if count % 60 == 0:
-        time.sleep(30)
+        papers.append(paper)
+        count += 1
+        if count % 60 == 0:
+            time.sleep(30)
 
 print("Final", len(papers))
 with jsonlines.open("../data/iclr_2024.jsonl", "w") as writer:
