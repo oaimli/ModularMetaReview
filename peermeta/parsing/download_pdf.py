@@ -4,7 +4,7 @@ import jsonlines
 from tqdm import tqdm
 
 
-conference = "iclr_2020"
+conference = "iclr_2021"
 print(conference)
 pdf_folder = f"../data/pdfs_{conference}"
 
