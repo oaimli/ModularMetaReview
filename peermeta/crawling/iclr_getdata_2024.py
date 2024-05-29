@@ -33,7 +33,7 @@ for note in tqdm(notes):
     paper["pdf"] = "https://openreview.net" + content["pdf"]["value"]
     paper["venue"] = content['venueid']["value"]
 
-    if "desk_reject" not in paper["venue"].lower():
+    if "ICLR.cc/2024/Conference/Desk_Rejected_Submission" != paper["venue"]:
         rcs = client.get_notes(forum=paper["id"])
         reviews_commments = []
         for rc in rcs:
