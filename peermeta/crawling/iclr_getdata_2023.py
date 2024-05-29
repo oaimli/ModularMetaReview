@@ -31,6 +31,10 @@ for note in tqdm(notes):
         # print(rcs)
         reviews_commments = []
         for rc in rcs:
+            count += 1
+            if count % 60 == 0:
+                time.sleep(60)
+
             print(rc.to_json())
             decision_note = False
             if "title" in rc.content.keys():
@@ -45,9 +49,6 @@ for note in tqdm(notes):
         paper["reviews_commments"] = reviews_commments
 
         papers.append(paper)
-        count += 1
-        if count % 60 == 0:
-            time.sleep(300)
 
 print("Final", len(papers))
 with jsonlines.open("../data/iclr_2023.jsonl", "w") as writer:
