@@ -24,8 +24,8 @@ for note in tqdm(notes):
     paper["tl_dr"] = content.get('TL;DR', "")
     paper["keywords"] = content['keywords']
     paper["id"] = note.forum
-    paper["venue"] = content['venueid']
-    if "ICLR.cc/2023/Conference/Desk_Rejected_Submission" != paper["venue"]:
+    paper["venue"] = content.get('venueid', "None")
+    if paper["venue"] != "None" and "ICLR.cc/2023/Conference/Desk_Rejected_Submission" != paper["venue"]:
         paper["pdf"] = "https://openreview.net" + content.get("pdf", "")
         rcs = client.get_notes(forum=paper["id"])
         # print(rcs)
