@@ -28,7 +28,7 @@ for note in tqdm(notes):
     if "ICLR.cc/2023/Conference/Desk_Rejected_Submission" != paper["venue"]:
         paper["pdf"] = "https://openreview.net" + content.get("pdf", "")
         rcs = client.get_notes(forum=paper["id"])
-        print(rcs)
+        # print(rcs)
         reviews_commments = []
         for rc in rcs:
             print(rc.to_json())
