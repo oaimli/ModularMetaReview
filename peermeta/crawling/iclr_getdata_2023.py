@@ -47,7 +47,7 @@ for note in tqdm(notes):
         papers.append(paper)
         count += 1
         if count % 60 == 0:
-            time.sleep(60)
+            time.sleep(300)
 
 print("Final", len(papers))
 with jsonlines.open("../data/iclr_2023.jsonl", "w") as writer:
