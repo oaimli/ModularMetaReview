@@ -1,3 +1,5 @@
+# Download the pdfs of the final versions
+# camera ready versions for accepted papers and submission versions for rejected papers
 import os
 import wget
 import jsonlines
@@ -6,7 +8,7 @@ from tqdm import tqdm
 
 conference = "iclr_2021"
 print(conference)
-pdf_folder = f"../data/pdfs_{conference}"
+pdf_folder = f"../data/pdfs_cr_{conference}"
 
 existing_ids = []
 for file in os.listdir(pdf_folder):
