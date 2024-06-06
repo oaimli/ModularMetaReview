@@ -1,1 +1,1 @@
-# Download the pdfs of the review versions based on the revisions
+# Download the pdfs of the anonymous versions based on the revisions
