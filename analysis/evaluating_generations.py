@@ -7,8 +7,7 @@ from utils.metrics import summac_scores
 
 
 if __name__ == "__main__":
-    document = """Scientists are studying Mars to learn about the Red Planet and find landing sites for future missions.
-        One possible site, known as Arcadia Planitia, is covered instrange sinuous features.
+    document = """Scientists are studying Mars to learn about the Red Planet and find landing sites for future missions. One possible site, known as Arcadia Planitia, is covered instrange sinuous features.
         The shapes could be signs that the area is actually made of glaciers, which are large masses of slow-moving ice.
         Arcadia Planitia is in Mars' northern lowlands."""
 
