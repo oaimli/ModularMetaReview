@@ -4,6 +4,7 @@ import os
 import wget
 import jsonlines
 from tqdm import tqdm
+from urllib.error import HTTPError
 
 
 conference = "iclr_2021"
@@ -24,5 +25,9 @@ with jsonlines.open(f"../data/{conference}.jsonl") as reader:
 
 for id in tqdm(pdfs.keys()):
     url = pdfs[id]
-    wget.download(url, out=f"{pdf_folder}/{id}.pdf")
+    try:
+        wget.download(url, out=f"{pdf_folder}/{id}.pdf")
+    except HTTPError as err:
+        continue
+
 
