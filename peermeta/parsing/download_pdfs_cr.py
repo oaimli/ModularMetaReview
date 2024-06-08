@@ -18,6 +18,7 @@ print(existing_ids)
 pdfs = {}
 with jsonlines.open(f"../data/{conference}.jsonl") as reader:
     for line in reader:
+        id = line["id"]
         if id not in existing_ids:
             pdfs[line["id"]] = line["pdf"]
 
