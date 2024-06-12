@@ -7,7 +7,7 @@ from tqdm import tqdm
 from urllib.error import HTTPError
 
 
-conference = "iclr_2022"
+conference = "iclr_2023"
 print(conference)
 pdf_folder = f"../data/pdfs_cr_{conference}"
 
