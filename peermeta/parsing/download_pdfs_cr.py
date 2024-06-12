@@ -32,7 +32,7 @@ for id in tqdm(pdfs.keys()):
     try:
         wget.download(url, out=f"{pdf_folder}/{id}.pdf")
     except HTTPError as err:
-        print("Http error", url)
+        print("Http error", id, url)
         continue
 
 
