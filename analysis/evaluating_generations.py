@@ -39,7 +39,7 @@ if __name__ == "__main__":
     #     writer.write_all(samples)
     # # -0.36093002860045564 0.49920685880405957
 
-    # # evaluating human-written meta-reviews
+    # # evaluating zero-shot meta-reviews
     # output_file = "/data/gpfs/projects/punim0521/MistralX/results/mistral_7b_instruct_v02_peersum/predictions_zeroshot.jsonl"
     # documents = []
     # summaries = []
@@ -62,7 +62,7 @@ if __name__ == "__main__":
     #     writer.write_all(samples)
     # # -0.2107997606339326 0.48214757963272425
 
-    # evaluating human-written meta-reviews
+    # evaluating fine-tuned meta-reviews
     output_file = "/data/gpfs/projects/punim0521/MistralX/results/mistral_7b_instruct_v02_peersum/predictions_finetuned.jsonl"
     documents = []
     summaries = []
