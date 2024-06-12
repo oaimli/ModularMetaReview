@@ -7,12 +7,14 @@ from tqdm import tqdm
 from urllib.error import HTTPError
 
 
-conference = "nips_2023"
+conference = "nips_2022"
 print(conference)
 pdf_folder = f"../data/pdfs_cr_{conference}"
 
 existing_ids = []
 for file in os.listdir(pdf_folder):
+    if len(file)>14:
+        print(file)
     existing_ids.append(file[:-4])
 print(existing_ids)
 
