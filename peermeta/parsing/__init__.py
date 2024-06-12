@@ -26,4 +26,4 @@
 # nips_2022:
 # nips_2023: none
 
-# Please note that final versions of iclr_2024 and nips_2024 can be used as the submission version
+# Please note that final versions of iclr_2024 and nips_2024 can be used as the submission version for rejected papers
