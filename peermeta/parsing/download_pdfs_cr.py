@@ -13,7 +13,7 @@ pdf_folder = f"../data/pdfs_cr_{conference}"
 
 existing_ids = []
 for file in os.listdir(pdf_folder):
-    if len(file)>14:
+    if len(file) > 15:
         print(file)
     existing_ids.append(file[:-4])
 print(len(existing_ids))
