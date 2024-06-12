@@ -7,7 +7,7 @@ from tqdm import tqdm
 from urllib.error import HTTPError
 
 
-conference = "nips_2022"
+conference = "nips_2021"
 print(conference)
 pdf_folder = f"../data/pdfs_cr_{conference}"
 
@@ -28,6 +28,7 @@ with jsonlines.open(f"../data/{conference}.jsonl") as reader:
             pdfs[line["id"]] = line["pdf"]
 
 for id in tqdm(pdfs.keys()):
+    # Some urls are not valid
     # url = pdfs[id]
     url = f"https://api.openreview.net/pdf?id={id}"
     try:
