@@ -16,7 +16,7 @@ for file in os.listdir(pdf_folder):
     if len(file)>14:
         print(file)
     existing_ids.append(file[:-4])
-print(existing_ids)
+print(len(existing_ids))
 
 pdfs = {}
 with jsonlines.open(f"../data/{conference}.jsonl") as reader:
