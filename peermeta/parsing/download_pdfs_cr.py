@@ -27,7 +27,7 @@ with jsonlines.open(f"../data/{conference}.jsonl") as reader:
         if id not in existing_ids:
             pdfs[line["id"]] = line["pdf"]
 
-for id in tqdm(pdfs.keys()):
+for id in tqdm(pdfs.keys(), desc=conference):
     # Some urls are not valid
     # url = pdfs[id]
     url = f"https://api.openreview.net/pdf?id={id}"
