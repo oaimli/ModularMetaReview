@@ -28,7 +28,8 @@ with jsonlines.open(f"../data/{conference}.jsonl") as reader:
             pdfs[line["id"]] = line["pdf"]
 
 for id in tqdm(pdfs.keys()):
-    url = pdfs[id]
+    # url = pdfs[id]
+    url = f"https://api.openreview.net/pdf?id={id}"
     try:
         wget.download(url, out=f"{pdf_folder}/{id}.pdf")
     except HTTPError as err:
