@@ -4,13 +4,13 @@
 # iclr_2020:
 # iclr_2021: done, -4
 # iclr_2022: done, -1
-# iclr_2023:
+# iclr_2023: done, -1
 # iclr_2024: done
 
 
 # nips_2021: done
 # nips_2022: done
-# nips_2023:
+# nips_2023: done
 
 # Download pdfs of submission version
 # iclr_2018:
