@@ -1,7 +1,7 @@
 # Download pdfs of final version (camera ready)
 # iclr_2018: done
 # iclr_2019: done
-# iclr_2020:
+# iclr_2020: done
 # iclr_2021: done, -4
 # iclr_2022: done, -1
 # iclr_2023: done, -1
