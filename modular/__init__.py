@@ -1,1 +1,1 @@
-# The framework of doing retrieval, reasoning and generation in a modular way
+# Modular meta-review generation
