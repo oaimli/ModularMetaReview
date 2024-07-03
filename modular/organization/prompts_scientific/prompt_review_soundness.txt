@@ -1,4 +1,4 @@
-You are good at understanding review documents.
+You are good at understanding documents with scientific review opinions.
 Below is a scientific review for an academic manuscript, please extract fragments that make comments on soundness of the research work.
 
 Input meta-review:
@@ -7,4 +7,4 @@ Input meta-review:
 Definition of soundness:
 There are usually two types of soundness: (1) Empirical: how well experiments are designed and executed to support the claims, whether methods used are appropriate, and how correctly the data and results are reported, analysed, and interpreted. (2) Theoretical: whether arguments or claims in the manuscript are well supported by theoretical analysis, i.e., completeness, and the methodology (e.g., mathematical approach) and the analysis is correct.
 
-Extracted fragments:
+Extracted fragments (directly present the results row by row without number and if no resulted fragments just keep the output empty):

@@ -8,8 +8,11 @@ from typing import Dict, List
 
 
 def parsing_result(output):
-    print(output)
-    return output.split("\n")
+    tmp = []
+    for fragment in output.split("\n"):
+        if fragment.strip() != "":
+            tmp.append(fragment)
+    return tmp
 
 
 def gpt4_prompting(input_text: str, facet: str, mode: str = "meta"):
@@ -31,6 +34,7 @@ def gpt4_prompting(input_text: str, facet: str, mode: str = "meta"):
             print(e)
             if ("limit" in str(e)):
                 time.sleep(2)
+    print(output)
     return output
 
 
@@ -117,5 +121,5 @@ if __name__ == "__main__":
         # print(sample)
 
     print(len(results))
-    with open(f"categorization_result_{model_name}.json", "w") as f:
+    with open(f"scientific_categorization_result_{model_name}.json", "w") as f:
         json.dump(results, f, indent=4)

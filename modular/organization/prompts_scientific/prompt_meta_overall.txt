@@ -1,4 +1,4 @@
-You are good at understanding review documents.
+You are good at understanding documents with scientific review opinions.
 Below is a scientific meta-review for an academic manuscript, please extract fragments that make comments on overall of the research work.
 
 Input meta-review:
@@ -7,4 +7,4 @@ Input meta-review:
 Definition of overall:
 Overall quality of the manuscript, not for specific facets.
 
-Extracted fragments:
+Extracted fragments (directly present the results row by row without number and if no resulted fragments just keep the output empty):
