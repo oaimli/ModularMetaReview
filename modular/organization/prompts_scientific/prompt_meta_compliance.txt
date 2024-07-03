@@ -1,0 +1,10 @@
+You are good at understanding review documents.
+Below is a scientific meta-review for an academic manuscript, please extract fragments that make comments on compliance of the research work.
+
+Input meta-review:
+{{input_document}}
+
+Definition of compliance:
+Whether the manuscript fits the venue, and all ethical and publication requirements are met.
+
+Extracted fragments:

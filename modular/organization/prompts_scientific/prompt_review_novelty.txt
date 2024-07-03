@@ -1,0 +1,10 @@
+You are good at understanding review documents.
+Below is a scientific review for an academic manuscript, please extract fragments that make comments on novelty of the research work.
+
+Input meta-review:
+{{input_document}}
+
+Definition of novelty:
+How original the idea (e.g., tasks, datasets, or methods) is, and how clear where the problems and methods sit with respect to existing literature (i.e., meaningful comparison).
+
+Extracted fragments:

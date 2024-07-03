@@ -1,0 +1,10 @@
+You are good at understanding review documents.
+Below is a scientific meta-review for an academic manuscript, please extract fragments that make comments on clarity of the research work.
+
+Input meta-review:
+{{input_document}}
+
+Definition of clarity:
+The readability of the writing (e.g., structure and language), reproducibility of details, and how accurately what the research question is, what was done and what was the conclusion are presented.
+
+Extracted fragments:

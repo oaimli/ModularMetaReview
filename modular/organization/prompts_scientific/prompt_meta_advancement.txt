@@ -1,0 +1,10 @@
+You are good at understanding review documents.
+Below is a scientific meta-review for an academic manuscript, please extract fragments that make comments on advancement of the research work.
+
+Input meta-review:
+{{input_document}}
+
+Definition of advancement:
+Importance of the manuscript to discipline, significance of the contributions of the manuscript, and its potential impact to the field.
+
+Extracted fragments:

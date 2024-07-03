@@ -1,0 +1,10 @@
+You are good at understanding review documents.
+Below is a scientific meta-review for an academic manuscript, please extract fragments that make comments on overall of the research work.
+
+Input meta-review:
+{{input_document}}
+
+Definition of overall:
+Overall quality of the manuscript, not for specific facets.
+
+Extracted fragments:
