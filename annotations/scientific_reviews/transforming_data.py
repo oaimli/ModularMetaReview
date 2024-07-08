@@ -4,7 +4,6 @@
 import json
 import spacy
 from rouge_score import rouge_scorer
-from nltk import sent_tokenize
 
 def matching_fragments(document, judgements):
     # trace judgements back to the original document, and return the corresponding fragments

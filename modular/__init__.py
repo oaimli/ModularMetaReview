@@ -1,1 +1,1 @@
-# Modular meta-review generation
+# Run the modular methodology on meta-review generation, more focused on the final generations
