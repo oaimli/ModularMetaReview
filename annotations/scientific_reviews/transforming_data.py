@@ -9,7 +9,9 @@ from nltk import sent_tokenize
 def matching_fragments(document, judgements):
     # trace judgements back to the original document, and return the corresponding fragments
 
-    sentences = nlp(document).sents
+    sentences = []
+    for sent in nlp(document).sents:
+        sentences.append(sent.text)
     # sentences = sent_tokenize(document)
 
     result = {}
