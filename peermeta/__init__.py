@@ -1,1 +1,1 @@
-# Re-crawl data from OpenReview and include the papers themselves
+# Curated dataset with more current samples from OpenReview and each sample include the paper content

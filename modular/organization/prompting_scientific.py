@@ -103,7 +103,7 @@ def categorizing_review(reviews: List[Dict], model_name: str) -> List:
 
 
 if __name__ == "__main__":
-    facets = ["novelty", "soundness", "clarity", "advancement", "compliance", "overall"]
+    facets = ["Novelty", "Soundness", "Clarity", "Advancement", "Compliance", "Overall"]
 
     model_name = "gpt4"
     client = OpenAI(api_key="sk-proj-jxdkj7TzTCWDjDU0lpEPT3BlbkFJll01Dz3fxt51wM8Rh6wm")
