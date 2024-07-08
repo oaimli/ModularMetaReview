@@ -83,7 +83,7 @@ def transform_annotations(samples, all_annotations):
                 if review_title == document_title:
                     review_annotation = annotation
                     break
-            print(sample_key, review_title)
+            # print(sample_key, review_title)
             if len(review_annotation.keys()) > 0:
                 judgements = review_annotation["Annotated Judgements"]
             else:
