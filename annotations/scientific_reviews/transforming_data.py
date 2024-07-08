@@ -41,6 +41,7 @@ def transform_annotations(samples, annotations):
         print(sample_key)
         # the sample_value is a dictionary
         annotation_sample = annotations[sample_key] # the annotation_sample is a list
+        print(annotation_sample)
 
         # meta-review
         meta_review = sample_value["meta_review"]
