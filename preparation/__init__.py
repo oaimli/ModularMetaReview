@@ -1,1 +1,1 @@
-# Pre-process the datasets and unify the format of them to make training and testing easier
+# Pre-process the public datasets and unify the format of them to make training and testing easier

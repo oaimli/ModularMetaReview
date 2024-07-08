@@ -16,7 +16,7 @@ def matching_fragments(document, judgements):
     result = {}
     review_facets = ["Novelty", "Soundness", "Clarity", "Advancement", "Compliance", "Overall"]
     for facet in review_facets:
-        fragments = []
+        fragments = set([])
         for judgement in judgements:
             judgement_facet = judgement["Criteria Facet"]
             if facet == judgement_facet:
@@ -28,9 +28,9 @@ def matching_fragments(document, judgements):
                 for sentence in sentences:
                     scores = scorer.score(target, sentence)
                     rouges.append(scores["rouge2"].fmeasure + scores["rouge1"].fmeasure + scores["rougeLsum"].fmeasure)
-                fragments.append(sentences[rouges.index(max(rouges))])
+                fragments.add(sentences[rouges.index(max(rouges))])
 
-        result[facet] = fragments
+        result[facet] = list(fragments)
     return result
 
 
