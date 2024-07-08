@@ -38,11 +38,12 @@ def matching_fragments(document, judgements):
 def transform_annotations(samples, all_annotations):
     # check whether every annotation title exists in any original document
     for sample_key, sample_value in samples.items():
-        annotations_sample = all_annotations[sample_key] # the annotation_sample is a list
         titles = [sample_value["meta_review_title"]]
         for review in sample_value["reviews"]:
             titles.append(review["title"])
+
         all_exit = True
+        annotations_sample = all_annotations[sample_key]  # the annotation_sample is a list
         for annotation in annotations_sample:
             if annotation["Document Title"] not in titles:
                 all_exit = False
@@ -55,17 +56,6 @@ def transform_annotations(samples, all_annotations):
         # the sample_value is a dictionary
         annotations_sample = all_annotations[sample_key] # the annotation_sample is a list
         # print(annotations_sample)
-
-        # check whether every annotation title exists in any original document
-        titles = [sample_value["meta_review_title"]]
-        for review in sample_value["reviews"]:
-            titles.append(review["title"])
-        all_exit = True
-        for annotation in annotations_sample:
-            if annotation["Document Title"] not in titles:
-                all_exit = False
-        print("Annotations title", all_exit)
-
 
         # meta-review
         meta_review = sample_value["meta_review"]
@@ -94,8 +84,11 @@ def transform_annotations(samples, all_annotations):
                     review_annotation = annotation
                     break
             print(sample_key, review_title)
-            # assert len(review_annotation.keys()) > 0
-            facet_fragments = matching_fragments(review_comment, review_annotation["Annotated Judgements"])
+            if len(review_annotation.keys()) > 0:
+                judgements = review_annotation["Annotated Judgements"]
+            else:
+                judgements = []
+            facet_fragments = matching_fragments(review_comment, judgements)
             review_categorization.append(facet_fragments)
         sample_value["review_categorization"] = review_categorization
 
