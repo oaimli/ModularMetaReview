@@ -43,6 +43,17 @@ def transform_annotations(samples, all_annotations):
         annotations_sample = all_annotations[sample_key] # the annotation_sample is a list
         # print(annotations_sample)
 
+        # check whether every annotation title exists in any original document
+        titles = [sample_value["meta_review_title"]]
+        for review in sample_value["reviews"]:
+            titles.append(review["title"])
+        all_exit = True
+        for annotation in annotations_sample:
+            if annotation["Document Title"] not in titles:
+                all_exit = False
+        print("Annotations title", all_exit)
+
+
         # meta-review
         meta_review = sample_value["meta_review"]
         meta_review_title = sample_value["meta_review_title"]
