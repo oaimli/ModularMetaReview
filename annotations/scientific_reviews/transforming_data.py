@@ -35,6 +35,7 @@ def matching_fragments(document, judgements):
 def transform_annotations(samples, annotations):
     transformed_annotations = {}
     for sample_key, sample_value in samples.items():
+        print(sample_key)
         # the sample_value is a dictionary
         annotation_sample = annotations[sample_key] # the annotation_sample is a list
 
