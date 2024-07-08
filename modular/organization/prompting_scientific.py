@@ -17,7 +17,7 @@ def parsing_result(output):
 
 def gpt4_prompting(input_text: str, facet: str, mode: str = "meta"):
     prompt_format = open(f"prompts_scientific/prompt_{mode}_{facet}.txt").read()
-    print(prompt_format)
+    # print(prompt_format)
     while True:
         try:
             output_dict = client.chat.completions.create(
@@ -34,7 +34,7 @@ def gpt4_prompting(input_text: str, facet: str, mode: str = "meta"):
             print(e)
             if ("limit" in str(e)):
                 time.sleep(2)
-    print(output)
+    # print(output)
     return output
 
 
@@ -112,7 +112,7 @@ if __name__ == "__main__":
         test_samples = json.load(f)
 
     results = {}
-    for key, sample in tqdm(test_samples.items()):
+    for key, sample in tqdm(random.sample(test_samples.items(), 5)):
         reviews = sample["reviews"]
         meta_review = sample["meta_review"]
         sample["review_categorization"] = categorizing_review(reviews, model_name)
