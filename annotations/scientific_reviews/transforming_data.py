@@ -41,7 +41,7 @@ def transform_annotations(samples, all_annotations):
         print(sample_key)
         # the sample_value is a dictionary
         annotations_sample = all_annotations[sample_key] # the annotation_sample is a list
-        print(annotations_sample)
+        # print(annotations_sample)
 
         # meta-review
         meta_review = sample_value["meta_review"]
@@ -52,7 +52,7 @@ def transform_annotations(samples, all_annotations):
             if meta_review_title == document_title:
                 meta_review_annotation = annotation
                 break
-        print(meta_review_annotation)
+        # print(meta_review_annotation)
         assert len(meta_review_annotation.keys()) > 0
         facet_fragments = matching_fragments(meta_review, meta_review_annotation["Annotated Judgements"])
         sample_value["meta_review_categorization"] = facet_fragments
@@ -69,6 +69,7 @@ def transform_annotations(samples, all_annotations):
                 if review_title == document_title:
                     review_annotation = annotation
                     break
+            print(sample_key, review_title)
             assert len(review_annotation.keys()) > 0
             facet_fragments = matching_fragments(review_comment, meta_review_annotation["Annotated Judgements"])
             review_categorization.append(facet_fragments)
