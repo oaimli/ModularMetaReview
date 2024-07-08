@@ -4,11 +4,13 @@
 import json
 import spacy
 from rouge_score import rouge_scorer
+from nltk import sent_tokenize
 
 def matching_fragments(document, judgements):
     # trace judgements back to the original document, and return the corresponding fragments
 
-    sentences = nlp(document).sents
+    # sentences = nlp(document).sents
+    sentences = sent_tokenize(document)
 
     result = {}
     review_facets = ["Novelty", "Soundness", "Clarity", "Advancement", "Compliance", "Overall"]
@@ -75,7 +77,7 @@ def transform_annotations(samples, annotations):
 
 
 if __name__ == "__main__":
-    nlp = spacy.load("en_core_web_sm")
+    # nlp = spacy.load("en_core_web_sm")
     scorer = rouge_scorer.RougeScorer(["rouge1", "rouge2", "rougeLsum"], use_stemmer=True)
 
     with open("annotation_data_small.json") as f:
