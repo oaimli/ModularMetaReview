@@ -64,7 +64,7 @@ def transform_annotations(samples, all_annotations):
             review_comment = review["comment"]
             review_annotation = {}
             review_title = review["title"]
-            for annotation in annotation_sample:
+            for annotation in annotations_sample:
                 document_title = annotation["Document Title"]
                 if review_title == document_title:
                     review_annotation = annotation
