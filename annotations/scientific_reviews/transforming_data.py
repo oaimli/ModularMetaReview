@@ -35,23 +35,24 @@ def matching_fragments(document, judgements):
 
 
 
-def transform_annotations(samples, annotations):
+def transform_annotations(samples, all_annotations):
     transformed_annotations = {}
     for sample_key, sample_value in samples.items():
         print(sample_key)
         # the sample_value is a dictionary
-        annotation_sample = annotations[sample_key] # the annotation_sample is a list
-        print(annotation_sample)
+        annotations_sample = all_annotations[sample_key] # the annotation_sample is a list
+        print(annotations_sample)
 
         # meta-review
         meta_review = sample_value["meta_review"]
         meta_review_title = sample_value["meta_review_title"]
         meta_review_annotation = {}
-        for annotation in annotation_sample:
+        for annotation in annotations_sample:
             document_title = annotation["Document Title"]
             if meta_review_title == document_title:
                 meta_review_annotation = annotation
                 break
+        print(meta_review_annotation)
         assert len(meta_review_annotation.keys()) > 0
         facet_fragments = matching_fragments(meta_review, meta_review_annotation["Annotated Judgements"])
         sample_value["meta_review_categorization"] = facet_fragments
