@@ -104,7 +104,8 @@ if __name__ == "__main__":
     generator = Llama.build(
         ckpt_dir=ckpt_dir,
         tokenizer_path=tokenizer_path,
-        max_seq_len=8192
+        max_seq_len=8192,
+        max_batch_size=1
         )
     print("Model loading done")
 
