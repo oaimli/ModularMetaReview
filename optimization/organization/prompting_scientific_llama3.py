@@ -46,11 +46,11 @@ def llama_prompting(input_text: str, facet: str, mode: str = "meta"):
         [
             {"role": "user",
              "content": prompt_content}
-            ]
         ]
+    ]
     result = generator.chat_completion(
         messages,
-        max_gen_len=4096,
+        max_gen_len=2048,
         temperature=0.7,
         top_p=0.92,
         )[0]
@@ -95,6 +95,8 @@ def categorizing_review(reviews: List[Dict]) -> List:
 
 
 if __name__ == "__main__":
+    # Run with torchrun --nproc_per_node 4 prompting_scientific_llama3.py
+
     nlp = spacy.load("en_core_web_sm")
     facets = ["Novelty", "Soundness", "Clarity", "Advancement", "Compliance", "Overall"]
 
