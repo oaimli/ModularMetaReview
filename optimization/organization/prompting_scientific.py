@@ -30,7 +30,7 @@ def gpt4_prompting(input_text: str, facet: str, mode: str = "meta"):
     example_output = []
     for position, num in zip(random_positions, random_nums):
         tmp = " ".join(sentences[position: position + num])
-        example_output.append({"Extracted_fragment": tmp})
+        example_output.append({"extracted_fragment": tmp})
     with jsonlines.open("example_tmp.jsonl", "w") as writer:
         writer.write_all(example_output)
     with open("example_tmp.jsonl", "r") as f:
