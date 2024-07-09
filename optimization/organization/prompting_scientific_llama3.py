@@ -48,6 +48,7 @@ def llama_prompting(input_text: str, facet: str, mode: str = "meta"):
              "content": prompt_content}
         ]
     ]
+    print("generating ...")
     result = generator.chat_completion(
         messages,
         max_gen_len=2048,
