@@ -37,9 +37,8 @@ def llama_prompting(input_text: str, facet: str, mode: str = "meta"):
         example_output_text = f.read()
 
     prompt_format = open(f"prompts_scientific/prompt_{mode.lower()}_{facet.lower()}.txt").read()
-    # prompt_content = prompt_format.replace("{{input_document}}", input_text).replace("{{example_output}}",
-    #                                                                                  example_output_text)
-    prompt_content = prompt_format
+    prompt_content = prompt_format.replace("{{input_document}}", input_text).replace("{{example_output}}",
+                                                                                     example_output_text)
     with open("prompt_tmp.txt", "w") as f:
         f.write(prompt_content)
 
@@ -52,7 +51,7 @@ def llama_prompting(input_text: str, facet: str, mode: str = "meta"):
     print("generating ...")
     result = generator.chat_completion(
         messages,
-        max_gen_len=512,
+        max_gen_len=1024,
         temperature=0.7,
         top_p=0.92,
         )[0]
