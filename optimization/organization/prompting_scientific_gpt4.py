@@ -71,15 +71,7 @@ def gpt4_prompting(input_text: str, facet: str, mode: str = "meta"):
     return fragments
 
 
-def llama_prompting(input_text: str, facet: str, mode: str = "meta"):
-    return None
-
-
-def mistral_prompting(input_text: str, facet: str, mode: str = "meta"):
-    return None
-
-
-def categorizing_meta_review(meta_review: str, model_name: str = "gpt4") -> Dict:
+def categorizing_meta_review(meta_review: str) -> Dict:
     """
     Args:
         meta_review: the meta-review of a sample
@@ -87,49 +79,26 @@ def categorizing_meta_review(meta_review: str, model_name: str = "gpt4") -> Dict
     Returns:
         result: a dictionary of extracted fragments for different review facets
     """
-    prompting = None
-    if model_name == "gpt4":
-        prompting = gpt4_prompting
-    if model_name == "llama3":
-        prompting = llama_prompting
-    if model_name == "mistral":
-        prompting = mistral_prompting
-
     result = {}
-    if prompting != None:
-        for facet in facets:
-            result[facet] = prompting(meta_review, facet, "meta")
-    else:
-        print("The model name is not correct.")
+    for facet in facets:
+        result[facet] = gpt4_prompting(meta_review, facet, "meta")
 
     return result
 
 
-def categorizing_review(reviews: List[Dict], model_name: str) -> List:
+def categorizing_review(reviews: List[Dict]) -> List:
     """
     Args:
         reviews: the list of reviews in the original dataset
-        model_name: the name of a model
     Returns:
         result: a list of dictionaries
     """
-    prompting = None
-    if model_name == "gpt4":
-        prompting = gpt4_prompting
-    if model_name == "llama3":
-        prompting = llama_prompting
-    if model_name == "mistral":
-        prompting = mistral_prompting
-
     result = []
-    if prompting != None:
-        for review in reviews:
-            tmp = {}
-            for facet in facets:
-                tmp[facet] = prompting(review["comment"], facet, "review")
-            result.append(tmp)
-    else:
-        print("The model name is not correct.")
+    for review in reviews:
+        tmp = {}
+        for facet in facets:
+            tmp[facet] = gpt4_prompting(review["comment"], facet, "review")
+        result.append(tmp)
 
     return result
 
@@ -150,8 +119,8 @@ if __name__ == "__main__":
         sample = test_samples[key]
         reviews = sample["reviews"]
         meta_review = sample["meta_review"]
-        sample["review_categorization"] = categorizing_review(reviews, model_name)
-        sample["meta_review_categorization"] = categorizing_meta_review(meta_review, model_name)
+        sample["review_categorization"] = categorizing_review(reviews)
+        sample["meta_review_categorization"] = categorizing_meta_review(meta_review)
         results[key] = sample
         # print(sample)
 
