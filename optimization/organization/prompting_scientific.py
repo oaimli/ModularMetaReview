@@ -36,7 +36,7 @@ def gpt4_prompting(input_text: str, facet: str, mode: str = "meta"):
     with open("example_tmp.jsonl", "r") as f:
         example_output_text = f.read()
 
-    prompt_format = open(f"prompts_scientific/prompt_{mode}_{facet}.txt").read()
+    prompt_format = open(f"prompts_scientific/prompt_{mode.lower()}_{facet.lower()}.txt").read()
     # print(prompt_format)
     while True:
         try:
