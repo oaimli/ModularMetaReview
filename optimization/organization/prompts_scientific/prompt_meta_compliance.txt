@@ -1,10 +1,13 @@
 You are good at understanding documents with scientific review opinions.
-Below is a scientific meta-review for an academic manuscript, please extract fragments that make comments on compliance of the research work.
+Below is a scientific meta-review for an academic manuscript, please extract fragments that make comments on Compliance of the research work.
 
 Input meta-review:
 {{input_document}}
 
-Definition of compliance:
+Definition of Compliance:
 Whether the manuscript fits the venue, and all ethical and publication requirements are met.
+
+Example format of extracted fragments:
+{{example_output}}
 
 Extracted fragments (directly present the results row by row without number and if no resulted fragments just keep the output empty):

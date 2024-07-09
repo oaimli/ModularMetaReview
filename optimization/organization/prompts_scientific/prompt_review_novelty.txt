@@ -1,10 +1,13 @@
 You are good at understanding documents with scientific review opinions.
-Below is a scientific review for an academic manuscript, please extract fragments that make comments on novelty of the research work.
+Below is a scientific review for an academic manuscript, please extract fragments that make comments on Novelty of the research work.
 
 Input meta-review:
 {{input_document}}
 
-Definition of novelty:
+Definition of Novelty:
 How original the idea (e.g., tasks, datasets, or methods) is, and how clear where the problems and methods sit with respect to existing literature (i.e., meaningful comparison).
+
+Example format of extracted fragments:
+{{example_output}}
 
 Extracted fragments (directly present the results row by row without number and if no resulted fragments just keep the output empty):

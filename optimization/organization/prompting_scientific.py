@@ -5,17 +5,37 @@ import time
 import json
 from tqdm import tqdm
 from typing import Dict, List
+import spacy
 
 
 def parsing_result(output):
-    tmp = []
-    for fragment in output.split("\n"):
-        if fragment.strip() != "":
-            tmp.append(fragment)
-    return tmp
+    with open("output_tmp.jsonl", "w") as f:
+        f.write(output.strip())
+    results = []
+    try:
+        with jsonlines.open("output_tmp.jsonl") as reader:
+            for line in reader:
+                results.append(line)
+    except jsonlines.InvalidLineError as err:
+        print("Jsonlines parsing error,", err)
+    return results
 
 
 def gpt4_prompting(input_text: str, facet: str, mode: str = "meta"):
+    sentences = []
+    for sent in nlp(input_text).sents:
+        sentences.append(sent.text)
+    random_positions = random.sample(range(len(sentences)), 3)
+    random_nums = [random.randint(1, 5) for _ in range(3)]
+    example_output = []
+    for position, num in zip(random_positions, random_nums):
+        tmp = " ".join(sentences[position: position + num])
+        example_output.append({"Extracted_fragment": tmp})
+    with jsonlines.open("example_tmp.jsonl", "w") as writer:
+        writer.write_all(example_output)
+    with open("example_output.jsonl", "r") as f:
+        example_output_text = f.read()
+
     prompt_format = open(f"prompts_scientific/prompt_{mode}_{facet}.txt").read()
     # print(prompt_format)
     while True:
@@ -24,17 +44,26 @@ def gpt4_prompting(input_text: str, facet: str, mode: str = "meta"):
                 model="gpt-4o",
                 messages=[
                     {"role": "system",
-                     "content": prompt_format.replace("{{input_document}}", input_text)}
+                     "content": prompt_format.replace("{{input_document}}", input_text).replace("{{example_output}}", example_output_text)}
                     ],
-                n=1
+                n=3
                 )
-            output = parsing_result(output_dict.choices[0].message.content)
+            output = []
+            for choice in output_dict.choices:
+                tmp = parsing_result(choice.message.content)
+                if len(tmp) > len(output):
+                    output = tmp
             break
         except Exception as e:
             print(e)
             if ("limit" in str(e)):
                 time.sleep(2)
     # print(output)
+
+    fragments = []
+    for line in output:
+        fragments.append(line["extracted_fragment"])
+
     return output
 
 
@@ -57,17 +86,16 @@ def categorizing_meta_review(meta_review: str, model_name: str = "gpt4") -> Dict
     prompting = None
     if model_name == "gpt4":
         prompting = gpt4_prompting
-    if model_name == "llama":
+    if model_name == "llama3":
         prompting = llama_prompting
     if model_name == "mistral":
         prompting = mistral_prompting
 
+    result = {}
     if prompting != None:
-        result = {}
         for facet in facets:
             result[facet] = prompting(meta_review, facet, "meta")
     else:
-        result = {}
         print("The model name is not correct.")
 
     return result
@@ -84,7 +112,7 @@ def categorizing_review(reviews: List[Dict], model_name: str) -> List:
     prompting = None
     if model_name == "gpt4":
         prompting = gpt4_prompting
-    if model_name == "llama":
+    if model_name == "llama3":
         prompting = llama_prompting
     if model_name == "mistral":
         prompting = mistral_prompting
@@ -103,6 +131,7 @@ def categorizing_review(reviews: List[Dict], model_name: str) -> List:
 
 
 if __name__ == "__main__":
+    nlp = spacy.load("en_core_web_sm")
     facets = ["Novelty", "Soundness", "Clarity", "Advancement", "Compliance", "Overall"]
 
     model_name = "gpt4"
