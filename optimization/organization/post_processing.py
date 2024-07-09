@@ -1,6 +1,8 @@
 # Post-process the extraction results of models
 # to make sure that extracted fragments are exactly the same as texts in the original document
 import json
+import spacy
+from rouge_score import rouge_scorer
 
 
 def matching_fragments(document, facet_fragments):
@@ -9,33 +11,41 @@ def matching_fragments(document, facet_fragments):
     sentences = []
     for sent in nlp(document).sents:
         sentences.append(sent.text)
-    # sentences = sent_tokenize(document)
 
     result = {}
-    review_facets = ["Novelty", "Soundness", "Clarity", "Advancement", "Compliance", "Overall"]
-    for facet in review_facets:
-        fragments = set([])
-        for judgement in judgements:
-            judgement_facet = judgement["Criteria Facet"]
-            if facet == judgement_facet:
-                content_expression = judgement["Content Expression"]
-                sentiment_expression = judgement["Sentiment Expression"]
-                # anchored fragment in the original document
-                target = content_expression + " " + sentiment_expression
-                rouges = []
-                for sentence in sentences:
-                    scores = scorer.score(target, sentence)
-                    rouges.append(scores["rouge2"].fmeasure + scores["rouge1"].fmeasure + scores["rougeLsum"].fmeasure)
-                fragments.add(sentences[rouges.index(max(rouges))])
+    for facet, fragments in facet_fragments.items():
+        fragments_new = set([])
+        for fragment in fragments:
+            if fragment in document:
+                if len(fragment) > 10:
+                    fragments_new.add(fragment)
+            else:
+                fragment_sentences = []
+                for sent in nlp(fragment).sents:
+                    fragment_sentences.append(sent.text)
+                for fragment_sentence in fragment_sentences:
+                    if len(fragment_sentence) > 10:
+                        if fragment_sentence in document:
+                            fragments_new.add(fragment_sentence)
+                        else:
+                            rouges = []
+                            for sentence in sentences:
+                                scores = scorer.score(fragment_sentence, sentence)
+                                rouges.append(scores["rouge2"].fmeasure + scores["rouge1"].fmeasure + scores[
+                                    "rougeLsum"].fmeasure)
+                            fragments_new.add(sentences[rouges.index(max(rouges))])
+        result[facet] = list(fragments_new)
 
-        result[facet] = list(fragments)
     return result
 
 
 if __name__ == "__main__":
+    nlp = spacy.load("en_core_web_sm")
+    scorer = rouge_scorer.RougeScorer(["rouge1", "rouge2", "rougeLsum"], use_stemmer=True)
+
     file_name = "scientific_categorization_result_gpt4"
 
-    with open(f"{file_name}_gpt4.json") as f:
+    with open(f"{file_name}.json") as f:
         samples = json.load(f)
 
     for sample_key, sample_value in samples.items():
@@ -51,4 +61,4 @@ if __name__ == "__main__":
         samples[sample_key]["review_categorization"] = review_categorization_new
 
     with open(f"{file_name}_processed.json", "w") as f:
-        samples = json.dump(samples, f)
+        samples = json.dump(samples, f, indent=4)

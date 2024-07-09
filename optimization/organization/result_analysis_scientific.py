@@ -1,7 +1,7 @@
 import json
 
 
-def character_level_agreement(human_results_1, model_results_2, annotation_data):
+def character_level_agreement(results_1, results_2, annotation_data):
     content_1s = []
     content_2s = []
     sentiment_1s = []
@@ -11,8 +11,8 @@ def character_level_agreement(human_results_1, model_results_2, annotation_data)
 
     for id, source_documents in annotation_data.items():
         print(id)
-        result_1 = human_results_1[id]
-        result_2 = model_results_2[id]
+        result_1 = results_1[id]
+        result_2 = results_2[id]
 
         for source_document_dict in source_documents:
             title = source_document_dict["title"]
@@ -140,34 +140,34 @@ def character_level_agreement(human_results_1, model_results_2, annotation_data)
 
 
 if __name__ == "__main__":
-    with open("../../annotations/scientific_reviews/br_annotation_result.json") as f:
+    with open("scientific_categorization_result_gpt4_processed.json") as f:
+        model_results = json.load(f)
+    with open("../../annotations/scientific_reviews/br_annotation_result_fragments.json") as f:
         bryan_results = json.load(f)
-    with open("../../annotations/scientific_reviews/ze_annotation_result.json") as f:
+    with open("../../annotations/scientific_reviews/ze_annotation_result_fragments.json") as f:
         zenan_results = json.load(f)
-    with open("scientific_categorization_result_gpt4.json") as f:
-        gpt4_results = json.load(f)
     with open("../../annotations/scientific_reviews/annotation_data_small.json") as f:
         annotation_data = json.load(f)
 
     bryan_results_share = {}
     zenan_results_share = {}
-    gpt4_results_share = {}
+    model_results_share = {}
     annotation_data_share = {}
     shared_ids = list(
-        set(bryan_results.keys()).intersection(set(zenan_results.keys())).intersection(set(gpt4_results.keys())))
+        set(bryan_results.keys()).intersection(set(zenan_results.keys())).intersection(set(model_results.keys())))
     for key in shared_ids:
         bryan_results_share[key] = bryan_results[key]
         zenan_results_share[key] = zenan_results[key]
-        gpt4_results_share[key] = gpt4_results[key]
+        model_results_share[key] = model_results[key]
         annotation_data_share[key] = annotation_data[key]
 
-    print("Br", len(bryan_results_share), "Ze", len(zenan_results_share), "GPT-4", len(gpt4_results_share),
+    print("Br", len(bryan_results_share), "Ze", len(zenan_results_share), "GPT-4", len(model_results_share),
           "Annotation data", len(annotation_data_share))
 
     for key in shared_ids:
         bryan_result = bryan_results_share[key]
         zenan_result = zenan_results_share[key]
-        gpt4_result = gpt4_results_share[key]
+        model_result = model_results_share[key]
         source_data = annotation_data_share[key]
 
         source_data_new = []
@@ -180,18 +180,20 @@ if __name__ == "__main__":
 
         bryan_results_share[key] = bryan_result
         zenan_results_share[key] = zenan_result
-        gpt4_results_share[key] = gpt4_result
+        model_results_share[key] = model_result
 
     assert len(annotation_data.keys()) == len(bryan_results_share.keys()) == len(zenan_results_share.keys())
 
-    print("################ Annotator Agreement Bryan and GPT-4: ################")
-    result_bg = character_level_agreement(bryan_results_share, gpt4_results_share, annotation_data_share)
+    print("################ Agreement Bryan and Zenan: ################")
+    result_bz = character_level_agreement(bryan_results_share, zenan_results_share, annotation_data_share)
 
-    print("################ Annotator Agreement Zenan and GPT-4: ################")
-    result_zg = character_level_agreement(zenan_results_share, gpt4_results_share, annotation_data_share)
+    print("################ Agreement Bryan and Model: ################")
+    result_bm = character_level_agreement(bryan_results_share, model_results_share, annotation_data_share)
 
-    print(
-        "################ Overall results for agreement, A1<->A2, A1<->GPT-4 and A2<->GPT-4: ################")
-    for key in result_bg:
-        print(key, "------", result_bg[key], result_zg[key])
+    print("################ Agreement Zenan and Model: ################")
+    result_zm = character_level_agreement(zenan_results_share, model_results_share, annotation_data_share)
+
+    print("################ Overall agreement, A1<->A2, A1<->Model and A2<->Model ################")
+    for key in result_bm:
+        print(key, "------", result_bz[key], result_bm[key], result_zm[key])
 

@@ -145,7 +145,7 @@ if __name__ == "__main__":
         test_samples = json.load(f)
 
     results = {}
-    random_samples = random.sample(list(test_samples.keys()), 1)
+    random_samples = random.sample(list(test_samples.keys()), 5)
     for key in tqdm(random_samples):
         sample = test_samples[key]
         reviews = sample["reviews"]
