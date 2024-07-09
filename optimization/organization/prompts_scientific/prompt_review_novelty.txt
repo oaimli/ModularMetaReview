@@ -7,7 +7,7 @@ Input meta-review:
 Definition of Novelty:
 How original the idea (e.g., tasks, datasets, or methods) is, and how clear where the problems and methods sit with respect to existing literature (i.e., meaningful comparison).
 
-Example format of extracted fragments:
+Example format of extracted fragments in JSON Lines:
 {{example_output}}
 
-Extracted fragments (directly present the results row by row without number and if no resulted fragments just keep the output empty):
+Extracted fragments (follow the format above and if no resulted fragments just keep the output empty):

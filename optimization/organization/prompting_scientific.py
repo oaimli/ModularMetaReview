@@ -25,18 +25,21 @@ def gpt4_prompting(input_text: str, facet: str, mode: str = "meta"):
     sentences = []
     for sent in nlp(input_text).sents:
         sentences.append(sent.text)
-    random_positions = random.sample(range(len(sentences)), 3)
-    random_nums = [random.randint(1, 5) for _ in range(3)]
+    random_positions = [random.randint(0, len(sentences)) for _ in range(5)]
+    random_nums = [random.randint(1, 6) for _ in range(3)]
     example_output = []
     for position, num in zip(random_positions, random_nums):
         tmp = " ".join(sentences[position: position + num])
-        example_output.append({"extracted_fragment": tmp})
+        example_output.append({"extracted_fragment": tmp.strip()})
     with jsonlines.open("example_tmp.jsonl", "w") as writer:
         writer.write_all(example_output)
     with open("example_tmp.jsonl", "r") as f:
         example_output_text = f.read()
 
     prompt_format = open(f"prompts_scientific/prompt_{mode.lower()}_{facet.lower()}.txt").read()
+    prompt_content = prompt_format.replace("{{input_document}}", input_text).replace("{{example_output}}", example_output_text)
+    with open("prompt_tmp.txt", "w") as f:
+        f.write(prompt_content)
     # print(prompt_format)
     while True:
         try:
@@ -44,9 +47,9 @@ def gpt4_prompting(input_text: str, facet: str, mode: str = "meta"):
                 model="gpt-4o",
                 messages=[
                     {"role": "system",
-                     "content": prompt_format.replace("{{input_document}}", input_text).replace("{{example_output}}", example_output_text)}
+                     "content": prompt_content}
                     ],
-                n=3
+                n=5
                 )
             output = []
             for choice in output_dict.choices:
@@ -59,12 +62,13 @@ def gpt4_prompting(input_text: str, facet: str, mode: str = "meta"):
             if ("limit" in str(e)):
                 time.sleep(2)
     # print(output)
-
+    print(output)
     fragments = []
     for line in output:
-        fragments.append(line["extracted_fragment"])
+        if isinstance(line, dict) and "extracted_fragment" in line.keys():
+            fragments.append(line["extracted_fragment"])
 
-    return output
+    return fragments
 
 
 def llama_prompting(input_text: str, facet: str, mode: str = "meta"):
@@ -141,7 +145,9 @@ if __name__ == "__main__":
         test_samples = json.load(f)
 
     results = {}
-    for key, sample in tqdm(random.sample(test_samples.items(), 5)):
+    random_samples = random.sample(list(test_samples.keys()), 1)
+    for key in tqdm(random_samples):
+        sample = test_samples[key]
         reviews = sample["reviews"]
         meta_review = sample["meta_review"]
         sample["review_categorization"] = categorizing_review(reviews, model_name)
