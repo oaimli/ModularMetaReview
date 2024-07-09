@@ -33,7 +33,7 @@ def gpt4_prompting(input_text: str, facet: str, mode: str = "meta"):
         example_output.append({"Extracted_fragment": tmp})
     with jsonlines.open("example_tmp.jsonl", "w") as writer:
         writer.write_all(example_output)
-    with open("example_output.jsonl", "r") as f:
+    with open("example_tmp.jsonl", "r") as f:
         example_output_text = f.read()
 
     prompt_format = open(f"prompts_scientific/prompt_{mode}_{facet}.txt").read()
