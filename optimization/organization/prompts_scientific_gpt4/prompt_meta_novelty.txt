@@ -1,13 +1,26 @@
 You are good at understanding documents with scientific review opinions.
-Below is a scientific meta-review for an academic manuscript, please extract fragments that make comments on Novelty of the research work.
-
-Input meta-review:
-{{input_document}}
+Below is a scientific meta-review for an academic manuscript, please extract fragments that make comments on Novelty of the research work
 
 Definition of Novelty:
+
 How original the idea (e.g., tasks, datasets, or methods) is, and how clear where the problems and methods sit with respect to existing literature (i.e., meaningful comparison).
 
-Example format of extracted fragments in JSON Lines:
-{{example_output}}
 
-Extracted fragments (follow the format above and if no resulted fragments just keep the output empty):
+Example input meta-review:
+
+The manuscript describes a method for identifying and correcting classifier performance when labels are assigned incorrectly. The identification is based on clustering classification failure regions in a VAE latent space and the correction phase is based on fine-tuning the classifier with additional synthetic samples from the VAE.
+
+Reviewers agreed that the manuscript is not ready for publication. The main issue is that the suggested training method is similar to adversarial training methods used to gain adversarial robustness. The method does not help in debugging and fixing failures in general.\n
+
+Example output fragments in JSON Lines:
+
+{"extracted_fragment": "Reviewers appreciated the novelty, introducing a new simpler routing mechanism, and achieving good performance on real world datasets."}
+{"extracted_fragment", "In particular, removing the squash function and experimenting with concurrent routing was highlighted as significant progress."}
+{"extracted_fragment", "Alongside with them, I acknowledge the novelty of using layer norm and parallel execution, and recommend accept.\n"}
+
+
+Target input meta-review:
+
+{{input_document}}
+
+Final extracted fragments (follow the format above in JSON Lines and if no resulted fragments just keep the output empty):

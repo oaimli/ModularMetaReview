@@ -16,6 +16,7 @@ Example output fragments in JSON Lines:
 {"extracted_fragment": "Reviewers mostly agree with theoretical value of the paper."}
 {"extracted_fragment": "But, I am a bit toward acceptance as the theoretical contribution is solid, and potentially beneficial to many future works on unpaired image-to-image translation.\n\n"}
 
+
 Target input meta-review:
 
 {{input_document}}
