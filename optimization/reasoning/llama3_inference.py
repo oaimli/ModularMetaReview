@@ -45,7 +45,7 @@ def parsing_result(output):
 
 
 def llama_prompting(review_fragments: List, facet: str):
-    prompt_format = open(f"prompt_llama3.txt").read()
+    prompt_format = open("prompt_llama3.txt").read()
     review_text = "\n".join(review_fragments)
     prompt_content = prompt_format.replace("{{review_fragments}}", review_text)
     messages = [
