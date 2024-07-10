@@ -43,10 +43,11 @@ for key in samples.keys():
     for pair in categorization_pairs:
         review_fargments = pair["review_fragments"]
         meta_review_fragments = pair["meta_review_fragments"]
-        if len(review_fargments) > 0 or len(meta_review_fragments) > 0:
+        meta_generated = pair["meta_generated"]
+        if len(review_fargments) > 0 or len(meta_review_fragments) > 0 or meta_generated.strip() != "":
             sources.append(" ".join(review_fargments))
             ground_truths.append(" ".join(meta_review_fragments))
-            generations.append(pair["meta_generated"])
+            generations.append(meta_generated)
 
 import sys
 sys.path.append("../../")
