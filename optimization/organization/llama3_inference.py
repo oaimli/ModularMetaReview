@@ -49,26 +49,28 @@ def parsing_result(output):
 
 def llama_prompting(input_text: str, facet: str, mode: str = "meta"):
     print(f"Categorizing {mode}")
-    sentences = []
-    for sent in nlp(input_text).sents:
-        sentences.append(sent.text)
-    random_positions = [random.randint(0, len(sentences)) for _ in range(5)]
-    random_nums = [random.randint(1, 6) for _ in range(3)]
-    example_output = []
-    for position, num in zip(random_positions, random_nums):
-        tmp = " ".join(sentences[position: position + num])
-        example_output.append({"extracted_fragment": tmp.strip()})
-    with jsonlines.open("example_tmp.jsonl", "w") as writer:
-        writer.write_all(example_output)
-    with open("example_tmp.jsonl", "r") as f:
-        example_output_text = f.read()
+    # sentences = []
+    # for sent in nlp(input_text).sents:
+    #     sentences.append(sent.text)
+    # random_positions = [random.randint(0, len(sentences)) for _ in range(5)]
+    # random_nums = [random.randint(1, 6) for _ in range(3)]
+    # example_output = []
+    # for position, num in zip(random_positions, random_nums):
+    #     tmp = " ".join(sentences[position: position + num])
+    #     example_output.append({"extracted_fragment": tmp.strip()})
+    # with jsonlines.open("example_tmp.jsonl", "w") as writer:
+    #     writer.write_all(example_output)
+    # with open("example_tmp.jsonl", "r") as f:
+    #     example_output_text = f.read()
+    #
+    # prompt_format = open(f"prompts_scientific_llama3/prompt_{mode.lower()}_{facet.lower()}.txt").read()
+    # prompt_content = prompt_format.replace("{{input_document}}", input_text).replace("{{example_output}}",
+    #                                                                                  example_output_text)
+    # with open("prompt_tmp.txt", "w") as f:
+    #     f.write(prompt_content)
 
     prompt_format = open(f"prompts_scientific_llama3/prompt_{mode.lower()}_{facet.lower()}.txt").read()
-    prompt_content = prompt_format.replace("{{input_document}}", input_text).replace("{{example_output}}",
-                                                                                     example_output_text)
-    with open("prompt_tmp.txt", "w") as f:
-        f.write(prompt_content)
-
+    prompt_content = prompt_format.replace("{{input_document}}", input_text)
     messages = [
         [
             {"role": "user",
@@ -92,35 +94,6 @@ def llama_prompting(input_text: str, facet: str, mode: str = "meta"):
     print(fragments)
     return fragments
 
-
-def categorizing_meta_review(meta_review: str) -> Dict:
-    """
-    Args:
-        meta_review: the meta-review of a sample
-    Returns:
-        result: a dictionary of extracted fragments for different review facets
-    """
-    result = {}
-    for facet in facets:
-        result[facet] = llama_prompting(meta_review, facet, "meta")
-
-    return result
-
-
-def categorizing_review(reviews: List[Dict]) -> List:
-    """
-    Args:
-        reviews: the list of reviews in the original dataset
-    Returns:
-        result: a list of dictionaries
-    """
-    result = []
-    for review in reviews:
-        tmp = {}
-        for facet in facets:
-            tmp[facet] = llama_prompting(review["comment"], facet, "review")
-        result.append(tmp)
-    return result
 
 
 if __name__ == '__main__':
