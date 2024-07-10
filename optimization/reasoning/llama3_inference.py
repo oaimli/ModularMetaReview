@@ -30,18 +30,18 @@ class DataArguments:
 
 
 def parsing_result(output):
-    output = output.strip()
+    output_stripped = output.strip()
     print(f"######\n{output}######")
     with open("output_tmp.jsonl", "w") as f:
-        f.write(output.strip())
-    results = []
+        f.write(output_stripped)
+    tmp = []
     try:
         with jsonlines.open("output_tmp.jsonl") as reader:
             for line in reader:
-                results.append(line)
+                tmp.append(line)
     except jsonlines.InvalidLineError as err:
         print("Jsonlines parsing error,", err)
-    return results
+    return tmp
 
 
 def llama_prompting(review_fragments: List, facet: str):
@@ -63,10 +63,9 @@ def llama_prompting(review_fragments: List, facet: str):
             temperature=model_args.temperature,
             top_p=model_args.top_p,
             )[0]
-        if len(result) > 0:
+        output = parsing_result(result["generation"]["content"])
+        if len(output) > 0:
             break
-
-    output = parsing_result(result["generation"]["content"])
     meta_generated = output[0]["summary"]
     print(meta_generated)
     return meta_generated

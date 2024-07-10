@@ -9,14 +9,14 @@ from typing import List
 def parsing_result(output):
     with open("output_tmp.jsonl", "w") as f:
         f.write(output.strip())
-    results = []
+    tmp = []
     try:
         with jsonlines.open("output_tmp.jsonl") as reader:
             for line in reader:
-                results.append(line)
+                tmp.append(line)
     except jsonlines.InvalidLineError as err:
         print("Jsonlines parsing error,", err)
-    return results
+    return tmp
 
 
 def gpt4_prompting(review_fragments: List, facet: str):
