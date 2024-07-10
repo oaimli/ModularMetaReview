@@ -50,7 +50,7 @@ def llama_prompting(review_fragments: List, facet: str):
     prompt_content = prompt_format.replace("{{review_fragments}}", review_text)
     messages = [
         [
-            {"role": "system", "content": "Always answer with only the summary in JSON, no other content."},
+            {"role": "system", "content": "Always answer with only the summary in JSON Lines, no other content."},
             {"role": "user", "content": prompt_content}
         ]
     ]

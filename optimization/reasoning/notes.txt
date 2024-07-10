@@ -14,5 +14,9 @@ GPT-4 results:
     "unieval_overall": 0.8705114684090026
 }
 
+scores zs ground truths -0.1559311803181966 scores conv ground truth 0.2973101298014323
+
+scores zs generation -0.1236272690788148 scores conv generation 0.295846796532472
+
 
 LLaMA3-70B-Instruct results:
