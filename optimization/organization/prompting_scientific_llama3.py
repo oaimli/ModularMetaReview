@@ -1,3 +1,4 @@
+# llama3 installment is required, https://github.com/meta-llama/llama3/tree/main
 import json
 from typing import Dict, List
 import spacy
@@ -39,6 +40,7 @@ def llama_prompting(input_text: str, facet: str, mode: str = "meta"):
     prompt_format = open(f"prompts_scientific/prompt_{mode.lower()}_{facet.lower()}.txt").read()
     prompt_content = prompt_format.replace("{{input_document}}", input_text).replace("{{example_output}}",
                                                                                      example_output_text)
+    print("tokens", len(generator.formatter.tokenizer.encode(prompt_content, bos=True, eos=True)))
     prompt_content = prompt_format
     with open("prompt_tmp.txt", "w") as f:
         f.write(prompt_content)
@@ -49,7 +51,7 @@ def llama_prompting(input_text: str, facet: str, mode: str = "meta"):
              "content": prompt_content}
         ]
     ]
-    print("generating ...")
+    print("Running generation, and in the input there are ")
     result = generator.chat_completion(
         messages,
         max_gen_len=1024,
@@ -63,6 +65,7 @@ def llama_prompting(input_text: str, facet: str, mode: str = "meta"):
     for line in output:
         if isinstance(line, dict) and "extracted_fragment" in line.keys():
             fragments.append(line["extracted_fragment"])
+    print(fragments)
     return fragments
 
 
