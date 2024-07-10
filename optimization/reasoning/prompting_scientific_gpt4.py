@@ -29,7 +29,7 @@ def gpt4_prompting(review_fragments: List, facet: str):
             output_dict = client.chat.completions.create(
                 model="gpt-4o",
                 messages=[
-                    {"role": "system", "content": "Always answer with only the summary in JSON, no other content."},
+                    {"role": "system", "content": "Always answer with only the summary in JSON Lines, no other content."},
                     {"role": "user",
                      "content": prompt_content}
                     ],
