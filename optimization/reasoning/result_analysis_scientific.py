@@ -19,7 +19,7 @@ for key in samples.keys():
             generations.append(pair["meta_generated"])
 
 import sys
-sys.path.append("../../../")
+sys.path.append("../../")
 from utils.metrics import evaluating_summaries_single_source
 print(evaluating_summaries_single_source(ground_truths, generations, sources))
 
