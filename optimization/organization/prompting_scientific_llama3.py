@@ -111,7 +111,7 @@ if __name__ == "__main__":
         ckpt_dir=ckpt_dir,
         tokenizer_path=tokenizer_path,
         max_seq_len=8192,
-        max_batch_size=1
+        max_batch_size=4
         )
     print("Model loading done")
 
