@@ -36,7 +36,7 @@ def gpt4_prompting(input_text: str, facet: str, mode: str = "meta"):
     with open("example_tmp.jsonl", "r") as f:
         example_output_text = f.read()
 
-    prompt_format = open(f"prompts_scientific/prompt_{mode.lower()}_{facet.lower()}.txt").read()
+    prompt_format = open(f"prompts_scientific_gpt4/prompt_{mode.lower()}_{facet.lower()}.txt").read()
     prompt_content = prompt_format.replace("{{input_document}}", input_text).replace("{{example_output}}", example_output_text)
     with open("prompt_tmp.txt", "w") as f:
         f.write(prompt_content)

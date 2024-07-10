@@ -1,0 +1,13 @@
+You are good at understanding documents with scientific review opinions.
+Below is a scientific meta-review for an academic manuscript, please extract fragments that make comments on Overall of the research work.
+
+Input meta-review:
+{{input_document}}
+
+Definition of Overall:
+Overall quality of the manuscript, not for specific facets.
+
+Example format of extracted fragments in JSON Lines:
+{{example_output}}
+
+Extracted fragments (follow the format above and if no resulted fragments just keep the output empty):

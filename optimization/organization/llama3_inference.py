@@ -157,7 +157,29 @@ if __name__ == '__main__':
         reviews = sample["reviews"]
         meta_review = sample["meta_review"]
         # sample["review_categorization"] = categorizing_review(reviews)
-        sample["meta_review_categorization"] = categorizing_meta_review(meta_review)
+        # sample["meta_review_categorization"] = categorizing_meta_review(meta_review)
+        facet = "Advancement"
+        prompt_format = open(f"prompts_scientific_llama3/prompt_review_{facet.lower()}.txt").read()
+        prompt_content = prompt_format.replace("{{input_document}}", meta_review)
+        with open("prompt_tmp.txt", "w") as f:
+            f.write(prompt_content)
+
+        messages = [
+            [
+                {"role": "user",
+                 "content": prompt_content}
+                ]
+            ]
+        tokens_num = len(generator.formatter.tokenizer.encode(prompt_content, bos=True, eos=True))
+        print(f"Running generation, and in the input there are {tokens_num} tokens")
+        result = generator.chat_completion(
+            messages,
+            max_gen_len=model_args.max_predict_length,
+            temperature=model_args.temperature,
+            top_p=model_args.top_p,
+            )[0]
+        print(result)
+
         results[key] = sample
 
     # save generation results into json file
