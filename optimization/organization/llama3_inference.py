@@ -1,12 +1,35 @@
-# llama3 installment is required, https://github.com/meta-llama/llama3/tree/main
-import json
-from typing import Dict, List
-import spacy
+# Inference with the official code from Meta LLaMA-3
 import os
 import random
+import json
 import jsonlines
 from tqdm import tqdm
 from llama import Llama
+from transformers import HfArgumentParser
+from dataclasses import dataclass, field
+from typing import Optional, List, Dict
+import spacy
+
+
+@dataclass
+class ModelArguments:
+    model_name_or_path: str = field(default=None, metadata={"help": "Name or path of the pre-trained model."})
+    max_length_model: Optional[int] = field(default=8192, metadata={"help": "Max input length of the model."})
+    # predict with sampling or contrastive search
+    max_predict_length: Optional[int] = field(default=512, metadata={
+        "help": "Max predicted target length when generation, excluding the source part."})
+    temperature: Optional[float] = field(default=0.7,
+                                         metadata={"help": "The value to modulate the next token probabilities."})
+    top_p: Optional[float] = field(default=0.92, metadata={
+        "help": "most probable tokens with probabilities that add up to top_p or higher are kept for generation"})
+    output_file: str = field(default="generation.json", metadata={"help": "The name of the output file."})
+    max_batch_size: Optional[int] = field(default=1, metadata={"help": "The maximum batch size for inference."})
+
+
+@dataclass
+class DataArguments:
+    dataset_path: str = field(default=None, metadata={"help": "Path to the test dataset."})
+    num_test_samples: int = field(default=-1, metadata={"help": "Number of test samples."})
 
 
 def parsing_result(output):
@@ -99,30 +122,36 @@ def categorizing_review(reviews: List[Dict]) -> List:
     return result
 
 
-if __name__ == "__main__":
-    # Run with torchrun --nproc_per_node 4 prompting_scientific_llama3.py
-
-    random.seed(42)
+if __name__ == '__main__':
     nlp = spacy.load("en_core_web_sm")
     facets = ["Novelty", "Soundness", "Clarity", "Advancement", "Compliance", "Overall"]
 
-    model_name = "llama3"
-    ckpt_dir = "/data/projects/punim0521/tmp/llama3/Meta-Llama-3-70B-Instruct-four-nodes/"
+    parser = HfArgumentParser((ModelArguments, DataArguments))
+    model_args, data_args = parser.parse_args_into_dataclasses()
+
+    ckpt_dir = model_args.model_name_or_path
     tokenizer_path = os.path.join(ckpt_dir, "tokenizer.model")
+
+    print("Load model")
     generator = Llama.build(
         ckpt_dir=ckpt_dir,
         tokenizer_path=tokenizer_path,
-        max_seq_len=8192,
-        max_batch_size=4
-        )
+        max_seq_len=model_args.max_length_model,
+        max_batch_size=model_args.max_batch_size,
+    )
     print("Model loading done")
 
+    # load the dataset
+    random.seed(42)
     with open("../../annotations/scientific_reviews/annotation_data_small.json") as f:
         test_samples = json.load(f)
 
+    test_samples = random.sample(list(test_samples.keys()), data_args.num_test_samples)
+    print("all test data", len(test_samples))
+
+    # generation
     results = {}
-    random_samples = random.sample(list(test_samples.keys()), 5)
-    for key in tqdm(random_samples):
+    for key in tqdm(test_samples):
         print(key)
         sample = test_samples[key]
         reviews = sample["reviews"]
@@ -130,8 +159,8 @@ if __name__ == "__main__":
         sample["review_categorization"] = categorizing_review(reviews)
         sample["meta_review_categorization"] = categorizing_meta_review(meta_review)
         results[key] = sample
-        # print(sample)
 
-    print(len(results))
-    with open(f"scientific_categorization_result_{model_name}.json", "w") as f:
+    # save generation results into json file
+    with open(model_args.output_file, "w") as f:
         json.dump(results, f, indent=4)
+    print("Saved to ", model_args.output_file)
