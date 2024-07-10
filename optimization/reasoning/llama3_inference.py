@@ -56,6 +56,7 @@ def llama_prompting(review_fragments: List, facet: str):
     ]
     tokens_num = len(generator.formatter.tokenizer.encode(prompt_content, bos=True, eos=True))
     print(f"Running generation, and in the input there are {tokens_num} tokens")
+    i = 0
     while True:
         result = generator.chat_completion(
             messages,
@@ -64,11 +65,15 @@ def llama_prompting(review_fragments: List, facet: str):
             top_p=model_args.top_p,
             )[0]
         output = parsing_result(result["generation"]["content"])
-        if len(output) > 0:
+        if len(output) > 0 or i>9:
             break
         else:
             print("re-generating")
-    meta_generated = output[0]["summary"]
+            i += 1
+    meta_generated = ""
+    if len(output) > 0:
+        if "summary" in output[0].keys():
+            meta_generated = output[0]["summary"]
     print(meta_generated)
     return meta_generated
 

@@ -47,7 +47,10 @@ def gpt4_prompting(review_fragments: List, facet: str):
             if ("limit" in str(e)):
                 time.sleep(2)
     # print(output)
-    meta_generated = output[0]["summary"]
+    meta_generated = ""
+    if len(output) > 0:
+        if "summary" in output[0].keys():
+            meta_generated = output[0]["summary"]
     print(meta_generated)
 
     return meta_generated
