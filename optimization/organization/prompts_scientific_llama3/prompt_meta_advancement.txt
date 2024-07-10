@@ -1,5 +1,5 @@
 You are good at understanding documents with scientific review opinions.
-Below is a scientific meta-review for an academic manuscript, please extract fragments that make comments on Advancement of the research work.
+Below is a scientific meta-review for an academic manuscript, please extract text fragments that make comments on Advancement of the research work.
 
 Definition of Advancement:
 
