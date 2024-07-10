@@ -156,29 +156,19 @@ if __name__ == '__main__':
         sample = test_samples[key]
         reviews = sample["reviews"]
         meta_review = sample["meta_review"]
-        # sample["review_categorization"] = categorizing_review(reviews)
-        # sample["meta_review_categorization"] = categorizing_meta_review(meta_review)
-        facet = "Advancement"
-        prompt_format = open(f"prompts_scientific_llama3/prompt_review_{facet.lower()}.txt").read()
-        prompt_content = prompt_format.replace("{{input_document}}", meta_review)
-        with open("prompt_tmp.txt", "w") as f:
-            f.write(prompt_content)
 
-        messages = [
-            [
-                {"role": "user",
-                 "content": prompt_content}
-                ]
-            ]
-        tokens_num = len(generator.formatter.tokenizer.encode(prompt_content, bos=True, eos=True))
-        print(f"Running generation, and in the input there are {tokens_num} tokens")
-        result = generator.chat_completion(
-            messages,
-            max_gen_len=model_args.max_predict_length,
-            temperature=model_args.temperature,
-            top_p=model_args.top_p,
-            )[0]
-        print(result)
+        # categorized_reviews = []
+        # for review in reviews:
+        #     tmp = {}
+        #     for facet in facets:
+        #         tmp[facet] = llama_prompting(review["comment"], facet, "review")
+        #     categorized_reviews.append(tmp)
+        # sample["review_categorization"] = categorized_reviews
+
+        categorized_meta_review = {}
+        for facet in facets:
+            categorized_meta_review[facet] = llama_prompting(meta_review, facet, "meta")
+        sample["meta_review_categorization"] = categorized_meta_review
 
         results[key] = sample
 
