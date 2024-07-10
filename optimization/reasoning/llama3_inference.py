@@ -1,14 +1,12 @@
 # Inference with the official code from Meta LLaMA-3
 import os
-import random
 import json
 import jsonlines
 from tqdm import tqdm
 from llama import Llama
 from transformers import HfArgumentParser
 from dataclasses import dataclass, field
-from typing import Optional, List, Dict
-import spacy
+from typing import Optional, List
 
 
 @dataclass
@@ -29,7 +27,6 @@ class ModelArguments:
 @dataclass
 class DataArguments:
     dataset_path: str = field(default=None, metadata={"help": "Path to the test dataset."})
-    num_test_samples: int = field(default=-1, metadata={"help": "Number of test samples."})
 
 
 def parsing_result(output):
@@ -47,13 +44,13 @@ def parsing_result(output):
     return results
 
 
-def llama_prompting(input_text: str, facet: str, mode: str = "meta"):
-    print(f"Categorizing {mode}")
-    prompt_format = open(f"prompts_scientific_llama3/prompt_{mode.lower()}_{facet.lower()}.txt").read()
-    prompt_content = prompt_format.replace("{{input_document}}", input_text)
+def llama_prompting(review_fragments: List, facet: str):
+    prompt_format = open(f"prompt_llama3.txt").read()
+    review_text = "\n".join(review_fragments)
+    prompt_content = prompt_format.replace("{{review_fragments}}", review_text)
     messages = [
         [
-            {"role": "system", "content": "Always answer with texts in a JSON Lines format, no other content."},
+            {"role": "system", "content": "Always answer with only the summary in JSON, no other content."},
             {"role": "user", "content": prompt_content}
         ]
     ]
@@ -67,19 +64,23 @@ def llama_prompting(input_text: str, facet: str, mode: str = "meta"):
         )[0]
 
     output = parsing_result(result["generation"]["content"])
-    fragments = []
-    for line in output:
-        if isinstance(line, dict) and "extracted_fragment" in line.keys():
-            fragments.append(line["extracted_fragment"])
-    print(fragments)
-    return fragments
+    meta_generated = output[0]["summary"]
+    print(meta_generated)
+    return meta_generated
 
+
+def facet_reasoning(categorization_pairs: List) -> List:
+    result = []
+    for pair in categorization_pairs:
+        review_fragments = pair["review_fragments"]
+        facet = pair["facet"]
+        pair["meta_generated"] = llama_prompting(review_fragments, facet)
+        result.append(pair)
+
+    return result
 
 
 if __name__ == '__main__':
-    nlp = spacy.load("en_core_web_sm")
-    facets = ["Novelty", "Soundness", "Clarity", "Advancement", "Compliance", "Overall"]
-
     parser = HfArgumentParser((ModelArguments, DataArguments))
     model_args, data_args = parser.parse_args_into_dataclasses()
 
@@ -95,34 +96,17 @@ if __name__ == '__main__':
     )
 
     # load the dataset
-    random.seed(42)
     with open(data_args.dataset_path) as f:
         test_samples = json.load(f)
-
-    random_keys = random.sample(list(test_samples.keys()), data_args.num_test_samples)
-    print("all test data", len(random_keys))
+    print("all test data", len(test_samples))
 
     # generation
     results = {}
-    for key in tqdm(random_keys):
+    for key in tqdm(test_samples.keys()):
         print(key)
         sample = test_samples[key]
-        reviews = sample["reviews"]
-        meta_review = sample["meta_review"]
-
-        categorized_reviews = []
-        for review in reviews:
-            tmp = {}
-            for facet in facets:
-                tmp[facet] = llama_prompting(review["comment"], facet, "review")
-            categorized_reviews.append(tmp)
-        sample["review_categorization"] = categorized_reviews
-
-        categorized_meta_review = {}
-        for facet in facets:
-            categorized_meta_review[facet] = llama_prompting(meta_review, facet, "meta")
-        sample["meta_review_categorization"] = categorized_meta_review
-
+        categorization_pairs = sample["categorization_pairs"]
+        sample["categorization_pairs"] = facet_reasoning(categorization_pairs)
         results[key] = sample
 
     # save generation results into json file
