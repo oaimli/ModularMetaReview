@@ -40,9 +40,9 @@ def llama_prompting(input_text: str, facet: str, mode: str = "meta"):
     prompt_format = open(f"prompts_scientific/prompt_{mode.lower()}_{facet.lower()}.txt").read()
     prompt_content = prompt_format.replace("{{input_document}}", input_text).replace("{{example_output}}",
                                                                                      example_output_text)
-    print("tokens", len(generator.formatter.tokenizer.encode(prompt_content, bos=True, eos=True)))
     with open("prompt_tmp.txt", "w") as f:
         f.write(prompt_content)
+    prompt_content = "Miao is interested in natural language processing (NLP) which aims to enable machines to read, reason and generate human language. Throughout the years of pursuing the PhD, his primary area of interest revolves around multi-document language generation, with a special focus on automatically summarizing multiple input documents. While automated natural language summarization has achieved significant progress and pre-trained language models have demonstrated the capability to generate plausible summaries, the effectiveness of consolidating information from multiple documents remains uncertain and largely unexplored when these models are asked to summarize a collection of documents. Miao’s PhD research aims to investigate multi-document summarization from the perspective of information consolidation and make it less opaque and more grounded. In the long term, Miao’s overarching research goal is to (1) understand how humans comprehend multi-source information with reasoning to make their decisions in language generation from first principles, (2) explore the potential of machines to achieve superhuman-level reasoning and consolidation over multiple sources with voluminous and complex heterogeneous information and realize human-like communication conveying information based on devised consequences from them, and (3) develop high-quality evaluations of artificial intelligence systems on complex natural language generation tasks."
 
     messages = [
         [
@@ -50,7 +50,8 @@ def llama_prompting(input_text: str, facet: str, mode: str = "meta"):
              "content": prompt_content}
         ]
     ]
-    print("Running generation, and in the input there are ")
+    tokens_num = len(generator.formatter.tokenizer.encode(prompt_content, bos=True, eos=True))
+    print(f"Running generation, and in the input there are {tokens_num} tokens")
     result = generator.chat_completion(
         messages,
         max_gen_len=1024,
