@@ -84,7 +84,7 @@ def llama_prompting(input_text: str, facet: str, mode: str = "meta"):
         top_p=model_args.top_p,
         )[0]
 
-    output = result["generation"]["content"]
+    output = parsing_result(result["generation"]["content"])
     fragments = []
     for line in output:
         if isinstance(line, dict) and "extracted_fragment" in line.keys():
