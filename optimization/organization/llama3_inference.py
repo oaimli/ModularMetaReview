@@ -34,7 +34,7 @@ class DataArguments:
 
 def parsing_result(output):
     output = output.strip()
-    print(output)
+    print(f"######\n{output}######")
     with open("output_tmp.jsonl", "w") as f:
         f.write(output.strip())
     results = []
