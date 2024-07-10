@@ -146,12 +146,12 @@ if __name__ == '__main__':
     with open("../../annotations/scientific_reviews/annotation_data_small.json") as f:
         test_samples = json.load(f)
 
-    test_samples = random.sample(list(test_samples.keys()), data_args.num_test_samples)
-    print("all test data", len(test_samples))
+    random_keys = random.sample(list(test_samples.keys()), data_args.num_test_samples)
+    print("all test data", len(random_keys))
 
     # generation
     results = {}
-    for key in tqdm(test_samples):
+    for key in tqdm(random_keys):
         print(key)
         sample = test_samples[key]
         reviews = sample["reviews"]
