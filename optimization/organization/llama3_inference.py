@@ -48,6 +48,7 @@ def parsing_result(output):
 
 
 def llama_prompting(input_text: str, facet: str, mode: str = "meta"):
+    print(f"Categorizing {mode}")
     sentences = []
     for sent in nlp(input_text).sents:
         sentences.append(sent.text)
@@ -99,7 +100,6 @@ def categorizing_meta_review(meta_review: str) -> Dict:
     Returns:
         result: a dictionary of extracted fragments for different review facets
     """
-    print("Categorizing the meta-review")
     result = {}
     for facet in facets:
         result[facet] = llama_prompting(meta_review, facet, "meta")
@@ -114,7 +114,6 @@ def categorizing_review(reviews: List[Dict]) -> List:
     Returns:
         result: a list of dictionaries
     """
-    print("Categorizing reviews")
     result = []
     for review in reviews:
         tmp = {}
