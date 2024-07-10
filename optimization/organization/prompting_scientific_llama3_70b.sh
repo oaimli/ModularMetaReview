@@ -2,9 +2,7 @@
 
 DATASET_PATH="/home/miao4/punim0521/ModularMetaReview/annotations/scientific_reviews/annotation_data_small.json"
 MODEL_NAME_OR_PATH="/data/projects/punim0521/tmp/llama3/Meta-Llama-3-70B-Instruct-four-nodes/"
-MAX_LENGTH_GENERATION=128
-MIN_LENGTH_GENERATION=1
-
+MAX_LENGTH_GENERATION=1024
 
 torchrun --nproc_per_node 4 llama3_inference.py  \
                 --model_name_or_path ${MODEL_NAME_OR_PATH} \

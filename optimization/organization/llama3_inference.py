@@ -133,14 +133,13 @@ if __name__ == '__main__':
     ckpt_dir = model_args.model_name_or_path
     tokenizer_path = os.path.join(ckpt_dir, "tokenizer.model")
 
-    print("Load model")
+    # load the model
     generator = Llama.build(
         ckpt_dir=ckpt_dir,
         tokenizer_path=tokenizer_path,
         max_seq_len=model_args.max_length_model,
         max_batch_size=model_args.max_batch_size,
     )
-    print("Model loading done")
 
     # load the dataset
     random.seed(42)
@@ -157,7 +156,7 @@ if __name__ == '__main__':
         sample = test_samples[key]
         reviews = sample["reviews"]
         meta_review = sample["meta_review"]
-        sample["review_categorization"] = categorizing_review(reviews)
+        # sample["review_categorization"] = categorizing_review(reviews)
         sample["meta_review_categorization"] = categorizing_meta_review(meta_review)
         results[key] = sample
 
