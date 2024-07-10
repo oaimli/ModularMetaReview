@@ -1,13 +1,23 @@
 You are good at understanding documents with scientific review opinions.
 Below is a scientific meta-review for an academic manuscript, please extract fragments that make comments on Advancement of the research work.
 
-Input meta-review:
-{{input_document}}
-
 Definition of Advancement:
+
 Importance of the manuscript to discipline, significance of the contributions of the manuscript, and its potential impact to the field.
 
-Example format of extracted fragments in JSON Lines:
-{{example_output}}
 
-Extracted fragments (follow the format above and if no resulted fragments just keep the output empty):
+Example input meta-review:
+
+This paper theoretically studied one of the fundamental issue in CycleGAN (recently gained much attention for image-to-image translation). The authors analyze the space of exact and approximated solutions under automorphisms.\n\nReviewers mostly agree with theoretical value of the paper. Some concerns on practical values are also raised, e.g., limited or no-surprising experimental results. In overall, I think this is a boarderline paper. But, I am a bit toward acceptance as the theoretical contribution is solid, and potentially beneficial to many future works on unpaired image-to-image translation.\n\n
+
+Example output fragments in JSON Lines:
+
+{"extracted_fragment": "Some concerns on practical values are also raised, e.g., limited or no-surprising experimental results."}
+{"extracted_fragment": "Reviewers mostly agree with theoretical value of the paper."}
+{"extracted_fragment": "But, I am a bit toward acceptance as the theoretical contribution is solid, and potentially beneficial to many future works on unpaired image-to-image translation.\n\n"}
+
+Target input meta-review:
+
+{{input_document}}
+
+Final extracted fragments (follow the format above in JSON Lines and if no resulted fragments just keep the output empty):

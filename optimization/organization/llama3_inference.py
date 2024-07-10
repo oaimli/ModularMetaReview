@@ -53,7 +53,7 @@ def llama_prompting(input_text: str, facet: str, mode: str = "meta"):
     prompt_content = prompt_format.replace("{{input_document}}", input_text)
     messages = [
         [
-            {"role": "system", "content": "Always answer with text in a jsonlines format, no other content."},
+            {"role": "system", "content": "Always answer with texts in a JSON Lines format, no other content."},
             {"role": "user", "content": prompt_content}
         ]
     ]
@@ -110,13 +110,13 @@ if __name__ == '__main__':
         reviews = sample["reviews"]
         meta_review = sample["meta_review"]
 
-        # categorized_reviews = []
-        # for review in reviews:
-        #     tmp = {}
-        #     for facet in facets:
-        #         tmp[facet] = llama_prompting(review["comment"], facet, "review")
-        #     categorized_reviews.append(tmp)
-        # sample["review_categorization"] = categorized_reviews
+        categorized_reviews = []
+        for review in reviews:
+            tmp = {}
+            for facet in facets:
+                tmp[facet] = llama_prompting(review["comment"], facet, "review")
+            categorized_reviews.append(tmp)
+        sample["review_categorization"] = categorized_reviews
 
         categorized_meta_review = {}
         for facet in facets:
