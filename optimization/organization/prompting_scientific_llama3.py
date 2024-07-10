@@ -41,7 +41,6 @@ def llama_prompting(input_text: str, facet: str, mode: str = "meta"):
     prompt_content = prompt_format.replace("{{input_document}}", input_text).replace("{{example_output}}",
                                                                                      example_output_text)
     print("tokens", len(generator.formatter.tokenizer.encode(prompt_content, bos=True, eos=True)))
-    prompt_content = prompt_format
     with open("prompt_tmp.txt", "w") as f:
         f.write(prompt_content)
 
