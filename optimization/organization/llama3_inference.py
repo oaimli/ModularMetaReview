@@ -33,6 +33,8 @@ class DataArguments:
 
 
 def parsing_result(output):
+    output = output.strip()
+    print(output)
     with open("output_tmp.jsonl", "w") as f:
         f.write(output.strip())
     results = []
@@ -63,7 +65,6 @@ def llama_prompting(input_text: str, facet: str, mode: str = "meta"):
     prompt_format = open(f"prompts_scientific/prompt_{mode.lower()}_{facet.lower()}.txt").read()
     prompt_content = prompt_format.replace("{{input_document}}", input_text).replace("{{example_output}}",
                                                                                      example_output_text)
-    print(prompt_content)
     with open("prompt_tmp.txt", "w") as f:
         f.write(prompt_content)
 
@@ -77,13 +78,12 @@ def llama_prompting(input_text: str, facet: str, mode: str = "meta"):
     print(f"Running generation, and in the input there are {tokens_num} tokens")
     result = generator.chat_completion(
         messages,
-        max_gen_len=1024,
-        temperature=0.7,
-        top_p=0.92,
+        max_gen_len=model_args.max_predict_length,
+        temperature=model_args.temperature,
+        top_p=model_args.top_p,
         )[0]
 
     output = result["generation"]["content"]
-    print(output)
     fragments = []
     for line in output:
         if isinstance(line, dict) and "extracted_fragment" in line.keys():
