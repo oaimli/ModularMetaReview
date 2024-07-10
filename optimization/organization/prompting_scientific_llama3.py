@@ -102,6 +102,7 @@ def categorizing_review(reviews: List[Dict]) -> List:
 if __name__ == "__main__":
     # Run with torchrun --nproc_per_node 4 prompting_scientific_llama3.py
 
+    random.seed(42)
     nlp = spacy.load("en_core_web_sm")
     facets = ["Novelty", "Soundness", "Clarity", "Advancement", "Compliance", "Overall"]
 

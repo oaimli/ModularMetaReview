@@ -104,6 +104,7 @@ def categorizing_review(reviews: List[Dict]) -> List:
 
 
 if __name__ == "__main__":
+    random.seed(42)
     nlp = spacy.load("en_core_web_sm")
     facets = ["Novelty", "Soundness", "Clarity", "Advancement", "Compliance", "Overall"]
 
