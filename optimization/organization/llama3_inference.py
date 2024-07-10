@@ -99,6 +99,7 @@ def categorizing_meta_review(meta_review: str) -> Dict:
     Returns:
         result: a dictionary of extracted fragments for different review facets
     """
+    print("Categorizing the meta-review")
     result = {}
     for facet in facets:
         result[facet] = llama_prompting(meta_review, facet, "meta")
@@ -113,6 +114,7 @@ def categorizing_review(reviews: List[Dict]) -> List:
     Returns:
         result: a list of dictionaries
     """
+    print("Categorizing reviews")
     result = []
     for review in reviews:
         tmp = {}
