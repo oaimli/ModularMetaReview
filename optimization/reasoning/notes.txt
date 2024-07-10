@@ -1,0 +1,18 @@
+GPT-4 results:
+{
+    "bert_recall": -0.18761496245861053,
+    "bert_precision": -0.2680947184562683,
+    "bert_fmeasure": -0.2271289825439453,
+    "rouge1_fmeasure": 0.15533982231357893,
+    "rouge2_fmeasure": 0.024477579740875208,
+    "rougeLsum_fmeasure": 0.12425707209125145,
+    "score_bart": -5.043527301152547,
+    "unieval_coherence": 0.9377660845416567,
+    "unieval_consistency": 0.8557981200143085,
+    "unieval_fluency": 0.9293241212297954,
+    "unieval_relevance": 0.7591575478502509,
+    "unieval_overall": 0.8705114684090026
+}
+
+
+LLaMA3-70B-Instruct results:
