@@ -66,6 +66,8 @@ def llama_prompting(review_fragments: List, facet: str):
         output = parsing_result(result["generation"]["content"])
         if len(output) > 0:
             break
+        else:
+            print("re-generating")
     meta_generated = output[0]["summary"]
     print(meta_generated)
     return meta_generated
