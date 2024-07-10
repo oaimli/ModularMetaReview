@@ -49,32 +49,12 @@ def parsing_result(output):
 
 def llama_prompting(input_text: str, facet: str, mode: str = "meta"):
     print(f"Categorizing {mode}")
-    # sentences = []
-    # for sent in nlp(input_text).sents:
-    #     sentences.append(sent.text)
-    # random_positions = [random.randint(0, len(sentences)) for _ in range(5)]
-    # random_nums = [random.randint(1, 6) for _ in range(3)]
-    # example_output = []
-    # for position, num in zip(random_positions, random_nums):
-    #     tmp = " ".join(sentences[position: position + num])
-    #     example_output.append({"extracted_fragment": tmp.strip()})
-    # with jsonlines.open("example_tmp.jsonl", "w") as writer:
-    #     writer.write_all(example_output)
-    # with open("example_tmp.jsonl", "r") as f:
-    #     example_output_text = f.read()
-    #
-    # prompt_format = open(f"prompts_scientific_llama3/prompt_{mode.lower()}_{facet.lower()}.txt").read()
-    # prompt_content = prompt_format.replace("{{input_document}}", input_text).replace("{{example_output}}",
-    #                                                                                  example_output_text)
-    # with open("prompt_tmp.txt", "w") as f:
-    #     f.write(prompt_content)
-
     prompt_format = open(f"prompts_scientific_llama3/prompt_{mode.lower()}_{facet.lower()}.txt").read()
     prompt_content = prompt_format.replace("{{input_document}}", input_text)
     messages = [
         [
-            {"role": "user",
-             "content": prompt_content}
+            {"role": "system", "content": "Always answer with text in a jsonlines format, no other content."},
+            {"role": "user", "content": prompt_content}
         ]
     ]
     tokens_num = len(generator.formatter.tokenizer.encode(prompt_content, bos=True, eos=True))
