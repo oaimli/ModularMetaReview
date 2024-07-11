@@ -44,7 +44,7 @@ for key in samples.keys():
         review_fargments = pair["review_fragments"]
         meta_review_fragments = pair["meta_review_fragments"]
         meta_generated = pair["meta_generated"]
-        if len(review_fargments) > 0 or len(meta_review_fragments) > 0 or meta_generated.strip() != "":
+        if len(review_fargments) > 0 and len(meta_review_fragments) > 0 and meta_generated.strip() != "":
             sources.append(" ".join(review_fargments))
             ground_truths.append(" ".join(meta_review_fragments))
             generations.append(meta_generated)
