@@ -1,34 +1,36 @@
 GPT-4 results:
 {
-    "bert_recall": -0.18761496245861053,
-    "bert_precision": -0.2680947184562683,
-    "bert_fmeasure": -0.2271289825439453,
-    "rouge1_fmeasure": 0.15533982231357893,
-    "rouge2_fmeasure": 0.024477579740875208,
-    "rougeLsum_fmeasure": 0.12425707209125145,
-    "score_bart": -5.043527301152547,
-    "unieval_coherence": 0.9377660845416567,
-    "unieval_consistency": 0.8557981200143085,
-    "unieval_fluency": 0.9293241212297954,
-    "unieval_relevance": 0.7591575478502509,
-    "unieval_overall": 0.8705114684090026
+    "bert_recall": 0.19077153503894806,
+    "bert_precision": 0.07557601481676102,
+    "bert_fmeasure": 0.1306460201740265,
+    "rouge1_fmeasure": 0.2219140318765413,
+    "rouge2_fmeasure": 0.03496797105839316,
+    "rougeLsum_fmeasure": 0.17751010298750206,
+    "score_bart": -4.55966980116708,
+    "unieval_coherence": 0.9285986167652025,
+    "unieval_consistency": 0.8516226483971032,
+    "unieval_fluency": 0.9438796719869631,
+    "unieval_relevance": 0.7400077155757607,
+    "unieval_overall": 0.8660271631812574
 }
-scores zs ground truths -0.1559311803181966 scores conv ground truth 0.2973101298014323
-scores zs generation -0.1236272690788148 scores conv generation 0.295846796532472
+scores zs generation -0.09957820866383664 scores conv generation 0.30359787671338945
+scores zs ground truths -0.22275882902599514 scores conv ground truth 0.3389678313618615
 
 
 LLaMA3-70B-Instruct results:
 {
-    "bert_recall": -0.18761496245861053,
-    "bert_precision": -0.2680947184562683,
-    "bert_fmeasure": -0.2271289825439453,
-    "rouge1_fmeasure": 0.15533982231357893,
-    "rouge2_fmeasure": 0.024477579740875208,
-    "rougeLsum_fmeasure": 0.12425707209125145,
-    "score_bart": -5.043527301152547,
-    "unieval_coherence": 0.9377660845416567,
-    "unieval_consistency": 0.8557981200143085,
-    "unieval_fluency": 0.9293241212297954,
-    "unieval_relevance": 0.7591575478502509,
-    "unieval_overall": 0.8705114684090026
+    "bert_recall": 0.14816497266292572,
+    "bert_precision": 0.1469949632883072,
+    "bert_fmeasure": 0.14752744138240814,
+    "rouge1_fmeasure": 0.23142268594082668,
+    "rouge2_fmeasure": 0.04397056342643487,
+    "rougeLsum_fmeasure": 0.18347561384903938,
+    "score_bart": -4.5944252173105875,
+    "unieval_coherence": 0.9518949304233605,
+    "unieval_consistency": 0.8506335634983653,
+    "unieval_fluency": 0.918394046563772,
+    "unieval_relevance": 0.7412343287000579,
+    "unieval_overall": 0.865539217296389
 }
+scores zs generation -0.2970010545518663 scores conv generation 0.28042337000370027
+scores zs ground truths -0.29131358676486546 scores conv ground truth 0.3238771577676137

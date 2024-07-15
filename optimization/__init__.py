@@ -1,1 +1,1 @@
-# Implement the modular methodology and conduct evaluation for intermediate results on annotated data
+# Implement the modular methodology and conduct evaluation for intermediate results on annotated data of scientific reviews
