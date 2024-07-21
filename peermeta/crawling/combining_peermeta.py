@@ -312,8 +312,10 @@ def prepare_iclr(year):
         invitations = set([])
         confidences_set = set([])
         ratings_set = set([])
-        with open(data_folder_iclr + "iclr_%s.jsonl" % year) as f:
-            paper_list = json.load(f)
+        with jsonlines.open(data_folder_iclr + "iclr_%s.jsonl" % year) as reader:
+            paper_list = []
+            for line in reader:
+                paper_list.append(line)
             print("ICLR paper count", len(paper_list))
             for paper in paper_list:
                 # if paper["title"] == "Decoupled Contrastive Learning":
