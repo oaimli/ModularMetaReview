@@ -40,7 +40,7 @@ def prepare_iclr(year):
         confidences_set = set([])
         ratings_set = set([])
         experience_assessments_set = set([])
-        with open(data_folder_iclr + "iclr_%s.json" % year) as f:
+        with open(data_folder_iclr + "iclr_%s.jsonl" % year) as f:
             paper_list = json.load(f)
             print("ICLR paper count", len(paper_list))
             for paper in paper_list:
@@ -170,7 +170,7 @@ def prepare_iclr(year):
         invitations = set([])
         confidences_set = set([])
         ratings_set = set([])
-        with open(data_folder_iclr + "iclr_%s.json" % year) as f:
+        with open(data_folder_iclr + "iclr_%s.jsonl" % year) as f:
             paper_list = json.load(f)
             print("ICLR paper count", len(paper_list))
             for paper in paper_list:
@@ -308,7 +308,7 @@ def prepare_iclr(year):
         invitations = set([])
         confidences_set = set([])
         ratings_set = set([])
-        with open(data_folder_iclr + "iclr_%s.json" % year) as f:
+        with open(data_folder_iclr + "iclr_%s.jsonl" % year) as f:
             paper_list = json.load(f)
             print("ICLR paper count", len(paper_list))
             for paper in paper_list:
@@ -446,7 +446,7 @@ def prepare_iclr(year):
         invitations = set([])
         confidences_set = set([])
         ratings_set = set([])
-        with open(data_folder_iclr + "iclr_%s.json" % year) as f:
+        with open(data_folder_iclr + "iclr_%s.jsonl" % year) as f:
             paper_list = json.load(f)
             print("ICLR paper count", len(paper_list))
             for paper in paper_list:
@@ -592,7 +592,7 @@ def prepare_nips(year):
         invitations = set([])
         confidences_set = set([])
         ratings_set = set([])
-        with open(data_folder_nips + "nips_%s.json" % year) as f:
+        with open(data_folder_nips + "nips_%s.jsonl" % year) as f:
             paper_list = json.load(f)
         print("NIPS paper count", len(paper_list))
         for paper in paper_list:
@@ -730,7 +730,7 @@ def prepare_nips(year):
         invitations = set([])
         confidences_set = set([])
         ratings_set = set([])
-        with open(data_folder_nips + "nips_%s.json" % year) as f:
+        with open(data_folder_nips + "nips_%s.jsonl" % year) as f:
             paper_list = json.load(f)
         print("NIPS paper count", len(paper_list))
         for paper in paper_list:
@@ -859,7 +859,7 @@ def prepare_nips(year):
         invitations = set([])
         confidences_set = set([])
         ratings_set = set([])
-        with open(data_folder_nips + "nips_%s.json" % year) as f:
+        with open(data_folder_nips + "nips_%s.jsonl" % year) as f:
             paper_list = json.load(f)
         print("NIPS paper count", len(paper_list))
         for paper in paper_list:
@@ -1070,5 +1070,5 @@ if __name__ == "__main__":
         papers_new.append(paper)
 
     print("all papers", len(papers_new))
-    with jsonlines.open("../data/peermeta_all.json", "w") as writer:
+    with jsonlines.open("../data/peermeta_all.jsonl", "w") as writer:
         writer.write_all(papers_new)
