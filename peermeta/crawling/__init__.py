@@ -2,7 +2,6 @@
 # The official OpenReview API v2: https://openreview-py.readthedocs.io/en/latest/
 # ICLR: https://openreview.net/group?id=ICLR.cc (more reviews for other conferences could be crawled), ICLR 2018-2024
 # NeurIPS: https://proceedings.neurips.cc/ NIPS 2021-2023
-# there are no review ratings, or confidences for ICLR 2017, NIPS 2019, NIPS 2020
 
 # Step 2, Combine all the data into 'peermeta_all' from different conferences in different years
 
