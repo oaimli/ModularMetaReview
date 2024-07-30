@@ -537,43 +537,43 @@ def prepare_iclr(year):
                                 cs = rc["content"]
                                 review_text = ""
                                 if "review" in cs.keys():
-                                    review_text = review_text + " " + cs["review"]
+                                    review_text = review_text + " " + cs["review"]["value"]
                                 if "comment" in cs.keys():
-                                    review_text = review_text + " " + cs["comment"]
-                                if "main_review" in cs.keys():
-                                    review_text = cs["main_review"]
-                                if "summary_of_the_review" in cs.keys():
-                                    review_text = review_text + " " + cs["summary_of_the_review"]
-                                if "summary_of_the_paper" in cs.keys():
-                                    review_text = cs["summary_of_the_paper"] + " " + review_text
+                                    review_text = review_text + " " + cs["comment"]["value"]
+                                if "summary" in cs.keys():
+                                    review_text = cs["summary"]["value"]
+                                if "strengths" in cs.keys():
+                                    review_text = review_text + " " + cs["strengths"]["value"]
+                                if "weaknesses" in cs.keys():
+                                    review_text = review_text + " " + cs["weaknesses"]["value"]
 
                                 if "ethics_review" in cs.keys():
-                                    review_text = review_text + " " + cs["ethics_review"]
+                                    review_text = review_text + " " + cs["ethics_review"]["value"]
                                 if "issues_acknowledged_description" in cs.keys():
-                                    review_text = review_text + " " + cs["issues_acknowledged_description"]
+                                    review_text = review_text + " " + cs["issues_acknowledged_description"]["value"]
                                 if "ethics_review" in cs.keys() and "recommendation" in cs.keys():
-                                    review_text = review_text + " " + cs["recommendation"]
+                                    review_text = review_text + " " + cs["recommendation"]["value"]
 
                                 review["comment"] = review_text
                                 if "rating" in cs.keys():
-                                    review["rating"] = cs["rating"]
+                                    review["rating"] = cs["rating"]["value"]
                                 if "recommendation" in cs.keys() and "ethics_review" not in cs.keys():
                                     review["rating"] = cs["recommendation"]
                                 if "rating" in review.keys():
                                     official_reviews.append(rc["id"])
-                                    if isinstance(review["rating"], int):
-                                        ratings.append(review["rating"])
+                                    if isinstance(review["rating"]["value"], int):
+                                        ratings.append(review["rating"]["value"])
                                     else:
-                                        s = int(review["rating"].split(":")[0].strip())
+                                        s = int(review["rating"]["value"].split(":")[0].strip())
                                         ratings.append(s)
                                         review["rating"] = s
                                 if "confidence" in cs.keys():
-                                    review["confidence"] = cs["confidence"]
+                                    review["confidence"] = cs["confidence"]["value"]
                                 if "confidence" in review.keys():
-                                    if isinstance(review["confidence"], int):
-                                        confidences.append(review["confidence"])
+                                    if isinstance(review["confidence"]["value"], int):
+                                        confidences.append(review["confidence"]["value"])
                                     else:
-                                        s = int(review["confidence"].split(":")[0].strip())
+                                        s = int(review["confidence"]["value"].split(":")[0].strip())
                                         confidences.append(s)
                                         review["confidence"] = s
                                 if review.get("comment", "") != "":
