@@ -563,19 +563,19 @@ def prepare_iclr(year):
                                     review["rating"] = cs["recommendation"]
                                 if "rating" in review.keys():
                                     official_reviews.append(rc["id"])
-                                    if isinstance(review["rating"]["value"], int):
-                                        ratings.append(review["rating"]["value"])
+                                    if isinstance(review["rating"], int):
+                                        ratings.append(review["rating"])
                                     else:
-                                        s = int(review["rating"]["value"].split(":")[0].strip())
+                                        s = int(review["rating"].split(":")[0].strip())
                                         ratings.append(s)
                                         review["rating"] = s
                                 if "confidence" in cs.keys():
                                     review["confidence"] = cs["confidence"]["value"]
                                 if "confidence" in review.keys():
-                                    if isinstance(review["confidence"]["value"], int):
-                                        confidences.append(review["confidence"]["value"])
+                                    if isinstance(review["confidence"], int):
+                                        confidences.append(review["confidence"])
                                     else:
-                                        s = int(review["confidence"]["value"].split(":")[0].strip())
+                                        s = int(review["confidence"].split(":")[0].strip())
                                         confidences.append(s)
                                         review["confidence"] = s
                                 if review.get("comment", "") != "":
