@@ -1,1 +1,2 @@
-# Annotated data for intermediate results of different meta-reviews
+# Annotated data for intermediate results of meta-reviews
+# We only have annotations of intermediate results on scientific reviews

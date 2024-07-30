@@ -1006,17 +1006,18 @@ def prepare_nips(year):
 if __name__ == "__main__":
     papers = []
     for iclr in range(2018, 2025):
-        print("year", iclr)
+        print("Year", iclr)
         papers_iclr = prepare_iclr(str(iclr))
         print("ICLR %d" % iclr, len(papers_iclr))
         papers.extend(papers_iclr)
 
     for nips in range(2021, 2024):
-        print("year", nips)
+        print("Year", nips)
         papers_nips = prepare_nips(str(nips))
         print("NIPS %d" % nips, len(papers_nips))
         papers.extend(papers_nips)
 
+    # validating the dataset
     papers_new = []
     for paper in papers:
         if paper.get("paper_id", "") == "":
@@ -1072,18 +1073,9 @@ if __name__ == "__main__":
 
         paper["reviews"] = reviews_tree
 
-        # review_ids = []
-        # review_ids.append(paper["paper_id"])
-        # for review in reviews_tree:
-        #     review_ids.append(review["review_id"])
-        #
-        # for review in reviews_tree:
-        #     if review["reply_to"] not in review_ids:
-        #         print(paper["paper_id"])
-        #         print(review)
-
         papers_new.append(paper)
 
+    # saving the dataset in jsonlines
     print("all papers", len(papers_new))
     with jsonlines.open("../data/peermeta_all.jsonl", "w") as writer:
         writer.write_all(papers_new)
