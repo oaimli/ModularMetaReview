@@ -473,13 +473,14 @@ def prepare_iclr(year):
                     paper_new["paper_abstract"] = paper["abstract"]
                     final_decision_content = paper["final_decision"]["content"]
                     paper_new["paper_acceptance"] = final_decision_content["decision"]
-                    final_decision_time = paper["final_decision"]["tmdate"]
+
 
                     # as there are a decision and a meta-review, we have to distinguish them
                     reviews_comments = []
                     for review in paper["reviews_commments"]:
                         if "metareview" in review["content"].keys():
                             final_decision = review["content"]["metareview"]["value"]
+                            final_decision_time = paper["final_decision"]["mdate"]
                         else:
                             reviews_comments.append(review)
 
@@ -500,7 +501,7 @@ def prepare_iclr(year):
                         confidences = []
                         official_reviews = []
                         for rc in reviews_comments:
-                            if time.localtime(final_decision_time / 1000) >= time.localtime(rc["tmdate"] / 1000):
+                            if time.localtime(final_decision_time / 1000) >= time.localtime(rc["mdate"] / 1000):
                                 review = {}
                                 review["review_id"] = rc["id"]
 
