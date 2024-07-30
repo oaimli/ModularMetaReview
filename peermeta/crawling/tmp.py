@@ -5,7 +5,7 @@ import jsonlines
 
 
 samples = []
-with jsonlines.open("../data/iclr_2023.jsonl") as reader:
+with jsonlines.open("../data/iclr_2024.jsonl") as reader:
     for line in reader:
         samples.append(line)
 
