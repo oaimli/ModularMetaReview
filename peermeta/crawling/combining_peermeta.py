@@ -906,6 +906,7 @@ def prepare_nips(year):
 
                 # as there are a decision and a meta-review, we have to distinguish them
                 reviews_comments = []
+                final_decision = ""
                 for review in paper["reviews_commments"]:
                     if "metareview" in review["content"].keys():
                         final_decision = review["content"]["metareview"]["value"]
