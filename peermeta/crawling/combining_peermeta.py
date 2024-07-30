@@ -889,33 +889,51 @@ def prepare_nips(year):
                 paper_list.append(line)
         print("NIPS paper count", len(paper_list))
         for paper in paper_list:
+            # if paper["title"] == "Decoupled Contrastive Learning":
+            #     print(paper)
+            #     break
             paper_new = {}
-
-            if paper.get("link", "") != "" and paper.get("title", "") != "" and paper.get(
-                    "abstract", "") != "" and "final_decision" in paper.keys() and paper.get("reviews_commments",
-                                                                                             []) != []:
-                paper_new["paper_id"] = "nips_" + year + "_" + paper["id"]
+            if paper.get("link", "") != "" and paper.get("title", "") != "" and paper.get("authors",
+                                                                                          []) != [] and paper.get(
+                "abstract", "") != "" and "final_decision" in paper.keys() and paper.get("reviews_commments",
+                                                                                         []) != []:
+                print(paper)
+                paper_new["paper_id"] = "iclr_" + year + "_" + paper["id"]
                 paper_new["paper_title"] = paper["title"]
                 paper_new["paper_abstract"] = paper["abstract"]
-                paper_new["paper_acceptance"] = paper["comment"]
                 final_decision_content = paper["final_decision"]["content"]
-                # print(final_decision_content.keys())
-                final_decision_time = paper["final_decision"]["tmdate"]
-                final_decision = final_decision_content["metareview"]
+                paper_new["paper_acceptance"] = final_decision_content["decision"]
+
+                # as there are a decision and a meta-review, we have to distinguish them
+                reviews_comments = []
+                for review in paper["reviews_commments"]:
+                    if "metareview" in review["content"].keys():
+                        final_decision = review["content"]["metareview"]["value"]
+                        final_decision_time = paper["final_decision"]["mdate"]
+                    else:
+                        reviews_comments.append(review)
+
                 if final_decision != "":
                     paper_new["meta_review"] = final_decision
-                    # print(paper_new["paper_id"], len(paper["reviews_commments"]))
-                    reviews = []
-                    confidences = []
-                    ratings = []
-                    official_reviews = []
+
+                    # if y == "2020":
                     for rc in paper["reviews_commments"]:
-                        if time.localtime(final_decision_time / 1000) >= time.localtime(rc["tcdate"] / 1000):
+                        # if rc["replyto"] == paper["id"]:
+                        for s in rc["signatures"]:
+                            invitations.add(rc["invitations"][0].split("/")[-1] + "#" + s.split("/")[-1])
+                        # if rc["invitation"].split("/")[-1] == "Comment":
+                        #     print(paper["title"])
+
+                    reviews = []
+                    ratings = []
+                    confidences = []
+                    official_reviews = []
+                    for rc in reviews_comments:
+                        if time.localtime(final_decision_time / 1000) >= time.localtime(rc["mdate"] / 1000):
                             review = {}
                             review["review_id"] = rc["id"]
 
-                            invit = rc["invitation"].split("/")[-1]
-                            # print(invit)
+                            invit = rc["invitations"][0].split("/")[-1]
                             if "Official_Review" == invit or "Ethics_Review" == invit:
                                 review["writer"] = "official_reviewer"
                             elif "Official_Comment" == invit or "Comment" == invit:
@@ -947,31 +965,32 @@ def prepare_nips(year):
                                 review["reply_to"] = paper_new["paper_id"]
 
                             cs = rc["content"]
-                            # print(cs.keys())
                             review_text = ""
-                            if "summary" in cs.keys():
-                                review_text = review_text + " " + cs["summary"]
-                            if "strengths_and_weaknesses" in cs.keys():
-                                review_text = review_text + " " + cs["strengths_and_weaknesses"]
-                            if "questions" in cs.keys():
-                                review_text = review_text + " " + cs["questions"]
-                            if "limitations" in cs.keys():
-                                review_text = review_text + " " + cs["limitations"]
+                            if "review" in cs.keys():
+                                review_text = review_text + " " + cs["review"]["value"]
                             if "comment" in cs.keys():
-                                review_text = review_text + " " + cs["comment"]
+                                review_text = review_text + " " + cs["comment"]["value"]
+                            if "summary" in cs.keys():
+                                review_text = cs["summary"]["value"]
+                            if "strengths" in cs.keys():
+                                review_text = review_text + " " + cs["strengths"]["value"]
+                            if "weaknesses" in cs.keys():
+                                review_text = review_text + " " + cs["weaknesses"]["value"]
 
                             if "ethics_review" in cs.keys():
-                                review_text = review_text + " " + cs["ethics_review"]
+                                review_text = review_text + " " + cs["ethics_review"]["value"]
                             if "issues_acknowledged_description" in cs.keys():
-                                review_text = review_text + " " + cs["issues_acknowledged_description"]
+                                review_text = review_text + " " + cs["issues_acknowledged_description"]["value"]
                             if "ethics_review" in cs.keys() and "recommendation" in cs.keys():
-                                review_text = review_text + " " + cs["recommendation"]
+                                review_text = review_text + " " + cs["recommendation"]["value"]
 
                             review["comment"] = review_text
                             if "rating" in cs.keys():
-                                review["rating"] = cs["rating"]
-                                official_reviews.append(rc["id"])
+                                review["rating"] = cs["rating"]["value"]
+                            if "recommendation" in cs.keys() and "ethics_review" not in cs.keys():
+                                review["rating"] = cs["recommendation"]
                             if "rating" in review.keys():
+                                official_reviews.append(rc["id"])
                                 if isinstance(review["rating"], int):
                                     ratings.append(review["rating"])
                                 else:
@@ -979,7 +998,7 @@ def prepare_nips(year):
                                     ratings.append(s)
                                     review["rating"] = s
                             if "confidence" in cs.keys():
-                                review["confidence"] = cs["confidence"]
+                                review["confidence"] = cs["confidence"]["value"]
                             if "confidence" in review.keys():
                                 if isinstance(review["confidence"], int):
                                     confidences.append(review["confidence"])
@@ -1000,10 +1019,8 @@ def prepare_nips(year):
                     paper_new["reviews"] = reviews
                     if len(official_reviews) > 0:
                         papers_nips.append(paper_new)
-                    else:
-                        print(paper)
             # else:
-            #     print(paper["title"])
+            #     print(paper)
         # print(sorted(invitations))
         print("NIPS confidences", year, confidences_set)
         print("NIPS ratings", year, ratings_set)
