@@ -490,7 +490,7 @@ def prepare_iclr(year):
                         for rc in paper["reviews_commments"]:
                             # if rc["replyto"] == paper["id"]:
                             for s in rc["signatures"]:
-                                invitations.add(rc["invitation"].split("/")[-1] + "#" + s.split("/")[-1])
+                                invitations.add(rc["invitation"][0].split("/")[-1] + "#" + s.split("/")[-1])
                             # if rc["invitation"].split("/")[-1] == "Comment":
                             #     print(paper["title"])
 
@@ -503,7 +503,7 @@ def prepare_iclr(year):
                                 review = {}
                                 review["review_id"] = rc["id"]
 
-                                invit = rc["invitation"].split("/")[-1]
+                                invit = rc["invitation"][0].split("/")[-1]
                                 if "Official_Review" == invit or "Ethics_Review" == invit:
                                     review["writer"] = "official_reviewer"
                                 elif "Official_Comment" == invit or "Comment" == invit:
