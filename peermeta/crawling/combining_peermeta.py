@@ -472,7 +472,7 @@ def prepare_iclr(year):
                     paper_new["paper_abstract"] = paper["abstract"]
                     final_decision_content = paper["final_decision"]["content"]
                     paper_new["paper_acceptance"] = final_decision_content["decision"]
-                    final_decision_time = paper["final_decision"]["tmdate"]
+                    final_decision_time = paper["final_decision"]["mdate"]
                     final_decision = final_decision_content["metareview:_summary,_strengths_and_weaknesses"]
                     if final_decision != "":
                         paper_new["meta_review"] = final_decision
