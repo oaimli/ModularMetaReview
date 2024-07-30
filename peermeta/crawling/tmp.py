@@ -7,7 +7,7 @@ import jsonlines
 samples = []
 with jsonlines.open("../data/iclr_2023.jsonl") as reader:
     for line in reader:
-        print(line)
+        samples.append(line)
 
 with open("tmp.json", "w") as f:
     json.dump(random.sample(samples, 50), f, indent=4)
