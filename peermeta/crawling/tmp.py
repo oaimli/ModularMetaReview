@@ -1,4 +1,6 @@
 import json
+import random
+
 import jsonlines
 
 
@@ -8,4 +10,4 @@ with jsonlines.open("../data/iclr_2023.jsonl") as reader:
         print(line)
 
 with open("tmp.json", "w") as f:
-    json.dump(samples, f)
+    json.dump(random.sample(samples, 50), f, indent=4)
