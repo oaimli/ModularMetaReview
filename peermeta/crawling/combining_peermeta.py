@@ -480,7 +480,7 @@ def prepare_iclr(year):
                     for review in paper["reviews_commments"]:
                         if "metareview" in review["content"].keys():
                             final_decision = review["content"]["metareview"]["value"]
-                            final_decision_time = paper["final_decision"]["mdate"]
+                            final_decision_time = paper["final_decision"]["cdate"]
                         else:
                             reviews_comments.append(review)
 
@@ -501,7 +501,7 @@ def prepare_iclr(year):
                         confidences = []
                         official_reviews = []
                         for rc in reviews_comments:
-                            if time.localtime(final_decision_time / 1000) >= time.localtime(rc["mdate"] / 1000):
+                            if time.localtime(final_decision_time / 1000) >= time.localtime(rc["cdate"] / 1000):
                                 review = {}
                                 review["review_id"] = rc["id"]
 
