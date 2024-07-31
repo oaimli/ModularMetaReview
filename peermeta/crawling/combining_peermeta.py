@@ -1101,4 +1101,4 @@ if __name__ == "__main__":
     # saving the dataset in jsonlines
     print("all papers", len(papers_new))
     with open("../data/peermeta_all.json", "w") as f:
-        json.dump(papers_new, f)
+        json.dump(papers_new, f, indent=4)

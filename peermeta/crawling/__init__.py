@@ -19,7 +19,7 @@
 # rating: 1-10, int
 # writer: str, (author, official_reviewer, public)
 
-# Valid data samples
+# Raw samples
 # iclr_2018: 994
 # iclr_2019: 1579
 # iclr_2020: 2594
@@ -27,7 +27,8 @@
 # iclr_2022: 3422
 # iclr_2023: 4937
 # iclr_2024: 7351
-
 # nips_2021: 2334
 # nips_2022: 2824
 # nips_2023: 3395
+
+# Valid samples: all papers 28028
