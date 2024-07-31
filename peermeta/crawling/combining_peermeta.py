@@ -1028,7 +1028,7 @@ def prepare_nips(year):
 if __name__ == "__main__":
     papers = []
     # 2018, 2025
-    for iclr in range(2018, 2023):
+    for iclr in range(2018, 2024):
         print("Year", iclr)
         papers_iclr = prepare_iclr(str(iclr))
         print("ICLR %d" % iclr, len(papers_iclr))
