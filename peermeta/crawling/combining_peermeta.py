@@ -897,7 +897,7 @@ def prepare_nips(year):
                                                                                           []) != [] and paper.get(
                 "abstract", "") != "" and "final_decision" in paper.keys() and paper.get("reviews_commments",
                                                                                          []) != []:
-                print(paper)
+                # print(paper)
                 paper_new["paper_id"] = "iclr_" + year + "_" + paper["id"]
                 paper_new["paper_title"] = paper["title"]
                 paper_new["paper_abstract"] = paper["abstract"]
