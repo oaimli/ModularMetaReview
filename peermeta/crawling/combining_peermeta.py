@@ -1034,7 +1034,7 @@ if __name__ == "__main__":
         print("ICLR %d" % iclr, len(papers_iclr))
         papers.extend(papers_iclr)
     # 2021, 2024
-    for nips in range(2021, 2024):
+    for nips in range(2021, 2022):
         print("Year", nips)
         papers_nips = prepare_nips(str(nips))
         print("NIPS %d" % nips, len(papers_nips))
