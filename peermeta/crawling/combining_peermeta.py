@@ -906,7 +906,7 @@ def prepare_nips(year):
 
                 # as there are a decision and a meta-review, we have to distinguish them
                 final_decision = final_decision_content["comment"]
-                final_decision_time = paper["final_decision"]["mdate"]
+                final_decision_time = paper["final_decision"]["cdate"]
                 if final_decision != "":
                     paper_new["meta_review"] = final_decision
 
@@ -923,7 +923,7 @@ def prepare_nips(year):
                     confidences = []
                     official_reviews = []
                     for rc in paper["reviews_commments"]:
-                        if time.localtime(final_decision_time / 1000) >= time.localtime(rc["mdate"] / 1000):
+                        if time.localtime(final_decision_time / 1000) >= time.localtime(rc["cdate"] / 1000):
                             review = {}
                             review["review_id"] = rc["id"]
 
