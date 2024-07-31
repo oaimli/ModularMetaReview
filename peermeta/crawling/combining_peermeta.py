@@ -151,7 +151,7 @@ def prepare_iclr(year):
                             else:
                                 print(paper_new["paper_id"])
                                 print(final_decision_time)
-                                # print(rc)
+                                print(rc)
                         ratings_set.update(ratings)
                         confidences_set.update(confidences)
 
