@@ -387,12 +387,18 @@ def prepare_iclr(year):
 
                                 cs = rc["content"]
                                 review_text = ""
+                                if "title" in cs.keys():
+                                    review_text = review_text + " " + cs["title"]
                                 if "review" in cs.keys():
                                     review_text = review_text + " " + cs["review"]
                                 if "comment" in cs.keys():
                                     review_text = review_text + " " + cs["comment"]
                                 if "main_review" in cs.keys():
                                     review_text = cs["main_review"]
+                                if "strength_and_weaknesses" in cs.keys():
+                                    review_text = review_text + " " + cs["strength_and_weaknesses"]
+                                if "clarity,_quality,_novelty_and_reproducibility" in cs.keys():
+                                    review_text = review_text + " " + cs["clarity,_quality,_novelty_and_reproducibility"]
                                 if "summary_of_the_review" in cs.keys():
                                     review_text = review_text + " " + cs["summary_of_the_review"]
                                 if "summary_of_the_paper" in cs.keys():
