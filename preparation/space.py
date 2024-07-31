@@ -156,6 +156,8 @@ for source in sources:
     else:
         print("Errors in the label names")
 
+print(len(samples_test), len(samples_dev))
+
 with open("../datasets/space_dev.json", "w") as f:
     json.dump(samples_dev, f, indent=4)
 
