@@ -1011,7 +1011,8 @@ def prepare_nips(year):
                             if review.get("comment", "") != "":
                                 reviews.append(review)
                             else:
-                                print(paper)
+                                print(paper_new["paper_id"])
+                                print(rc)
                         else:
                             print(paper_new["paper_id"])
                             print(final_decision_time)
