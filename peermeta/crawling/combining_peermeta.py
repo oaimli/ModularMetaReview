@@ -976,6 +976,8 @@ def prepare_nips(year):
                                 review_text = review_text + " " + cs["strengths"]["value"]
                             if "weaknesses" in cs.keys():
                                 review_text = review_text + " " + cs["weaknesses"]["value"]
+                            if "limitations" in cs.keys():
+                                review_text = review_text + " " + cs["limitations"]["value"]
 
                             if "ethics_review" in cs.keys():
                                 review_text = review_text + " " + cs["ethics_review"]["value"]
