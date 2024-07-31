@@ -69,8 +69,8 @@ for s in os.listdir(test_folder):
             # print(tmp)
 
 print(len(samples))
-# print(categories)
-#
+print(categories)
 
-# with open("../datasets/amasum_shoes_train.json", "w") as f:
-#     json.dump(samples, f, indent=4)
+
+with open("../datasets/amasum_shoes_train.json", "w") as f:
+    json.dump(samples, f, indent=4)
