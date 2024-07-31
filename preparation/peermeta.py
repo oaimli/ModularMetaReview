@@ -12,7 +12,7 @@ for sample in samples:
         samples_test.append(sample)
     if sample["label"] == "val":
         samples_dev.append(sample)
-    if sample["train"] == "train":
+    if sample["label"] == "train":
         samples_train.append(sample)
 print(len(samples_train), len(samples_dev), len(samples_test))
 
