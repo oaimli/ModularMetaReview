@@ -10,4 +10,4 @@ torchrun --nproc_per_node 4 llama3_1_inference.py  \
                 --max_predict_length ${MAX_LENGTH_GENERATION} \
                 --dataset_path ${DATASET_PATH} \
                 --num_test_samples 5 \
-                --output_file scientific_categorization_result_llama3_1_70b.json \
+                --output_file scientific_categorization_result_llama3_1_70b.json
