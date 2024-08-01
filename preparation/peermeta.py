@@ -46,7 +46,6 @@ samples_sim = random.sample(samples_sim, 50)
 with open("../datasets/peermeta_dev.json", "w") as f:
     json.dump(samples_diff + samples_sim, f, indent=4)
 
-
 samples_diff, samples_sim = segment_data(samples_test)
 samples_diff = random.sample(samples_diff, 150)
 samples_sim = random.sample(samples_sim, 150)
