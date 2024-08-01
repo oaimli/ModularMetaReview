@@ -7,4 +7,4 @@
 # dev/test: 25/25
 
 # PeerMeta
-# train/dev/test: 22420/2799/2809, 22420/100/300 (sampled)
+# train/dev/test: 22420/2799/2809, 22420/100/200 (sampled)
