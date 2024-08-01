@@ -44,7 +44,8 @@ if __name__ == "__main__":
     scorer = rouge_scorer.RougeScorer(["rouge1", "rouge2", "rougeLsum"], use_stemmer=True)
 
     # file_name = "scientific_categorization_result_gpt4"
-    file_name = "scientific_categorization_result_llama3_70b"
+    # file_name = "scientific_categorization_result_llama3_70b"
+    file_name = "scientific_categorization_result_llama3_1_70b"
 
     with open(f"{file_name}.json") as f:
         samples = json.load(f)
