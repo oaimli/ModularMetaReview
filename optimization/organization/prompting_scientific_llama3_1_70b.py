@@ -39,13 +39,14 @@ def llama_prompting(input_text: str, facet: str, mode: str = "meta"):
         add_generation_prompt=True,
         return_tensors="pt",
         ).to(model.device)
-    print(f"Running generation, and in the input there are {len(input_ids)} tokens")
+    print(f"Running generation, and in the input there are {len(input_ids[0])} tokens")
 
     attention_mask = torch.ones_like(input_ids)
     outputs = model.generate(
         input_ids,
         max_new_tokens=1024,
         eos_token_id=tokenizer.eos_token_id,
+        pad_token_id=tokenizer.eos_token_id,
         do_sample=True,
         temperature=0.6,
         top_p=0.9,
@@ -73,6 +74,7 @@ if __name__ == '__main__':
         model_name,
         torch_dtype=torch.bfloat16,
         device_map="auto",
+        attn_implementation="flash_attention_2"
         )
 
     # load the dataset
