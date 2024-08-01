@@ -38,6 +38,8 @@ def segment_data(samples_tmp):
     return samples_diff, samples_sim
 
 
+random.seed(42)
+
 samples_diff, samples_sim = segment_data(samples_dev)
 samples_diff = random.sample(samples_diff, 50)
 samples_sim = random.sample(samples_sim, 50)
@@ -46,7 +48,7 @@ with open("../datasets/peermeta_dev.json", "w") as f:
 
 
 samples_diff, samples_sim = segment_data(samples_test)
-samples_diff = random.sample(samples_diff, 150)
-samples_sim = random.sample(samples_sim, 150)
+samples_diff = random.sample(samples_diff, 100)
+samples_sim = random.sample(samples_sim, 100)
 with open("../datasets/peermeta_test.json", "w") as f:
     json.dump(samples_diff + samples_sim, f, indent=4)
