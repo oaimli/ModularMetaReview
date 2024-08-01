@@ -1,1 +1,8 @@
 /.idea
+/datasets/amasum_shoes_test.json
+/datasets/amasum_shoes_train.json
+/datasets/amasum_shoes_valid.json
+/datasets/peermeta_dev.json
+/datasets/peermeta_test.json
+/datasets/space_dev.json
+/datasets/space_test.json
