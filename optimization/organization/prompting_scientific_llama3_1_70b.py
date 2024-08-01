@@ -1,36 +1,12 @@
-# Inference with the official code from Meta LLaMA-3
+# Inference with Transformers
 import os
 import random
 import json
 import jsonlines
 from tqdm import tqdm
 from transformers import AutoModelForCausalLM, AutoTokenizer
-from transformers import HfArgumentParser
-from dataclasses import dataclass, field
-from typing import Optional, List, Dict
 import spacy
 import torch
-
-
-@dataclass
-class ModelArguments:
-    model_name_or_path: str = field(default=None, metadata={"help": "Name or path of the pre-trained model."})
-    max_length_model: Optional[int] = field(default=8192, metadata={"help": "Max input length of the model."})
-    # predict with sampling or contrastive search
-    max_predict_length: Optional[int] = field(default=512, metadata={
-        "help": "Max predicted target length when generation, excluding the source part."})
-    temperature: Optional[float] = field(default=0.6,
-                                         metadata={"help": "The value to modulate the next token probabilities."})
-    top_p: Optional[float] = field(default=0.9, metadata={
-        "help": "most probable tokens with probabilities that add up to top_p or higher are kept for generation"})
-    output_file: str = field(default="generation.json", metadata={"help": "The name of the output file."})
-    max_batch_size: Optional[int] = field(default=1, metadata={"help": "The maximum batch size for inference."})
-
-
-@dataclass
-class DataArguments:
-    dataset_path: str = field(default=None, metadata={"help": "Path to the test dataset."})
-    num_test_samples: int = field(default=-1, metadata={"help": "Number of test samples."})
 
 
 def parsing_result(output):
@@ -68,11 +44,11 @@ def llama_prompting(input_text: str, facet: str, mode: str = "meta"):
     attention_mask = torch.ones_like(input_ids)
     outputs = model.generate(
         input_ids,
-        max_new_tokens=model_args.max_predict_length,
+        max_new_tokens=1024,
         eos_token_id=tokenizer.eos_token_id,
         do_sample=True,
-        temperature=model_args.temperature,
-        top_p=model_args.top_p,
+        temperature=0.6,
+        top_p=0.9,
         attention_mask=attention_mask,
         )
     response = tokenizer.decode(outputs[0][input_ids.shape[-1]:], skip_special_tokens=True)
@@ -91,22 +67,21 @@ if __name__ == '__main__':
     nlp = spacy.load("en_core_web_sm")
     facets = ["Novelty", "Soundness", "Clarity", "Advancement", "Compliance", "Overall"]
 
-    parser = HfArgumentParser((ModelArguments, DataArguments))
-    model_args, data_args = parser.parse_args_into_dataclasses()
-
-    tokenizer = AutoTokenizer.from_pretrained(model_args.model_name_or_path)
+    model_name = "meta-llama/Meta-Llama-3.1-70B-Instruct"
+    tokenizer = AutoTokenizer.from_pretrained(model_name)
     model = AutoModelForCausalLM.from_pretrained(
-        model_args.model_name_or_path,
+        model_name,
         torch_dtype=torch.bfloat16,
         device_map="auto",
         )
 
     # load the dataset
+    dataset_path = "/home/miao4/punim0521/ModularMetaReview/annotations/scientific_reviews/annotation_data_small.json"
     random.seed(42)
-    with open(data_args.dataset_path) as f:
+    with open(dataset_path) as f:
         test_samples = json.load(f)
 
-    random_keys = random.sample(list(test_samples.keys()), data_args.num_test_samples)
+    random_keys = random.sample(list(test_samples.keys()), 5)
     print("all test data", len(random_keys))
 
     # generation
@@ -133,6 +108,7 @@ if __name__ == '__main__':
         results[key] = sample
 
     # save generation results into json file
-    with open(model_args.output_file, "w") as f:
+    output_file = "scientific_categorization_result_llama3_1_70b.json"
+    with open(output_file, "w") as f:
         json.dump(results, f, indent=4)
-    print("Saved to ", model_args.output_file)
+    print("Saved to ", output_file)
