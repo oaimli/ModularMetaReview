@@ -85,7 +85,7 @@ if __name__ == "__main__":
     target = "Mr. Smith's getting a check-up, and Doctor Hawkins advises him to have one every year. Hawkins'll give some information about their classes and medications to help Mr. Smith quit smoking."
     prompt_format = "<s>[INST] <<SYS>> Please write a summary for the conversation.<</SYS>> \nConversation:\n{input_text}\n [/INST] Summary:\n"
     input_text = prompt_format.format(input_text=input)
-    result = predict_without_pipe(input_text, model_name="meta-llama/Llama-2-70b-chat-hf")
+    result = predict_without_pipe(input_text, model_name="meta-llama/Meta-Llama-3.1-70B-Instruct")
     print(result)
     # result = predict_with_pipe(input_text, model_name="meta-llama/Llama-2-70b-chat-hf", max_prediction_length=128)
     # print(result)
