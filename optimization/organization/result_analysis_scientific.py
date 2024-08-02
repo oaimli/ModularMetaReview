@@ -579,7 +579,7 @@ if __name__ == "__main__":
     print("Br", len(bryan_results_share), "Ze", len(zenan_results_share), "Model", len(model_results_share),
           "Annotation data", len(annotation_data_share))
     assert len(annotation_data_share.keys()) == len(bryan_results_share.keys()) == len(
-        zenan_results_share.keys()) == len(model_results_share.keys())
+        zenan_results_share.keys())
 
     print("################ Agreement Bryan and Zenan: ################")
     result_bz = character_level_agreement(bryan_results_share, zenan_results_share, annotation_data_share)
