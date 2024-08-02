@@ -550,10 +550,10 @@ def character_level_agreement(results_1, results_2, annotation_data):
 
 
 if __name__ == "__main__":
-    # with open("scientific_categorization_result_gpt4_processed.json") as f:
-    #     model_results = json.load(f)
-    with open("scientific_categorization_result_llama3_70b_processed.json") as f:
+    with open("scientific_categorization_result_gpt4_processed.json") as f:
         model_results = json.load(f)
+    # with open("scientific_categorization_result_llama3_70b_processed.json") as f:
+    #     model_results = json.load(f)
     # with open("scientific_categorization_result_llama3_1_70b_processed.json") as f:
     #     model_results = json.load(f)
 
