@@ -92,3 +92,51 @@ Highlight correlation, meta-review + review, character level, overall, Krippendo
 Highlight correlation, meta-review + review, character level, overall, Kendall Tall ------ 0.7641923307624918 0.24619913850883512 0.21763409914363152
 Highlight correlation, meta-review + review, character level, overall, Spearman ------ 0.7641923307624918 0.24619913850883518 0.21763409914363155
 Highlight correlation, meta-review + review, character level, overall, Pearson ------ 0.7641923307625229 0.24619913850883696 0.21763409914361517
+
+
+################ Overall agreement, A1<->A2, A1<->Model and A2<->Model, In-context learning with LLaMA3.1-70B-Instruct ################
+Highlight correlation, meta-review + review, character level, Cohen Kappa ------ 0.8418329906750546 0.33584327776082235 0.3193706371265669
+Highlight correlation, meta-review + review, character level, Krippendorff Alpha ------ 0.8417803833543451 0.31221464587583925 0.29071115696162
+Highlight correlation, meta-review + review, character level, Kendall Tall ------ 0.8437700831276449 0.3896400803052424 0.3841333509854176
+Highlight correlation, meta-review + review, character level, Spearman ------ 0.8437700831276449 0.3896400803052424 0.3841333509854175
+Highlight correlation, meta-review + review, character level, Pearson ------ 0.8437700831276456 0.38964008030524316 0.38413335098541773
+Highlight correlation, meta-review, character level, Cohen Kappa ------ 1.0 0.9399685468793918 0.9399685468793918
+Highlight correlation, meta-review, character level, Krippendorff Alpha ------ 1.0 0.9399411252303997 0.9399411252303997
+Highlight correlation, meta-review, character level, Kendall Tall ------ 1.0 0.9416668562504846 0.9416668562504846
+Highlight correlation, meta-review, character level, Spearman ------ 1.0 0.9416668562504846 0.9416668562504846
+Highlight correlation, meta-review, character level, Pearson ------ 1.0 0.941666856250485 0.941666856250485
+Highlight correlation, review, character level, Cohen Kappa ------ 0.8281802896868656 0.3125214580974921 0.29495776772006466
+Highlight correlation, review, character level, Krippendorff Alpha ------ 0.8281160121397892 0.2859190750085441 0.26264678783273687
+Highlight correlation, review, character level, Kendall Tall ------ 0.8304305549537027 0.36828435711520446 0.3620965018995978
+Highlight correlation, review, character level, Spearman ------ 0.8304305549537028 0.3682843571152045 0.36209650189959786
+Highlight correlation, review, character level, Pearson ------ 0.8304305549537021 0.3682843571152048 0.3620965018995987
+Highlight correlation, meta-review + review, character level, novelty, Cohen Kappa ------ 0.8140495370578578 0.33565429907581157 0.2718967171579575
+Highlight correlation, meta-review + review, character level, novelty, Krippendorff Alpha ------ 0.8140501280999275 0.3337094528404583 0.2697411844037062
+Highlight correlation, meta-review + review, character level, novelty, Kendall Tall ------ 0.8140523159029676 0.359175775337387 0.2912218649310397
+Highlight correlation, meta-review + review, character level, novelty, Spearman ------ 0.8140523159029678 0.3591757753373869 0.2912218649310397
+Highlight correlation, meta-review + review, character level, novelty, Pearson ------ 0.8140523159029663 0.35917577533738954 0.2912218649310415
+Highlight correlation, meta-review + review, character level, soundness, Cohen Kappa ------ 0.7224949887845526 0.22850512955672675 0.25437487148446236
+Highlight correlation, meta-review + review, character level, soundness, Krippendorff Alpha ------ 0.7224400957512356 0.22154911923127674 0.2456121777185546
+Highlight correlation, meta-review + review, character level, soundness, Kendall Tall ------ 0.7240346834089061 0.24394839495580747 0.27835641580793047
+Highlight correlation, meta-review + review, character level, soundness, Spearman ------ 0.7240346834089062 0.24394839495580756 0.2783564158079305
+Highlight correlation, meta-review + review, character level, soundness, Pearson ------ 0.7240346834089061 0.24394839495580778 0.27835641580793036
+Highlight correlation, meta-review + review, character level, clarity, Cohen Kappa ------ 0.7806318360784951 0.07212095934094787 0.05182520719802253
+Highlight correlation, meta-review + review, character level, clarity, Krippendorff Alpha ------ 0.7806270254323566 0.04672520610415676 0.024842053781309548
+Highlight correlation, meta-review + review, character level, clarity, Kendall Tall ------ 0.7817001986107328 0.11734994390367913 0.08792303033254832
+Highlight correlation, meta-review + review, character level, clarity, Spearman ------ 0.7817001986107328 0.11734994390367916 0.08792303033254832
+Highlight correlation, meta-review + review, character level, clarity, Pearson ------ 0.781700198610733 0.11734994390367931 0.08792303033254839
+Highlight correlation, meta-review + review, character level, advancement, Cohen Kappa ------ 0.5314693807265705 0.10913430532537671 0.16103420606178942
+Highlight correlation, meta-review + review, character level, advancement, Krippendorff Alpha ------ 0.5314697628893476 0.08900220367803902 0.14236187487182028
+Highlight correlation, meta-review + review, character level, advancement, Kendall Tall ------ 0.5315248795503196 0.16062345839392655 0.23452106437174713
+Highlight correlation, meta-review + review, character level, advancement, Spearman ------ 0.5315248795503197 0.16062345839392655 0.23452106437174722
+Highlight correlation, meta-review + review, character level, advancement, Pearson ------ 0.5315248795503207 0.16062345839392622 0.23452106437174788
+Highlight correlation, meta-review + review, character level, compliance, Cohen Kappa ------ -0.000845085981482141 -0.0034356214646165117 0.05342307462889462
+Highlight correlation, meta-review + review, character level, compliance, Krippendorff Alpha ------ -0.0012090110749356509 -0.010786176976885331 0.04487019892738964
+Highlight correlation, meta-review + review, character level, compliance, Kendall Tall ------ -0.0010123591569705026 -0.0061109110388122495 0.16566419483784048
+Highlight correlation, meta-review + review, character level, compliance, Spearman ------ -0.0010123591569705026 -0.0061109110388122495 0.16566419483784048
+Highlight correlation, meta-review + review, character level, compliance, Pearson ------ -0.0010123591569704952 -0.006110911038812271 0.16566419483784042
+Highlight correlation, meta-review + review, character level, overall, Cohen Kappa ------ 0.7373657011497896 0.22416220517468444 0.15974555461916495
+Highlight correlation, meta-review + review, character level, overall, Krippendorff Alpha ------ 0.737309060477163 0.21776035460530607 0.1512676994888179
+Highlight correlation, meta-review + review, character level, overall, Kendall Tall ------ 0.7641923307624918 0.3327627689341625 0.2934691579631632
+Highlight correlation, meta-review + review, character level, overall, Spearman ------ 0.7641923307624918 0.3327627689341625 0.29346915796316325
+Highlight correlation, meta-review + review, character level, overall, Pearson ------ 0.7641923307624942 0.3327627689341611 0.2934691579631641
