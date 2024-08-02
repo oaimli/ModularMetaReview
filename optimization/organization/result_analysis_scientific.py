@@ -30,9 +30,9 @@ def character_level_agreement(results_1, results_2, annotation_data):
 
     for id in annotation_data.keys():
         print(id)
-        result_1 = results_1[id] # the annotation result of the first annotator
-        result_2 = results_2[id] # the annotation result of the second annotator
-        source_data = annotation_data[key] # the original annotation data
+        result_1 = results_1[id]  # the annotation result of the first annotator
+        result_2 = results_2[id]  # the annotation result of the second annotator
+        source_data = annotation_data[key]  # the original annotation data
 
         meta_review = source_data["meta_review"]
         meta_review_categorization_1 = result_1["meta_review_categorization"]
@@ -123,7 +123,6 @@ def character_level_agreement(results_1, results_2, annotation_data):
         facets_1s_compliance.extend(meta_review_signal_1_compliance)
         facets_1s_overall.extend(meta_review_signal_1_overall)
 
-
         for facet, fragments in meta_review_categorization_2.items():
             for fragment in fragments:
                 start = 0
@@ -194,11 +193,11 @@ def character_level_agreement(results_1, results_2, annotation_data):
         facets_2s_compliance.extend(meta_review_signal_2_compliance)
         facets_2s_overall.extend(meta_review_signal_2_overall)
 
-
         reviews = source_data["reviews"]
         review_categorizations_1 = result_1["review_categorization"]
         review_categorizations_2 = result_2["review_categorization"]
-        for review, review_categorization_1, review_categorization_2 in zip(reviews, review_categorizations_1, review_categorizations_2):
+        for review, review_categorization_1, review_categorization_2 in zip(reviews, review_categorizations_1,
+                                                                            review_categorizations_2):
             review_content = review["comment"]
             review_signal_1 = [0] * len(review_content)
             review_signal_2 = [0] * len(review_content)
@@ -426,8 +425,10 @@ def character_level_agreement(results_1, results_2, annotation_data):
     print("Kendall Tau: ", kendalltau_result)
     print("Spearman: ", spearmanr_result)
     print("Pearson: ", pearsonr_result)
-    result["Highlight correlation, meta-review + review, character level, novelty, Cohen Kappa"] = cohen_kappa_score_result
-    result["Highlight correlation, meta-review + review, character level, novelty, Krippendorff Alpha"] = krippendorff_alpha
+    result[
+        "Highlight correlation, meta-review + review, character level, novelty, Cohen Kappa"] = cohen_kappa_score_result
+    result[
+        "Highlight correlation, meta-review + review, character level, novelty, Krippendorff Alpha"] = krippendorff_alpha
     result["Highlight correlation, meta-review + review, character level, novelty, Kendall Tall"] = kendalltau_result[0]
     result["Highlight correlation, meta-review + review, character level, novelty, Spearman"] = spearmanr_result[0]
     result["Highlight correlation, meta-review + review, character level, novelty, Pearson"] = pearsonr_result[0]
@@ -449,7 +450,8 @@ def character_level_agreement(results_1, results_2, annotation_data):
         "Highlight correlation, meta-review + review, character level, soundness, Cohen Kappa"] = cohen_kappa_score_result
     result[
         "Highlight correlation, meta-review + review, character level, soundness, Krippendorff Alpha"] = krippendorff_alpha
-    result["Highlight correlation, meta-review + review, character level, soundness, Kendall Tall"] = kendalltau_result[0]
+    result["Highlight correlation, meta-review + review, character level, soundness, Kendall Tall"] = kendalltau_result[
+        0]
     result["Highlight correlation, meta-review + review, character level, soundness, Spearman"] = spearmanr_result[0]
     result["Highlight correlation, meta-review + review, character level, soundness, Pearson"] = pearsonr_result[0]
 
@@ -492,8 +494,9 @@ def character_level_agreement(results_1, results_2, annotation_data):
         "Highlight correlation, meta-review + review, character level, advancement, Cohen Kappa"] = cohen_kappa_score_result
     result[
         "Highlight correlation, meta-review + review, character level, advancement, Krippendorff Alpha"] = krippendorff_alpha
-    result["Highlight correlation, meta-review + review, character level, advancement, Kendall Tall"] = kendalltau_result[
-        0]
+    result["Highlight correlation, meta-review + review, character level, advancement, Kendall Tall"] = \
+        kendalltau_result[
+            0]
     result["Highlight correlation, meta-review + review, character level, advancement, Spearman"] = spearmanr_result[0]
     result["Highlight correlation, meta-review + review, character level, advancement, Pearson"] = pearsonr_result[0]
 
@@ -514,8 +517,9 @@ def character_level_agreement(results_1, results_2, annotation_data):
         "Highlight correlation, meta-review + review, character level, compliance, Cohen Kappa"] = cohen_kappa_score_result
     result[
         "Highlight correlation, meta-review + review, character level, compliance, Krippendorff Alpha"] = krippendorff_alpha
-    result["Highlight correlation, meta-review + review, character level, compliance, Kendall Tall"] = kendalltau_result[
-        0]
+    result["Highlight correlation, meta-review + review, character level, compliance, Kendall Tall"] = \
+        kendalltau_result[
+            0]
     result["Highlight correlation, meta-review + review, character level, compliance, Spearman"] = spearmanr_result[0]
     result["Highlight correlation, meta-review + review, character level, compliance, Pearson"] = pearsonr_result[0]
 
@@ -537,8 +541,8 @@ def character_level_agreement(results_1, results_2, annotation_data):
     result[
         "Highlight correlation, meta-review + review, character level, overall, Krippendorff Alpha"] = krippendorff_alpha
     result["Highlight correlation, meta-review + review, character level, overall, Kendall Tall"] = \
-    kendalltau_result[
-        0]
+        kendalltau_result[
+            0]
     result["Highlight correlation, meta-review + review, character level, overall, Spearman"] = spearmanr_result[0]
     result["Highlight correlation, meta-review + review, character level, overall, Pearson"] = pearsonr_result[0]
 
@@ -552,6 +556,7 @@ if __name__ == "__main__":
         model_results = json.load(f)
     # with open("scientific_categorization_result_llama3_1_70b_processed.json") as f:
     #     model_results = json.load(f)
+
     with open("../../annotations/scientific_reviews/br_annotation_result_fragments.json") as f:
         bryan_results = json.load(f)
     with open("../../annotations/scientific_reviews/ze_annotation_result_fragments.json") as f:
@@ -573,7 +578,8 @@ if __name__ == "__main__":
 
     print("Br", len(bryan_results_share), "Ze", len(zenan_results_share), "Model", len(model_results_share),
           "Annotation data", len(annotation_data_share))
-    assert len(annotation_data_share.keys()) == len(bryan_results_share.keys()) == len(zenan_results_share.keys())
+    assert len(annotation_data_share.keys()) == len(bryan_results_share.keys()) == len(
+        zenan_results_share.keys()) == len(model_results_share.keys())
 
     print("################ Agreement Bryan and Zenan: ################")
     result_bz = character_level_agreement(bryan_results_share, zenan_results_share, annotation_data_share)
