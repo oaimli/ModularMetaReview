@@ -61,12 +61,15 @@ for s in os.listdir(test_folder):
         sample = json.load(f)
         tmp = sample["product_meta"].get("categories", [])
         # selecting samples in the shoes categories
-        if "shoes" in " ".join(tmp).lower() and "shoes" in sample["product_meta"]["title"].lower():
-            sample["label"] = "train"
-            samples.append(sample)
-            categories.update(tmp)
-            # print(sample["product_meta"]["title"])
-            # print(tmp)
+        # if "shoes" in " ".join(tmp).lower() and "shoes" in sample["product_meta"]["title"].lower():
+        #     sample["label"] = "train"
+        #     samples.append(sample)
+        #     categories.update(tmp)
+        #     # print(sample["product_meta"]["title"])
+        #     # print(tmp)
+        sample["label"] = "train"
+        samples.append(sample)
+        categories.update(tmp)
 
 print(len(samples))
 print(categories)

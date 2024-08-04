@@ -32,7 +32,7 @@ def character_level_agreement(results_1, results_2, annotation_data):
         print(id)
         result_1 = results_1[id]  # the annotation result of the first annotator
         result_2 = results_2[id]  # the annotation result of the second annotator
-        source_data = annotation_data[key]  # the original annotation data
+        source_data = annotation_data[id]  # the original annotation data
 
         meta_review = source_data["meta_review"]
         meta_review_categorization_1 = result_1["meta_review_categorization"]
@@ -549,13 +549,311 @@ def character_level_agreement(results_1, results_2, annotation_data):
     return result
 
 
+def transform(fragment, whole_text, vector):
+    # whole_text_words = whole_text.split()
+    start = 0
+    while start >= 0:
+        start = whole_text.find(fragment, start)
+        if start != -1:
+            prefix = whole_text[:start].split()
+            target = fragment.split()
+            # print(len(whole_text.split()))
+            # print(len(prefix))
+            # print(target)
+            # print(whole_text_words[len(prefix)], target[0])
+            # assert whole_text_words[len(prefix)] == target[0]
+
+            for i in range(len(prefix), len(prefix) + len(target)):
+                if i < len(vector):
+                    vector[i] = 1
+
+            start += len(fragment)
+
+
+def words_sharing(vector_a, vector_b):
+    assert len(vector_a) == len(vector_b)
+    sharing_count = 0
+    for item_a, item_b in zip(vector_a, vector_b):
+        if item_a == item_b == 1:
+            sharing_count += 1
+    ones_a = 0
+    for item in vector_a:
+        if item == 1:
+            ones_a += 1
+    ones_b = 0
+    for item in vector_b:
+        if item == 1:
+            ones_b += 1
+    r = (sharing_count + 1) / (ones_a + 1)
+    p = (sharing_count + 1) / (ones_b + 1)
+    return 2*(r*p)/(r+p)
+
+
+def word_level_agreement(results_1, results_2, annotation_data):
+    novelty_agreements = []
+    soundness_agreements = []
+    clarity_agreements = []
+    advancement_agreements = []
+    compliance_agreements = []
+    overall_agreements = []
+    meta_review_agreements = []
+    review_agreements = []
+    all_text_agreements = []
+
+    for id in annotation_data.keys():
+        facets_1s_novelty = []
+        facets_2s_novelty = []
+        facets_1s_soundness = []
+        facets_2s_soundness = []
+        facets_1s_clarity = []
+        facets_2s_clarity = []
+        facets_1s_advancement = []
+        facets_2s_advancement = []
+        facets_1s_compliance = []
+        facets_2s_compliance = []
+        facets_1s_overall = []
+        facets_2s_overall = []
+        meta_reviews_1s = []
+        meta_reviews_2s = []
+        reviews_1s = []
+        reviews_2s = []
+
+        print(id)
+        result_1 = results_1[id]  # the annotation result of the first annotator
+        result_2 = results_2[id]  # the annotation result of the second annotator
+        source_data = annotation_data[id]  # the original annotation data
+
+        meta_review = source_data["meta_review"]
+        meta_review_categorization_1 = result_1["meta_review_categorization"]
+        meta_review_categorization_2 = result_2["meta_review_categorization"]
+
+        words_meta_review = meta_review.split()
+
+        meta_review_signal_1 = [0] * len(words_meta_review)
+        meta_review_signal_2 = [0] * len(words_meta_review)
+        meta_review_signal_1_novelty = [0] * len(words_meta_review)
+        meta_review_signal_2_novelty = [0] * len(words_meta_review)
+        meta_review_signal_1_soundness = [0] * len(words_meta_review)
+        meta_review_signal_2_soundness = [0] * len(words_meta_review)
+        meta_review_signal_1_clarity = [0] * len(words_meta_review)
+        meta_review_signal_2_clarity = [0] * len(words_meta_review)
+        meta_review_signal_1_advancement = [0] * len(words_meta_review)
+        meta_review_signal_2_advancement = [0] * len(words_meta_review)
+        meta_review_signal_1_compliance = [0] * len(words_meta_review)
+        meta_review_signal_2_compliance = [0] * len(words_meta_review)
+        meta_review_signal_1_overall = [0] * len(words_meta_review)
+        meta_review_signal_2_overall = [0] * len(words_meta_review)
+
+        for facet, fragments in meta_review_categorization_1.items():
+            for fragment in fragments:
+                transform(fragment, meta_review, meta_review_signal_1)
+
+                if facet == "Novelty":
+                    transform(fragment, meta_review, meta_review_signal_1_novelty)
+
+                if facet == "Soundness":
+                    transform(fragment, meta_review, meta_review_signal_1_soundness)
+
+                if facet == "Clarity":
+                    transform(fragment, meta_review, meta_review_signal_1_clarity)
+
+                if facet == "Advancement":
+                    transform(fragment, meta_review, meta_review_signal_1_advancement)
+
+                if facet == "Compliance":
+                    transform(fragment, meta_review, meta_review_signal_1_compliance)
+
+                if facet == "Overall":
+                    transform(fragment, meta_review, meta_review_signal_1_overall)
+        meta_reviews_1s.extend(meta_review_signal_1)
+        facets_1s_novelty.extend(meta_review_signal_1_novelty)
+        facets_1s_soundness.extend(meta_review_signal_1_soundness)
+        facets_1s_clarity.extend(meta_review_signal_1_clarity)
+        facets_1s_advancement.extend(meta_review_signal_1_advancement)
+        facets_1s_compliance.extend(meta_review_signal_1_compliance)
+        facets_1s_overall.extend(meta_review_signal_1_overall)
+
+        for facet, fragments in meta_review_categorization_2.items():
+            for fragment in fragments:
+                transform(fragment, meta_review, meta_review_signal_2)
+
+                if facet == "Novelty":
+                    transform(fragment, meta_review, meta_review_signal_2_novelty)
+
+                if facet == "Soundness":
+                    transform(fragment, meta_review, meta_review_signal_2_soundness)
+
+                if facet == "Clarity":
+                    transform(fragment, meta_review, meta_review_signal_2_clarity)
+
+                if facet == "Advancement":
+                    transform(fragment, meta_review, meta_review_signal_2_advancement)
+
+                if facet == "Compliance":
+                    transform(fragment, meta_review, meta_review_signal_2_compliance)
+
+                if facet == "Overall":
+                    transform(fragment, meta_review, meta_review_signal_2_overall)
+        meta_reviews_2s.extend(meta_review_signal_2)
+        facets_2s_novelty.extend(meta_review_signal_2_novelty)
+        facets_2s_soundness.extend(meta_review_signal_2_soundness)
+        facets_2s_clarity.extend(meta_review_signal_2_clarity)
+        facets_2s_advancement.extend(meta_review_signal_2_advancement)
+        facets_2s_compliance.extend(meta_review_signal_2_compliance)
+        facets_2s_overall.extend(meta_review_signal_2_overall)
+
+        reviews = source_data["reviews"]
+        review_categorizations_1 = result_1["review_categorization"]
+        review_categorizations_2 = result_2["review_categorization"]
+        for review, review_categorization_1, review_categorization_2 in zip(reviews, review_categorizations_1,
+                                                                            review_categorizations_2):
+            review_content = review["comment"]
+            words_review_content = review_content.split()
+
+            review_signal_1 = [0] * len(words_review_content)
+            review_signal_2 = [0] * len(words_review_content)
+            review_signal_1_novelty = [0] * len(words_review_content)
+            review_signal_2_novelty = [0] * len(words_review_content)
+            review_signal_1_soundness = [0] * len(words_review_content)
+            review_signal_2_soundness = [0] * len(words_review_content)
+            review_signal_1_clarity = [0] * len(words_review_content)
+            review_signal_2_clarity = [0] * len(words_review_content)
+            review_signal_1_advancement = [0] * len(words_review_content)
+            review_signal_2_advancement = [0] * len(words_review_content)
+            review_signal_1_compliance = [0] * len(words_review_content)
+            review_signal_2_compliance = [0] * len(words_review_content)
+            review_signal_1_overall = [0] * len(words_review_content)
+            review_signal_2_overall = [0] * len(words_review_content)
+
+            for facet, fragments in review_categorization_1.items():
+                for fragment in fragments:
+                    transform(fragment, review_content, review_signal_1)
+
+                    if facet == "Novelty":
+                        transform(fragment, review_content, review_signal_1_novelty)
+
+                    if facet == "Soundness":
+                        transform(fragment, review_content, review_signal_1_soundness)
+
+                    if facet == "Clarity":
+                        transform(fragment, review_content, review_signal_1_clarity)
+
+                    if facet == "Advancement":
+                        transform(fragment, review_content, review_signal_1_advancement)
+
+                    if facet == "Compliance":
+                        transform(fragment, review_content, review_signal_1_compliance)
+
+                    if facet == "Overall":
+                        transform(fragment, review_content, review_signal_1_overall)
+
+            for facet, fragments in review_categorization_2.items():
+                for fragment in fragments:
+                    transform(fragment, review_content, review_signal_2)
+
+                    if facet == "Novelty":
+                        transform(fragment, review_content, review_signal_2_novelty)
+
+                    if facet == "Soundness":
+                        transform(fragment, review_content, review_signal_2_soundness)
+
+                    if facet == "Clarity":
+                        transform(fragment, review_content, review_signal_2_clarity)
+
+                    if facet == "Advancement":
+                        transform(fragment, review_content, review_signal_2_advancement)
+
+                    if facet == "Compliance":
+                        transform(fragment, review_content, review_signal_2_compliance)
+
+                    if facet == "Overall":
+                        transform(fragment, review_content, review_signal_2_overall)
+
+            reviews_1s.extend(review_signal_1)
+            facets_1s_novelty.extend(review_signal_1_novelty)
+            facets_1s_soundness.extend(review_signal_1_soundness)
+            facets_1s_clarity.extend(review_signal_1_clarity)
+            facets_1s_advancement.extend(review_signal_1_advancement)
+            facets_1s_compliance.extend(review_signal_1_compliance)
+            facets_1s_overall.extend(review_signal_1_overall)
+
+            reviews_2s.extend(review_signal_2)
+            facets_2s_novelty.extend(review_signal_2_novelty)
+            facets_2s_soundness.extend(review_signal_2_soundness)
+            facets_2s_clarity.extend(review_signal_2_clarity)
+            facets_2s_advancement.extend(review_signal_2_advancement)
+            facets_2s_compliance.extend(review_signal_2_compliance)
+            facets_2s_overall.extend(review_signal_2_overall)
+
+            print(len(review_signal_1), len(review_signal_2))
+
+        a = np.array(meta_reviews_1s + reviews_1s)
+        b = np.array(meta_reviews_2s + reviews_2s)
+        print(len(meta_reviews_1s), len(meta_reviews_2s), len(reviews_1s), len(reviews_2s))
+        f = words_sharing(a, b)
+        all_text_agreements.append(f)
+
+        a = np.array(meta_reviews_1s)
+        b = np.array(meta_reviews_2s)
+        f = words_sharing(a, b)
+        meta_review_agreements.append(f)
+
+        a = np.array(reviews_1s)
+        b = np.array(reviews_2s)
+        f = words_sharing(a, b)
+        review_agreements.append(f)
+
+        a = np.array(facets_1s_novelty)
+        b = np.array(facets_2s_novelty)
+        f = words_sharing(a, b)
+        novelty_agreements.append(f)
+
+        a = np.array(facets_1s_soundness)
+        b = np.array(facets_2s_soundness)
+        f = words_sharing(a, b)
+        soundness_agreements.append(f)
+
+        a = np.array(facets_1s_clarity)
+        b = np.array(facets_2s_clarity)
+        f = words_sharing(a, b)
+        clarity_agreements.append(f)
+
+        a = np.array(facets_1s_advancement)
+        b = np.array(facets_2s_advancement)
+        f = words_sharing(a, b)
+        advancement_agreements.append(f)
+
+        a = np.array(facets_1s_compliance)
+        b = np.array(facets_2s_compliance)
+        f = words_sharing(a, b)
+        compliance_agreements.append(f)
+
+        a = np.array(facets_1s_overall)
+        b = np.array(facets_2s_overall)
+        f = words_sharing(a, b)
+        overall_agreements.append(f)
+
+    result = {}
+    result["Highlight correlation, meta-review + review, word level"] = np.mean(all_text_agreements)
+    result["Highlight correlation, meta-review, word level"] = np.mean(meta_review_agreements)
+    result["Highlight correlation, review, word level"] = np.mean(review_agreements)
+    result["Highlight correlation, meta-review + review, word level, novelty"] = np.mean(novelty_agreements)
+    result["Highlight correlation, meta-review + review, word level, soundness"] = np.mean(soundness_agreements)
+    result["Highlight correlation, meta-review + review, word level, clarity"] = np.mean(clarity_agreements)
+    result["Highlight correlation, meta-review + review, word level, advancement"] = np.mean(advancement_agreements)
+    result["Highlight correlation, meta-review + review, word level, compliance"] = np.mean(compliance_agreements)
+    result["Highlight correlation, meta-review + review, word level, overall"] = np.mean(overall_agreements)
+
+    return result
+
+
 if __name__ == "__main__":
-    with open("scientific_categorization_result_gpt4_processed.json") as f:
-        model_results = json.load(f)
+    # with open("scientific_categorization_result_gpt4_processed.json") as f:
+    #     model_results = json.load(f)
     # with open("scientific_categorization_result_llama3_70b_processed.json") as f:
     #     model_results = json.load(f)
-    # with open("scientific_categorization_result_llama3_1_70b_processed.json") as f:
-    #     model_results = json.load(f)
+    with open("scientific_categorization_result_llama3_1_70b_processed.json") as f:
+        model_results = json.load(f)
 
     with open("../../annotations/scientific_reviews/br_annotation_result_fragments.json") as f:
         bryan_results = json.load(f)
@@ -578,17 +876,18 @@ if __name__ == "__main__":
 
     print("Br", len(bryan_results_share), "Ze", len(zenan_results_share), "Model", len(model_results_share),
           "Annotation data", len(annotation_data_share))
-    assert len(annotation_data_share.keys()) == len(bryan_results_share.keys()) == len(
-        zenan_results_share.keys())
+    assert annotation_data_share.keys() == bryan_results_share.keys() == zenan_results_share.keys() == model_results_share.keys()
 
     print("################ Agreement Bryan and Zenan: ################")
-    result_bz = character_level_agreement(bryan_results_share, zenan_results_share, annotation_data_share)
+    result_bz = word_level_agreement(bryan_results_share, zenan_results_share, annotation_data_share)
 
     print("################ Agreement Bryan and Model: ################")
-    result_bm = character_level_agreement(bryan_results_share, model_results_share, annotation_data_share)
+    result_bm = word_level_agreement(bryan_results_share, model_results_share, annotation_data_share)
 
     print("################ Agreement Zenan and Model: ################")
-    result_zm = character_level_agreement(zenan_results_share, model_results_share, annotation_data_share)
+    result_zm = word_level_agreement(zenan_results_share, model_results_share, annotation_data_share)
+
+    print(shared_ids)
 
     print("################ Overall agreement, A1<->A2, A1<->Model and A2<->Model ################")
     for key in result_bm:
