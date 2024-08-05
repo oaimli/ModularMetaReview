@@ -13,7 +13,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument("--save_path", type=str, help="The path to save model checkpoints, logs and results")
 parser.add_argument("--pretrained_model", type=str, default="allenai/led-large-16384",
                     help="The name of the pretrained model")
-parser.add_argument("--data_path", type=str, default="../../datasets/")
+parser.add_argument("--data_path", type=str, default="../../peermeta/data/")
 parser.add_argument("--max_length_input", default=16384, type=int)
 parser.add_argument("--max_length_tgt", default=512, type=int)
 parser.add_argument("--min_length_tgt", default=0, type=int)
