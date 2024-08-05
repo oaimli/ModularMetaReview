@@ -56,13 +56,13 @@ project_name = "led_large_16384_%s" % args.dataset_name
 wandb.init(project=project_name)
 
 # load dataset
-dataset_train = load_dataset('json', data_files=args.data_path + '%s_train.json' % args.dataset_name, split='all')
+dataset_train = load_dataset('json', data_files=args.data_path + '%s_train.jsonl' % args.dataset_name, split='all')
 print("dataset train", len(dataset_train))
 
-dataset_dev = load_dataset('json', data_files=args.data_path + '%s_dev.json' % args.dataset_name, split='all')
+dataset_dev = load_dataset('json', data_files=args.data_path + '%s_dev.jsonl' % args.dataset_name, split='all')
 print("dataset dev", len(dataset_dev))
 
-dataset_test = load_dataset('json', data_files=args.data_path + '%s_test.json' % args.dataset_name, split='all')
+dataset_test = load_dataset('json', data_files=args.data_path + '%s_test.jsonl' % args.dataset_name, split='all')
 print("dataset test", len(dataset_test))
 
 # load tokenizer
