@@ -43,11 +43,47 @@ random.seed(42)
 samples_diff, samples_sim = segment_data(samples_dev)
 samples_diff = random.sample(samples_diff, 50)
 samples_sim = random.sample(samples_sim, 50)
+samples_combined = []
+for sample in samples_diff + samples_sim:
+    instance = {}
+    instance["meta_review"] = sample["meta_review"]
+    source_documents = []
+    source_documents.append(sample["paper_abstract"])
+    for review in sample["reviews"]:
+        source_documents.append(review["comment"])
+    instance["source_documents"] = source_documents
+    instance["label"] = "valid"
+    samples_combined.append(instance)
 with open("../datasets/peermeta_dev.json", "w") as f:
-    json.dump(samples_diff + samples_sim, f, indent=4)
+    json.dump(samples_combined, f, indent=4)
 
 samples_diff, samples_sim = segment_data(samples_test)
 samples_diff = random.sample(samples_diff, 150)
 samples_sim = random.sample(samples_sim, 150)
+samples_combined = []
+for sample in samples_diff + samples_sim:
+    instance = {}
+    instance["meta_review"] = sample["meta_review"]
+    source_documents = []
+    source_documents.append(sample["paper_abstract"])
+    for review in sample["reviews"]:
+        source_documents.append(review["comment"])
+    instance["source_documents"] = source_documents
+    instance["label"] = "test"
+    samples_combined.append(instance)
 with open("../datasets/peermeta_test.json", "w") as f:
-    json.dump(samples_diff + samples_sim, f, indent=4)
+    json.dump(samples_combined, f, indent=4)
+
+samples_combined = []
+for sample in samples_train:
+    instance = {}
+    instance["meta_review"] = sample["meta_review"]
+    source_documents = []
+    source_documents.append(sample["paper_abstract"])
+    for review in sample["reviews"]:
+        source_documents.append(review["comment"])
+    instance["source_documents"] = source_documents
+    instance["label"] = "train"
+    samples_combined.append(instance)
+with open("../datasets/peermeta_train.json", "w") as f:
+    json.dump(samples_combined, f, indent=4)
