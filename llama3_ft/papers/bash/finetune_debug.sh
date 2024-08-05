@@ -24,10 +24,10 @@ torchrun --nnodes 1 --nproc_per_node=4 --master_port=9822 llama_finetune.py  \
                 --gradient_accumulation_steps 1 \
                 --gradient_checkpointing True \
                 --evaluation_strategy "steps" \
-                --eval_steps 10 \
+                --eval_steps 1 \
                 --save_strategy "steps" \
                 --save_only_model True \
-                --save_steps 10 \
+                --save_steps 2 \
                 --save_total_limit 1 \
                 --optim adafactor \
                 --learning_rate 1e-6 \
