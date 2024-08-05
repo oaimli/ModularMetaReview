@@ -41,7 +41,7 @@ def predict(
             [source_text],
             return_tensors="pt",
             truncation=True,
-            max_length=model_args.max_length_model - model_args.max_predict_length
+            max_length=model_args.max_length_model - model_args.max_predict_length - 16
             )
         input_ids = input_dict.input_ids
         attention_mask = input_dict.attention_mask

@@ -34,7 +34,7 @@ class MetaReviewDataset(Dataset):
             for document in sample["source_documents"]:
                 source_text = source_text + " " + document
             source_tokenized = self.tokenizer.encode(source_text,
-                                                     max_length=self.tokenizer.model_max_length - self.model_args.max_predict_length,
+                                                     max_length=self.tokenizer.model_max_length - self.model_args.max_predict_length - 16,
                                                      truncation=True)
 
             sample_text = self.tokenizer.decode(source_tokenized,
