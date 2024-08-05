@@ -34,9 +34,6 @@ torchrun --nnodes 1 --nproc_per_node=4 --master_port=9822 llama_finetune.py  \
                 --label_smoothing_factor 0.1\
                 --lr_scheduler_type "cosine" \
                 --logging_steps 1 \
-                --load_best_model_at_end True \
-                --metric_for_best_model eval_loss \
-                --greater_is_better False \
                 --project_name llama31_8b_${DATASET_NAME} \
                 --report_to "wandb" \
                 --run_name ${SAVE_NAME}_${DATASET_NAME} \
