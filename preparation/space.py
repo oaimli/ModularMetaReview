@@ -1,5 +1,6 @@
 import json
 import os.path
+import jsonlines
 
 space_folder = "../datasets/space/data"
 splits = {}
@@ -196,8 +197,8 @@ for sample in samples_dev:
     instance["gold_summaries_general"] = gold_summaries_general
     instance["label"] = sample["label"]
     samples_dev_unified.append(instance)
-with open("../datasets/space_dev.json", "w") as f:
-    json.dump(samples_dev_unified, f, indent=4)
+with jsonlines.open("../datasets/space_dev.jsonl", "w") as writer:
+    writer.write_all(samples_dev_unified)
 
 samples_test_unified = []
 for sample in samples_test:
@@ -236,5 +237,5 @@ for sample in samples_test:
     instance["gold_summaries_general"] = gold_summaries_general
     instance["label"] = sample["label"]
     samples_test_unified.append(instance)
-with open("../datasets/space_test.json", "w") as f:
-    json.dump(samples_test_unified, f, indent=4)
+with jsonlines.open("../datasets/space_test.jsonl", "w") as writer:
+    writer.write_all(samples_test_unified)

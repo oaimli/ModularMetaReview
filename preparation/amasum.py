@@ -1,3 +1,4 @@
+import jsonlines
 import json
 import os
 
@@ -39,8 +40,8 @@ for sample in samples:
     instance["label"] = "test"
     samples_unified.append(instance)
 
-with open("../datasets/amasum_shoes_test.json", "w") as f:
-    json.dump(samples_unified, f, indent=4)
+with jsonlines.open("../datasets/amasum_shoes_test.jsonl", "w") as writer:
+    writer.write_all(samples_unified)
 
 
 test_folder = "../datasets/amasum/min_10_max_100_revs_filt_complete/valid"
@@ -81,8 +82,8 @@ for sample in samples:
     instance["label"] = "valid"
     samples_unified.append(instance)
 
-with open("../datasets/amasum_shoes_valid.json", "w") as f:
-    json.dump(samples_unified, f, indent=4)
+with jsonlines.open("../datasets/amasum_shoes_valid.jsonl", "w") as writer:
+    writer.write_all(samples_unified)
 
 
 test_folder = "../datasets/amasum/min_10_max_100_revs_filt_complete/train"
@@ -125,7 +126,6 @@ for sample in samples:
     instance["label"] = "train"
     samples_unified.append(instance)
 
-
-with open("../datasets/amasum_shoes_train.json", "w") as f:
-    json.dump(samples_unified, f, indent=4)
+with jsonlines.open("../datasets/amasum_shoes_train.jsonl", "w") as writer:
+    writer.write_all(samples_unified)
 # shoese: 428, all: 25203

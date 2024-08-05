@@ -1,5 +1,6 @@
 import json
 import random
+import jsonlines
 
 with open("../peermeta/data/peermeta_all.json") as f:
     samples = json.load(f)
@@ -54,8 +55,8 @@ for sample in samples_diff + samples_sim:
     instance["source_documents"] = source_documents
     instance["label"] = "valid"
     samples_combined.append(instance)
-with open("../datasets/peermeta_dev.json", "w") as f:
-    json.dump(samples_combined, f, indent=4)
+with jsonlines.open("../datasets/peermeta_dev.jsonl", "w") as writer:
+    writer.write_all(samples_combined)
 
 samples_diff, samples_sim = segment_data(samples_test)
 samples_diff = random.sample(samples_diff, 150)
@@ -71,8 +72,8 @@ for sample in samples_diff + samples_sim:
     instance["source_documents"] = source_documents
     instance["label"] = "test"
     samples_combined.append(instance)
-with open("../datasets/peermeta_test.json", "w") as f:
-    json.dump(samples_combined, f, indent=4)
+with jsonlines.open("../datasets/peermeta_test.jsonl", "w") as writer:
+    writer.write_all(samples_combined)
 
 samples_combined = []
 for sample in samples_train:
@@ -85,5 +86,5 @@ for sample in samples_train:
     instance["source_documents"] = source_documents
     instance["label"] = "train"
     samples_combined.append(instance)
-with open("../datasets/peermeta_train.json", "w") as f:
-    json.dump(samples_combined, f, indent=4)
+with jsonlines.open("../datasets/peermeta_train.jsonl", "w") as writer:
+    writer.write_all(samples_combined)
