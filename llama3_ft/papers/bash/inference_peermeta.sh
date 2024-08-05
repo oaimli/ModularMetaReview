@@ -12,7 +12,7 @@ MIN_LENGTH_GENERATION=1
 
 python llama_inference.py  \
                 --model_name_or_path ${MODEL_NAME_OR_PATH} \
-                --max_length_model 17408 \
+                --max_length_model 16384 \
                 --max_predict_length ${MAX_LENGTH_GENERATION} \
                 --min_predict_length ${MIN_LENGTH_GENERATION} \
                 --dataset_path ../../datasets/ \
