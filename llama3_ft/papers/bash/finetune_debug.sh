@@ -40,5 +40,5 @@ torchrun --nnodes 1 --nproc_per_node=4 --master_port=9822 llama_finetune.py  \
                 --overwrite_output_dir True \
                 --tf32 True \
                 --fsdp "full_shard auto_wrap offload" \
-                --fsdp_transformer_layer_cls_to_wrap 'LlamaDecoderLayer' \
+                --fsdp_config "fsdp_config.json" \
                 --ddp_timeout 14400
