@@ -23,7 +23,7 @@ class MetaReviewDataset(Dataset):
         self.all_samples = []
         for sample in list_data_dict:
 
-            output_text = sample["response"]
+            output_text = sample["meta_review"]
             output_text_tokenized = self.tokenizer.encode(
                 output_text,
                 max_length=self.model_args.max_predict_length,
