@@ -2,6 +2,7 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 
 
 model = "meta-llama/Meta-Llama-3.1-8B"
+print(model)
 tokenizer = AutoTokenizer.from_pretrained(model, padding_side="right",
                                                 model_max_length=17408, use_fast=True)
 model = AutoModelForCausalLM.from_pretrained(model, trust_remote_code=True)
