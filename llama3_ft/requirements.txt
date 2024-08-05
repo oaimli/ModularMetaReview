@@ -1,4 +1,4 @@
-datasets==2.18.0
-transformers==4.33.3
-pytorch==2.0.1
-accelerate==0.24.0
+datasets==2.20.0
+transformers==4.43.4
+pytorch==2.2.2
+accelerate==0.29.3
