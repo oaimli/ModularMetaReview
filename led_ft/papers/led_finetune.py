@@ -56,23 +56,14 @@ project_name = "led_large_16384_%s" % args.dataset_name
 wandb.init(project=project_name)
 
 # load dataset
-dataset_all = load_dataset('json', data_files=args.data_path + '%s.json' % args.dataset_name, split='all')
-print("dataset all", len(dataset_all))
-
-dataset_train = dataset_all.filter(lambda s: s['label'] == 'train')
-if args.num_train_data > 0:
-    dataset_train = dataset_train.shuffle(seed=args.rand_seed).select(range(args.num_train_data))
+dataset_train = load_dataset('json', data_files=args.data_path + '%s_train.json' % args.dataset_name, split='all')
 print("dataset train", len(dataset_train))
 
-dataset_val = dataset_all.filter(lambda s: s['label'] == 'val')
-if args.num_val_data > 0:
-    dataset_val = dataset_val.select(range(args.num_val_data))
-print("dataset validation", len(dataset_val))
+dataset_dev = load_dataset('json', data_files=args.data_path + '%s_dev.json' % args.dataset_name, split='all')
+print("dataset dev", len(dataset_dev))
 
-dataset_test = dataset_all.filter(lambda s: s['label'] == 'test')
-if args.num_test_data > 0:
-    dataset_test = dataset_test.shuffle(seed=args.rand_seed).select(range(args.num_test_data))
-print("dataset test selected", len(dataset_test))
+dataset_test = load_dataset('json', data_files=args.data_path + '%s_test.json' % args.dataset_name, split='all')
+print("dataset test", len(dataset_test))
 
 # load tokenizer
 tokenizer = LEDTokenizer.from_pretrained(args.pretrained_model)
