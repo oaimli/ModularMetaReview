@@ -11,7 +11,7 @@ torchrun --nnodes 1 --nproc_per_node=4 --master_port=9822 llama_finetune.py  \
                 --dataset_name ${DATASET_NAME} \
                 --max_length_model 16384 \
                 --max_predict_length 512 \
-                --num_training_samples 256 \
+                --num_training_samples -1 \
                 --keep_split -1 \
                 --num_val_samples -1 \
                 --num_test_samples -1 \
