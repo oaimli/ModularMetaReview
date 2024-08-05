@@ -911,7 +911,7 @@ def prepare_nips(year):
                 paper_new["paper_acceptance"] = final_decision_content["decision"]
 
                 # as there are a decision and a meta-review, we have to distinguish them
-                final_decision = final_decision_content["comment"]
+                final_decision = final_decision_content["comment"]["value"]
                 final_decision_time = paper["final_decision"]["cdate"]
                 if final_decision != "":
                     paper_new["meta_review"] = final_decision
