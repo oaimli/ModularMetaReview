@@ -26,6 +26,7 @@ torchrun --nnodes 1 --nproc_per_node=4 --master_port=9822 llama_finetune.py  \
                 --evaluation_strategy "steps" \
                 --eval_steps 10 \
                 --save_strategy "steps" \
+                --save_only_model True \
                 --save_steps 10 \
                 --save_total_limit 1 \
                 --optim adafactor \
