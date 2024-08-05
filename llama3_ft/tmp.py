@@ -1,17 +1,18 @@
-from transformers import LlamaTokenizer, AutoModelForCausalLM
+from transformers import AutoModelForCausalLM, AutoTokenizer
 
-# model_name="meta-llama/Llama-2-7b-chat-hf"
-# model_name="meta-llama/Llama-2-7b-hf"
-model_name="/scratch/punim0521/model_weights/llama-meta/weights-hf/7B"
 
-tokenizer = LlamaTokenizer.from_pretrained(
-        model_name,
-        padding_side="right",
-        use_fast=True,
-    )
-model = AutoModelForCausalLM.from_pretrained(
-        model_name, trust_remote_code=True
-    )
+model = "meta-llama/Meta-Llama-3.1-8B"
+print(model)
+tokenizer = AutoTokenizer.from_pretrained(model, padding_side="right",
+                                                model_max_length=17408, use_fast=True)
+model = AutoModelForCausalLM.from_pretrained(model, trust_remote_code=True)
+
+print("bos", tokenizer.bos_token, tokenizer.bos_token_id)
+print("eos", tokenizer.eos_token, tokenizer.eos_token_id)
+print("pad", tokenizer.pad_token, tokenizer.pad_token_id)
+print("unk", tokenizer.unk_token, tokenizer.unk_token_id)
+print("model_max_length", tokenizer.model_max_length)
+
 print(model.config)
 
 text = "I am a student in Melbourne."
