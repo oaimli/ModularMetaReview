@@ -1,23 +1,10 @@
-from transformers import (
-    HfArgumentParser,
-    AutoModelForCausalLM,
-    AutoTokenizer,
-    LlamaTokenizer,
-)
-from arguments import (
-    ModelArguments,
-    DataArguments,
-    TrainingArguments
-)
+from transformers import HfArgumentParser, AutoModelForCausalLM, AutoTokenizer
+from arguments import ModelArguments, DataArguments, TrainingArguments
 import jsonlines
 import random
 from datasets import load_dataset
 import os
 from tqdm import tqdm
-import sys
-
-sys.path.append('../../../')
-from utils.metrics import unieval_dialogue
 
 def predict(
         model_args,

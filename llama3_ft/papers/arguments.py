@@ -39,6 +39,6 @@ class DataArguments:
 
 @dataclass
 class TrainingArguments(TrainingArguments):
-    output_file: Optional[str] = field(default="generated_responses",
+    output_file: Optional[str] = field(default="generations",
                                        metadata={"help": "The file name of generated summaries."})
-    project_name: Optional[str] = field(default="FGFT", metadata={"help": "Project name for wandb logging."})
+    project_name: Optional[str] = field(default="modular_meta_review", metadata={"help": "Project name for wandb logging."})

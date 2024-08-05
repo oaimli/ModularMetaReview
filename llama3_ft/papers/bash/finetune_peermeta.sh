@@ -16,7 +16,7 @@ torchrun --nnodes 1 --nproc_per_node=4 --master_port=9822 llama_finetune.py  \
                 --num_val_samples -1 \
                 --num_test_samples -1 \
                 --do_train True \
-                --output_dir ../../result/${SAVE_NAME}_${DATASET_NAME} \
+                --output_dir ../../results/${SAVE_NAME}_${DATASET_NAME} \
                 --num_train_epochs 5 \
                 --bf16 True \
                 --per_device_train_batch_size 1 \
@@ -37,7 +37,7 @@ torchrun --nnodes 1 --nproc_per_node=4 --master_port=9822 llama_finetune.py  \
                 --load_best_model_at_end True \
                 --metric_for_best_model eval_loss \
                 --greater_is_better False \
-                --project_name "FGFT" \
+                --project_name llama31_8b_${DATASET_NAME} \
                 --report_to "wandb" \
                 --run_name ${SAVE_NAME}_${DATASET_NAME} \
                 --overwrite_output_dir True \
