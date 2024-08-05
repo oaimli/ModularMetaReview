@@ -42,7 +42,7 @@ class MetaReviewDataset(Dataset):
                 output_text_tokenized, skip_special_tokens=False) + " " + self.tokenizer.eos_token
             sample_text_dict = self.tokenizer(sample_text, return_tensors="pt", padding="do_not_pad", truncation=False)
             sample_input_ids = sample_text_dict.input_ids[0]
-            if sample_input_ids[-1] != 2:
+            if sample_input_ids[-1] != 128001:
                 print("the text has been truncated")
             # print(sample_input_ids)
             # do not need to shift to left as it is calculated in loss calculation process in llama model
