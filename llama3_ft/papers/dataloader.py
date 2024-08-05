@@ -11,43 +11,34 @@ from dataclasses import dataclass
 IGNORE_INDEX = -100
 
 
-class DialogueDataset(Dataset):
+class MetaReviewDataset(Dataset):
     """Dataset for supervised fine-tuning."""
 
     def __init__(self, list_data_dict, tokenizer: PreTrainedTokenizer, model_args):
-        super(DialogueDataset, self).__init__()
+        super(MetaReviewDataset, self).__init__()
 
         self.tokenizer = tokenizer
         self.model_args = model_args
 
         self.all_samples = []
         for sample in list_data_dict:
-            conversation_history = " ".join(sample["conversation_history"][-10:])
-            knowledge_source = sample["knowledge_source"]
-            output_text = sample["response"]
 
+            output_text = sample["response"]
             output_text_tokenized = self.tokenizer.encode(
                 output_text,
                 max_length=self.model_args.max_predict_length,
                 truncation=True
             )
 
-            conversation_tokenized = self.tokenizer.encode(conversation_history,
-                                                           max_length=self.tokenizer.model_max_length - len(
-                                                               output_text_tokenized),
+            source_text = ""
+            for document in sample["source_documents"]:
+                source_text = source_text + " " + document
+            source_tokenized = self.tokenizer.encode(source_text,
+                                                           max_length=self.tokenizer.model_max_length,
                                                            truncation=True)
-            knowledge_max_length = self.tokenizer.model_max_length - len(output_text_tokenized) - len(
-                conversation_tokenized) - 6
-            knowledge_source_tokenized = self.tokenizer.encode(knowledge_source,
-                                                               max_length=knowledge_max_length if knowledge_max_length > 0 else 0,
-                                                               truncation=True)
-            # print(len(output_text_tokenized), len(conversation_tokenized), len(knowledge_source_tokenized))
-            # sample_input_ids = torch.tensor(
-            #     knowledge_source_tokenized + conversation_tokenized + output_text_tokenized + [self.tokenizer.eos_token_id])
-            sample_text = self.tokenizer.decode(knowledge_source_tokenized,
+
+            sample_text = self.tokenizer.decode(source_tokenized,
                                                 skip_special_tokens=True) + self.tokenizer.decode(
-                conversation_tokenized,
-                skip_special_tokens=False) + self.tokenizer.decode(
                 output_text_tokenized, skip_special_tokens=False) + " " + self.tokenizer.eos_token
             sample_text_dict = self.tokenizer(sample_text, return_tensors="pt", padding="do_not_pad", truncation=False)
             sample_input_ids = sample_text_dict.input_ids[0]
@@ -73,7 +64,7 @@ class DialogueDataset(Dataset):
 
 
 @dataclass
-class DialogueDataCollator(object):
+class MetaReviewDataCollator(object):
     """Collate examples for supervised fine-tuning."""
 
     tokenizer: PreTrainedTokenizer
@@ -97,10 +88,8 @@ class DialogueDataCollator(object):
 def get_data_module(tokenizer: PreTrainedTokenizer, data_args, model_args) -> Dict:
     """Make dataset and collator for supervised fine-tuning."""
     logging.info("Loading data...")
-    all_data = load_dataset('json', data_files=data_args.dataset_path + '/%s.jsonl' % data_args.dataset_name,
+    training_data = load_dataset('json', data_files=data_args.dataset_path + '/%s_train.jsonl' % data_args.dataset_name,
                             split='all')
-
-    training_data = all_data.filter(lambda s: s['label'] == 'train')
     if data_args.num_training_samples > 0:
         training_data = training_data.select(
             random.choices(range(len(training_data)), k=data_args.num_training_samples))
@@ -117,25 +106,27 @@ def get_data_module(tokenizer: PreTrainedTokenizer, data_args, model_args) -> Di
         training_data = training_data.select(selected_indexes)
     logging.info("all training data", len(training_data))
 
-    evaluation_data = all_data.filter(lambda s: s['label'] == 'val')
+    evaluation_data = load_dataset('json', data_files=data_args.dataset_path + '/%s_dev.jsonl' % data_args.dataset_name,
+                                 split='all')
     if data_args.num_val_samples > 0:
         evaluation_data = evaluation_data.select(
             random.choices(range(len(evaluation_data)), k=data_args.num_val_samples))
     logging.info("all evaluation data", len(evaluation_data))
 
-    test_data = all_data.filter(lambda s: s['label'] == 'test')
+    test_data = load_dataset('json', data_files=data_args.dataset_path + '/%s_test.jsonl' % data_args.dataset_name,
+                                 split='all')
     if data_args.num_test_samples > 0:
         test_data = test_data.select(random.choices(range(len(test_data)), k=data_args.num_test_samples))
     logging.info("all test data", len(test_data))
 
     logging.info("Formatting and tokenizing training data")
-    train_dataset = DialogueDataset(tokenizer=tokenizer, list_data_dict=training_data, model_args=model_args)
+    train_dataset = MetaReviewDataset(tokenizer=tokenizer, list_data_dict=training_data, model_args=model_args)
     # print("train", train_dataset[0])
     logging.info("Formatting and tokenizing evaluation data")
-    eval_dataset = DialogueDataset(tokenizer=tokenizer, list_data_dict=evaluation_data, model_args=model_args)
+    eval_dataset = MetaReviewDataset(tokenizer=tokenizer, list_data_dict=evaluation_data, model_args=model_args)
     # print("evaluation", eval_dataset[0])
     logging.info("Formatting and tokenizing test data")
-    test_dataset = DialogueDataset(tokenizer=tokenizer, list_data_dict=test_data, model_args=model_args)
-    data_collator = DialogueDataCollator(tokenizer=tokenizer)
+    test_dataset = MetaReviewDataset(tokenizer=tokenizer, list_data_dict=test_data, model_args=model_args)
+    data_collator = MetaReviewDataCollator(tokenizer=tokenizer)
     return dict(train_dataset=train_dataset, eval_dataset=eval_dataset, test_dataset=test_dataset,
                 data_collator=data_collator)

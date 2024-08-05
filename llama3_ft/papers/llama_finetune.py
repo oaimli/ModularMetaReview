@@ -1,5 +1,5 @@
 from transformers import HfArgumentParser, Trainer
-from transformers import AutoModelForCausalLM, AutoTokenizer, LlamaTokenizer
+from transformers import AutoModelForCausalLM, AutoTokenizer
 from transformers import EarlyStoppingCallback
 from arguments import ModelArguments, DataArguments, TrainingArguments
 from dataloader import get_data_module
@@ -25,12 +25,11 @@ def train(model_args, data_args, training_args):
     else:
         model_in_use = model_args.model_name_or_path
     print("loading model:", model_in_use)
-    tokenizer_class = LlamaTokenizer if "llama" in model_args.model_name_or_path else AutoTokenizer
-    tokenizer = tokenizer_class.from_pretrained(model_in_use, padding_side="right",
+    tokenizer = AutoTokenizer.from_pretrained(model_in_use, padding_side="right",
                                                 model_max_length=model_args.max_length_model, use_fast=True)
     model = AutoModelForCausalLM.from_pretrained(model_in_use, trust_remote_code=True)
 
-    # there is only no pad token for LLaMA-2 and "/scratch/punim0521/model_weights/llama-meta/weights-hf/7B"
+    # no pad and unk tokens
     print("bos", tokenizer.bos_token, tokenizer.bos_token_id)
     print("eos", tokenizer.eos_token, tokenizer.eos_token_id)
     print("pad", tokenizer.pad_token, tokenizer.pad_token_id)
