@@ -57,12 +57,18 @@ wandb.init(project=project_name)
 
 # load dataset
 dataset_train = load_dataset('json', data_files=args.data_path + '%s_train.jsonl' % args.dataset_name, split='all')
+if args.num_train_data > 0:
+    dataset_train = dataset_train.shuffle(seed=args.rand_seed).select(range(args.num_train_data))
 print("dataset train", len(dataset_train))
 
 dataset_dev = load_dataset('json', data_files=args.data_path + '%s_dev.jsonl' % args.dataset_name, split='all')
+if args.num_val_data > 0:
+    dataset_dev = dataset_dev.shuffle(seed=args.rand_seed).select(range(args.num_val_data))
 print("dataset dev", len(dataset_dev))
 
 dataset_test = load_dataset('json', data_files=args.data_path + '%s_test.jsonl' % args.dataset_name, split='all')
+if args.num_test_data > 0:
+    dataset_test = dataset_test.shuffle(seed=args.rand_seed).select(range(args.num_test_data))
 print("dataset test", len(dataset_test))
 
 # load tokenizer
