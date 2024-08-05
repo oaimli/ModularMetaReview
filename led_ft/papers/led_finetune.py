@@ -6,10 +6,7 @@ from datasets import load_dataset
 from nltk.tokenize import sent_tokenize
 import wandb
 import argparse
-import sys
 
-sys.path.append("../../../")
-from utils.metrics import rouge_corpus
 
 parser = argparse.ArgumentParser()
 # General
