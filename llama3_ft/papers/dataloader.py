@@ -28,14 +28,14 @@ class MetaReviewDataset(Dataset):
                 output_text,
                 max_length=self.model_args.max_predict_length,
                 truncation=True
-            )
+                )
 
             source_text = ""
             for document in sample["source_documents"]:
                 source_text = source_text + " " + document
             source_tokenized = self.tokenizer.encode(source_text,
-                                                           max_length=self.tokenizer.model_max_length - self.model_args.max_predict_length,
-                                                           truncation=True)
+                                                     max_length=self.tokenizer.model_max_length - self.model_args.max_predict_length,
+                                                     truncation=True)
 
             sample_text = self.tokenizer.decode(source_tokenized,
                                                 skip_special_tokens=True) + self.tokenizer.decode(
@@ -51,7 +51,6 @@ class MetaReviewDataset(Dataset):
             # print("sample_input_ids", len(sample_input_ids), sample_input_ids)
             # print("sample_labels", len(sample_labels), sample_labels)
             self.all_samples.append({"sample_input_ids": sample_input_ids, "sample_labels": sample_labels})
-
 
     def __len__(self):
         return len(self.all_samples)
@@ -73,7 +72,7 @@ class MetaReviewDataCollator(object):
         input_ids, labels = tuple([instance[key] for instance in instances] for key in ("input_ids", "labels"))
         input_ids = torch.nn.utils.rnn.pad_sequence(
             input_ids, batch_first=True, padding_value=self.tokenizer.pad_token_id
-        )
+            )
         labels = torch.nn.utils.rnn.pad_sequence(labels, batch_first=True, padding_value=IGNORE_INDEX)
         # print(input_ids.shape, labels.shape, input_ids.ne(self.tokenizer.pad_token_id).shape)
         # print(input_ids)
@@ -82,14 +81,14 @@ class MetaReviewDataCollator(object):
             input_ids=input_ids,
             labels=labels,
             attention_mask=input_ids.ne(self.tokenizer.pad_token_id)
-        )
+            )
 
 
 def get_data_module(tokenizer: PreTrainedTokenizer, data_args, model_args) -> Dict:
     """Make dataset and collator for supervised fine-tuning."""
     logging.info("Loading data...")
     training_data = load_dataset('json', data_files=data_args.dataset_path + '/%s_train.jsonl' % data_args.dataset_name,
-                            split='all')
+                                 split='all')
     if data_args.num_training_samples > 0:
         training_data = training_data.select(
             random.choices(range(len(training_data)), k=data_args.num_training_samples))
@@ -107,14 +106,14 @@ def get_data_module(tokenizer: PreTrainedTokenizer, data_args, model_args) -> Di
     logging.info("all training data", len(training_data))
 
     evaluation_data = load_dataset('json', data_files=data_args.dataset_path + '/%s_dev.jsonl' % data_args.dataset_name,
-                                 split='all')
+                                   split='all')
     if data_args.num_val_samples > 0:
         evaluation_data = evaluation_data.select(
             random.choices(range(len(evaluation_data)), k=data_args.num_val_samples))
     logging.info("all evaluation data", len(evaluation_data))
 
     test_data = load_dataset('json', data_files=data_args.dataset_path + '/%s_test.jsonl' % data_args.dataset_name,
-                                 split='all')
+                             split='all')
     if data_args.num_test_samples > 0:
         test_data = test_data.select(random.choices(range(len(test_data)), k=data_args.num_test_samples))
     logging.info("all test data", len(test_data))

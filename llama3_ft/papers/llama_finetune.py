@@ -5,6 +5,7 @@ from arguments import ModelArguments, DataArguments, TrainingArguments
 from dataloader import get_data_module
 import wandb
 from torch.distributed import get_rank, is_initialized
+import torch
 
 
 def train(model_args, data_args, training_args):
@@ -27,7 +28,8 @@ def train(model_args, data_args, training_args):
     print("loading model:", model_in_use)
     tokenizer = AutoTokenizer.from_pretrained(model_in_use, padding_side="right",
                                                 model_max_length=model_args.max_length_model, use_fast=True)
-    model = AutoModelForCausalLM.from_pretrained(model_in_use, trust_remote_code=True)
+    model = AutoModelForCausalLM.from_pretrained(model_in_use, trust_remote_code=True, torch_dtype=torch.bfloat16,
+                                                     attn_implementation="flash_attention_2")
 
     # no pad and unk tokens
     print("bos", tokenizer.bos_token, tokenizer.bos_token_id)
