@@ -18,7 +18,7 @@ python led_finetune.py  \
                 --val_check_interval 25 \
                 --max_length_tgt ${LENGTH_TGT} \
                 --max_length_input ${LENGTH_INPUT} \
-                --num_train_data 256 \
+                --num_train_data -1 \
                 --num_val_data -1 \
                 --num_test_data -1 \
                 --label_smoothing_factor 0.1 \

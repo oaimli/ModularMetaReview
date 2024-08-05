@@ -1,15 +1,14 @@
 #!/bin/bash
 cd ../
-DATASET_NAME="peersum"
+DATASET_NAME="peermeta"
 
-#PLM_MODEL_PATH="allenai/led-large-16384"
-PLM_MODEL_PATH="/home/miao4/punim0521/NeuralAbstractiveSummarization/reproduced/led_summarization_huggingface/result_peersum_16384_512_paper_hyperparams/checkpoints/checkpoint-825"
+PLM_MODEL_PATH="allenai/led-large-16384"
 LENGTH_INPUT=16384
 LENGTH_TGT=512
 
 python led_inference.py  \
                 --dataset_name ${DATASET_NAME} \
-                --save_path result_${DATASET_NAME}_${LENGTH_INPUT}_${LENGTH_TGT}_paper_paper_hyperparams \
+                --save_path ../../results/led_large_${DATASET_NAME} \
                 --pretrained_model ${PLM_MODEL_PATH} \
                 --num_beams 5 \
                 --max_length_tgt ${LENGTH_TGT} \
