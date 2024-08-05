@@ -8,7 +8,7 @@ import argparse
 import os
 import json
 
-sys.path.append('../../')
+sys.path.append('../../../')
 from utils.metrics import evaluating_summaries_multi_sources
 
 parser = argparse.ArgumentParser()

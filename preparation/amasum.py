@@ -77,4 +77,4 @@ print(categories)
 
 with open("../datasets/amasum_shoes_train.json", "w") as f:
     json.dump(samples, f, indent=4)
-# 428
+# shoese: 428, all: 25203

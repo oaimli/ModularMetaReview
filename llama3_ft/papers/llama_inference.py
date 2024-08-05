@@ -16,7 +16,7 @@ import os
 from tqdm import tqdm
 import sys
 
-sys.path.append('../../')
+sys.path.append('../../../')
 from utils.metrics import unieval_dialogue
 
 def predict(

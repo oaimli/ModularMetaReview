@@ -8,24 +8,25 @@ import wandb
 import argparse
 import sys
 
-sys.path.append("../../")
+sys.path.append("../../../")
 from utils.metrics import rouge_corpus
 
 parser = argparse.ArgumentParser()
 # General
 parser.add_argument("--save_path", type=str, help="The path to save model checkpoints, logs and results")
-parser.add_argument("--pretrained_model", type=str, default="allenai/led-large-16384", help="The name of the pretrained model")
+parser.add_argument("--pretrained_model", type=str, default="allenai/led-large-16384",
+                    help="The name of the pretrained model")
 parser.add_argument("--data_path", type=str, default="../../datasets/")
 parser.add_argument("--max_length_input", default=16384, type=int)
 parser.add_argument("--max_length_tgt", default=512, type=int)
 parser.add_argument("--min_length_tgt", default=0, type=int)
-parser.add_argument("--save_top_k", default=3, type=int)
-parser.add_argument("--dataset_name", type=str, default="multinews",
-                    choices=["multinews", "arxiv", "multixscience", "wcep_10", "wcep_100", "peersum"])
+parser.add_argument("--save_top_k", default=1, type=int)
+parser.add_argument("--dataset_name", type=str, default="peermeta")
 parser.add_argument("--num_workers", type=int, default=4, help="Number of workers to use for dataloader")
 parser.add_argument("--batch_size", default=4, type=int)
 
-parser.add_argument("--gradient_checkpointing", action="store_true", help="Enable gradient checkpointing to save memory")
+parser.add_argument("--gradient_checkpointing", action="store_true",
+                    help="Enable gradient checkpointing to save memory")
 parser.add_argument("--rand_seed", type=int, default=42,
                     help="Seed for random sampling, useful for few shot learning")
 
@@ -54,9 +55,7 @@ args = parser.parse_args()
 print(args)
 
 wandb.login()
-project_name="LED_large_16384_HT_%s_%d_%d"%(args.dataset_name, args.max_length_input, args.max_length_tgt)
-if args.save_path.endswith("paper_hyperparams"):
-    project_name += "_paper_hyperparams"
+project_name = "led_large_16384_%s" % args.dataset_name
 wandb.init(project=project_name)
 
 # load dataset
@@ -102,10 +101,15 @@ batch_size = args.batch_size
 
 def process_data_to_model_inputs(batch):
     documents = []
-    for source_documents in batch["source_documents"]:
-        max_length_doc = max_input_length // len(source_documents)
+    for reviews, paper_abstract in zip(batch["reviews"], batch["paper_abstract"]):
+        cluster = []
+        cluster.append(paper_abstract)
+        for review in reviews:
+            cluster.append(review["comment"])
+
+        max_length_doc = max_input_length // len(cluster)
         input_text = []
-        for source_document in source_documents:
+        for source_document in cluster:
             length = 0
             all_sents = sent_tokenize(source_document)
             for s in all_sents:
@@ -114,17 +118,18 @@ def process_data_to_model_inputs(batch):
                 if length >= max_length_doc:
                     break
         documents.append(" ".join(input_text))
-    # tokenize the inputs and labels
-    summaries = batch["summary"]
 
+    summaries = batch["meta_review"]
+
+    # tokenize the inputs and labels
     input_dict = tokenizer(documents, padding='max_length', max_length=max_input_length,
-                       truncation=True)
+                           truncation=True)
     outputs = tokenizer(
         summaries,
         padding="max_length",
         truncation=True,
         max_length=max_output_length
-    )
+        )
 
     results = {}
     results["input_ids"] = input_dict.input_ids
@@ -133,17 +138,16 @@ def process_data_to_model_inputs(batch):
     # create 0 global_attention_mask lists
     results["global_attention_mask"] = len(results["input_ids"]) * [
         [0 for _ in range(len(results["input_ids"][0]))]
-    ]
+        ]
     # since above lists are references, the following line changes the 0 index for all samples
     results["global_attention_mask"][0][0] = 1
-
 
     labels = outputs.input_ids
     # We have to make sure that the PAD token is ignored
     results["labels"] = [
         [-100 if token == tokenizer.pad_token_id else token for token in ls]
         for ls in labels
-    ]
+        ]
 
     results["decoder_input_ids"] = led.prepare_decoder_input_ids_from_labels(torch.tensor(results["labels"]))
 
@@ -155,39 +159,39 @@ dataset_train = dataset_train.map(
     process_data_to_model_inputs,
     batched=True,
     batch_size=batch_size
-)
+    )
 
 print("Preprocessing dataset validation")
 dataset_val = dataset_val.map(
     process_data_to_model_inputs,
     batched=True,
     batch_size=batch_size
-)
+    )
 
 print("Preprocessing dataset test")
 dataset_test = dataset_test.map(
     process_data_to_model_inputs,
     batched=True,
     batch_size=batch_size
-)
+    )
 
 # set Python list to PyTorch tensor
 dataset_train.set_format(
     type="torch",
     columns=["input_ids", "attention_mask", "global_attention_mask", "labels", "decoder_input_ids"],
-)
+    )
 
 # set Python list to PyTorch tensor
 dataset_val.set_format(
     type="torch",
     columns=["input_ids", "attention_mask", "global_attention_mask", "labels", "decoder_input_ids"],
-)
+    )
 
 # set Python list to PyTorch tensor
 dataset_test.set_format(
     type="torch",
     columns=["input_ids", "attention_mask", "global_attention_mask", "labels", "decoder_input_ids"],
-)
+    )
 
 training_args = Seq2SeqTrainingArguments(
     do_train=True,
@@ -196,7 +200,7 @@ training_args = Seq2SeqTrainingArguments(
     predict_with_generate=True,
     per_device_train_batch_size=batch_size,
     per_device_eval_batch_size=batch_size,
-    output_dir="%s/checkpoints"%args.save_path,
+    output_dir="%s/checkpoints" % args.save_path,
     logging_strategy="steps",
     logging_steps=1,
     evaluation_strategy="steps",
@@ -213,27 +217,7 @@ training_args = Seq2SeqTrainingArguments(
     report_to='wandb',
     optim=args.optimizer,
     lr_scheduler_type=args.lr_scheduler_type
-)
-
-
-# compute Rouge score during validation
-def compute_metrics(pred):
-    labels_ids = pred.label_ids
-    pred_ids = pred.predictions
-
-    pred_str = tokenizer.batch_decode(pred_ids, skip_special_tokens=True)
-    labels_ids[labels_ids == -100] = tokenizer.pad_token_id
-    label_str = tokenizer.batch_decode(labels_ids, skip_special_tokens=True)
-
-    rouge_output = rouge_corpus(references=label_str, candidates=pred_str,
-                                types=["rouge1", "rouge2", "rougeL", "rougeLsum"])
-
-    return {
-        "rouge1_fmeasure": round(rouge_output["rouge1"]["fmeasure"], 4),
-        "rouge2_fmeasure": round(rouge_output["rouge2"]["fmeasure"], 4),
-        "rougeL_fmeasure": round(rouge_output["rougeL"]["fmeasure"], 4),
-        "rougeLsum_fmeasure": round(rouge_output["rougeLsum"]["fmeasure"], 4),
-    }
+    )
 
 
 # instantiate trainer
@@ -241,11 +225,10 @@ trainer = Seq2SeqTrainer(
     model=led,
     tokenizer=tokenizer,
     args=training_args,
-    compute_metrics=compute_metrics,
     train_dataset=dataset_train,
     eval_dataset=dataset_val,
     callbacks=[EarlyStoppingCallback(early_stopping_patience=args.ealy_stopping_patience)]
-)
+    )
 
 # test_results = trainer.predict(test_dataset=dataset_test)
 # print(test_results.metrics)
