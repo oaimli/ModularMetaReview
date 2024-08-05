@@ -1,6 +1,6 @@
 #!/bin/bash
 cd ../
-DATASET_NAME="peermeta_all"
+DATASET_NAME="peermeta"
 
 PLM_MODEL_PATH="allenai/led-large-16384"
 LENGTH_INPUT=16384

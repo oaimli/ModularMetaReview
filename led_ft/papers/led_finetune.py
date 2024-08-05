@@ -13,7 +13,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument("--save_path", type=str, help="The path to save model checkpoints, logs and results")
 parser.add_argument("--pretrained_model", type=str, default="allenai/led-large-16384",
                     help="The name of the pretrained model")
-parser.add_argument("--data_path", type=str, default="../../peermeta/data/")
+parser.add_argument("--data_path", type=str, default="../../datasets/")
 parser.add_argument("--max_length_input", default=16384, type=int)
 parser.add_argument("--max_length_tgt", default=512, type=int)
 parser.add_argument("--min_length_tgt", default=0, type=int)
@@ -98,15 +98,10 @@ batch_size = args.batch_size
 
 def process_data_to_model_inputs(batch):
     documents = []
-    for reviews, paper_abstract in zip(batch["reviews"], batch["paper_abstract"]):
-        cluster = []
-        cluster.append(paper_abstract)
-        for review in reviews:
-            cluster.append(review["comment"])
-
-        max_length_doc = max_input_length // len(cluster)
+    for source_documents in batch["source_documents"]:
+        max_length_doc = max_input_length // len(source_documents)
         input_text = []
-        for source_document in cluster:
+        for source_document in source_documents:
             length = 0
             all_sents = sent_tokenize(source_document)
             for s in all_sents:

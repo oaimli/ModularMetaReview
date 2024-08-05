@@ -158,8 +158,83 @@ for source in sources:
 
 print(len(samples_test), len(samples_dev))
 
-with open("../datasets/space_dev.json", "w") as f:
-    json.dump(samples_dev, f, indent=4)
 
+samples_dev_unified = []
+for sample in samples_dev:
+    instance = {}
+    source_documents = []
+    for review in sample["reviews"]:
+        source_documents.append(" ".join(review["sentences"]))
+    instance["source_documents"] = source_documents
+    gold_summaries_building = []
+    for order, sentences in sample["gold_summaries_building"].items():
+        gold_summaries_building.append(" ".join(sentences))
+    instance["gold_summaries_building"] = gold_summaries_building
+    gold_summaries_cleanliness = []
+    for order, sentences in sample["gold_summaries_cleanliness"].items():
+        gold_summaries_cleanliness.append(" ".join(sentences))
+    instance["gold_summaries_cleanliness"] = gold_summaries_cleanliness
+    gold_summaries_food = []
+    for order, sentences in sample["gold_summaries_food"].items():
+        gold_summaries_food.append(" ".join(sentences))
+    instance["gold_summaries_food"] = gold_summaries_food
+    gold_summaries_location = []
+    for order, sentences in sample["gold_summaries_location"].items():
+        gold_summaries_location.append(" ".join(sentences))
+    instance["gold_summaries_location"] = gold_summaries_location
+    gold_summaries_rooms = []
+    for order, sentences in sample["gold_summaries_rooms"].items():
+        gold_summaries_rooms.append(" ".join(sentences))
+    instance["gold_summaries_rooms"] = gold_summaries_rooms
+    gold_summaries_service = []
+    for order, sentences in sample["gold_summaries_service"].items():
+        gold_summaries_service.append(" ".join(sentences))
+    instance["gold_summaries_service"] = gold_summaries_service
+    gold_summaries_general = []
+    for order, sentences in sample["gold_summaries_general"].items():
+        gold_summaries_general.append(" ".join(sentences))
+    instance["gold_summaries_general"] = gold_summaries_general
+    instance["label"] = sample["label"]
+    samples_dev_unified.append(instance)
+with open("../datasets/space_dev.json", "w") as f:
+    json.dump(samples_dev_unified, f, indent=4)
+
+samples_test_unified = []
+for sample in samples_test:
+    instance = {}
+    source_documents = []
+    for review in sample["reviews"]:
+        source_documents.append(" ".join(review["sentences"]))
+    instance["source_documents"] = source_documents
+    gold_summaries_building = []
+    for order, sentences in sample["gold_summaries_building"].items():
+        gold_summaries_building.append(" ".join(sentences))
+    instance["gold_summaries_building"] = gold_summaries_building
+    gold_summaries_cleanliness = []
+    for order, sentences in sample["gold_summaries_cleanliness"].items():
+        gold_summaries_cleanliness.append(" ".join(sentences))
+    instance["gold_summaries_cleanliness"] = gold_summaries_cleanliness
+    gold_summaries_food = []
+    for order, sentences in sample["gold_summaries_food"].items():
+        gold_summaries_food.append(" ".join(sentences))
+    instance["gold_summaries_food"] = gold_summaries_food
+    gold_summaries_location = []
+    for order, sentences in sample["gold_summaries_location"].items():
+        gold_summaries_location.append(" ".join(sentences))
+    instance["gold_summaries_location"] = gold_summaries_location
+    gold_summaries_rooms = []
+    for order, sentences in sample["gold_summaries_rooms"].items():
+        gold_summaries_rooms.append(" ".join(sentences))
+    instance["gold_summaries_rooms"] = gold_summaries_rooms
+    gold_summaries_service = []
+    for order, sentences in sample["gold_summaries_service"].items():
+        gold_summaries_service.append(" ".join(sentences))
+    instance["gold_summaries_service"] = gold_summaries_service
+    gold_summaries_general = []
+    for order, sentences in sample["gold_summaries_general"].items():
+        gold_summaries_general.append(" ".join(sentences))
+    instance["gold_summaries_general"] = gold_summaries_general
+    instance["label"] = sample["label"]
+    samples_test_unified.append(instance)
 with open("../datasets/space_test.json", "w") as f:
-    json.dump(samples_test, f, indent=4)
+    json.dump(samples_test_unified, f, indent=4)
