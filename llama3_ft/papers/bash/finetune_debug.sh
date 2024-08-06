@@ -29,6 +29,7 @@ torchrun --nnodes 1 --nproc_per_node=4 --master_port=9822 llama_finetune.py  \
                 --save_steps 2 \
                 --save_total_limit 1 \
                 --save_only_model True \
+                --save_on_each_node False \
                 --optim adafactor \
                 --learning_rate 1e-6 \
                 --warmup_ratio 0.2 \
