@@ -37,15 +37,9 @@ def train(model_args, data_args, training_args):
         model.resize_token_embeddings(len(tokenizer))
     print(model.config)
 
-
     data_module = get_data_module(tokenizer=tokenizer, data_args=data_args, model_args=model_args)
     trainer = Trainer(model=model, tokenizer=tokenizer, args=training_args, train_dataset=data_module["train_dataset"],
-                      eval_dataset=data_module["eval_dataset"], data_collator=data_module["data_collator"],
-                      callbacks=[EarlyStoppingCallback(early_stopping_patience=3)])
-
-    # data_module = get_data_module(tokenizer=tokenizer, data_args=data_args, model_args=model_args)
-    # trainer = Trainer(model=model, tokenizer=tokenizer, args=training_args, train_dataset=data_module["train_dataset"],
-    #                   eval_dataset=data_module["eval_dataset"], data_collator=data_module["data_collator"])
+                      eval_dataset=data_module["eval_dataset"], data_collator=data_module["data_collator"])
 
     trainer.train(resume_from_checkpoint=training_args.resume_from_checkpoint)
 
