@@ -46,6 +46,7 @@ if __name__ == "__main__":
     for sample in tqdm(test_samples):
         source_documents = sample["source_documents"]
         sample["generated_summary_general"] = meta_generation(source_documents, "general")
+
         results.append(sample)
         # print(sample)
 
