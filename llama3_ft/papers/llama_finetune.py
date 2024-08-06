@@ -3,32 +3,15 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 from transformers import EarlyStoppingCallback
 from arguments import ModelArguments, DataArguments, TrainingArguments
 from dataloader import get_data_module
-import wandb
-from torch.distributed import get_rank, is_initialized
 import torch
 
 
 def train(model_args, data_args, training_args):
-    all_args = {}
-    all_args.update(vars(data_args))
-    all_args.update(vars(model_args))
-    all_args.update(vars(training_args))
-
-    if is_initialized():
-        if get_rank() == 0:
-            wandb.init(project=training_args.project_name, config=all_args, name=training_args.run_name)
-    else:
-        wandb.init(project=training_args.project_name, config=all_args, name=training_args.run_name)
-
     # load model and tokenizer
-    if training_args.resume_from_checkpoint != None:
-        model_in_use = training_args.resume_from_checkpoint
-    else:
-        model_in_use = model_args.model_name_or_path
-    print("loading model:", model_in_use)
-    tokenizer = AutoTokenizer.from_pretrained(model_in_use, padding_side="right",
+    print("loading model:", model_args.model_name_or_path)
+    tokenizer = AutoTokenizer.from_pretrained(model_args.model_name_or_path, padding_side="right",
                                                 model_max_length=model_args.max_length_model, use_fast=True)
-    model = AutoModelForCausalLM.from_pretrained(model_in_use, trust_remote_code=True, torch_dtype=torch.bfloat16,
+    model = AutoModelForCausalLM.from_pretrained(model_args.model_name_or_path, trust_remote_code=True, torch_dtype=torch.bfloat16,
                                                      attn_implementation="flash_attention_2")
 
     # no pad and unk tokens
@@ -63,7 +46,7 @@ def train(model_args, data_args, training_args):
     trainer = Trainer(model=model, tokenizer=tokenizer, args=training_args, train_dataset=data_module["train_dataset"],
                       eval_dataset=data_module["eval_dataset"], data_collator=data_module["data_collator"])
 
-    trainer.train()
+    trainer.train(resume_from_checkpoint=training_args.resume_from_checkpoint)
 
 
 if __name__ == "__main__":
@@ -71,4 +54,6 @@ if __name__ == "__main__":
     model_args, data_args, training_args = parser.parse_args_into_dataclasses()
 
     if training_args.do_train:
+        # name the wandb project
+        os.environ["WANDB_PROJECT"] = training_args.project_name
         train(model_args, data_args, training_args)

@@ -30,6 +30,7 @@ torchrun --nnodes 1 --nproc_per_node=4 --master_port=9822 llama_finetune.py  \
                 --save_steps 2 \
                 --save_total_limit 1 \
                 --load_best_model_at_end True \
+                --save_on_each_node False \
                 --metric_for_best_model eval_loss \
                 --greater_is_better False \
                 --optim adafactor \
@@ -42,7 +43,6 @@ torchrun --nnodes 1 --nproc_per_node=4 --master_port=9822 llama_finetune.py  \
                 --report_to "wandb" \
                 --run_name ${SAVE_NAME}_${DATASET_NAME} \
                 --overwrite_output_dir True \
-                --tf32 True \
                 --fsdp "full_shard auto_wrap offload" \
                 --fsdp_config "fsdp_config.json" \
                 --ddp_timeout 14400
