@@ -10,8 +10,7 @@ from typing import List
 def meta_generation(source_documents: List, aspect: str) -> str:
     source_text = "\n".join(source_documents)
     if aspect == "general":
-        prompt_format = f"Please write a summary for the following reviews on a hotel.\n\n Reviews on a hotel:\n {source_text}\n\nThe output summary:"
-        prompt_content = prompt_format.replace("{{source_documents}}", source_text)
+        prompt_content = f"Please write a summary for the following reviews on a hotel.\n\n Reviews on a hotel:\n {source_text}\n\nThe output summary:"
         # print(prompt_format)
         while True:
             try:
@@ -31,8 +30,7 @@ def meta_generation(source_documents: List, aspect: str) -> str:
                 if "limit" in str(e):
                     time.sleep(2)
     else:
-        prompt_format = f"Please write a summary for the following reviews on a hotel for the aspect of {aspect}.\n\n Reviews on a hotel:\n {source_text}\n\nThe output summary:"
-        prompt_content = prompt_format.replace("{{source_documents}}", source_text)
+        prompt_content = f"Please write a summary for the following reviews on a hotel for the aspect of {aspect}.\n\n Reviews on a hotel:\n {source_text}\n\nThe output summary:"
         # print(prompt_format)
         while True:
             try:
