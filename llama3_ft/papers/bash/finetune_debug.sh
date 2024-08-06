@@ -3,7 +3,7 @@ cd ../
 DATASET_NAME="peermeta"
 
 MODEL_NAME_OR_PATH="meta-llama/Meta-Llama-3.1-8B"
-SAVE_NAME="llama31_8b_debug2"
+SAVE_NAME="llama31_8b_debug"
 
 torchrun --nnodes 1 --nproc_per_node=4 --master_port=9822 llama_finetune.py  \
                 --model_name_or_path ${MODEL_NAME_OR_PATH} \
