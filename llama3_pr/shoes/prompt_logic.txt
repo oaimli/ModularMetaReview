@@ -1,0 +1,14 @@
+Please write a summary for the following reviews on sports shoes, following the steps below.
+
+
+Steps:
+1. Categorize source texts into different aspects for reviewing sports shoes;
+3. Write a small summary for each aspect;
+4. Combine all small summaries to get the final summary.
+
+
+Reviews on a pair of sports shoes:
+{{source_documents}}
+
+
+The output summary:
