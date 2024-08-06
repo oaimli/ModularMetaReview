@@ -49,7 +49,7 @@ def parsing_result(output):
 
 def llama_prompting(input_text: str, facet: str, mode: str = "meta"):
     print(f"Categorizing {mode}")
-    prompt_format = open(f"prompts_scientific_llama3/prompt_{mode.lower()}_{facet.lower()}.txt").read()
+    prompt_format = open(f"prompts_scientific/prompt_{mode.lower()}_{facet.lower()}.txt").read()
     prompt_content = prompt_format.replace("{{input_document}}", input_text)
     messages = [
         [
