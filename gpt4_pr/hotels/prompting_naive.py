@@ -1,86 +1,59 @@
+import os.path
+
 import jsonlines
 from openai import OpenAI
 import time
 import json
 from tqdm import tqdm
 from typing import List
+import jsonlines
 
 
-def parsing_result(output):
-    with open("output_tmp.jsonl", "w") as f:
-        f.write(output.strip())
-    tmp = []
-    try:
-        with jsonlines.open("output_tmp.jsonl") as reader:
-            for line in reader:
-                tmp.append(line)
-    except jsonlines.InvalidLineError as err:
-        print("Jsonlines parsing error,", err)
-    return tmp
-
-
-def gpt4_prompting(metas_generated: List):
-    prompt_format = open("prompt_scientific_gpt4.txt").read()
-    review_text = "\n".join(metas_generated)
-    prompt_content = prompt_format.replace("{{metas_generated}}", review_text)
+def meta_generation(source_documents: List) -> str:
+    prompt_format = open("prompt_logic.txt").read()
+    source_text = "\n".join(source_documents)
+    prompt_content = prompt_format.replace("{{source_documents}}", source_text)
     # print(prompt_format)
     while True:
         try:
             output_dict = client.chat.completions.create(
                 model="gpt-4o",
                 messages=[
-                    {"role": "system", "content": "Always answer with only the summary in JSON Lines, no other content."},
+                    {"role": "system",
+                     "content": "You are requested to do summarization. Please output the final answer with only the summary, no other useless content."},
                     {"role": "user",
                      "content": prompt_content}
                     ],
-                n=5
+                n=1
                 )
-            output = []
-            for choice in output_dict.choices:
-                tmp = parsing_result(choice.message.content)
-                if len(tmp) > 0:
-                    output = tmp
-                    break
+            output = output_dict.choices[0].message.content
             break
         except Exception as e:
-            print(e)
-            if ("limit" in str(e)):
+            if "limit" in str(e):
                 time.sleep(2)
-    # print(output)
-    meta_review = ""
-    if len(output) > 0:
-        if "meta_review" in output[0].keys():
-            meta_review = output[0]["meta_review"]
-    print(meta_review)
-
-    return meta_review
-
-
-def meta_generation(categorization_pairs: List) -> List:
-    metas_generated = []
-    for pair in categorization_pairs:
-        metas_generated.append(pair["meta_generated"])
-
-    meta_review = gpt4_prompting(metas_generated)
-
-    return meta_review
+    print(output)
+    return output
 
 
 if __name__ == "__main__":
     model_name = "gpt4"
     client = OpenAI(api_key="sk-proj-jxdkj7TzTCWDjDU0lpEPT3BlbkFJll01Dz3fxt51wM8Rh6wm")
 
-    with open("../reasoning/scientific_reasoning_result_gpt4.json") as f:
-        test_samples = json.load(f)
+    test_samples = []
+    with jsonlines.open("../../datasets/space_test.jsonl") as reader:
+        for line in reader:
+            test_samples.append(line)
 
-    results = {}
-    for key in tqdm(test_samples):
-        sample = test_samples[key]
-        categorization_pairs = sample["categorization_pairs"]
-        sample["meta_review_generated"] = meta_generation(categorization_pairs)
-        results[key] = sample
+    results = []
+    for sample in tqdm(test_samples):
+        source_documents = sample["source_documents"]
+        sample["generated_summary_general"] = meta_generation(source_documents)
+        results.append(sample)
         # print(sample)
 
     print(len(results))
-    with open(f"scientific_generation_result_{model_name}.json", "w") as f:
+    output_dir = "../../results/gpt4_pr_space"
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
+    with open(f"{output_dir}/generations_{model_name}_logic.json", "w") as f:
         json.dump(results, f, indent=4)

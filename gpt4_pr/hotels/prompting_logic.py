@@ -1,3 +1,5 @@
+import os.path
+
 import jsonlines
 from openai import OpenAI
 import time
@@ -50,5 +52,8 @@ if __name__ == "__main__":
         # print(sample)
 
     print(len(results))
-    with open(f"gpt4_pr_space/generations_{model_name}_logic.json", "w") as f:
+    output_dir = "../../results/gpt4_pr_space"
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
+    with open(f"{output_dir}/generations_{model_name}_logic.json", "w") as f:
         json.dump(results, f, indent=4)
