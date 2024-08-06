@@ -34,7 +34,7 @@ def meta_generation(source_documents: List) -> str:
 
 
 if __name__ == "__main__":
-    model_name = "gpt4"
+    model_name = "gpt_4o"
     client = OpenAI(api_key="sk-proj-jxdkj7TzTCWDjDU0lpEPT3BlbkFJll01Dz3fxt51wM8Rh6wm")
 
     test_samples = []
