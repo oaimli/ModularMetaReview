@@ -18,7 +18,7 @@ def meta_generation(source_documents: List) -> str:
                 model="gpt-4o",
                 messages=[
                     {"role": "system",
-                     "content": "You are requested to do summarization. Please output the final answer with only the summary, no reasoning process or other useless content."},
+                     "content": "You are requested to do summarization. Please output the final answer with only the summary, no other useless content."},
                     {"role": "user",
                      "content": prompt_content}
                     ],
