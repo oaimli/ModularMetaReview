@@ -1,0 +1,14 @@
+Please write a summary for the following reviews on academic papers, following the steps below.
+
+
+Steps:
+1. Categorize source texts into different aspects for reviewing academic papers;
+3. Write a small summary for each aspect;
+4. Combine all small summaries to get the final summary.
+
+
+Reviews on an academic paper:
+{{source_documents}}
+
+
+The output summary:
