@@ -10,7 +10,7 @@ from typing import List
 def meta_generation(source_documents: List) -> str:
     source_text = "\n".join(source_documents)
     prompt_content = f"Please write a summary for the following reviews on an academic paper.\n\n Reviews on a paper:\n {source_text}\n\nThe output summary:"
-    # print(prompt_format)
+    print(prompt_content)
     while True:
         try:
             output_dict = client.chat.completions.create(
