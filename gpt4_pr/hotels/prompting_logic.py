@@ -1,6 +1,4 @@
 import os.path
-
-import jsonlines
 from openai import OpenAI
 import time
 import json

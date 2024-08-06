@@ -1,15 +1,13 @@
 import os.path
-
 import jsonlines
 from openai import OpenAI
 import time
 import json
 from tqdm import tqdm
 from typing import List
-import jsonlines
 
 
-def meta_generation(source_documents: List) -> str:
+def meta_generation(source_documents: List, aspect: str) -> str:
     prompt_format = open("prompt_logic.txt").read()
     source_text = "\n".join(source_documents)
     prompt_content = prompt_format.replace("{{source_documents}}", source_text)
@@ -47,7 +45,7 @@ if __name__ == "__main__":
     results = []
     for sample in tqdm(test_samples):
         source_documents = sample["source_documents"]
-        sample["generated_summary_general"] = meta_generation(source_documents)
+        sample["generated_summary_general"] = meta_generation(source_documents, "general")
         results.append(sample)
         # print(sample)
 
@@ -55,5 +53,5 @@ if __name__ == "__main__":
     output_dir = "../../results/gpt4_pr_space"
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
-    with open(f"{output_dir}/generations_{model_name}_logic.json", "w") as f:
+    with open(f"{output_dir}/generations_{model_name}_naive.json", "w") as f:
         json.dump(results, f, indent=4)
