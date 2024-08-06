@@ -28,6 +28,7 @@ torchrun --nnodes 1 --nproc_per_node=4 --master_port=9822 llama_finetune.py  \
                 --save_strategy "steps" \
                 --save_steps 500 \
                 --save_total_limit 1 \
+                --save_only_model True \
                 --optim adafactor \
                 --learning_rate 1e-6 \
                 --warmup_ratio 0.2 \
@@ -41,7 +42,6 @@ torchrun --nnodes 1 --nproc_per_node=4 --master_port=9822 llama_finetune.py  \
                 --report_to "wandb" \
                 --run_name ${SAVE_NAME}_${DATASET_NAME} \
                 --overwrite_output_dir True \
-                --tf32 True \
                 --fsdp "full_shard auto_wrap offload" \
                 --fsdp_config "fsdp_config.json" \
                 --ddp_timeout 14400

@@ -1,6 +1,5 @@
 from transformers import HfArgumentParser, Trainer
 from transformers import AutoModelForCausalLM, AutoTokenizer
-from transformers import EarlyStoppingCallback
 from arguments import ModelArguments, DataArguments, TrainingArguments
 from dataloader import get_data_module
 import torch
