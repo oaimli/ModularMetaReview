@@ -15,7 +15,7 @@ def meta_generation(source_documents: List) -> str:
     while True:
         try:
             output_dict = client.chat.completions.create(
-                model="gpt-4o",
+                model="meta-llama/Meta-Llama-3.1-70B-Instruct",
                 messages=[
                     {"role": "system",
                      "content": "You are requested to do summarization. Please output the final answer with only the summary, no other useless content."},
