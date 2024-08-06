@@ -29,7 +29,7 @@ def meta_generation(source_documents: List) -> str:
         except Exception as e:
             if "limit" in str(e):
                 time.sleep(2)
-    # print(output)
+    print(output)
     return output
 
 
