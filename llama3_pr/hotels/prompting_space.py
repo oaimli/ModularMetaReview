@@ -9,7 +9,7 @@ client = OpenAI(
 )
 
 chat_response = client.chat.completions.create(
-    model="facebook/opt-125m",
+    model="meta-llama/Meta-Llama-3.1-70B-Instruct",
     messages=[
         {"role": "system", "content": "You are a helpful assistant."},
         {"role": "user", "content": "Tell me a joke."},
