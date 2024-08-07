@@ -3,13 +3,10 @@ import torch
 from datasets import load_dataset
 from transformers import LEDTokenizer, LEDForConditionalGeneration
 from nltk.tokenize import sent_tokenize
-import sys
 import argparse
 import os
 import json
 
-sys.path.append('../../../')
-from utils.metrics import evaluating_summaries_multi_sources
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--save_path", type=str, help="The path to save model checkpoints, logs and results")
@@ -127,13 +124,3 @@ for item in results:
     with open(os.path.join(output_dir, "%d.json" % (idx)), "w") as f:
         json.dump(result_dict, f)
 print("Exited results in the folder after saving", len(os.listdir(output_dir)))
-
-predictions = []
-references = []
-source_document_clusters = []
-for item in results:
-    predictions.append(item['predicted_summary'])
-    references.append(item['summary'])
-    source_document_clusters.append(item["source_documents"])
-print(evaluating_summaries_multi_sources(source_document_clusters=source_document_clusters, gold_summaries=references,
-                                         generated_summaries=predictions))
