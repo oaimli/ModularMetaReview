@@ -28,7 +28,7 @@ def gpt4_prompting(input_text: str, facet: str, mode: str = "meta"):
     while True:
         try:
             output_dict = client.chat.completions.create(
-                model="gpt-4o",
+                model="gpt-4o-2024-05-13",
                 messages=[
                     {"role": "system", "content": "Always answer with texts in a JSON Lines format, no other content."},
                     {"role": "user",
@@ -93,7 +93,7 @@ if __name__ == "__main__":
     nlp = spacy.load("en_core_web_sm")
     facets = ["Novelty", "Soundness", "Clarity", "Advancement", "Compliance", "Overall"]
 
-    model_name = "gpt4"
+    model_name = "gpt_4o"
     client = OpenAI(api_key="sk-proj-jxdkj7TzTCWDjDU0lpEPT3BlbkFJll01Dz3fxt51wM8Rh6wm")
 
     with open("../../annotations/scientific_reviews/annotation_data_small.json") as f:

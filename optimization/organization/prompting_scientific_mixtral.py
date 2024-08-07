@@ -21,14 +21,14 @@ def parsing_result(output):
     return results
 
 
-def gpt4_prompting(input_text: str, facet: str, mode: str = "review"):
-    prompt_format = open(f"organization_prompts_gpt4/prompt_{mode.lower()}_{facet.lower()}.txt").read()
+def gpt4_prompting(input_text: str, facet: str, mode: str = "meta"):
+    prompt_format = open(f"prompts_scientific/prompt_{mode.lower()}_{facet.lower()}.txt").read()
     prompt_content = prompt_format.replace("{{input_document}}", input_text)
     # print(prompt_format)
     while True:
         try:
             output_dict = client.chat.completions.create(
-                model="gpt-4o-2024-05-13",
+                model="mistralai/Mixtral-8x7B-Instruct-v0.1",
                 messages=[
                     {"role": "system", "content": "Always answer with texts in a JSON Lines format, no other content."},
                     {"role": "user",
@@ -56,6 +56,21 @@ def gpt4_prompting(input_text: str, facet: str, mode: str = "review"):
     return fragments
 
 
+def categorizing_meta_review(meta_review: str) -> Dict:
+    """
+    Args:
+        meta_review: the meta-review of a sample
+        model_name: the name of a model
+    Returns:
+        result: a dictionary of extracted fragments for different review facets
+    """
+    result = {}
+    for facet in facets:
+        result[facet] = gpt4_prompting(meta_review, facet, "meta")
+
+    return result
+
+
 def categorizing_review(reviews: List[Dict]) -> List:
     """
     Args:
@@ -67,7 +82,7 @@ def categorizing_review(reviews: List[Dict]) -> List:
     for review in reviews:
         tmp = {}
         for facet in facets:
-            tmp[facet] = gpt4_prompting(" ".join(review["sentences"]), facet, "review")
+            tmp[facet] = gpt4_prompting(review["comment"], facet, "review")
         result.append(tmp)
 
     return result
@@ -76,12 +91,17 @@ def categorizing_review(reviews: List[Dict]) -> List:
 if __name__ == "__main__":
     random.seed(42)
     nlp = spacy.load("en_core_web_sm")
-    facets = ["Building", "Cleanliness", "Food", "Location", "Rooms", "Service"]
+    facets = ["Novelty", "Soundness", "Clarity", "Advancement", "Compliance", "Overall"]
 
-    model_name = "gpt4"
-    client = OpenAI(api_key="sk-proj-jxdkj7TzTCWDjDU0lpEPT3BlbkFJll01Dz3fxt51wM8Rh6wm")
+    model_name = "mixtral8x7b_v01"
+    openai_api_key = "EMPTY"
+    openai_api_base = "http://localhost:8000/v1"
+    client = OpenAI(
+        api_key=openai_api_key,
+        base_url=openai_api_base,
+        )
 
-    with open("../../datasets/space_test.json") as f:
+    with open("../../annotations/scientific_reviews/annotation_data_small.json") as f:
         test_samples = json.load(f)
 
     results = {}
@@ -89,10 +109,12 @@ if __name__ == "__main__":
     for key in tqdm(random_samples):
         sample = test_samples[key]
         reviews = sample["reviews"]
+        meta_review = sample["meta_review"]
         sample["review_categorization"] = categorizing_review(reviews)
+        sample["meta_review_categorization"] = categorizing_meta_review(meta_review)
         results[key] = sample
         # print(sample)
 
     print(len(results))
-    with open(f"space_categorization_result_{model_name}.json", "w") as f:
+    with open(f"scientific_categorization_result_{model_name}.json", "w") as f:
         json.dump(results, f, indent=4)

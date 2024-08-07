@@ -19,15 +19,15 @@ def parsing_result(output):
     return tmp
 
 
-def gpt4_prompting(metas_generated: List):
-    prompt_format = open("prompt_scientific_gpt4.txt").read()
-    review_text = "\n".join(metas_generated)
-    prompt_content = prompt_format.replace("{{metas_generated}}", review_text)
+def gpt4_prompting(review_fragments: List, facet: str):
+    prompt_format = open("prompt_gpt4.txt").read()
+    review_text = "\n".join(review_fragments)
+    prompt_content = prompt_format.replace("{{review_fragments}}", review_text)
     # print(prompt_format)
     while True:
         try:
             output_dict = client.chat.completions.create(
-                model="gpt-4o-2024-05-13",
+                model="gpt-4o",
                 messages=[
                     {"role": "system", "content": "Always answer with only the summary in JSON Lines, no other content."},
                     {"role": "user",
@@ -47,40 +47,41 @@ def gpt4_prompting(metas_generated: List):
             if ("limit" in str(e)):
                 time.sleep(2)
     # print(output)
-    meta_review = ""
+    meta_generated = ""
     if len(output) > 0:
-        if "meta_review" in output[0].keys():
-            meta_review = output[0]["meta_review"]
-    print(meta_review)
+        if "summary" in output[0].keys():
+            meta_generated = output[0]["summary"]
+    print(meta_generated)
 
-    return meta_review
+    return meta_generated
 
 
-def meta_generation(categorization_pairs: List) -> List:
-    metas_generated = []
+def facet_reasoning(categorization_pairs: List) -> List:
+    result = []
     for pair in categorization_pairs:
-        metas_generated.append(pair["meta_generated"])
+        review_fragments = pair["review_fragments"]
+        facet = pair["facet"]
+        pair["meta_generated"] = gpt4_prompting(review_fragments, facet)
+        result.append(pair)
 
-    meta_review = gpt4_prompting(metas_generated)
-
-    return meta_review
+    return result
 
 
 if __name__ == "__main__":
     model_name = "gpt4"
     client = OpenAI(api_key="sk-proj-jxdkj7TzTCWDjDU0lpEPT3BlbkFJll01Dz3fxt51wM8Rh6wm")
 
-    with open("../reasoning/scientific_reasoning_result_gpt4.json") as f:
+    with open("../selection/scientific_selection_result_llama3_70b.json") as f:
         test_samples = json.load(f)
 
     results = {}
     for key in tqdm(test_samples):
         sample = test_samples[key]
         categorization_pairs = sample["categorization_pairs"]
-        sample["meta_review_generated"] = meta_generation(categorization_pairs)
+        sample["categorization_pairs"] = facet_reasoning(categorization_pairs)
         results[key] = sample
         # print(sample)
 
     print(len(results))
-    with open(f"scientific_generation_result_{model_name}.json", "w") as f:
+    with open(f"scientific_reasoning_result_{model_name}.json", "w") as f:
         json.dump(results, f, indent=4)
