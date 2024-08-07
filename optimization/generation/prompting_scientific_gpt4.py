@@ -67,10 +67,10 @@ def meta_generation(categorization_pairs: List) -> List:
 
 
 if __name__ == "__main__":
-    model_name = "gpt4"
+    model_name = "gpt_4o"
     client = OpenAI(api_key="sk-proj-jxdkj7TzTCWDjDU0lpEPT3BlbkFJll01Dz3fxt51wM8Rh6wm")
 
-    with open("../reasoning/scientific_reasoning_result_gpt4.json") as f:
+    with open("../reasoning/scientific_reasoning_result_gpt_4o.json") as f:
         test_samples = json.load(f)
 
     results = {}

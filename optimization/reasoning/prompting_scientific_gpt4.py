@@ -68,10 +68,10 @@ def facet_reasoning(categorization_pairs: List) -> List:
 
 
 if __name__ == "__main__":
-    model_name = "gpt4"
+    model_name = "gpt_4o"
     client = OpenAI(api_key="sk-proj-jxdkj7TzTCWDjDU0lpEPT3BlbkFJll01Dz3fxt51wM8Rh6wm")
 
-    with open("../selection/scientific_selection_result_llama3_70b.json") as f:
+    with open("../selection/scientific_selection_result_llama31_70b.json") as f:
         test_samples = json.load(f)
 
     results = {}

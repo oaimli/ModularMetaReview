@@ -27,7 +27,7 @@ def gpt4_prompting(review_fragments: List, facet: str):
     while True:
         try:
             output_dict = client.chat.completions.create(
-                model="gpt-4o",
+                model="meta-llama/Meta-Llama-3.1-70B-Instruct",
                 messages=[
                     {"role": "system", "content": "Always answer with only the summary in JSON Lines, no other content."},
                     {"role": "user",
@@ -68,10 +68,15 @@ def facet_reasoning(categorization_pairs: List) -> List:
 
 
 if __name__ == "__main__":
-    model_name = "gpt4"
-    client = OpenAI(api_key="sk-proj-jxdkj7TzTCWDjDU0lpEPT3BlbkFJll01Dz3fxt51wM8Rh6wm")
+    model_name = "llama31_70b"
+    openai_api_key = "EMPTY"
+    openai_api_base = "http://localhost:8000/v1"
+    client = OpenAI(
+        api_key=openai_api_key,
+        base_url=openai_api_base,
+        )
 
-    with open("../selection/scientific_selection_result_llama3_70b.json") as f:
+    with open("../selection/scientific_selection_result_llama31_70b.json") as f:
         test_samples = json.load(f)
 
     results = {}
