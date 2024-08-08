@@ -64,9 +64,9 @@ def rouge_corpus(references, candidates, types=None, use_stemmer=True, split_sum
 
 
 if __name__ == "__main__":
-    reference_key = ""
-    candidate_key = ""
-    generation_file = ""
+    reference_key = "generated_meta_review"
+    candidate_key = "meta_review"
+    generation_file = "/home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_amasum_shoes/generations_gpt_4o_logic.json"
 
     with open(generation_file) as f:
         samples = json.load(f)

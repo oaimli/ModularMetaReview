@@ -1,4 +1,4 @@
-################ Overall agreement, A1<->A2, A1<->Model and A2<->Model llama3_1_70b ################
+################ Overall agreement, A1<->A2, A1<->Model and A2<->Model llama31_70b ################
 Highlight correlation, meta-review + review, word level ------ 0.8187068468722781 0.46380893453153166 0.43452547015529086
 Highlight correlation, meta-review, word level ------ 0.9282039911308205 0.795341862504887 0.7655082871333635
 Highlight correlation, review, word level ------ 0.8062644441149966 0.44032507233355683 0.4133713986075037

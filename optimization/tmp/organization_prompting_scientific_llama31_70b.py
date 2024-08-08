@@ -109,7 +109,7 @@ if __name__ == '__main__':
         results[key] = sample
 
     # save generation results into json file
-    output_file = "scientific_categorization_result_llama3_1_70b.json"
+    output_file = "scientific_categorization_result_llama31_70b.json"
     with open(output_file, "w") as f:
         json.dump(results, f, indent=4)
     print("Saved to ", output_file)
