@@ -69,7 +69,9 @@ if __name__ == "__main__":
     candidate_key = "meta_review"
     # generation_file = "/home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_amasum_shoes/generations_gpt_4o_logic.json"
     # generation_file = "/home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_amasum_shoes/generations_gpt_4o_naive.json"
-    generation_file = "/home/miao4/punim0521/ModularMetaReview/results/llama3_pr_amasum_shoes/generations_llama31_70b_logic.json"
+    # generation_file = "/home/miao4/punim0521/ModularMetaReview/results/llama3_pr_amasum_shoes/generations_llama31_70b_logic.json"
+    generation_file = "/home/miao4/punim0521/ModularMetaReview/results/llama3_pr_amasum_shoes/generations_llama31_70b_naive.json"
+
 
     with open(generation_file) as f:
         samples = json.load(f)
