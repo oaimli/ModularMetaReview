@@ -870,9 +870,9 @@ def word_level_agreement(results_1, results_2, annotation_data):
         overall_agreements_precision.append(p)
 
     result = {}
-    result["Highlight correlation, meta-review + review, word level (r)"] = [np.mean(all_text_agreements_recall)]
-    result["Highlight correlation, meta-review + review, word level (p)"] = [np.mean(all_text_agreements_precision)]
-    result["Highlight correlation, meta-review + review, word level (f1)"] = [np.mean(all_text_agreements_fmeasure)]
+    result["Highlight correlation, meta-review + review, word level (r)"] = np.mean(all_text_agreements_recall)
+    result["Highlight correlation, meta-review + review, word level (p)"] = np.mean(all_text_agreements_precision)
+    result["Highlight correlation, meta-review + review, word level (f1)"] = np.mean(all_text_agreements_fmeasure)
     result["Highlight correlation, meta-review, word level (r)"] = np.mean(meta_review_agreements_recall)
     result["Highlight correlation, meta-review, word level (p)"] = np.mean(meta_review_agreements_precision)
     result["Highlight correlation, meta-review, word level (f1)"] = np.mean(meta_review_agreements_fmeasure)
