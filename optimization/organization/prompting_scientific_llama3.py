@@ -8,7 +8,7 @@ from typing import Dict, List
 import spacy
 
 
-def gpt4_prompting(input_text: str, facet: str, mode: str = "meta"):
+def llama3_prompting(input_text: str, facet: str, mode: str = "meta"):
     prompt_format = open(f"prompts_scientific/prompt_{mode.lower()}_{facet.lower()}.txt").read()
     prompt_content = prompt_format.replace("{{input_document}}", input_text)
     # print(prompt_format)
@@ -28,7 +28,9 @@ def gpt4_prompting(input_text: str, facet: str, mode: str = "meta"):
             for choice in output_dict.choices:
                 # two requirements, following the jsonlines format and using the required key
                 output_content = choice.message.content
+                print("#########")
                 print(output_content)
+                print("#########")
                 with open("output_tmp.jsonl", "w") as f:
                     f.write(output_content.strip())
 
@@ -76,7 +78,7 @@ def categorizing_meta_review(meta_review: str) -> Dict:
     """
     result = {}
     for facet in facets:
-        result[facet] = gpt4_prompting(meta_review, facet, "meta")
+        result[facet] = llama3_prompting(meta_review, facet, "meta")
 
     return result
 
@@ -92,7 +94,7 @@ def categorizing_review(reviews: List[Dict]) -> List:
     for review in reviews:
         tmp = {}
         for facet in facets:
-            tmp[facet] = gpt4_prompting(review["comment"], facet, "review")
+            tmp[facet] = llama3_prompting(review["comment"], facet, "review")
         result.append(tmp)
 
     return result
