@@ -1,4 +1,4 @@
-################ Overall agreement, A1<->A2, A1<->Model and A2<->Model LLaMA3.1-70B-Instruct 2024-08-10 03:11:56.803812 ################
+################ All agreements, A1<->A2, A1<->Model and A2<->Model LLaMA3.1-70B-Instruct 2024-08-10 03:11:56.803812 ################
 Highlight correlation, meta-review + review, word level (r) ------ 0.7727452893552169 0.7933041904877635 0.7929344098447657
 Highlight correlation, meta-review + review, word level (p) ------ 0.8721361203243434 0.32640256954029917 0.28925373968296403
 Highlight correlation, meta-review + review, word level (f1) ------ 0.8187068468722781 0.4582060772865436 0.4187882103545822

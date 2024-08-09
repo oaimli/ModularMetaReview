@@ -8,50 +8,66 @@ from typing import Dict, List
 import spacy
 
 
-def parsing_result(output):
-    with open("output_tmp.jsonl", "w") as f:
-        f.write(output.strip())
-    results = []
-    try:
-        with jsonlines.open("output_tmp.jsonl") as reader:
-            for line in reader:
-                results.append(line)
-    except jsonlines.InvalidLineError as err:
-        print("Jsonlines parsing error,", err)
-    return results
-
-
-def gpt4_prompting(input_text: str, facet: str, mode: str = "meta"):
+def llama3_prompting(input_text: str, facet: str, mode: str = "meta"):
+    print(input_text)
     prompt_format = open(f"prompts_scientific/prompt_{mode.lower()}_{facet.lower()}.txt").read()
     prompt_content = prompt_format.replace("{{input_document}}", input_text)
     # print(prompt_format)
+    outputs = None
     while True:
         try:
             output_dict = client.chat.completions.create(
                 model="mistralai/Mixtral-8x7B-Instruct-v0.1",
                 messages=[
-                    {"role": "system", "content": "Always answer with texts in a JSON Lines format, no other content."},
+                    {"role": "system", "content": "You are requested to do some extraction work. You must produce the answer following the requirement of the output, without other useless content."},
                     {"role": "user",
                      "content": prompt_content}
                     ],
-                n=5
+                n=8
                 )
-            output = []
+
             for choice in output_dict.choices:
-                tmp = parsing_result(choice.message.content)
-                if len(tmp) > len(output):
-                    output = tmp
-            break
+                # two requirements, following the jsonlines format and using the required key
+                output_content = choice.message.content
+                # print("######### start")
+                # print(output_content)
+                # print("######### end")
+
+                if "no fragments" in output_content.lower():
+                    outputs = []
+                else:
+                    with open("output_tmp.jsonl", "w") as f:
+                        f.write(output_content.strip())
+                    try:
+                        tmp = []
+                        with jsonlines.open("output_tmp.jsonl") as reader:
+                            for line in reader:
+                                tmp.append(line)
+                        output_keys = set([])
+                        for output in tmp:
+                            output_keys.update(output.keys())
+                        if "extracted_fragment" in output_keys and len(output_keys) == 1:
+                            outputs = tmp
+                            print(len(tmp))
+                    except jsonlines.InvalidLineError as err:
+                        print("Jsonlines parsing error,", err)
+
+                if outputs != None:
+                    break
+
+            if outputs != None:
+                break
         except Exception as e:
             print(e)
             if ("limit" in str(e)):
                 time.sleep(2)
-    # print(output)
-    print(output)
+
+    print("######### start")
+    print(outputs)
+    print("######### end")
     fragments = []
-    for line in output:
-        if isinstance(line, dict) and "extracted_fragment" in line.keys():
-            fragments.append(line["extracted_fragment"])
+    for line in outputs:
+        fragments.append(line["extracted_fragment"])
 
     return fragments
 
@@ -66,7 +82,7 @@ def categorizing_meta_review(meta_review: str) -> Dict:
     """
     result = {}
     for facet in facets:
-        result[facet] = gpt4_prompting(meta_review, facet, "meta")
+        result[facet] = llama3_prompting(meta_review, facet, "meta")
 
     return result
 
@@ -82,7 +98,7 @@ def categorizing_review(reviews: List[Dict]) -> List:
     for review in reviews:
         tmp = {}
         for facet in facets:
-            tmp[facet] = gpt4_prompting(review["comment"], facet, "review")
+            tmp[facet] = llama3_prompting(review["comment"], facet, "review")
         result.append(tmp)
 
     return result
@@ -108,6 +124,7 @@ if __name__ == "__main__":
     random_samples = random.sample(list(test_samples.keys()), 5)
     for key in tqdm(random_samples):
         sample = test_samples[key]
+        print(sample)
         reviews = sample["reviews"]
         meta_review = sample["meta_review"]
         sample["review_categorization"] = categorizing_review(reviews)
