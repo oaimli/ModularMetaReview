@@ -35,7 +35,6 @@ def llama3_prompting(input_text: str, facet: str, mode: str = "meta"):
 
                 if "no fragments" in output_content.lower():
                     outputs = []
-                    break
                 else:
                     with open("output_tmp.jsonl", "w") as f:
                         f.write(output_content.strip())
@@ -49,7 +48,6 @@ def llama3_prompting(input_text: str, facet: str, mode: str = "meta"):
                             output_keys.update(output.keys())
                         if "extracted_fragment" in output_keys and len(output_keys) == 1:
                             outputs = tmp
-                            break
                     except jsonlines.InvalidLineError as err:
                         print("Jsonlines parsing error,", err)
                 if outputs != None:
