@@ -870,15 +870,33 @@ def word_level_agreement(results_1, results_2, annotation_data):
         overall_agreements_precision.append(p)
 
     result = {}
-    result["Highlight correlation, meta-review + review, word level"] = [np.mean(all_text_agreements_recall), np.mean(all_text_agreements_precision), np.mean(all_text_agreements_fmeasure)]
-    result["Highlight correlation, meta-review, word level"] = [np.mean(meta_review_agreements_recall), np.mean(meta_review_agreements_precision), np.mean(meta_review_agreements_fmeasure)]
-    result["Highlight correlation, review, word level"] = [np.mean(review_agreements_recall), np.mean(review_agreements_precision), np.mean(review_agreements_fmeasure)]
-    result["Highlight correlation, meta-review + review, word level, novelty"] = [np.mean(novelty_agreements_recall), np.mean(novelty_agreements_precision), np.mean(novelty_agreements_fmeasure)]
-    result["Highlight correlation, meta-review + review, word level, soundness"] = [np.mean(soundness_agreements_recall), np.mean(soundness_agreements_precision), np.mean(soundness_agreements_fmeasure)]
-    result["Highlight correlation, meta-review + review, word level, clarity"] = [np.mean(clarity_agreements_recall), np.mean(clarity_agreements_precision), np.mean(clarity_agreements_fmeasure)]
-    result["Highlight correlation, meta-review + review, word level, advancement"] = [np.mean(advancement_agreements_recall), np.mean(advancement_agreements_precision), np.mean(advancement_agreements_fmeasure)]
-    result["Highlight correlation, meta-review + review, word level, compliance"] = [np.mean(compliance_agreements_recall), np.mean(compliance_agreements_precision), np.mean(compliance_agreements_fmeasure)]
-    result["Highlight correlation, meta-review + review, word level, overall"] = [np.mean(overall_agreements_recall), np.mean(overall_agreements_precision), np.mean(overall_agreements_fmeasure)]
+    result["Highlight correlation, meta-review + review, word level (r)"] = [np.mean(all_text_agreements_recall)]
+    result["Highlight correlation, meta-review + review, word level (p)"] = [np.mean(all_text_agreements_precision)]
+    result["Highlight correlation, meta-review + review, word level (f1)"] = [np.mean(all_text_agreements_fmeasure)]
+    result["Highlight correlation, meta-review, word level (r)"] = np.mean(meta_review_agreements_recall)
+    result["Highlight correlation, meta-review, word level (p)"] = np.mean(meta_review_agreements_precision)
+    result["Highlight correlation, meta-review, word level (f1)"] = np.mean(meta_review_agreements_fmeasure)
+    result["Highlight correlation, review, word level (r)"] = np.mean(review_agreements_recall)
+    result["Highlight correlation, review, word level (p)"] = np.mean(review_agreements_precision)
+    result["Highlight correlation, review, word level (f1)"] = np.mean(review_agreements_fmeasure)
+    result["Highlight correlation, meta-review + review, word level, novelty (r)"] = np.mean(novelty_agreements_recall)
+    result["Highlight correlation, meta-review + review, word level, novelty (p)"] = np.mean(novelty_agreements_precision)
+    result["Highlight correlation, meta-review + review, word level, novelty (f1)"] = np.mean(novelty_agreements_fmeasure)
+    result["Highlight correlation, meta-review + review, word level, soundness (r)"] = np.mean(soundness_agreements_recall)
+    result["Highlight correlation, meta-review + review, word level, soundness (p)"] = np.mean(soundness_agreements_precision)
+    result["Highlight correlation, meta-review + review, word level, soundness (f1)"] = np.mean(soundness_agreements_fmeasure)
+    result["Highlight correlation, meta-review + review, word level, clarity (r)"] = np.mean(clarity_agreements_recall)
+    result["Highlight correlation, meta-review + review, word level, clarity (p)"] = np.mean(clarity_agreements_precision)
+    result["Highlight correlation, meta-review + review, word level, clarity (f1)"] = np.mean(clarity_agreements_fmeasure)
+    result["Highlight correlation, meta-review + review, word level, advancement (r)"] = np.mean(advancement_agreements_recall)
+    result["Highlight correlation, meta-review + review, word level, advancement (p)"] = np.mean(advancement_agreements_precision)
+    result["Highlight correlation, meta-review + review, word level, advancement (f1)"] = np.mean(advancement_agreements_fmeasure)
+    result["Highlight correlation, meta-review + review, word level, compliance (r)"] = np.mean(compliance_agreements_recall)
+    result["Highlight correlation, meta-review + review, word level, compliance (p)"] = np.mean(compliance_agreements_precision)
+    result["Highlight correlation, meta-review + review, word level, compliance (f1)"] = np.mean(compliance_agreements_fmeasure)
+    result["Highlight correlation, meta-review + review, word level, overall (r)"] = np.mean(overall_agreements_recall)
+    result["Highlight correlation, meta-review + review, word level, overall (p)"] = np.mean(overall_agreements_precision)
+    result["Highlight correlation, meta-review + review, word level, overall (f1)"] = np.mean(overall_agreements_fmeasure)
 
     return result
 
