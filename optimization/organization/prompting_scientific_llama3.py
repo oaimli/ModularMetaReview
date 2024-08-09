@@ -29,9 +29,9 @@ def llama3_prompting(input_text: str, facet: str, mode: str = "meta"):
             for choice in output_dict.choices:
                 # two requirements, following the jsonlines format and using the required key
                 output_content = choice.message.content
-                print("######### start")
-                print(output_content)
-                print("######### end")
+                # print("######### start")
+                # print(output_content)
+                # print("######### end")
 
                 if "no fragments" in output_content.lower():
                     outputs = []
@@ -62,6 +62,7 @@ def llama3_prompting(input_text: str, facet: str, mode: str = "meta"):
             if ("limit" in str(e)):
                 time.sleep(2)
 
+    print(outputs)
     fragments = []
     for line in outputs:
         fragments.append(line["extracted_fragment"])
