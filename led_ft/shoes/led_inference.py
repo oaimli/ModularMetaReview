@@ -85,7 +85,10 @@ for item in results.select(data_idx):
     print("#### Meta-review: ", item['meta_review'])
     print("#### Generated meta-review:", item['generated_meta_review'])
 
+result_samples = []
+for result in results:
+    result_samples.append(result)
 # save generations
 with open(f"{args.save_path}/generations_led_large.json", "w") as f:
-    json.dump(results, f)
+    json.dump(result_samples, f)
 
