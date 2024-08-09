@@ -40,7 +40,7 @@ def llama3_prompting(input_text: str, facet: str, mode: str = "meta"):
                         for line in reader:
                             tmp.append(line)
                     output_keys = {[]}
-                    for output in outputs:
+                    for output in tmp:
                         output_keys.update(output.keys())
                     if len(output_keys.union({["extracted_fragment"]})) <= 1:
                         outputs = tmp
