@@ -586,19 +586,37 @@ def words_sharing(vector_a, vector_b):
             ones_b += 1
     r = (sharing_count + 1) / (ones_a + 1)
     p = (sharing_count + 1) / (ones_b + 1)
-    return 2*(r*p)/(r+p)
+    return r, p, 2*(r*p)/(r+p)
 
 
 def word_level_agreement(results_1, results_2, annotation_data):
-    novelty_agreements = []
-    soundness_agreements = []
-    clarity_agreements = []
-    advancement_agreements = []
-    compliance_agreements = []
-    overall_agreements = []
-    meta_review_agreements = []
-    review_agreements = []
-    all_text_agreements = []
+    novelty_agreements_fmeasure = []
+    novelty_agreements_recall = []
+    novelty_agreements_precision = []
+    soundness_agreements_fmeasure = []
+    soundness_agreements_recall = []
+    soundness_agreements_precision = []
+    clarity_agreements_fmeasure = []
+    clarity_agreements_recall = []
+    clarity_agreements_precision = []
+    advancement_agreements_fmeasure = []
+    advancement_agreements_recall = []
+    advancement_agreements_precision = []
+    compliance_agreements_fmeasure = []
+    compliance_agreements_recall = []
+    compliance_agreements_precision = []
+    overall_agreements_fmeasure = []
+    overall_agreements_recall = []
+    overall_agreements_precision = []
+    meta_review_agreements_fmeasure = []
+    meta_review_agreements_recall = []
+    meta_review_agreements_precision = []
+    review_agreements_fmeasure = []
+    review_agreements_recall = []
+    review_agreements_precision = []
+    all_text_agreements_fmeasure = []
+    all_text_agreements_recall = []
+    all_text_agreements_precision = []
 
     for id in annotation_data.keys():
         facets_1s_novelty = []
@@ -790,59 +808,77 @@ def word_level_agreement(results_1, results_2, annotation_data):
         a = np.array(meta_reviews_1s + reviews_1s)
         b = np.array(meta_reviews_2s + reviews_2s)
         print(len(meta_reviews_1s), len(meta_reviews_2s), len(reviews_1s), len(reviews_2s))
-        f = words_sharing(a, b)
-        all_text_agreements.append(f)
+        r, p, f = words_sharing(a, b)
+        all_text_agreements_fmeasure.append(f)
+        all_text_agreements_recall.append(r)
+        all_text_agreements_precision.append(p)
 
         a = np.array(meta_reviews_1s)
         b = np.array(meta_reviews_2s)
-        f = words_sharing(a, b)
-        meta_review_agreements.append(f)
+        r, p, f = words_sharing(a, b)
+        meta_review_agreements_fmeasure.append(f)
+        meta_review_agreements_recall.append(r)
+        meta_review_agreements_precision.append(p)
 
         a = np.array(reviews_1s)
         b = np.array(reviews_2s)
-        f = words_sharing(a, b)
-        review_agreements.append(f)
+        r, p, f = words_sharing(a, b)
+        review_agreements_fmeasure.append(f)
+        review_agreements_recall.append(r)
+        review_agreements_precision.append(p)
 
         a = np.array(facets_1s_novelty)
         b = np.array(facets_2s_novelty)
-        f = words_sharing(a, b)
-        novelty_agreements.append(f)
+        r, p, f = words_sharing(a, b)
+        novelty_agreements_fmeasure.append(f)
+        novelty_agreements_recall.append(r)
+        novelty_agreements_precision.append(p)
 
         a = np.array(facets_1s_soundness)
         b = np.array(facets_2s_soundness)
-        f = words_sharing(a, b)
-        soundness_agreements.append(f)
+        r, p, f = words_sharing(a, b)
+        soundness_agreements_fmeasure.append(f)
+        soundness_agreements_recall.append(r)
+        soundness_agreements_precision.append(p)
 
         a = np.array(facets_1s_clarity)
         b = np.array(facets_2s_clarity)
-        f = words_sharing(a, b)
-        clarity_agreements.append(f)
+        r, p, f = words_sharing(a, b)
+        clarity_agreements_fmeasure.append(f)
+        clarity_agreements_recall.append(r)
+        clarity_agreements_precision.append(p)
 
         a = np.array(facets_1s_advancement)
         b = np.array(facets_2s_advancement)
-        f = words_sharing(a, b)
-        advancement_agreements.append(f)
+        r, p, f = words_sharing(a, b)
+        advancement_agreements_fmeasure.append(f)
+        advancement_agreements_recall.append(r)
+        advancement_agreements_precision.append(p)
 
         a = np.array(facets_1s_compliance)
         b = np.array(facets_2s_compliance)
-        f = words_sharing(a, b)
-        compliance_agreements.append(f)
+        r, p, f = words_sharing(a, b)
+        compliance_agreements_fmeasure.append(f)
+        compliance_agreements_recall.append(r)
+        compliance_agreements_precision.append(p)
 
         a = np.array(facets_1s_overall)
         b = np.array(facets_2s_overall)
-        f = words_sharing(a, b)
-        overall_agreements.append(f)
+        r, p, f = words_sharing(a, b)
+        overall_agreements_fmeasure.append(f)
+        overall_agreements_recall.append(r)
+        overall_agreements_precision.append(p)
 
     result = {}
-    result["Highlight correlation, meta-review + review, word level"] = np.mean(all_text_agreements)
-    result["Highlight correlation, meta-review, word level"] = np.mean(meta_review_agreements)
-    result["Highlight correlation, review, word level"] = np.mean(review_agreements)
-    result["Highlight correlation, meta-review + review, word level, novelty"] = np.mean(novelty_agreements)
-    result["Highlight correlation, meta-review + review, word level, soundness"] = np.mean(soundness_agreements)
-    result["Highlight correlation, meta-review + review, word level, clarity"] = np.mean(clarity_agreements)
-    result["Highlight correlation, meta-review + review, word level, advancement"] = np.mean(advancement_agreements)
-    result["Highlight correlation, meta-review + review, word level, compliance"] = np.mean(compliance_agreements)
-    result["Highlight correlation, meta-review + review, word level, overall"] = np.mean(overall_agreements)
+    result["Highlight correlation, meta-review + review, word level"] = [np.mean(all_text_agreements_recall), np.mean(all_text_agreements_precision), np.mean(all_text_agreements_fmeasure)]
+    result["Highlight correlation, meta-review, word level"] = [np.mean(meta_review_agreements_recall), np.mean(meta_review_agreements_precision), np.mean(meta_review_agreements_fmeasure)]
+    result["Highlight correlation, review, word level"] = [np.mean(review_agreements_recall), np.mean(review_agreements_precision), np.mean(review_agreements_fmeasure)]
+    result["Highlight correlation, meta-review + review, word level, novelty"] = [np.mean(novelty_agreements_recall), np.mean(novelty_agreements_precision), np.mean(novelty_agreements_fmeasure)]
+    result["Highlight correlation, meta-review + review, word level, soundness"] = [np.mean(soundness_agreements_recall), np.mean(soundness_agreements_precision), np.mean(soundness_agreements_fmeasure)]
+    result["Highlight correlation, meta-review + review, word level, clarity"] = [np.mean(clarity_agreements_recall), np.mean(clarity_agreements_precision), np.mean(clarity_agreements_fmeasure)]
+    result["Highlight correlation, meta-review + review, word level, advancement"] = [np.mean(advancement_agreements_recall), np.mean(advancement_agreements_precision), np.mean(advancement_agreements_fmeasure)]
+    result["Highlight correlation, meta-review + review, word level, compliance"] = [np.mean(compliance_agreements_recall), np.mean(compliance_agreements_precision), np.mean(compliance_agreements_fmeasure)]
+    result["Highlight correlation, meta-review + review, word level, overall"] = [np.mean(overall_agreements_recall), np.mean(overall_agreements_precision), np.mean(overall_agreements_fmeasure)]
 
     return result
 
