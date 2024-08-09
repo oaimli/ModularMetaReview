@@ -2,7 +2,7 @@
 cd ../
 DATASET_NAME="peermeta"
 
-PLM_MODEL_PATH="allenai/led-large-16384"
+PLM_MODEL_PATH="/home/miao4/punim0521/ModularMetaReview/results/led_large_peermeta/checkpoints/checkpoint-1050"
 LENGTH_INPUT=16384
 LENGTH_TGT=512
 
