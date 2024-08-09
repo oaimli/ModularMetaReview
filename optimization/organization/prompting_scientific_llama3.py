@@ -9,6 +9,7 @@ import spacy
 
 
 def llama3_prompting(input_text: str, facet: str, mode: str = "meta"):
+    print(input_text)
     prompt_format = open(f"prompts_scientific/prompt_{mode.lower()}_{facet.lower()}.txt").read()
     prompt_content = prompt_format.replace("{{input_document}}", input_text)
     # print(prompt_format)
@@ -39,12 +40,13 @@ def llama3_prompting(input_text: str, facet: str, mode: str = "meta"):
                     with jsonlines.open("output_tmp.jsonl") as reader:
                         for line in reader:
                             tmp.append(line)
-                    output_keys = {[]}
-                    for output in tmp:
-                        output_keys.update(output.keys())
-                    if len(output_keys.union({["extracted_fragment"]})) <= 1:
-                        outputs = tmp
-                        break
+                    # output_keys = {[]}
+                    # for output in tmp:
+                    #     output_keys.update(output.keys())
+                    # if len(output_keys.union({["extracted_fragment"]})) <= 1:
+                    #     outputs = tmp
+                    #     break
+                    outputs = tmp
                 except jsonlines.InvalidLineError as err:
                     print("Jsonlines parsing error,", err)
 
