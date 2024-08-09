@@ -42,6 +42,8 @@ if __name__ == "__main__":
     score_zs_reference_avg = np.mean(scores_zs_reference)
     score_conv_reference_avg = np.mean(scores_conv_reference)
 
+    # TODO just use shared aspects for reference based summac
+
     print("scores zs:", "source", score_zs_source_avg, "reference", score_zs_reference_avg, "summation",
           score_zs_source_avg + score_zs_reference_avg)
     print("scores conv:", "source", score_conv_source_avg, "reference", score_conv_reference_avg, "summation",
