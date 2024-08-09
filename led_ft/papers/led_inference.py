@@ -77,7 +77,7 @@ def batch_process(batch):
 
 results = dataset_test.map(batch_process, batched=True, batch_size=args.batch_size)
 print("the length of results", len(results))
-print("the length of results summary", len(results["summary"]))
+print("the length of results summary", len(results["generated_meta_review"]))
 
 # print generations
 data_idx = random.choices(range(len(results)), k=2)
