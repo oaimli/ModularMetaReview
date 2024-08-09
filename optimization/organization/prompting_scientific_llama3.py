@@ -43,7 +43,7 @@ def llama3_prompting(input_text: str, facet: str, mode: str = "meta"):
                     output_keys = set([])
                     for output in tmp:
                         output_keys.update(output.keys())
-                    if len(output_keys) == len(["extracted_fragment"]):
+                    if len(output_keys) == 1:
                         outputs = tmp
                         break
                 except jsonlines.InvalidLineError as err:
