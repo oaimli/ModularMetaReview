@@ -19,7 +19,7 @@ def llama3_prompting(input_text: str, facet: str, mode: str = "meta"):
             output_dict = client.chat.completions.create(
                 model="meta-llama/Meta-Llama-3.1-70B-Instruct",
                 messages=[
-                    {"role": "system", "content": "You are requested to do some extraction work. You must produce the answer following the format of the example output, without other useless content."},
+                    {"role": "system", "content": "You are requested to do some extraction work. You must produce the answer following the requirement of the output, without other useless content."},
                     {"role": "user",
                      "content": prompt_content}
                     ],
@@ -48,8 +48,10 @@ def llama3_prompting(input_text: str, facet: str, mode: str = "meta"):
                             output_keys.update(output.keys())
                         if "extracted_fragment" in output_keys and len(output_keys) == 1:
                             outputs = tmp
+                            print(len(tmp))
                     except jsonlines.InvalidLineError as err:
                         print("Jsonlines parsing error,", err)
+
                 if outputs != None:
                     break
 
