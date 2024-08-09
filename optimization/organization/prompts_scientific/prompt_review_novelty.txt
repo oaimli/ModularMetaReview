@@ -39,4 +39,4 @@ Target input review:
 
 {{input_document}}
 
-Final extracted fragments (follow the format above in JSON Lines and if no resulted fragments just keep the output empty):
+Final extracted fragments (follow the format above in JSON Lines and if no resulted fragments just output "No fragments"):
