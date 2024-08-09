@@ -62,7 +62,9 @@ def llama3_prompting(input_text: str, facet: str, mode: str = "meta"):
             if ("limit" in str(e)):
                 time.sleep(2)
 
+    print("######### start")
     print(outputs)
+    print("######### end")
     fragments = []
     for line in outputs:
         fragments.append(line["extracted_fragment"])
