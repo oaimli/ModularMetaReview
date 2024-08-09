@@ -52,6 +52,8 @@ def llama3_prompting(input_text: str, facet: str, mode: str = "meta"):
                             break
                     except jsonlines.InvalidLineError as err:
                         print("Jsonlines parsing error,", err)
+                if outputs != None:
+                    break
 
             if outputs != None:
                 break
