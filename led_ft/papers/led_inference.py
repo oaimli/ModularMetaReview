@@ -86,6 +86,6 @@ for item in results.select(data_idx):
     print("#### Generated meta-review:", item['generated_meta_review'])
 
 # save generations
-with open(f"{args.save_path}/generations_led_large.json") as f:
+with open(f"{args.save_path}/generations_led_large.json", "w") as f:
     json.dump(results, f)
 
