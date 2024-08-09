@@ -124,6 +124,7 @@ if __name__ == "__main__":
     random_samples = random.sample(list(test_samples.keys()), 5)
     for key in tqdm(random_samples):
         sample = test_samples[key]
+        print(sample)
         reviews = sample["reviews"]
         meta_review = sample["meta_review"]
         sample["review_categorization"] = categorizing_review(reviews)
