@@ -8,50 +8,60 @@ from typing import Dict, List
 import spacy
 
 
-def parsing_result(output):
-    with open("output_tmp.jsonl", "w") as f:
-        f.write(output.strip())
-    results = []
-    try:
-        with jsonlines.open("output_tmp.jsonl") as reader:
-            for line in reader:
-                results.append(line)
-    except jsonlines.InvalidLineError as err:
-        print("Jsonlines parsing error,", err)
-    return results
-
-
 def gpt4_prompting(input_text: str, facet: str, mode: str = "meta"):
     prompt_format = open(f"prompts_scientific/prompt_{mode.lower()}_{facet.lower()}.txt").read()
     prompt_content = prompt_format.replace("{{input_document}}", input_text)
     # print(prompt_format)
+    outputs = None
     while True:
         try:
             output_dict = client.chat.completions.create(
                 model="meta-llama/Meta-Llama-3.1-70B-Instruct",
                 messages=[
-                    {"role": "system", "content": "Always answer with texts in a JSON Lines format, no other content."},
+                    {"role": "system", "content": "You are requested to do some extraction work. You must produce the answer following the format of the example output, without other useless content."},
                     {"role": "user",
                      "content": prompt_content}
                     ],
-                n=5
+                n=8
                 )
-            output = []
+
             for choice in output_dict.choices:
-                tmp = parsing_result(choice.message.content)
-                if len(tmp) > len(output):
-                    output = tmp
-            break
+                # two requirements, following the jsonlines format and using the required key
+                output_content = choice.message.content
+                print(output_content)
+                with open("output_tmp.jsonl", "w") as f:
+                    f.write(output_content.strip())
+
+                tmp = []
+                try:
+                    with jsonlines.open("output_tmp.jsonl") as reader:
+                        for line in reader:
+                            tmp.append(line)
+                    output_keys = {[]}
+                    for output in outputs:
+                        output_keys.update(output.keys())
+                    if len(output_keys.union({["extracted_fragment"]})) <= 1:
+                        outputs = tmp
+                        break
+                except jsonlines.InvalidLineError as err:
+                    print("Jsonlines parsing error,", err)
+
+            if outputs != None:
+                break
         except Exception as e:
             print(e)
             if ("limit" in str(e)):
                 time.sleep(2)
-    # print(output)
-    print(output)
+
+    print(outputs)
+    output_keys = {[]}
+    for output in outputs:
+        output_keys.update(output.keys())
+    assert len(output_keys.union({["extracted_fragment"]})) <= 1
+
     fragments = []
-    for line in output:
-        if isinstance(line, dict) and "extracted_fragment" in line.keys():
-            fragments.append(line["extracted_fragment"])
+    for line in outputs:
+        fragments.append(line["extracted_fragment"])
 
     return fragments
 
