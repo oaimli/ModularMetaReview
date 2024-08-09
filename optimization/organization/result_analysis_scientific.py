@@ -949,6 +949,6 @@ if __name__ == "__main__":
 
     print(shared_ids)
 
-    print(f"################ Overall agreement, A1<->A2, A1<->Model and A2<->Model {model_name} {datetime.datetime.now()} ################")
+    print(f"################ All agreements, A1<->A2, A1<->Model and A2<->Model {model_name} {datetime.datetime.now()} ################")
     for key in result_bm:
         print(key, "------", result_bz[key], result_bm[key], result_zm[key])
