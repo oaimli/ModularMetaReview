@@ -29,9 +29,9 @@ def llama3_prompting(input_text: str, facet: str, mode: str = "meta"):
             for choice in output_dict.choices:
                 # two requirements, following the jsonlines format and using the required key
                 output_content = choice.message.content
-                print("#########")
+                print("######### start")
                 print(output_content)
-                print("#########")
+                print("######### end")
 
                 if "no fragments" in output_content.lower():
                     outputs = []
@@ -39,9 +39,8 @@ def llama3_prompting(input_text: str, facet: str, mode: str = "meta"):
                 else:
                     with open("output_tmp.jsonl", "w") as f:
                         f.write(output_content.strip())
-
-                    tmp = []
                     try:
+                        tmp = []
                         with jsonlines.open("output_tmp.jsonl") as reader:
                             for line in reader:
                                 tmp.append(line)
