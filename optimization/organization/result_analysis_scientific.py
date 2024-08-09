@@ -1,4 +1,6 @@
 import json
+import time
+
 from sklearn.metrics import cohen_kappa_score
 import krippendorff
 import numpy as np
@@ -902,10 +904,13 @@ def word_level_agreement(results_1, results_2, annotation_data):
 
 
 if __name__ == "__main__":
+    # model_name = "gpt-4o-2024-05-13"
     # with open("scientific_categorization_result_gpt4_processed.json") as f:
     #     model_results = json.load(f)
+    # model_name = "Mixtral-8x7B-Instruct-v0.1"
     # with open("scientific_categorization_result_mixtral8x7b_v01_processed.json") as f:
     #     model_results = json.load(f)
+    model_name = "LLaMA3.1-70B-Instruct"
     with open("scientific_categorization_result_llama31_70b_processed.json") as f:
         model_results = json.load(f)
 
@@ -943,6 +948,6 @@ if __name__ == "__main__":
 
     print(shared_ids)
 
-    print("################ Overall agreement, A1<->A2, A1<->Model and A2<->Model ################")
+    print(f"################ Overall agreement, A1<->A2, A1<->Model and A2<->Model {model_name} {time.localtime()} ################")
     for key in result_bm:
         print(key, "------", result_bz[key], result_bm[key], result_zm[key])
