@@ -44,7 +44,7 @@ def predict(
             max_length=model_args.max_length_model - model_args.max_predict_length - 16
             )
         input_ids = input_dict.input_ids
-        print(len(input_ids[0]))
+        # print(len(input_ids[0]))
         attention_mask = input_dict.attention_mask
         output_ids = model.generate(
             input_ids=input_ids.to("cuda"),
