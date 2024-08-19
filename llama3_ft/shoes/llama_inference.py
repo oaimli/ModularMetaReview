@@ -20,7 +20,7 @@ def predict(
     print("tokenizer pad", tokenizer.pad_token, tokenizer.pad_token_id)
     print("tokenizer unk", tokenizer.unk_token, tokenizer.unk_token_id)
 
-    model = AutoModelForCausalLM.from_pretrained(model_args, trust_remote_code=True, torch_dtype=torch.bfloat16,
+    model = AutoModelForCausalLM.from_pretrained(model_args.model_name_or_path, trust_remote_code=True, torch_dtype=torch.bfloat16,
                                                  device_map="auto")
     print(model.config)
 
