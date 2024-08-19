@@ -1,14 +1,10 @@
 You are good at understanding documents with scientific review opinions.
-Below is scientific reviews in different aspects for an academic manuscript, please write a concise meta-review which is a summary of the provided reviews.
+Below is summaries of different review aspects for an academic manuscript, please write a concise meta-review which is a summary of the provided small summaries.
 
 
-Review texts in different aspects:
+Small summaries in different aspects:
 
 {{metas_generated}}
 
 
-Output format:
-{"meta_review": "the generated summary of the opinionated texts"}
-
-
-The meta-review (must in the format of JSON, no other content):
+The meta-review is (directly produce the answer without any other content):

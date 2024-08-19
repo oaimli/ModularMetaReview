@@ -1,4 +1,3 @@
-import jsonlines
 from openai import OpenAI
 import time
 import json
@@ -6,24 +5,12 @@ from tqdm import tqdm
 from typing import List
 
 
-def parsing_result(output):
-    with open("output_tmp.jsonl", "w") as f:
-        f.write(output.strip())
-    tmp = []
-    try:
-        with jsonlines.open("output_tmp.jsonl") as reader:
-            for line in reader:
-                tmp.append(line)
-    except jsonlines.InvalidLineError as err:
-        print("Jsonlines parsing error,", err)
-    return tmp
-
-
-def gpt4_prompting(review_fragments: List, facet: str):
-    prompt_format = open("prompt_gpt4.txt").read()
+def gpt4_prompting(review_fragments: List):
+    prompt_format = open("prompt_reasoning_scientific.txt").read()
     review_text = "\n".join(review_fragments)
     prompt_content = prompt_format.replace("{{review_fragments}}", review_text)
     # print(prompt_format)
+    meta_generated = ""
     while True:
         try:
             output_dict = client.chat.completions.create(
@@ -35,24 +22,18 @@ def gpt4_prompting(review_fragments: List, facet: str):
                     ],
                 n=5
                 )
-            output = []
             for choice in output_dict.choices:
-                tmp = parsing_result(choice.message.content)
+                tmp = choice.message.content
                 if len(tmp) > 0:
-                    output = tmp
+                    meta_generated = tmp
                     break
-            break
+            if meta_generated != "":
+                break
         except Exception as e:
             print(e)
             if ("limit" in str(e)):
                 time.sleep(2)
     # print(output)
-    meta_generated = ""
-    if len(output) > 0:
-        if "summary" in output[0].keys():
-            meta_generated = output[0]["summary"]
-    print(meta_generated)
-
     return meta_generated
 
 

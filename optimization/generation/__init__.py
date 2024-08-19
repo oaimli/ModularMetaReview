@@ -1,1 +1,1 @@
-# Evaluated with methods in eval_auto
+# Comparison of generated results are in modular_llama3 and modular_gpt4 on three datasets

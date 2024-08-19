@@ -22,7 +22,7 @@ Example input review fragments:
 
 Example summary of the input fragments:
 
-{"summary": "The proposed approach to explain similarity prediction is a relatively less explored area, which makes the problem addressed and the proposed method unique."}
+The proposed approach to explain similarity prediction is a relatively less explored area, which makes the problem addressed and the proposed method unique.
 
 
 Example input review fragments:
@@ -47,11 +47,11 @@ Example input review fragments:
 
 Example summary of the input fragments:
 
-{"summary": "Based on these, I recommend acceptance for this paper. All reviewers agree that the paper proposes an interesting approach to Bayesian inference incorporating coresets with Hamiltonian flows."}
+Based on these, I recommend acceptance for this paper. All reviewers agree that the paper proposes an interesting approach to Bayesian inference incorporating coresets with Hamiltonian flows.
 
 
 Target input review fragments:
 
 {{review_fragments}}
 
-The final summary of these target input text fragments (must in the format of JSON, no other content):
+The final summary of these target input text fragments (just produce the answer without any other content):

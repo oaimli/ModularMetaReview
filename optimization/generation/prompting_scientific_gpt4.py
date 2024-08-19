@@ -1,4 +1,3 @@
-import jsonlines
 from openai import OpenAI
 import time
 import json
@@ -6,24 +5,12 @@ from tqdm import tqdm
 from typing import List
 
 
-def parsing_result(output):
-    with open("output_tmp.jsonl", "w") as f:
-        f.write(output.strip())
-    tmp = []
-    try:
-        with jsonlines.open("output_tmp.jsonl") as reader:
-            for line in reader:
-                tmp.append(line)
-    except jsonlines.InvalidLineError as err:
-        print("Jsonlines parsing error,", err)
-    return tmp
-
-
 def gpt4_prompting(metas_generated: List):
     prompt_format = open("prompt_scientific_gpt4.txt").read()
     review_text = "\n".join(metas_generated)
     prompt_content = prompt_format.replace("{{metas_generated}}", review_text)
     # print(prompt_format)
+    final_meta_review = ""
     while True:
         try:
             output_dict = client.chat.completions.create(
@@ -35,28 +22,23 @@ def gpt4_prompting(metas_generated: List):
                     ],
                 n=5
                 )
-            output = []
             for choice in output_dict.choices:
-                tmp = parsing_result(choice.message.content)
+                tmp = choice.message.content
                 if len(tmp) > 0:
-                    output = tmp
+                    final_meta_review = tmp
                     break
             break
         except Exception as e:
             print(e)
             if ("limit" in str(e)):
                 time.sleep(2)
-    # print(output)
-    meta_review = ""
-    if len(output) > 0:
-        if "meta_review" in output[0].keys():
-            meta_review = output[0]["meta_review"]
-    print(meta_review)
 
-    return meta_review
+    print(final_meta_review)
+
+    return final_meta_review
 
 
-def meta_generation(categorization_pairs: List) -> List:
+def meta_generation(categorization_pairs: List) -> str:
     metas_generated = []
     for pair in categorization_pairs:
         metas_generated.append(pair["meta_generated"])
