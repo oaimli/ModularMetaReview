@@ -41,7 +41,6 @@ def facet_reasoning(categorization_pairs: List) -> List:
     result = []
     for pair in categorization_pairs:
         review_fragments = pair["review_fragments"]
-        facet = pair["facet"]
         pair["meta_generated"] = gpt4_prompting(review_fragments)
         result.append(pair)
 
@@ -52,7 +51,7 @@ if __name__ == "__main__":
     model_name = "gpt_4o"
     client = OpenAI(api_key="sk-proj-jxdkj7TzTCWDjDU0lpEPT3BlbkFJll01Dz3fxt51wM8Rh6wm")
 
-    with open("scientific_selection_result_llama31_70b.json") as f:
+    with open(f"space_selection_result_{model_name}.json") as f:
         test_samples = json.load(f)
 
     results = {}
@@ -64,5 +63,5 @@ if __name__ == "__main__":
         # print(sample)
 
     print(len(results))
-    with open(f"scientific_reasoning_result_{model_name}.json", "w") as f:
+    with open(f"space_reasoning_result_{model_name}.json", "w") as f:
         json.dump(results, f, indent=4)
