@@ -15,10 +15,10 @@ for key in processed_samples.keys():
         tmp = {}
         tmp["facet"] = facet
 
-        review_fargments = []
+        review_fragments = []
         for review_categorization in review_categorizations:
-            review_fargments.extend(review_categorization[facet])
-        tmp["review_fragments"] = review_fargments
+            review_fragments.extend(review_categorization[facet])
+        tmp["review_fragments"] = review_fragments
 
         tmp["meta_review_fragments"] = meta_review_categorization[facet]
 

@@ -19,7 +19,7 @@ def parsing_result(output):
     return tmp
 
 
-def gpt4_prompting(review_fragments: List, facet: str):
+def gpt4_prompting(review_fragments: List):
     prompt_format = open("prompt_gpt4.txt").read()
     review_text = "\n".join(review_fragments)
     prompt_content = prompt_format.replace("{{review_fragments}}", review_text)
@@ -60,8 +60,7 @@ def facet_reasoning(categorization_pairs: List) -> List:
     result = []
     for pair in categorization_pairs:
         review_fragments = pair["review_fragments"]
-        facet = pair["facet"]
-        pair["meta_generated"] = gpt4_prompting(review_fragments, facet)
+        pair["meta_generated"] = gpt4_prompting(review_fragments)
         result.append(pair)
 
     return result

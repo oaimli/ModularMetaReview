@@ -41,8 +41,7 @@ def facet_reasoning(categorization_pairs: List) -> List:
     result = []
     for pair in categorization_pairs:
         review_fragments = pair["review_fragments"]
-        facet = pair["facet"]
-        pair["meta_generated"] = gpt4_prompting(review_fragments, facet)
+        pair["meta_generated"] = gpt4_prompting(review_fragments)
         result.append(pair)
 
     return result
