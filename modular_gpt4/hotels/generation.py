@@ -6,7 +6,7 @@ from typing import List
 
 
 def gpt4_prompting(metas_generated: List):
-    prompt_format = open("prompt_scientific_gpt4.txt").read()
+    prompt_format = open("prompts_generation/prompt_generation.txt").read()
     review_text = "\n".join(metas_generated)
     prompt_content = prompt_format.replace("{{metas_generated}}", review_text)
     # print(prompt_format)
@@ -52,7 +52,7 @@ if __name__ == "__main__":
     model_name = "gpt_4o"
     client = OpenAI(api_key="sk-proj-jxdkj7TzTCWDjDU0lpEPT3BlbkFJll01Dz3fxt51wM8Rh6wm")
 
-    with open(f"scientific_reasoning_result_{model_name}.json") as f:
+    with open(f"space_reasoning_result_{model_name}.json") as f:
         test_samples = json.load(f)
 
     results = {}

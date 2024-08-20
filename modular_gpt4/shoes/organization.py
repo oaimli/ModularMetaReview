@@ -121,13 +121,13 @@ def matching_fragments(document, facet_fragments):
 if __name__ == "__main__":
     random.seed(42)
     nlp = spacy.load("en_core_web_sm")
-    facets = ["Building", "Cleanliness", "Food", "Location", "Rooms", "Service"]
+    facets = ["Breathability", "Durability", "Weight", "Cushioning", "Stability", "Flexibility", "Traction", "SizeFit", "Comfort", "Misc"]
 
     model_name = "gpt_4o"
     client = OpenAI(api_key="sk-proj-jxdkj7TzTCWDjDU0lpEPT3BlbkFJll01Dz3fxt51wM8Rh6wm")
 
     test_samples = []
-    with jsonlines.open("../../datasets/space_test.jsonl") as reader:
+    with jsonlines.open("../../datasets/amasum_shoes_test.jsonl") as reader:
         for line in reader:
             test_samples.append(line)
 
@@ -156,5 +156,5 @@ if __name__ == "__main__":
             review_categorization_new.append(matching_fragments(review["comment"], categorization))
         results[sample_index]["review_categorization"] = review_categorization_new
 
-    with open(f"space_categorization_result_{model_name}.json", "w") as f:
+    with open(f"amasum_shoes_categorization_result_{model_name}.json", "w") as f:
         json.dump(results, f, indent=4)

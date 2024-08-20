@@ -10,7 +10,7 @@ from rouge_score import rouge_scorer
 
 
 def gpt4_prompting(input_text: str, facet: str, mode: str = "meta"):
-    prompt_format = open(f"prompts_organization/prompt_{mode.lower()}_{facet.lower()}.txt").read()
+    prompt_format = open(f"../../optimization/organization/prompts_scientific/prompt_{mode.lower()}_{facet.lower()}.txt").read()
     prompt_content = prompt_format.replace("{{input_document}}", input_text)
     # print(prompt_format)
     outputs = None
@@ -121,13 +121,13 @@ def matching_fragments(document, facet_fragments):
 if __name__ == "__main__":
     random.seed(42)
     nlp = spacy.load("en_core_web_sm")
-    facets = ["Building", "Cleanliness", "Food", "Location", "Rooms", "Service"]
+    facets = ["Novelty", "Soundness", "Clarity", "Advancement", "Compliance", "Overall"]
 
     model_name = "gpt_4o"
     client = OpenAI(api_key="sk-proj-jxdkj7TzTCWDjDU0lpEPT3BlbkFJll01Dz3fxt51wM8Rh6wm")
 
     test_samples = []
-    with jsonlines.open("../../datasets/space_test.jsonl") as reader:
+    with jsonlines.open("../../datasets/peermeta_test.jsonl") as reader:
         for line in reader:
             test_samples.append(line)
 
@@ -156,5 +156,5 @@ if __name__ == "__main__":
             review_categorization_new.append(matching_fragments(review["comment"], categorization))
         results[sample_index]["review_categorization"] = review_categorization_new
 
-    with open(f"space_categorization_result_{model_name}.json", "w") as f:
+    with open(f"peermeta_categorization_result_{model_name}.json", "w") as f:
         json.dump(results, f, indent=4)

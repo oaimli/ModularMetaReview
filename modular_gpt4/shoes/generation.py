@@ -5,12 +5,12 @@ from tqdm import tqdm
 from typing import List
 
 
-def gpt4_prompting(review_fragments: List):
+def gpt4_prompting(metas_generated: List):
     prompt_format = open("prompts_generation/prompt_generation.txt").read()
-    review_text = "\n".join(review_fragments)
-    prompt_content = prompt_format.replace("{{review_fragments}}", review_text)
+    review_text = "\n".join(metas_generated)
+    prompt_content = prompt_format.replace("{{metas_generated}}", review_text)
     # print(prompt_format)
-    meta_generated = ""
+    final_meta_review = ""
     while True:
         try:
             output_dict = client.chat.completions.create(
@@ -25,43 +25,44 @@ def gpt4_prompting(review_fragments: List):
             for choice in output_dict.choices:
                 tmp = choice.message.content
                 if len(tmp) > 0:
-                    meta_generated = tmp
+                    final_meta_review = tmp
                     break
-            if meta_generated != "":
-                break
+            break
         except Exception as e:
             print(e)
             if ("limit" in str(e)):
                 time.sleep(2)
-    # print(output)
-    return meta_generated
+
+    print(final_meta_review)
+
+    return final_meta_review
 
 
-def facet_reasoning(categorization_pairs: List) -> List:
-    result = []
+def meta_generation(categorization_pairs: List) -> str:
+    metas_generated = []
     for pair in categorization_pairs:
-        review_fragments = pair["review_fragments"]
-        pair["meta_generated"] = gpt4_prompting(review_fragments)
-        result.append(pair)
+        metas_generated.append(pair["meta_generated"])
 
-    return result
+    meta_review = gpt4_prompting(metas_generated)
+
+    return meta_review
 
 
 if __name__ == "__main__":
     model_name = "gpt_4o"
     client = OpenAI(api_key="sk-proj-jxdkj7TzTCWDjDU0lpEPT3BlbkFJll01Dz3fxt51wM8Rh6wm")
 
-    with open(f"space_selection_result_{model_name}.json") as f:
+    with open(f"amasum_shoes_reasoning_result_{model_name}.json") as f:
         test_samples = json.load(f)
 
     results = {}
     for key in tqdm(test_samples):
         sample = test_samples[key]
         categorization_pairs = sample["categorization_pairs"]
-        sample["categorization_pairs"] = facet_reasoning(categorization_pairs)
+        sample["meta_review_generated"] = meta_generation(categorization_pairs)
         results[key] = sample
         # print(sample)
 
     print(len(results))
-    with open(f"space_reasoning_result_{model_name}.json", "w") as f:
+    with open(f"amasum_shoes_generation_result_{model_name}.json", "w") as f:
         json.dump(results, f, indent=4)
