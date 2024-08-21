@@ -906,7 +906,7 @@ def word_level_agreement(results_1, results_2, annotation_data):
 
 if __name__ == "__main__":
     model_name = "gpt-4o-2024-05-13"
-    with open("scientific_categorization_result_gpt4_processed.json") as f:
+    with open("scientific_categorization_result_gpt_4o_processed.json") as f:
         model_results = json.load(f)
     # model_name = "Mixtral-8x7B-Instruct-v0.1"
     # with open("scientific_categorization_result_mixtral8x7b_v01_processed.json") as f:
