@@ -908,12 +908,12 @@ if __name__ == "__main__":
     # model_name = "gpt-4o-2024-05-13"
     # with open("scientific_categorization_result_gpt4_processed.json") as f:
     #     model_results = json.load(f)
-    # model_name = "Mixtral-8x7B-Instruct-v0.1"
-    # with open("scientific_categorization_result_mixtral8x7b_v01_processed.json") as f:
-    #     model_results = json.load(f)
-    model_name = "LLaMA3.1-70B-Instruct"
-    with open("scientific_categorization_result_llama31_70b_processed.json") as f:
+    model_name = "Mixtral-8x7B-Instruct-v0.1"
+    with open("scientific_categorization_result_mixtral8x7b_v01_processed.json") as f:
         model_results = json.load(f)
+    # model_name = "LLaMA3.1-70B-Instruct"
+    # with open("scientific_categorization_result_llama31_70b_processed.json") as f:
+    #     model_results = json.load(f)
 
     with open("../../annotations/scientific_reviews/br_annotation_result_fragments.json") as f:
         bryan_results = json.load(f)
