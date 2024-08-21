@@ -26,3 +26,33 @@ Highlight correlation, meta-review + review, word level, compliance (f1) ------ 
 Highlight correlation, meta-review + review, word level, overall (r) ------ 0.6801538682296323 0.6786288961584065 0.48287266553480473
 Highlight correlation, meta-review + review, word level, overall (p) ------ 0.708 0.1095561464029623 0.07773811708099096
 Highlight correlation, meta-review + review, word level, overall (f1) ------ 0.6636099932930919 0.1882646816916165 0.1277392389108682
+
+
+################ All agreements, A1<->A2, A1<->Model and A2<->Model Mixtral-8x7B-Instruct-v0.1 2024-08-21 19:28:46.269964 ################
+Highlight correlation, meta-review + review, word level (r) ------ 0.7727452893552168 0.7533216386205993 0.7826111260937711
+Highlight correlation, meta-review + review, word level (p) ------ 0.8721361203243434 0.28247257825781114 0.25866711968855344
+Highlight correlation, meta-review + review, word level (f1) ------ 0.8187068468722781 0.40475510987859503 0.38199853828786123
+Highlight correlation, meta-review, word level (r) ------ 0.9074189675870349 0.9597779111644659 0.9571109456440803
+Highlight correlation, meta-review, word level (p) ------ 0.9526825253752399 0.709812829505811 0.6750267494919259
+Highlight correlation, meta-review, word level (f1) ------ 0.9282039911308205 0.8059412603426551 0.7812959404730255
+Highlight correlation, review, word level (r) ------ 0.7622129162776121 0.7224346970940863 0.7582718225031326
+Highlight correlation, review, word level (p) ------ 0.8590369309693893 0.2514916695366527 0.23302957504741334
+Highlight correlation, review, word level (f1) ------ 0.8062644441149966 0.36812940096100544 0.3503456778831907
+Highlight correlation, meta-review + review, word level, novelty (r) ------ 0.7080483789260386 0.2742149287384098 0.2951135047790719
+Highlight correlation, meta-review + review, word level, novelty (p) ------ 0.756423119215748 0.13637274512905195 0.1306720325399783
+Highlight correlation, meta-review + review, word level, novelty (f1) ------ 0.7216288767622535 0.16408304524729783 0.16169440480147798
+Highlight correlation, meta-review + review, word level, soundness (r) ------ 0.6953388865914067 0.026415413093746027 0.021232350474205852
+Highlight correlation, meta-review + review, word level, soundness (p) ------ 0.7444489889357568 0.6243839267990661 0.6114187407246363
+Highlight correlation, meta-review + review, word level, soundness (f1) ------ 0.7108221963259213 0.040050647474580495 0.03482165046420312
+Highlight correlation, meta-review + review, word level, clarity (r) ------ 0.627805265394028 0.7267411040681263 0.6849067178998373
+Highlight correlation, meta-review + review, word level, clarity (p) ------ 0.787904432832349 0.08312278302912089 0.06652409322371326
+Highlight correlation, meta-review + review, word level, clarity (f1) ------ 0.6833498690810982 0.14453044880616567 0.11636758313093984
+Highlight correlation, meta-review + review, word level, advancement (r) ------ 0.6902366500017083 0.17008427848348945 0.2179085077357208
+Highlight correlation, meta-review + review, word level, advancement (p) ------ 0.6924206359460088 0.25882419427993775 0.2823336294783692
+Highlight correlation, meta-review + review, word level, advancement (f1) ------ 0.6690341491278338 0.20351639310682682 0.2452911629214743
+Highlight correlation, meta-review + review, word level, compliance (r) ------ 0.7653846153846153 0.8076923076923077 0.6576190476190477
+Highlight correlation, meta-review + review, word level, compliance (p) ------ 0.6492857142857142 0.20545377294243305 0.2050326058313087
+Highlight correlation, meta-review + review, word level, compliance (f1) ------ 0.6635948526359485 0.21068570290085784 0.20927892609371543
+Highlight correlation, meta-review + review, word level, overall (r) ------ 0.6801538682296323 0.6094760312151617 0.5144516129032258
+Highlight correlation, meta-review + review, word level, overall (p) ------ 0.708 0.024204463539884088 0.020185324783903228
+Highlight correlation, meta-review + review, word level, overall (f1) ------ 0.6636099932930918 0.04651332307026264 0.03868441486630523
