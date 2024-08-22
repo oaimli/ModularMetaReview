@@ -9,6 +9,7 @@ import spacy
 
 
 def llama3_prompting(input_text: str, facet: str, mode: str = "meta"):
+    print("#######")
     prompt_format = open(f"prompts_scientific/prompt_{mode.lower()}_{facet.lower()}.txt").read()
     prompt_content = prompt_format.replace("{{input_document}}", input_text)
     # print(prompt_format)
@@ -41,7 +42,7 @@ def llama3_prompting(input_text: str, facet: str, mode: str = "meta"):
                         for line in reader:
                             tmp.append(line)
                     output_keys = set([])
-                    for output in outputs:
+                    for output in tmp:
                         output_keys.update(output.keys())
                     if len(output_keys.union({"extracted_fragment"})) <= 1:
                         outputs = tmp
