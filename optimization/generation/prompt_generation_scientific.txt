@@ -2,7 +2,7 @@ You are good at understanding documents with scientific review opinions.
 Below are comments on different review aspects for an academic manuscript, please write a concise and natural meta-review which summaries the provided comments and covers all mentioned review aspects.
 
 
-Comments in different aspects:
+Comments on different aspects:
 
 {{metas_generated}}
 

@@ -18,7 +18,7 @@ def gpt4_prompting(input_text: str, facet: str, mode: str = "meta"):
             output_dict = client.chat.completions.create(
                 model="gpt-4o-2024-05-13",
                 messages=[
-                    {"role": "system", "content": "You are requested to do some extraction work. You must produce the answer following the format of the example output, without other useless content."},
+                    {"role": "system", "content": "You are requested to do some extraction work. You must output the answer following the format of the example output, without any other useless content."},
                     {"role": "user",
                      "content": prompt_content}
                     ],
@@ -29,9 +29,12 @@ def gpt4_prompting(input_text: str, facet: str, mode: str = "meta"):
                 # two requirements, following the jsonlines format and using the required key
                 output_content = choice.message.content
                 print(output_content)
+                if "no related fragments" in output_content.lower():
+                    outputs = []
+                    break
+
                 with open("output_tmp.jsonl", "w") as f:
                     f.write(output_content.strip())
-
                 tmp = []
                 try:
                     with jsonlines.open("output_tmp.jsonl") as reader:

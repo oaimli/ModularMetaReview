@@ -1,5 +1,5 @@
 You are good at understanding documents with scientific review opinions.
-Below is a scientific meta-review for an academic manuscript, please extract fragments that make comments on Clarity of the research work.
+Below is a scientific meta-review for an academic manuscript, please extract fragments that are related to Clarity of the research work.
 
 Definition of Clarity:
 
@@ -20,6 +20,7 @@ Here are some recommendations:
 
 Overall, I recommend rejection of this paper. A potential re-submission venue could be JMLR, which has an explicit software track.
 
+
 Example output fragments in JSON Lines:
 
 {"extracted_fragment": "While the package seems to be useful for this purpose (and some ML-related purposes), the paper does not expose which of the benefits come from JAX and which ones the authors added in JAX MD."}
@@ -30,4 +31,4 @@ Target input meta-review:
 
 {{input_document}}
 
-Final extracted fragments (follow the format above in JSON Lines and if no resulted fragments just output "No fragments"):
+Final extracted fragments (follow the format above in JSON Lines and if no resulted fragments just output "No related fragments"):

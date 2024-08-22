@@ -9,7 +9,6 @@ import spacy
 
 
 def mixtral_prompting(input_text: str, facet: str, mode: str = "meta"):
-    print(input_text)
     prompt_format = open(f"prompts_scientific/prompt_{mode.lower()}_{facet.lower()}.txt").read()
     prompt_content = prompt_format.replace("{{input_document}}", input_text)
     # print(prompt_format)
@@ -19,7 +18,7 @@ def mixtral_prompting(input_text: str, facet: str, mode: str = "meta"):
             output_dict = client.chat.completions.create(
                 model="mistralai/Mixtral-8x7B-Instruct-v0.1",
                 messages=[
-                    {"role": "system", "content": "You are requested to do some extraction work. You must produce the answer following the requirement of the output, without other useless content."},
+                    {"role": "system", "content": "You are requested to do some extraction work. You must output the answer following the format of the example output, without any other useless content."},
                     {"role": "user",
                      "content": prompt_content}
                     ],
@@ -29,31 +28,26 @@ def mixtral_prompting(input_text: str, facet: str, mode: str = "meta"):
             for choice in output_dict.choices:
                 # two requirements, following the jsonlines format and using the required key
                 output_content = choice.message.content
-                # print("######### start")
-                # print(output_content)
-                # print("######### end")
-
-                if "no fragments" in output_content.lower():
+                print(output_content)
+                if "no related fragments" in output_content.lower():
                     outputs = []
-                else:
-                    with open("output_tmp.jsonl", "w") as f:
-                        f.write(output_content.strip())
-                    try:
-                        tmp = []
-                        with jsonlines.open("output_tmp.jsonl") as reader:
-                            for line in reader:
-                                tmp.append(line)
-                        output_keys = set([])
-                        for output in tmp:
-                            output_keys.update(output.keys())
-                        if "extracted_fragment" in output_keys and len(output_keys) == 1:
-                            outputs = tmp
-                            print(len(tmp))
-                    except jsonlines.InvalidLineError as err:
-                        print("Jsonlines parsing error,", err)
-
-                if outputs != None:
                     break
+
+                with open("output_tmp.jsonl", "w") as f:
+                    f.write(output_content.strip())
+                tmp = []
+                try:
+                    with jsonlines.open("output_tmp.jsonl") as reader:
+                        for line in reader:
+                            tmp.append(line)
+                    output_keys = {[]}
+                    for output in outputs:
+                        output_keys.update(output.keys())
+                    if len(output_keys.union({["extracted_fragment"]})) <= 1:
+                        outputs = tmp
+                        break
+                except jsonlines.InvalidLineError as err:
+                    print("Jsonlines parsing error,", err)
 
             if outputs != None:
                 break
@@ -62,9 +56,12 @@ def mixtral_prompting(input_text: str, facet: str, mode: str = "meta"):
             if ("limit" in str(e)):
                 time.sleep(2)
 
-    print("######### start")
     print(outputs)
-    print("######### end")
+    output_keys = {[]}
+    for output in outputs:
+        output_keys.update(output.keys())
+    assert len(output_keys.union({["extracted_fragment"]})) <= 1
+
     fragments = []
     for line in outputs:
         fragments.append(line["extracted_fragment"])
@@ -124,7 +121,6 @@ if __name__ == "__main__":
     random_samples = random.sample(list(test_samples.keys()), 5)
     for key in tqdm(random_samples):
         sample = test_samples[key]
-        print(sample)
         reviews = sample["reviews"]
         meta_review = sample["meta_review"]
         sample["review_categorization"] = categorizing_review(reviews)

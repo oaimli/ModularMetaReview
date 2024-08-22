@@ -1,5 +1,5 @@
 You are good at understanding documents with scientific review opinions.
-Below is a scientific review for an academic manuscript, please extract fragments that make comments on Clarity of the research work.
+Below is a scientific review for an academic manuscript, please extract fragments that are related to Clarity of the research work.
 
 Definition of Clarity:
 
@@ -21,4 +21,4 @@ Target input review:
 
 {{input_document}}
 
-Final extracted fragments (follow the format above in JSON Lines and if no resulted fragments just output "No fragments"):
+Final extracted fragments (follow the format above in JSON Lines and if no resulted fragments just output "No related fragments"):
