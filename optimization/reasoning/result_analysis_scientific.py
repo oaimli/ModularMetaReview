@@ -31,7 +31,7 @@ scores_zs, scores_conv = summac_scores(sources, ground_truths)
 print("scores zs ground truths", np.mean(scores_zs), "scores conv ground truth", np.mean(scores_conv))
 
 
-with open("scientific_reasoning_result_llama3_70b.json") as f:
+with open("scientific_reasoning_result_llama31_70b.json") as f:
     samples = json.load(f)
 
 sources = []
