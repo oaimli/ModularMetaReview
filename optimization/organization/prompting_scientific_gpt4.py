@@ -57,10 +57,10 @@ def gpt4_prompting(input_text: str, facet: str, mode: str = "meta"):
                 time.sleep(2)
 
     print(outputs)
-    output_keys = {[]}
+    output_keys = set([])
     for output in outputs:
         output_keys.update(output.keys())
-    assert len(output_keys.union({["extracted_fragment"]})) <= 1
+    assert len(output_keys.union({"extracted_fragment"})) <= 1
 
     fragments = []
     for line in outputs:
