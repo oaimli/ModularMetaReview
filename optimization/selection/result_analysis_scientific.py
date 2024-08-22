@@ -1,7 +1,7 @@
 import json
 
 
-with open("scientific_selection_result_llama3_70b.json") as f:
+with open("scientific_selection_result_llama31_70b.json") as f:
     samples = json.load(f)
 
 all_pairs = []
