@@ -54,4 +54,4 @@ Target input review fragments:
 
 {{review_fragments}}
 
-The final summary of these target input text fragments (just produce the answer without any other content):
+The final summary of these target input text fragments (just output the answer without any other content):
