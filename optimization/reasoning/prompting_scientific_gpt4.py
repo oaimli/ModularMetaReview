@@ -16,7 +16,7 @@ def gpt4_prompting(review_fragments: List):
             output_dict = client.chat.completions.create(
                 model="gpt-4o-2024-05-13",
                 messages=[
-                    {"role": "system", "content": "Always answer with only the summary in JSON Lines, no other content."},
+                    {"role": "system", "content": "Always answer with only the summary, without other content."},
                     {"role": "user",
                      "content": prompt_content}
                     ],

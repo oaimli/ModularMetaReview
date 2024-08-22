@@ -20,7 +20,7 @@ def parsing_result(output):
 
 
 def gpt4_prompting(review_fragments: List):
-    prompt_format = open("prompt_gpt4.txt").read()
+    prompt_format = open("prompt_reasoning_scientific.txt").read()
     review_text = "\n".join(review_fragments)
     prompt_content = prompt_format.replace("{{review_fragments}}", review_text)
     # print(prompt_format)
@@ -29,7 +29,7 @@ def gpt4_prompting(review_fragments: List):
             output_dict = client.chat.completions.create(
                 model="meta-llama/Meta-Llama-3.1-70B-Instruct",
                 messages=[
-                    {"role": "system", "content": "Always answer with only the summary in JSON Lines, no other content."},
+                    {"role": "system", "content": "Always answer with only the summary, no other content."},
                     {"role": "user",
                      "content": prompt_content}
                     ],
@@ -70,10 +70,7 @@ if __name__ == "__main__":
     model_name = "llama31_70b"
     openai_api_key = "EMPTY"
     openai_api_base = "http://localhost:8000/v1"
-    client = OpenAI(
-        api_key=openai_api_key,
-        base_url=openai_api_base,
-        )
+    client = OpenAI(api_key=openai_api_key, base_url=openai_api_base)
 
     with open("../selection/scientific_selection_result_llama31_70b.json") as f:
         test_samples = json.load(f)

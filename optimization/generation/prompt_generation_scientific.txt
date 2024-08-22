@@ -7,4 +7,4 @@ Small summaries in different aspects:
 {{metas_generated}}
 
 
-The meta-review is (directly produce the answer without any other content):
+The meta-review is (directly output the answer without any other content):
