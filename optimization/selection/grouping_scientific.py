@@ -26,5 +26,5 @@ for key in processed_samples.keys():
 
     processed_samples[key]["categorization_pairs"] = categorization_pairs
 
-with open("scientific_selection_result_llama31_70b_processed.json", "w") as f:
+with open("scientific_selection_result_llama31_70b.json", "w") as f:
     json.dump(processed_samples, f, indent=4)
