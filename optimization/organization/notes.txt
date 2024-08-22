@@ -1,32 +1,88 @@
-################ Overall agreement, A1<->A2, A1<->Model and A2<->Model llama31_70b ################
-Highlight correlation, meta-review + review, word level ------ 0.8187068468722781 0.46380893453153166 0.43452547015529086
-Highlight correlation, meta-review, word level ------ 0.9282039911308205 0.795341862504887 0.7655082871333635
-Highlight correlation, review, word level ------ 0.8062644441149966 0.44032507233355683 0.4133713986075037
-Highlight correlation, meta-review + review, word level, novelty ------ 0.7216288767622535 0.33208635064281666 0.3067042080615743
-Highlight correlation, meta-review + review, word level, soundness ------ 0.7108221963259213 0.2516920723802184 0.2568174544045241
-Highlight correlation, meta-review + review, word level, clarity ------ 0.6833498690810982 0.21327022429669434 0.21373758679799754
-Highlight correlation, meta-review + review, word level, advancement ------ 0.6690341491278337 0.275850365309875 0.27274472333432376
-Highlight correlation, meta-review + review, word level, compliance ------ 0.6635948526359485 0.017216747869291477 0.027502693174806962
-Highlight correlation, meta-review + review, word level, overall ------ 0.6636099932930918 0.1772226589373666 0.12966762770663448
+################ All agreements, A1<->A2, A1<->Model and A2<->Model LLaMA3.1-70B-Instruct 2024-08-10 03:11:56.803812 ################
+Highlight correlation, meta-review + review, word level (r) ------ 0.7727452893552169 0.7933041904877635 0.7929344098447657
+Highlight correlation, meta-review + review, word level (p) ------ 0.8721361203243434 0.32640256954029917 0.28925373968296403
+Highlight correlation, meta-review + review, word level (f1) ------ 0.8187068468722781 0.4582060772865436 0.4187882103545822
+Highlight correlation, meta-review, word level (r) ------ 0.9074189675870349 0.7593931389312216 0.7176381904494973
+Highlight correlation, meta-review, word level (p) ------ 0.9526825253752401 0.7985605679065639 0.721893181763676
+Highlight correlation, meta-review, word level (f1) ------ 0.9282039911308203 0.7711550050549849 0.7090063386360079
+Highlight correlation, review, word level (r) ------ 0.7622129162776122 0.7947294804468943 0.8039667852665859
+Highlight correlation, review, word level (p) ------ 0.8590369309693893 0.29962492153195824 0.2693096869245211
+Highlight correlation, review, word level (f1) ------ 0.8062644441149966 0.43231373237944143 0.39889027416419376
+Highlight correlation, meta-review + review, word level, novelty (r) ------ 0.7080483789260386 0.5402259036569428 0.477951680519079
+Highlight correlation, meta-review + review, word level, novelty (p) ------ 0.756423119215748 0.29481972579716875 0.2380090903675102
+Highlight correlation, meta-review + review, word level, novelty (f1) ------ 0.7216288767622535 0.34707844968400337 0.2990556156196369
+Highlight correlation, meta-review + review, word level, soundness (r) ------ 0.6953388865914067 0.48670468051258703 0.541764358993763
+Highlight correlation, meta-review + review, word level, soundness (p) ------ 0.7444489889357568 0.17383580785923614 0.17400163052910955
+Highlight correlation, meta-review + review, word level, soundness (f1) ------ 0.7108221963259213 0.25274442834936817 0.2581185237667891
+Highlight correlation, meta-review + review, word level, clarity (r) ------ 0.627805265394028 0.4938274949087204 0.42319644204637646
+Highlight correlation, meta-review + review, word level, clarity (p) ------ 0.787904432832349 0.2814885325863693 0.19132401469629215
+Highlight correlation, meta-review + review, word level, clarity (f1) ------ 0.6833498690810982 0.2798497171099023 0.22568410090338853
+Highlight correlation, meta-review + review, word level, advancement (r) ------ 0.6902366500017083 0.48909607169042274 0.6477590291838945
+Highlight correlation, meta-review + review, word level, advancement (p) ------ 0.6924206359460088 0.1759454459362389 0.19833865689842295
+Highlight correlation, meta-review + review, word level, advancement (f1) ------ 0.6690341491278338 0.24284973338099825 0.2910735001136273
+Highlight correlation, meta-review + review, word level, compliance (r) ------ 0.7653846153846153 0.6115384615384615 0.8016666666666665
+Highlight correlation, meta-review + review, word level, compliance (p) ------ 0.6492857142857142 0.006256319512718321 0.013171213129739599
+Highlight correlation, meta-review + review, word level, compliance (f1) ------ 0.6635948526359485 0.011947234487623457 0.02463656528473053
+Highlight correlation, meta-review + review, word level, overall (r) ------ 0.6801538682296323 0.6786288961584065 0.48287266553480473
+Highlight correlation, meta-review + review, word level, overall (p) ------ 0.708 0.1095561464029623 0.07773811708099096
+Highlight correlation, meta-review + review, word level, overall (f1) ------ 0.6636099932930919 0.1882646816916165 0.1277392389108682
 
-################ Overall agreement, A1<->A2, A1<->Model and A2<->Model gpt-4o ################
-Highlight correlation, meta-review + review, word level ------ 0.8187068468722781 0.3998588764213962 0.36182314016271544
-Highlight correlation, meta-review, word level ------ 0.9282039911308205 0.8210560982413906 0.7981554670208351
-Highlight correlation, review, word level ------ 0.8062644441149966 0.36584181760547974 0.3306144502670543
-Highlight correlation, meta-review + review, word level, novelty ------ 0.7216288767622535 0.22327683332510975 0.20136133368182701
-Highlight correlation, meta-review + review, word level, soundness ------ 0.7108221963259213 0.25163362340803647 0.22901890665482183
-Highlight correlation, meta-review + review, word level, clarity ------ 0.6833498690810983 0.1907316080305034 0.161639397879818
-Highlight correlation, meta-review + review, word level, advancement ------ 0.6690341491278338 0.2777196392567673 0.28537211308182553
-Highlight correlation, meta-review + review, word level, compliance ------ 0.6635948526359485 0.05131567227737578 0.05242813904456891
-Highlight correlation, meta-review + review, word level, overall ------ 0.6636099932930918 0.13458911698029288 0.11589561639355887
 
-################ Overall agreement, A1<->A2, A1<->Model and A2<->Model llama3_70b ################
-Highlight correlation, meta-review + review, word level ------ 0.8187068468722781 0.4281561359555289 0.39840646672029606
-Highlight correlation, meta-review, word level ------ 0.9282039911308205 0.7213676632286063 0.6574937051090843
-Highlight correlation, review, word level ------ 0.8062644441149966 0.40546737484809814 0.38244476449782877
-Highlight correlation, meta-review + review, word level, novelty ------ 0.7216288767622535 0.18905722149705428 0.17015064702074445
-Highlight correlation, meta-review + review, word level, soundness ------ 0.7108221963259214 0.2643893431608345 0.28940202473621024
-Highlight correlation, meta-review + review, word level, clarity ------ 0.6833498690810983 0.23286382404325773 0.22629048355738463
-Highlight correlation, meta-review + review, word level, advancement ------ 0.6690341491278338 0.19478466470842923 0.21837772912459746
-Highlight correlation, meta-review + review, word level, compliance ------ 0.6635948526359485 0.006880613824812476 0.012167110498675667
-Highlight correlation, meta-review + review, word level, overall ------ 0.6636099932930919 0.10312837180538219 0.08482192640100734
+################ All agreements, A1<->A2, A1<->Model and A2<->Model Mixtral-8x7B-Instruct-v0.1 2024-08-21 19:28:46.269964 ################
+Highlight correlation, meta-review + review, word level (r) ------ 0.7727452893552168 0.7533216386205993 0.7826111260937711
+Highlight correlation, meta-review + review, word level (p) ------ 0.8721361203243434 0.28247257825781114 0.25866711968855344
+Highlight correlation, meta-review + review, word level (f1) ------ 0.8187068468722781 0.40475510987859503 0.38199853828786123
+Highlight correlation, meta-review, word level (r) ------ 0.9074189675870349 0.9597779111644659 0.9571109456440803
+Highlight correlation, meta-review, word level (p) ------ 0.9526825253752399 0.709812829505811 0.6750267494919259
+Highlight correlation, meta-review, word level (f1) ------ 0.9282039911308205 0.8059412603426551 0.7812959404730255
+Highlight correlation, review, word level (r) ------ 0.7622129162776121 0.7224346970940863 0.7582718225031326
+Highlight correlation, review, word level (p) ------ 0.8590369309693893 0.2514916695366527 0.23302957504741334
+Highlight correlation, review, word level (f1) ------ 0.8062644441149966 0.36812940096100544 0.3503456778831907
+Highlight correlation, meta-review + review, word level, novelty (r) ------ 0.7080483789260386 0.2742149287384098 0.2951135047790719
+Highlight correlation, meta-review + review, word level, novelty (p) ------ 0.756423119215748 0.13637274512905195 0.1306720325399783
+Highlight correlation, meta-review + review, word level, novelty (f1) ------ 0.7216288767622535 0.16408304524729783 0.16169440480147798
+Highlight correlation, meta-review + review, word level, soundness (r) ------ 0.6953388865914067 0.026415413093746027 0.021232350474205852
+Highlight correlation, meta-review + review, word level, soundness (p) ------ 0.7444489889357568 0.6243839267990661 0.6114187407246363
+Highlight correlation, meta-review + review, word level, soundness (f1) ------ 0.7108221963259213 0.040050647474580495 0.03482165046420312
+Highlight correlation, meta-review + review, word level, clarity (r) ------ 0.627805265394028 0.7267411040681263 0.6849067178998373
+Highlight correlation, meta-review + review, word level, clarity (p) ------ 0.787904432832349 0.08312278302912089 0.06652409322371326
+Highlight correlation, meta-review + review, word level, clarity (f1) ------ 0.6833498690810982 0.14453044880616567 0.11636758313093984
+Highlight correlation, meta-review + review, word level, advancement (r) ------ 0.6902366500017083 0.17008427848348945 0.2179085077357208
+Highlight correlation, meta-review + review, word level, advancement (p) ------ 0.6924206359460088 0.25882419427993775 0.2823336294783692
+Highlight correlation, meta-review + review, word level, advancement (f1) ------ 0.6690341491278338 0.20351639310682682 0.2452911629214743
+Highlight correlation, meta-review + review, word level, compliance (r) ------ 0.7653846153846153 0.8076923076923077 0.6576190476190477
+Highlight correlation, meta-review + review, word level, compliance (p) ------ 0.6492857142857142 0.20545377294243305 0.2050326058313087
+Highlight correlation, meta-review + review, word level, compliance (f1) ------ 0.6635948526359485 0.21068570290085784 0.20927892609371543
+Highlight correlation, meta-review + review, word level, overall (r) ------ 0.6801538682296323 0.6094760312151617 0.5144516129032258
+Highlight correlation, meta-review + review, word level, overall (p) ------ 0.708 0.024204463539884088 0.020185324783903228
+Highlight correlation, meta-review + review, word level, overall (f1) ------ 0.6636099932930918 0.04651332307026264 0.03868441486630523
+
+
+################ All agreements, A1<->A2, A1<->Model and A2<->Model gpt-4o-2024-05-13 2024-08-21 19:36:04.708258 ################
+Highlight correlation, meta-review + review, word level (r) ------ 0.7727452893552169 0.8441622176779893 0.8377427228302536
+Highlight correlation, meta-review + review, word level (p) ------ 0.8721361203243433 0.2663119001000659 0.23545058011845715
+Highlight correlation, meta-review + review, word level (f1) ------ 0.8187068468722781 0.3998588764213963 0.3618231401627155
+Highlight correlation, meta-review, word level (r) ------ 0.9074189675870349 0.9744897959183673 0.9752321981424149
+Highlight correlation, meta-review, word level (p) ------ 0.9526825253752399 0.7246748464965741 0.6908857494047247
+Highlight correlation, meta-review, word level (f1) ------ 0.9282039911308205 0.8210560982413906 0.7981554670208351
+Highlight correlation, review, word level (r) ------ 0.7622129162776122 0.8248986199237687 0.8173183509680978
+Highlight correlation, review, word level (p) ------ 0.8590369309693893 0.23775971571573642 0.21101780895591168
+Highlight correlation, review, word level (f1) ------ 0.8062644441149966 0.36584181760547974 0.3306144502670544
+Highlight correlation, meta-review + review, word level, novelty (r) ------ 0.7080483789260386 0.5679476159662245 0.521988330556184
+Highlight correlation, meta-review + review, word level, novelty (p) ------ 0.756423119215748 0.14356140617910304 0.12512039245079004
+Highlight correlation, meta-review + review, word level, novelty (f1) ------ 0.7216288767622535 0.22327683332510978 0.20136133368182701
+Highlight correlation, meta-review + review, word level, soundness (r) ------ 0.6953388865914067 0.6335821791783169 0.5928035874617151
+Highlight correlation, meta-review + review, word level, soundness (p) ------ 0.7444489889357568 0.15857667180409787 0.1444451023480235
+Highlight correlation, meta-review + review, word level, soundness (f1) ------ 0.7108221963259213 0.2516336234080364 0.22901890665482183
+Highlight correlation, meta-review + review, word level, clarity (r) ------ 0.627805265394028 0.662986959551142 0.6472015086268035
+Highlight correlation, meta-review + review, word level, clarity (p) ------ 0.787904432832349 0.11619368256160476 0.09966139273648658
+Highlight correlation, meta-review + review, word level, clarity (f1) ------ 0.6833498690810982 0.1907316080305034 0.161639397879818
+Highlight correlation, meta-review + review, word level, advancement (r) ------ 0.6902366500017082 0.640667753155623 0.7157968259472334
+Highlight correlation, meta-review + review, word level, advancement (p) ------ 0.6924206359460088 0.18591561971352003 0.1826478529653303
+Highlight correlation, meta-review + review, word level, advancement (f1) ------ 0.6690341491278338 0.2777196392567673 0.28537211308182553
+Highlight correlation, meta-review + review, word level, compliance (r) ------ 0.7653846153846153 0.7653846153846153 0.835
+Highlight correlation, meta-review + review, word level, compliance (p) ------ 0.6492857142857142 0.027647954543638532 0.03248066829828537
+Highlight correlation, meta-review + review, word level, compliance (f1) ------ 0.6635948526359485 0.05131567227737578 0.05242813904456891
+Highlight correlation, meta-review + review, word level, overall (r) ------ 0.6801538682296323 0.836822876091517 0.7764210526315789
+Highlight correlation, meta-review + review, word level, overall (p) ------ 0.708 0.07406659132401491 0.06433435969629954
+Highlight correlation, meta-review + review, word level, overall (f1) ------ 0.6636099932930919 0.13458911698029288 0.11589561639355887

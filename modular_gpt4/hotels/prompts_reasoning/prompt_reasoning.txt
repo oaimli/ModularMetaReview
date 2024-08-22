@@ -1,14 +1,57 @@
-You are good at understanding documents with hotel review opinions.
-Below is hotel reviews in different aspects for a hotel, please write a concise meta-review which is a summary of the provided reviews.
+You are good at writing summaries for opinionated texts. You are given some opinionated text fragments, please write a concise summary for them.
+
+Example input review fragments:
+
+"1) **Evaluating different explanation techniques:**",
+"We thus believe that our results do *not* violate the surmise made in the shared reference, but rather support it.",
+"We believe this makes our findings generalizable.",
+"Although, the paper brings out the importance of analogies as explanations (which further motivates our work)",
+"The proposed technique is flexible as it can provide two forms of explanations: feature and analogy-based.",
+"Moreover, explanations in the form of analogies are intuitive for human users.",
+"We feel that analogous examples do not need to share common words, content, or sentence structure. What is important is that they *point to latent factors* that may be responsible for the model's output.",
+"**Purpose of analogies:**",
+"Overall, we agree that there could be other experimental designs which are worthy of investigation.",
+"The main reason to accept this paper is empirical results, showing performance on the various methods.",
+"The author has done plenty of case studies to verify the explanation and with many examples of the proposed explanation method. \n\n",
+"I'm tending to accept this paper as it is well written and provides interesting and novel approaches to explain similarity-based methods.",
+"The authors present two methods to generate explanations, called Feature-based similarity explanations and analogy-based similarity explanations, where the latter one is a novel type of explanations explicitly developed to explain similarity learners.",
+"Since the proposed setting (analogies) is novel, previous approaches compared with needed adaptations to fit the setting.",
+"In addition, the proposed method of analogy-based-explanation seems novel.",
+"The explicit treatment of diversity sets it apart from other explanation methods that also use whole data point for explanation, such as counterfactuals.",
+"The authors solved this problem by the use of a learned local distance matrix, in which interaction effects are clearly shown."
+
+Example summary of the input fragments:
+
+The proposed approach to explain similarity prediction is a relatively less explored area, which makes the problem addressed and the proposed method unique.
 
 
-Review texts in different aspects:
+Example input review fragments:
 
-{{metas_generated}}
+"We will add some text discussing the limitations of our method for the camera-ready version.",
+"We will add a discussion of this limitation (and others) in the final camera-ready version.",
+"We agree that there was not enough attention devoted to this in the current version, and will include a discussion in the camera-ready version.",
+"The paper could be further improved with some reflection on the limitations of the approach.",
+"Thank you for reviewing our manuscript, and for your encouraging feedback! ",
+"Experiments on a variety of regression problems demonstrate the superiority of their algorithm over current state-of-the-art coreset compression and variational-flow-based methods.",
+"The paper is technically sound, and the claims are carefully developed and well supported.",
+"The manuscript is well structured and very clearly written, with helpful introductions to the methodological ingredients that it builds upon.",
+"The paper could be further improved with some reflection on the limitations of the approach.",
+"I am not certain how large a contribution it will have to the field of Bayesian inference in general.",
+"The paper constitutes a significant contribution within research on Bayesian coresets, both in terms of methodology and measured in terms of the performance improvements over other methods.",
+"I want to help where I can. In case something is unclear, feel free to ask follow-up questions. ",
+"All of this combined already warrants publication in my opinion. ",
+"I think, the limitations of the method were discussed insufficiently and should be addressed as described in questions 1 and 2. ",
+"In short, I think the paper is good and should be published with minor revisions. ",
+"I\u2019ll use the rest of the section for high-level comments.",
+"- In its current form, the paper convinces me that SHF decreases runtime and increases performance for datasets with low complexity."
+
+Example summary of the input fragments:
+
+Based on these, I recommend acceptance for this paper. All reviewers agree that the paper proposes an interesting approach to Bayesian inference incorporating coresets with Hamiltonian flows.
 
 
-Output format:
-{"meta_review": "the generated summary of the opinionated texts"}
+Target input review fragments:
 
+{{review_fragments}}
 
-The meta-review (must in the format of JSON, no other content):
+The final summary of these target input text fragments (just produce the answer without any other content):

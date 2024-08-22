@@ -37,7 +37,7 @@ if __name__ == "__main__":
     score_zs_source_avg = np.mean(scores_zs_source)
     score_conv_source_avg = np.mean(scores_conv_source)
 
-    # compared with references
+    # compared with references on only shared aspects
     scores_zs_reference, scores_conv_reference = summac_scores(references, candidates)
     score_zs_reference_avg = np.mean(scores_zs_reference)
     score_conv_reference_avg = np.mean(scores_conv_reference)

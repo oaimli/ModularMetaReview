@@ -1,1 +1,1 @@
-# Comparison of generated results are in modular_llama3 and modular_gpt4 on three datasets
+# Comparison of generated results are in modular_llama3 and modular_gpt4 on the three datasets
