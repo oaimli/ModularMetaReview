@@ -17,4 +17,3 @@ for key in samples.keys():
             invalid_pairs.append(pair)
 
 print("Ratio of invalid pairs", len(invalid_pairs)/len(all_pairs))
-# Ratio of invalid pairs 0.3
