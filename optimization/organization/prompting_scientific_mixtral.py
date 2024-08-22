@@ -40,10 +40,10 @@ def mixtral_prompting(input_text: str, facet: str, mode: str = "meta"):
                     with jsonlines.open("output_tmp.jsonl") as reader:
                         for line in reader:
                             tmp.append(line)
-                    output_keys = {[]}
+                    output_keys = set([])
                     for output in outputs:
                         output_keys.update(output.keys())
-                    if len(output_keys.union({["extracted_fragment"]})) <= 1:
+                    if len(output_keys.union({"extracted_fragment"})) <= 1:
                         outputs = tmp
                         break
                 except jsonlines.InvalidLineError as err:
