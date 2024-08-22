@@ -5,7 +5,7 @@ from tqdm import tqdm
 from typing import List
 
 
-def gpt4_prompting(review_fragments: List):
+def llama3_prompting(review_fragments: List):
     prompt_format = open("prompt_reasoning_scientific.txt").read()
     review_text = "\n".join(review_fragments)
     prompt_content = prompt_format.replace("{{review_fragments}}", review_text)
@@ -41,7 +41,7 @@ def facet_reasoning(categorization_pairs: List) -> List:
     result = []
     for pair in categorization_pairs:
         review_fragments = pair["review_fragments"]
-        pair["meta_generated"] = gpt4_prompting(review_fragments)
+        pair["meta_generated"] = llama3_prompting(review_fragments)
         result.append(pair)
 
     return result

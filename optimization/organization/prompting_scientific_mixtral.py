@@ -8,7 +8,7 @@ from typing import Dict, List
 import spacy
 
 
-def llama3_prompting(input_text: str, facet: str, mode: str = "meta"):
+def mixtral_prompting(input_text: str, facet: str, mode: str = "meta"):
     print(input_text)
     prompt_format = open(f"prompts_scientific/prompt_{mode.lower()}_{facet.lower()}.txt").read()
     prompt_content = prompt_format.replace("{{input_document}}", input_text)
@@ -82,7 +82,7 @@ def categorizing_meta_review(meta_review: str) -> Dict:
     """
     result = {}
     for facet in facets:
-        result[facet] = llama3_prompting(meta_review, facet, "meta")
+        result[facet] = mixtral_prompting(meta_review, facet, "meta")
 
     return result
 
@@ -98,7 +98,7 @@ def categorizing_review(reviews: List[Dict]) -> List:
     for review in reviews:
         tmp = {}
         for facet in facets:
-            tmp[facet] = llama3_prompting(review["comment"], facet, "review")
+            tmp[facet] = mixtral_prompting(review["comment"], facet, "review")
         result.append(tmp)
 
     return result

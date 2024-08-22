@@ -5,7 +5,7 @@ from tqdm import tqdm
 from typing import List
 
 
-def gpt4_prompting(metas_generated: List):
+def llama3_prompting(metas_generated: List):
     prompt_format = open("prompt_generation_scientific.txt").read()
     review_text = "\n".join(metas_generated)
     prompt_content = prompt_format.replace("{{metas_generated}}", review_text)
@@ -43,16 +43,18 @@ def meta_generation(categorization_pairs: List) -> str:
     for pair in categorization_pairs:
         metas_generated.append(pair["meta_generated"])
 
-    meta_review = gpt4_prompting(metas_generated)
+    meta_review = llama3_prompting(metas_generated)
 
     return meta_review
 
 
 if __name__ == "__main__":
-    model_name = "gpt_4o"
-    client = OpenAI(api_key="sk-proj-jxdkj7TzTCWDjDU0lpEPT3BlbkFJll01Dz3fxt51wM8Rh6wm")
+    model_name = "llama31_70b"
+    openai_api_key = "EMPTY"
+    openai_api_base = "http://localhost:8000/v1"
+    client = OpenAI(api_key=openai_api_key, base_url=openai_api_base)
 
-    with open("../reasoning/scientific_reasoning_result_gpt_4o.json") as f:
+    with open("../reasoning/scientific_reasoning_result_llama31_70b.json") as f:
         test_samples = json.load(f)
 
     results = {}
