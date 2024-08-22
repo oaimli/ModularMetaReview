@@ -24,7 +24,7 @@ def llama3_prompting(review_fragments: List):
                 )
             for choice in output_dict.choices:
                 tmp = choice.message.content
-                if len(tmp) > 0:
+                if len(tmp.split()) > 8:
                     meta_generated = tmp
                     break
             if meta_generated != "":

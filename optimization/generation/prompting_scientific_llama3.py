@@ -16,7 +16,7 @@ def llama3_prompting(metas_generated: List):
             output_dict = client.chat.completions.create(
                 model="meta-llama/Meta-Llama-3.1-70B-Instruct",
                 messages=[
-                    {"role": "system", "content": "Always answer with only the summary, no other content."},
+                    {"role": "system", "content": "Always answer with only the predicted summary, no other content."},
                     {"role": "user",
                      "content": prompt_content}
                     ],
@@ -24,10 +24,11 @@ def llama3_prompting(metas_generated: List):
                 )
             for choice in output_dict.choices:
                 tmp = choice.message.content
-                if len(tmp) > 0:
+                if len(tmp.split()) > 32:
                     final_meta_review = tmp
                     break
-            break
+            if final_meta_review != "":
+                break
         except Exception as e:
             print(e)
             if ("limit" in str(e)):
