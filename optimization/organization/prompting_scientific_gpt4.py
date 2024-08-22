@@ -9,6 +9,7 @@ import spacy
 
 
 def gpt4_prompting(input_text: str, facet: str, mode: str = "meta"):
+    print("#######")
     prompt_format = open(f"prompts_scientific/prompt_{mode.lower()}_{facet.lower()}.txt").read()
     prompt_content = prompt_format.replace("{{input_document}}", input_text)
     # print(prompt_format)
