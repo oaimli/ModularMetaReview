@@ -14,7 +14,7 @@ def llama3_prompting(metas_generated: List):
     while True:
         try:
             output_dict = client.chat.completions.create(
-                model="gpt-4o-2024-05-13",
+                model="meta-llama/Meta-Llama-3.1-70B-Instruct",
                 messages=[
                     {"role": "system", "content": "Always answer with only the summary, no other content."},
                     {"role": "user",
