@@ -1,5 +1,5 @@
 import random
-import jsonlines
+import numpy as np
 from openai import OpenAI
 import time
 import json
