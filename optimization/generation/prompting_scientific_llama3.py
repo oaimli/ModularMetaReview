@@ -10,7 +10,6 @@ def llama3_prompting(metas_generated: List):
     review_text = "\n".join(metas_generated)
     prompt_content = prompt_format.replace("{{metas_generated}}", review_text)
     # print(prompt_format)
-    final_meta_review = ""
     while True:
         try:
             output_dict = client.chat.completions.create(
@@ -20,15 +19,20 @@ def llama3_prompting(metas_generated: List):
                     {"role": "user",
                      "content": prompt_content}
                     ],
-                n=5
+                n=8
                 )
+            all_candidates = []
+            all_candidates_len = []
+            tmp = []
             for choice in output_dict.choices:
-                tmp = choice.message.content
-                if len(tmp.split()) > 32:
-                    final_meta_review = tmp
-                    break
-            if final_meta_review != "":
-                break
+                output_content = choice.message.content
+                content_len = len(output_content.split())
+                all_candidates_len.append(content_len)
+                tmp.append(content_len)
+                all_candidates.append(output_content)
+            tmp.sort()
+            final_meta_review = all_candidates[all_candidates_len.index(tmp[int(len(tmp) / 2)])]
+            break
         except Exception as e:
             print(e)
             if ("limit" in str(e)):
