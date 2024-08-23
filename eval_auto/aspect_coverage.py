@@ -1,17 +1,7 @@
 import numpy as np
 import json
-from summac.model_summac import SummaCZS, SummaCConv
 from openai import OpenAI
 from typing import Dict
-
-
-def summac_scores(sources, targets):
-    model_zs = SummaCZS(granularity="sentence", model_name="vitc", device="cuda")
-    model_conv = SummaCConv(models=["vitc"], bins='percentile', granularity="sentence", nli_labels="e", device="cuda",
-                            start_file="default", agg="mean")
-    score_zs = model_zs.score(sources, targets)
-    score_conv = model_conv.score(sources, targets)
-    return score_zs["scores"], score_conv["scores"]
 
 
 def llama3_prompting(input_text: str, facet: str, mode: str = "meta"):
@@ -103,46 +93,25 @@ if __name__ == "__main__":
             print(generation_file)
             candidate_key = generation_info["candidate_key"]
             reference_key = generation_info["reference_key"]
-            source_key = "source_documents"
             with open(generation_file) as f:
                 samples = json.load(f)
 
             candidates = []
             references = []
-            source_texts = []
+            review_categorizations = []
             for sample in samples:
                 candidates.append(sample[candidate_key])
                 if isinstance(sample[reference_key], str):
                     references.append(sample[reference_key])
                 else:
                     references.append(sample[reference_key][0])  # SPACE has multiple references
-                source_texts.append("\n".join(sample[source_key]))
+                review_categorizations.append(sample["review_categorization"])
 
-            # compared with source texts
-            scores_zs_source, scores_conv_source = summac_scores(source_texts, candidates)
-            score_zs_source_avg = np.mean(scores_zs_source)
-            score_conv_source_avg = np.mean(scores_conv_source)
 
             # compared with references on only shared aspects
-            references_shared = []
-            candidates_shared = []
-            for reference, candidate in zip(references, candidates):
-                categorization_reference = categorizing_meta_review(reference)
+            recalls = []
+            precisions = []
+            f_measures = []
+            for review_categorization, candidate in zip(review_categorizations, candidates):
                 categorization_candidate = categorizing_meta_review(candidate)
-                reference_shared = []
-                candidate_shared = []
-                for facet in facets:
-                    if len(categorization_reference[facet]) > 0 and len(categorization_candidate[facet]) > 0:
-                        reference_shared.extend(categorization_reference[facet])
-                        candidate_shared.extend(categorization_candidate[facet])
-                reference_shared.append(" ".join(reference_shared))
-                candidates_shared.append(" ".join(candidate_shared))
 
-            scores_zs_reference, scores_conv_reference = summac_scores(references_shared, candidates_shared)
-            score_zs_reference_avg = np.mean(scores_zs_reference)
-            score_conv_reference_avg = np.mean(scores_conv_reference)
-
-            print("scores zs:", "source", score_zs_source_avg, "reference", score_zs_reference_avg, "summation",
-                  score_zs_source_avg + score_zs_reference_avg)
-            print("scores conv:", "source", score_conv_source_avg, "reference", score_conv_reference_avg, "summation",
-          score_conv_source_avg + score_conv_reference_avg)
