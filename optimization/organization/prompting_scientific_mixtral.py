@@ -1,5 +1,5 @@
 import random
-import jsonlines
+import numpy as np
 from openai import OpenAI
 import time
 import json
@@ -23,31 +23,25 @@ def mixtral_prompting(input_text: str, facet: str, mode: str = "meta"):
                     {"role": "user",
                      "content": prompt_content}
                     ],
-                n=8
+                n=10
                 )
 
-            no_count = 0
+            all_candidates = []
+            all_candidates_len = []
             for choice in output_dict.choices:
                 output_content = choice.message.content
-                if "no related fragments" in output_content.lower():
-                    no_count += 1
-            if no_count >= 3:
-                outputs = []
-                break
-
-            for choice in output_dict.choices:
-                # two requirements, following the jsonlines format and using the required key
-                output_content = choice.message.content
-                # print(output_content)
                 if "no related fragments" not in output_content.lower():
-                    outputs = output_content.split("\n")
-            if outputs != None:
-                break
+                    all_candidates_len.append(len(output_content.split()))
+                    all_candidates.append(output_content.split("\n"))
+            if len(all_candidates) < 5:
+                outputs = []
+            else:
+                outputs = all_candidates[all_candidates_len.index(int(np.median(all_candidates_len)))]
+            break
         except Exception as e:
             print(e)
             if ("limit" in str(e)):
                 time.sleep(2)
-
 
     return outputs
 
