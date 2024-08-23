@@ -37,7 +37,7 @@ def gpt4_prompting(review_fragments: List):
             print(e)
             if ("limit" in str(e)):
                 time.sleep(2)
-    # print(output)
+    print(output)
     return meta_generated
 
 
