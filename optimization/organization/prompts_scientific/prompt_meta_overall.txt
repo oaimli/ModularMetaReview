@@ -10,12 +10,13 @@ Example input meta-review:
 This work presents a routing algorithm for capsule networks, and demonstrates empirical evaluation on CIFAR-10 and CIFAR-100. The results outperform existing capsule networks and are at-par with CNNs. Reviewers appreciated the novelty, introducing a new simpler routing mechanism, and achieving good performance on real world datasets. In particular, removing the squash function and experimenting with concurrent routing was highlighted as significant progress. There were some concerns (e.g. claiming novelty for inverted dot-product attention) and clarification questions (e.g. same learning rate schedule for all models). The authors provided a response and revised the submission , which addresses most of these concerns. At the end, majority of reviewers recommended accept. Alongside with them, I acknowledge the novelty of using layer norm and parallel execution, and recommend accept.
 
 
-Example output fragments in JSON Lines:
-{"extracted_fragment": "The authors provided a response and revised the submission , which addresses most of these concerns."}
+Example output fragments in different lines:
+
+The authors provided a response and revised the submission , which addresses most of these concerns.
 
 
-Input meta-review:
+Target input meta-review:
 
 {{input_document}}
 
-Final extracted fragments (follow the format above in JSON Lines and if no resulted fragments just output "No related fragments"):
+Final extracted fragments (follow the format above in different lines and if no resulted fragments just output "No related fragments"):

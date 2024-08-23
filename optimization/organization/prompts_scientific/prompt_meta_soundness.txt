@@ -9,14 +9,15 @@ Example input meta-review:
 
 The paper proposes to use the mirror descent algorithm for the binary network. It is easy to read. However, novelty over ProxQuant is somehow limited. The theoretical analysis is weak, in that there is no analysis on the convergence and neither how to choose the projection for mirror mapping construction. Experimental results can also be made more convincing, by adding comparisons with bigger datasets, STOA networks, and ablation study to demonstrate why mirror descent is better than proximal gradient descent in this application.
 
-Example output fragments in JSON Lines:
+Example output fragments in different lines:
 
-{"extracted_fragment": "The theoretical analysis is weak, in that there is no analysis on the convergence and neither how to choose the projection for mirror mapping construction."}
-{"extracted_fragment": "Experimental results can also be made more convincing, by adding comparisons with bigger datasets, STOA networks, and ablation study to demonstrate why mirror descent is better than proximal gradient descent in this application."}
+The theoretical analysis is weak, in that there is no analysis on the convergence and neither how to choose the projection for mirror mapping construction.
+
+Experimental results can also be made more convincing, by adding comparisons with bigger datasets, STOA networks, and ablation study to demonstrate why mirror descent is better than proximal gradient descent in this application.
 
 
 Target input meta-review:
 
 {{input_document}}
 
-Final extracted fragments (follow the format above in JSON Lines and if no resulted fragments just output "No related fragments"):
+Final extracted fragments (follow the format above in different lines and if no resulted fragments just output "No related fragments"):

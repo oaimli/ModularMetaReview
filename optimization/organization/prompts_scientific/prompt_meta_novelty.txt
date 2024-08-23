@@ -12,15 +12,17 @@ The manuscript describes a method for identifying and correcting classifier perf
 
 Reviewers agreed that the manuscript is not ready for publication. The main issue is that the suggested training method is similar to adversarial training methods used to gain adversarial robustness. The method does not help in debugging and fixing failures in general.\n
 
-Example output fragments in JSON Lines:
+Example output fragments in different lines:
 
-{"extracted_fragment": "Reviewers appreciated the novelty, introducing a new simpler routing mechanism, and achieving good performance on real world datasets."}
-{"extracted_fragment", "In particular, removing the squash function and experimenting with concurrent routing was highlighted as significant progress."}
-{"extracted_fragment", "Alongside with them, I acknowledge the novelty of using layer norm and parallel execution, and recommend accept.\n"}
+Reviewers appreciated the novelty, introducing a new simpler routing mechanism, and achieving good performance on real world datasets.
+
+In particular, removing the squash function and experimenting with concurrent routing was highlighted as significant progress.
+
+Alongside with them, I acknowledge the novelty of using layer norm and parallel execution, and recommend accept.
 
 
 Target input meta-review:
 
 {{input_document}}
 
-Final extracted fragments (follow the format above in JSON Lines and if no resulted fragments just output "No related fragments"):
+Final extracted fragments (follow the format above in different lines and if no resulted fragments just output "No related fragments"):

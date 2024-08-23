@@ -13,7 +13,6 @@ def mixtral_prompting(input_text: str, facet: str, mode: str = "meta"):
     prompt_format = open(f"prompts_scientific/prompt_{mode.lower()}_{facet.lower()}.txt").read()
     prompt_content = prompt_format.replace("{{input_document}}", input_text)
     # print(prompt_format)
-    outputs = None
     while True:
         try:
             output_dict = client.chat.completions.create(

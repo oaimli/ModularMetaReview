@@ -11,15 +11,17 @@ Example input meta-review:
 This paper theoretically studied one of the fundamental issue in CycleGAN (recently gained much attention for image-to-image translation). The authors analyze the space of exact and approximated solutions under automorphisms.\n\nReviewers mostly agree with theoretical value of the paper. Some concerns on practical values are also raised, e.g., limited or no-surprising experimental results. In overall, I think this is a boarderline paper. But, I am a bit toward acceptance as the theoretical contribution is solid, and potentially beneficial to many future works on unpaired image-to-image translation.\n\n
 
 
-Example output fragments in JSON Lines:
+Example output fragments in different lines:
 
-{"extracted_fragment": "Some concerns on practical values are also raised, e.g., limited or no-surprising experimental results."}
-{"extracted_fragment": "Reviewers mostly agree with theoretical value of the paper."}
-{"extracted_fragment": "But, I am a bit toward acceptance as the theoretical contribution is solid, and potentially beneficial to many future works on unpaired image-to-image translation.\n\n"}
+Some concerns on practical values are also raised, e.g., limited or no-surprising experimental results.
+
+Reviewers mostly agree with theoretical value of the paper.
+
+But, I am a bit toward acceptance as the theoretical contribution is solid, and potentially beneficial to many future works on unpaired image-to-image translation.
 
 
 Target input meta-review:
 
 {{input_document}}
 
-Final extracted fragments (follow the format above in JSON Lines and if no resulted fragments just output "No related fragments"):
+Final extracted fragments (follow the format above in different lines and if no resulted fragments just output "No related fragments"):

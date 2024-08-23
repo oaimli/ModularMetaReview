@@ -28,15 +28,17 @@ A1: Thank you for your constructive comments. There several reasons for selectin
 2. Compared to the eastern US, the West Coast has very little precipitation, which is not helpful for our task, so we discarded the West Coast to reduce the redundancy of the dataset.
 3. In our future work, we will expand to more regions of the world.
 
-Example output fragments in JSON Lines:
+Example output fragments in different lines:
 
-{"extracted_fragment": "2.Novel benchmark model structure design and performance."}
-{"extracted_fragment": "Our work demonstrates its novelty in two aspects: \n\n1.The first large-scale open-source dataset for precipitation downscaling that is based on real measured data as described above, which will greatly help bridge the DL/ML community with meteorological science, while promoting the development of AI-for-Science.\n\n"}
-{"extracted_fragment": "In this paper, we propose the ***first*** large-scale dataset for precipitation downscaling that is based on real measured data while the previous models are usually evaluated on synthetic datasets (downsampling the radar maps to generate the synthetic low/high-resolution pairs) and no formal dataset released previously."}
+2.Novel benchmark model structure design and performance.
+
+Our work demonstrates its novelty in two aspects: \n\n1.The first large-scale open-source dataset for precipitation downscaling that is based on real measured data as described above, which will greatly help bridge the DL/ML community with meteorological science, while promoting the development of AI-for-Science.
+
+In this paper, we propose the ***first*** large-scale dataset for precipitation downscaling that is based on real measured data while the previous models are usually evaluated on synthetic datasets (downsampling the radar maps to generate the synthetic low/high-resolution pairs) and no formal dataset released previously.
 
 
 Target input review:
 
 {{input_document}}
 
-Final extracted fragments (follow the format above in JSON Lines and if no resulted fragments just output "No related fragments"):
+Final extracted fragments (follow the format above in different lines and if no resulted fragments just output "No related fragments"):

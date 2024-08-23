@@ -18,14 +18,15 @@ Overall, the dataset and the corresponding benchmark are valuable. I suggest tha
 
 [1] Ravuri, Suman, et al. "Skilfull precipitation nowcasting using deep generative models of radar." Nature 597.7878 (2021): 672-677.
 
-Example output fragments in JSON Lines:
+Example output fragments in different lines:
 
-{"extracted_fragment": "In the response to Q1, the authors also provide detailed explanation on the necessity of real low-res data and empirical study on the corresponding improvement."}
-{"extracted_fragment": "It's not appropriate to include the intuitive designs of PEM/PDEM as one of the major contributions in this paper.\n\n"}
+In the response to Q1, the authors also provide detailed explanation on the necessity of real low-res data and empirical study on the corresponding improvement.
+
+It's not appropriate to include the intuitive designs of PEM/PDEM as one of the major contributions in this paper.
 
 
 Target input review:
 
 {{input_document}}
 
-Final extracted fragments (follow the format above in JSON Lines and if no resulted fragments just output "No related fragments"):
+Final extracted fragments (follow the format above in different lines and if no resulted fragments just output "No related fragments"):

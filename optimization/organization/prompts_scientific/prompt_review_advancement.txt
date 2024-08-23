@@ -27,13 +27,13 @@ In this reply, we clarify the novelty and significance of our MD method compared
 [1] Bai, Yu, Yu-Xiang Wang, and Edo Liberty. "Proxquant: Quantized neural networks via proximal operators." ICLR (2019).
 [2] Bubeck, Sébastien. "Convex optimization: Algorithms and complexity." Foundations and Trends® in Machine Learning (2015).
 
-Example output fragments in JSON Lines:
+Example output fragments in different lines:
 
-{"extracted_fragment": "# Summary\n- Our main contribution of the paper is to show that MD is a suitable framework for NN quantization and introduce a numerically stable MD algorithm for NN quantization with superior performance compared to directly comparable baselines.\n"}
+Summary\n- Our main contribution of the paper is to show that MD is a suitable framework for NN quantization and introduce a numerically stable MD algorithm for NN quantization with superior performance compared to directly comparable baselines.
 
 
 Target input review:
 
 {{input_document}}
 
-Final extracted fragments (follow the format above in JSON Lines and if no resulted fragments just output "No related fragments"):
+Final extracted fragments (follow the format above in different lines and if no resulted fragments just output "No related fragments"):

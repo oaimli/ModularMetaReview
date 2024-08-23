@@ -21,14 +21,15 @@ Here are some recommendations:
 Overall, I recommend rejection of this paper. A potential re-submission venue could be JMLR, which has an explicit software track.
 
 
-Example output fragments in JSON Lines:
+Example output fragments in different lines:
 
-{"extracted_fragment": "While the package seems to be useful for this purpose (and some ML-related purposes), the paper does not expose which of the benefits come from JAX and which ones the authors added in JAX MD."}
-{"extracted_fragment": "Make a better case, why JAX MD should be the go-to method for practitioners.\n\n"}
+While the package seems to be useful for this purpose (and some ML-related purposes), the paper does not expose which of the benefits come from JAX and which ones the authors added in JAX MD.
+
+Make a better case, why JAX MD should be the go-to method for practitioners.
 
 
 Target input meta-review:
 
 {{input_document}}
 
-Final extracted fragments (follow the format above in JSON Lines and if no resulted fragments just output "No related fragments"):
+Final extracted fragments (follow the format above in different lines and if no resulted fragments just output "No related fragments"):

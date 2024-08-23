@@ -13,7 +13,6 @@ def llama3_prompting(input_text: str, facet: str, mode: str = "meta"):
     prompt_format = open(f"prompts_scientific/prompt_{mode.lower()}_{facet.lower()}.txt").read()
     prompt_content = prompt_format.replace("{{input_document}}", input_text)
     # print(prompt_format)
-    outputs = None
     while True:
         try:
             output_dict = client.chat.completions.create(
@@ -23,51 +22,27 @@ def llama3_prompting(input_text: str, facet: str, mode: str = "meta"):
                     {"role": "user",
                      "content": prompt_content}
                     ],
-                n=8
+                n=10
                 )
 
+            all_candidates = []
+            all_candidates_len = []
             for choice in output_dict.choices:
-                # two requirements, following the jsonlines format and using the required key
                 output_content = choice.message.content
-                print(output_content)
-                if "no related fragments" in output_content.lower():
-                    outputs = []
-                    break
-
-                with open("output_tmp.jsonl", "w") as f:
-                    f.write(output_content.strip())
-                tmp = []
-                try:
-                    with jsonlines.open("output_tmp.jsonl") as reader:
-                        for line in reader:
-                            tmp.append(line)
-                    output_keys = set([])
-                    for output in tmp:
-                        output_keys.update(output.keys())
-                    if len(output_keys.union({"extracted_fragment"})) <= 1:
-                        outputs = tmp
-                        break
-                except jsonlines.InvalidLineError as err:
-                    print("Jsonlines parsing error,", err)
-
-            if outputs != None:
-                break
+                if "no related fragments" not in output_content.lower():
+                    all_candidates_len.append(len(output_content.split()))
+                    all_candidates.append(output_content.split("\n"))
+            if len(all_candidates) < 5:
+                outputs = []
+            else:
+                outputs = all_candidates[all_candidates_len.index(int(np.median(all_candidates_len)))]
+            break
         except Exception as e:
             print(e)
             if ("limit" in str(e)):
                 time.sleep(2)
 
-    print(outputs)
-    output_keys = set([])
-    for output in outputs:
-        output_keys.update(output.keys())
-    assert len(output_keys.union({"extracted_fragment"})) <= 1
-
-    fragments = []
-    for line in outputs:
-        fragments.append(line["extracted_fragment"])
-
-    return fragments
+    return outputs
 
 
 def categorizing_meta_review(meta_review: str) -> Dict:
