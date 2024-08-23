@@ -40,23 +40,7 @@ def mixtral_prompting(input_text: str, facet: str, mode: str = "meta"):
                 output_content = choice.message.content
                 # print(output_content)
                 if "no related fragments" not in output_content.lower():
-                    with open("output_tmp.jsonl", "w") as f:
-                        f.write(output_content.strip())
-                    try:
-                        tmp = []
-                        with jsonlines.open("output_tmp.jsonl") as reader:
-                            for line in reader:
-                                print(line)
-                                tmp.append(line)
-                        output_keys = set([])
-                        for output in tmp:
-                            if isinstance(output, dict):
-                                output_keys.update(output.keys())
-                        if output_keys == {"extracted_fragment"}:
-                            outputs = tmp
-                            break
-                    except jsonlines.InvalidLineError as err:
-                        print("Jsonlines parsing error,", err)
+                    outputs = output_content.split("\n")
             if outputs != None:
                 break
         except Exception as e:
@@ -64,17 +48,8 @@ def mixtral_prompting(input_text: str, facet: str, mode: str = "meta"):
             if ("limit" in str(e)):
                 time.sleep(2)
 
-    # print(outputs)
-    output_keys = set([])
-    for output in outputs:
-        output_keys.update(output.keys())
-    assert len(output_keys.union({"extracted_fragment"})) <= 1
 
-    fragments = []
-    for line in outputs:
-        fragments.append(line["extracted_fragment"])
-
-    return fragments
+    return outputs
 
 
 def categorizing_meta_review(meta_review: str) -> Dict:
