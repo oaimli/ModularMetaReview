@@ -36,15 +36,16 @@ def mixtral_prompting(input_text: str, facet: str, mode: str = "meta"):
 
                 with open("output_tmp.jsonl", "w") as f:
                     f.write(output_content.strip())
-                tmp = []
                 try:
+                    tmp = []
                     with jsonlines.open("output_tmp.jsonl") as reader:
                         for line in reader:
                             print(line)
                             tmp.append(line)
                     output_keys = set([])
                     for output in tmp:
-                        output_keys.update(output.keys())
+                        if isinstance(output, dict):
+                            output_keys.update(output.keys())
                     if len(output_keys.union({"extracted_fragment"})) <= 1:
                         outputs = tmp
                         break
@@ -58,7 +59,7 @@ def mixtral_prompting(input_text: str, facet: str, mode: str = "meta"):
             if ("limit" in str(e)):
                 time.sleep(2)
 
-    print(outputs)
+    # print(outputs)
     output_keys = set([])
     for output in outputs:
         output_keys.update(output.keys())
