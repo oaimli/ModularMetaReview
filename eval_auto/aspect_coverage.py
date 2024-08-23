@@ -14,7 +14,8 @@ def llama3_prompting(input_text: str, facet: str, mode: str = "meta"):
             output_dict = client.chat.completions.create(
                 model="meta-llama/Meta-Llama-3.1-70B-Instruct",
                 messages=[
-                    {"role": "system", "content": "You are requested to do some extraction work. You must output the answer following the format of the example output, without any other useless content."},
+                    {"role": "system",
+                     "content": "You are requested to do some extraction work. You must output the answer following the format of the example output, without any other useless content."},
                     {"role": "user",
                      "content": prompt_content}
                     ],
@@ -84,7 +85,8 @@ if __name__ == "__main__":
             facets = ["Building", "Cleanliness", "Food", "Location", "Rooms", "Service"]
             prompt_folder = "../modular_llama3/hotels/prompts_organization"
         if dataset_name == "amasum-shoes":
-            facets = ["Breathability", "Durability", "Weight", "Cushioning", "Stability", "Flexibility", "Traction", "Sizefit", "Comfort", "Misc"]
+            facets = ["Breathability", "Durability", "Weight", "Cushioning", "Stability", "Flexibility", "Traction",
+                      "Sizefit", "Comfort", "Misc"]
             prompt_folder = "../modular_llama3/shoes/prompts_organization"
 
         generations_info = info[dataset_name]
@@ -107,11 +109,32 @@ if __name__ == "__main__":
                     references.append(sample[reference_key][0])  # SPACE has multiple references
                 review_categorizations.append(sample["review_categorization"])
 
-
             # compared with references on only shared aspects
             recalls = []
             precisions = []
             f_measures = []
             for review_categorization, candidate in zip(review_categorizations, candidates):
                 categorization_candidate = categorizing_meta_review(candidate)
+                review_count = 0
+                shared_count = 0
+                candidate_count = 0
+                for facet in facets:
+                    flag = 0
+                    for categorization in review_categorization:
+                        if len(categorization[facet]) > 0:
+                            flag = 1
+                            break
+                    if flag == 1:
+                        review_count += 1
 
+                    if len(categorization_candidate[facet]) > 0:
+                        candidate_count += 0
+
+                    if flag == 1 and len(categorization_candidate[facet]) > 0:
+                        shared_count += 1
+                r = (shared_count + 1) / (review_count + 1)
+                p = (shared_count + 1) / (candidate_count + 1)
+                recalls.append(r)
+                precisions.append(p)
+                f_measures.append(2 * (r * p) / (r + p))
+            print("recall", np.mean(recalls), "precision", np.mean(precisions), "f-measure", np.mean(f_measures))
