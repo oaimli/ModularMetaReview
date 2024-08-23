@@ -116,7 +116,7 @@ if __name__ == "__main__":
     results = []
     # test_samples = random.sample(list(test_samples.keys()), 5)
     for test_sample in tqdm(test_samples):
-        reviews = test_sample["reviews"]
+        reviews = test_sample["source_documents"]
         test_sample["review_categorization"] = categorizing_review(reviews)
         results.append(test_sample)
         # print(sample)
