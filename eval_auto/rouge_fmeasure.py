@@ -64,28 +64,31 @@ def rouge_corpus(references, candidates, types=None, use_stemmer=True, split_sum
 
 
 if __name__ == "__main__":
-    # amasum
-    reference_key = "generated_meta_review"
-    candidate_key = "meta_review"
-    # generation_file = "/home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_amasum_shoes/generations_gpt_4o_logic.json"
-    # generation_file = "/home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_amasum_shoes/generations_gpt_4o_naive.json"
-    # generation_file = "/home/miao4/punim0521/ModularMetaReview/results/llama3_pr_amasum_shoes/generations_llama31_70b_logic.json"
-    generation_file = "/home/miao4/punim0521/ModularMetaReview/results/llama3_pr_amasum_shoes/generations_llama31_70b_naive.json"
+    with open("info.json") as f:
+        info = json.load(f)
 
+    dataset_names = ["peermeta", "space", "amasum-shoes"]
+    for dataset_name in dataset_names:
+        print(dataset_name)
+        generations_info = info[dataset_name]
+        for generation_info in generations_info:
+            generation_file = generation_info["generation_file"]
+            print(generation_file)
+            candidate_key = generation_info["candidate_key"]
+            reference_key = generation_info["reference_key"]
+            with open(generation_file) as f:
+                samples = json.load(f)
 
-    with open(generation_file) as f:
-        samples = json.load(f)
+            candidates = []
+            references = []
+            for sample in samples:
+                candidates.append(sample[candidate_key])
+                if isinstance(sample[reference_key], str):
+                    references.append(sample[reference_key])
+                else:
+                    references.append(sample[reference_key][0]) # SPACE has multiple references
 
-    candidates = []
-    references = []
-    for sample in samples:
-        candidates.append(sample[candidate_key])
-        if isinstance(sample[reference_key], str):
-            references.append(sample[reference_key])
-        else:
-            references.append(sample[reference_key][0]) # SPACE has multiple references
+            scores = rouge_corpus(references, candidates, types=['rouge1', 'rouge2', 'rougeLsum'])
 
-    scores = rouge_corpus(references, candidates, types=['rouge1', 'rouge2', 'rougeLsum'])
-
-    print("Average F1",
-          (scores["rouge1"]["fmeasure"] + scores["rouge2"]["fmeasure"] + scores["rougeLsum"]["fmeasure"]) / 3)
+            print("Average F1",
+                  (scores["rouge1"]["fmeasure"] + scores["rouge2"]["fmeasure"] + scores["rougeLsum"]["fmeasure"]) / 3)
