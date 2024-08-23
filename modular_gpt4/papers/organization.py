@@ -125,11 +125,11 @@ if __name__ == "__main__":
     nlp = spacy.load("en_core_web_sm")
     scorer = rouge_scorer.RougeScorer(["rouge1", "rouge2", "rougeLsum"], use_stemmer=True)
     for sample_index, sample in enumerate(results):
-        reviews = sample["reviews"]
+        reviews = sample["source_documents"]
         review_categorization = sample["review_categorization"]
         review_categorization_new = []
         for review, categorization in zip(reviews, review_categorization):
-            review_categorization_new.append(matching_fragments(review["comment"], categorization))
+            review_categorization_new.append(matching_fragments(review, categorization))
         results[sample_index]["review_categorization"] = review_categorization_new
 
     with open(f"peermeta_categorization_result_{model_name}.json", "w") as f:
