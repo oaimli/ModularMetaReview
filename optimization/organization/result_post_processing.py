@@ -43,9 +43,9 @@ if __name__ == "__main__":
     nlp = spacy.load("en_core_web_sm")
     scorer = rouge_scorer.RougeScorer(["rouge1", "rouge2", "rougeLsum"], use_stemmer=True)
 
-    # file_name = "scientific_categorization_result_gpt_4o"
+    file_name = "scientific_categorization_result_gpt_4o"
     # file_name = "scientific_categorization_result_llama31_70b"
-    file_name = "scientific_categorization_result_mixtral8x7b_v01"
+    # file_name = "scientific_categorization_result_mixtral8x7b_v01"
 
     with open(f"{file_name}.json") as f:
         samples = json.load(f)
