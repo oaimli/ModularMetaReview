@@ -40,6 +40,7 @@ def mixtral_prompting(input_text: str, facet: str, mode: str = "meta"):
                 try:
                     with jsonlines.open("output_tmp.jsonl") as reader:
                         for line in reader:
+                            print(line)
                             tmp.append(line)
                     output_keys = set([])
                     for output in tmp:
