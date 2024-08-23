@@ -10,23 +10,28 @@ def gpt4_prompting(metas_generated: List):
     review_text = "\n".join(metas_generated)
     prompt_content = prompt_format.replace("{{metas_generated}}", review_text)
     # print(prompt_format)
-    final_meta_review = ""
     while True:
         try:
             output_dict = client.chat.completions.create(
                 model="gpt-4o-2024-05-13",
                 messages=[
-                    {"role": "system", "content": "Always answer with only the summary in JSON Lines, no other content."},
+                    {"role": "system", "content": "Always answer with only the predicted summary, no other content."},
                     {"role": "user",
                      "content": prompt_content}
                     ],
-                n=5
+                n=8
                 )
+            all_candidates = []
+            all_candidates_len = []
+            tmp = []
             for choice in output_dict.choices:
-                tmp = choice.message.content
-                if len(tmp) > 0:
-                    final_meta_review = tmp
-                    break
+                output_content = choice.message.content
+                content_len = len(output_content.split())
+                all_candidates_len.append(content_len)
+                tmp.append(content_len)
+                all_candidates.append(output_content)
+            tmp.sort()
+            final_meta_review = all_candidates[all_candidates_len.index(tmp[int(len(tmp) / 2)])]
             break
         except Exception as e:
             print(e)
@@ -55,12 +60,11 @@ if __name__ == "__main__":
     with open(f"space_reasoning_result_{model_name}.json") as f:
         test_samples = json.load(f)
 
-    results = {}
-    for key in tqdm(test_samples):
-        sample = test_samples[key]
+    results = []
+    for sample in tqdm(test_samples):
         categorization_pairs = sample["categorization_pairs"]
         sample["meta_review_generated"] = meta_generation(categorization_pairs)
-        results[key] = sample
+        results.append(sample)
         # print(sample)
 
     print(len(results))
