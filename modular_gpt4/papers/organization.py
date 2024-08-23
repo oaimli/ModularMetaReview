@@ -13,58 +13,40 @@ def gpt4_prompting(input_text: str, facet: str, mode: str = "meta"):
     prompt_format = open(f"../../optimization/organization/prompts_scientific/prompt_{mode.lower()}_{facet.lower()}.txt").read()
     prompt_content = prompt_format.replace("{{input_document}}", input_text)
     # print(prompt_format)
-    outputs = None
     while True:
         try:
             output_dict = client.chat.completions.create(
                 model="gpt-4o-2024-05-13",
                 messages=[
-                    {"role": "system", "content": "You are requested to do some extraction work. You must produce the answer following the format of the example output, without other useless content."},
+                    {"role": "system", "content": "You are requested to do some extraction work. You must output the answer following the format of the example output, without any other useless content."},
                     {"role": "user",
                      "content": prompt_content}
                     ],
-                n=8
+                n=10
                 )
 
+            all_candidates = []
+            all_candidates_len = []
+            tmp = []
             for choice in output_dict.choices:
-                # two requirements, following the jsonlines format and using the required key
                 output_content = choice.message.content
-                print(output_content)
-                with open("output_tmp.jsonl", "w") as f:
-                    f.write(output_content.strip())
-
-                tmp = []
-                try:
-                    with jsonlines.open("output_tmp.jsonl") as reader:
-                        for line in reader:
-                            tmp.append(line)
-                    output_keys = {[]}
-                    for output in outputs:
-                        output_keys.update(output.keys())
-                    if len(output_keys.union({["extracted_fragment"]})) <= 1:
-                        outputs = tmp
-                        break
-                except jsonlines.InvalidLineError as err:
-                    print("Jsonlines parsing error,", err)
-
-            if outputs != None:
-                break
+                if "no related fragments" not in output_content.lower():
+                    content_len = len(output_content.split())
+                    all_candidates_len.append(content_len)
+                    tmp.append(content_len)
+                    all_candidates.append(output_content.split("\n"))
+            if len(all_candidates) < 5:
+                outputs = []
+            else:
+                tmp.sort()
+                outputs = all_candidates[all_candidates_len.index(tmp[int(len(tmp)/2)])]
+            break
         except Exception as e:
             print(e)
             if ("limit" in str(e)):
                 time.sleep(2)
 
-    print(outputs)
-    output_keys = {[]}
-    for output in outputs:
-        output_keys.update(output.keys())
-    assert len(output_keys.union({["extracted_fragment"]})) <= 1
-
-    fragments = []
-    for line in outputs:
-        fragments.append(line["extracted_fragment"])
-
-    return fragments
+    return outputs
 
 
 def categorizing_review(reviews: List[Dict]) -> List:
@@ -140,17 +122,11 @@ if __name__ == "__main__":
         # print(sample)
 
     print(len(results))
-
     nlp = spacy.load("en_core_web_sm")
     scorer = rouge_scorer.RougeScorer(["rouge1", "rouge2", "rougeLsum"], use_stemmer=True)
-    for sample_index, sample_value in enumerate(results):
-        meta_review = sample_value["meta_review"]
-        meta_review_categorization = sample_value["meta_review_categorization"]
-        results[sample_index]["meta_review_categorization"] = matching_fragments(meta_review,
-                                                                                 meta_review_categorization)
-
-        reviews = sample_value["reviews"]
-        review_categorization = sample_value["review_categorization"]
+    for sample_index, sample in enumerate(results):
+        reviews = sample["reviews"]
+        review_categorization = sample["review_categorization"]
         review_categorization_new = []
         for review, categorization in zip(reviews, review_categorization):
             review_categorization_new.append(matching_fragments(review["comment"], categorization))
