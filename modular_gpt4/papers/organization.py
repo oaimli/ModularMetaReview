@@ -49,7 +49,7 @@ def gpt4_prompting(input_text: str, facet: str, mode: str = "meta"):
     return outputs
 
 
-def categorizing_review(reviews: List[Dict]) -> List:
+def categorizing_review(reviews: List) -> List:
     """
     Args:
         reviews: the list of reviews in the original dataset
@@ -60,7 +60,7 @@ def categorizing_review(reviews: List[Dict]) -> List:
     for review in reviews:
         tmp = {}
         for facet in facets:
-            tmp[facet] = gpt4_prompting(review["comment"], facet, "review")
+            tmp[facet] = gpt4_prompting(review, facet, "review")
         result.append(tmp)
 
     return result
