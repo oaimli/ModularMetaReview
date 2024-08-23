@@ -26,32 +26,37 @@ def mixtral_prompting(input_text: str, facet: str, mode: str = "meta"):
                 n=8
                 )
 
+            no_count = 0
+            for choice in output_dict.choices:
+                output_content = choice.message.content
+                if "no related fragments" in output_content.lower():
+                    no_count += 1
+            if no_count >= 3:
+                outputs = []
+                break
+
             for choice in output_dict.choices:
                 # two requirements, following the jsonlines format and using the required key
                 output_content = choice.message.content
                 # print(output_content)
-                if "no related fragments" in output_content.lower():
-                    outputs = []
-                    break
-
-                with open("output_tmp.jsonl", "w") as f:
-                    f.write(output_content.strip())
-                try:
-                    tmp = []
-                    with jsonlines.open("output_tmp.jsonl") as reader:
-                        for line in reader:
-                            print(line)
-                            tmp.append(line)
-                    output_keys = set([])
-                    for output in tmp:
-                        if isinstance(output, dict):
-                            output_keys.update(output.keys())
-                    if len(output_keys.union({"extracted_fragment"})) <= 1:
-                        outputs = tmp
-                        break
-                except jsonlines.InvalidLineError as err:
-                    print("Jsonlines parsing error,", err)
-
+                if "no related fragments" not in output_content.lower():
+                    with open("output_tmp.jsonl", "w") as f:
+                        f.write(output_content.strip())
+                    try:
+                        tmp = []
+                        with jsonlines.open("output_tmp.jsonl") as reader:
+                            for line in reader:
+                                print(line)
+                                tmp.append(line)
+                        output_keys = set([])
+                        for output in tmp:
+                            if isinstance(output, dict):
+                                output_keys.update(output.keys())
+                        if output_keys == {"extracted_fragment"}:
+                            outputs = tmp
+                            break
+                    except jsonlines.InvalidLineError as err:
+                        print("Jsonlines parsing error,", err)
             if outputs != None:
                 break
         except Exception as e:
