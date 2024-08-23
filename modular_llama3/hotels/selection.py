@@ -3,7 +3,7 @@ import json
 
 
 model_name = "llama31_70b"
-with open(f"peermeta_categorization_result_{model_name}.json") as f:
+with open(f"space_categorization_result_{model_name}.json") as f:
     processed_samples = json.load(f)
 
 for key in processed_samples.keys():
@@ -23,5 +23,5 @@ for key in processed_samples.keys():
 
     processed_samples[key]["categorization_pairs"] = categorization_pairs
 
-with open(f"peermeta_selection_result_{model_name}.json", "w") as f:
+with open(f"space_selection_result_{model_name}.json", "w") as f:
     json.dump(processed_samples, f, indent=4)
