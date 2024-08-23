@@ -29,7 +29,7 @@ def mixtral_prompting(input_text: str, facet: str, mode: str = "meta"):
             for choice in output_dict.choices:
                 # two requirements, following the jsonlines format and using the required key
                 output_content = choice.message.content
-                print(output_content)
+                # print(output_content)
                 if "no related fragments" in output_content.lower():
                     outputs = []
                     break
