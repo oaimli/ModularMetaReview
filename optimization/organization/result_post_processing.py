@@ -43,9 +43,28 @@ if __name__ == "__main__":
     nlp = spacy.load("en_core_web_sm")
     scorer = rouge_scorer.RougeScorer(["rouge1", "rouge2", "rougeLsum"], use_stemmer=True)
 
-    # file_name = "scientific_categorization_result_gpt_4o"
+
+    file_name = "scientific_categorization_result_gpt_4o"
+    with open(f"{file_name}.json") as f:
+        samples = json.load(f)
+
+    for sample_key, sample_value in samples.items():
+        meta_review = sample_value["meta_review"]
+        meta_review_categorization = sample_value["meta_review_categorization"]
+        samples[sample_key]["meta_review_categorization"] = matching_fragments(meta_review, meta_review_categorization)
+
+        reviews = sample_value["reviews"]
+        review_categorization = sample_value["review_categorization"]
+        review_categorization_new = []
+        for review, categorization in zip(reviews, review_categorization):
+            review_categorization_new.append(matching_fragments(review["comment"], categorization))
+        samples[sample_key]["review_categorization"] = review_categorization_new
+
+    with open(f"{file_name}_processed.json", "w") as f:
+        json.dump(samples, f, indent=4)
+
+
     file_name = "scientific_categorization_result_llama31_70b"
-    # file_name = "scientific_categorization_result_mixtral8x7b_v01"
 
     with open(f"{file_name}.json") as f:
         samples = json.load(f)
@@ -63,4 +82,25 @@ if __name__ == "__main__":
         samples[sample_key]["review_categorization"] = review_categorization_new
 
     with open(f"{file_name}_processed.json", "w") as f:
-        samples = json.dump(samples, f, indent=4)
+        json.dump(samples, f, indent=4)
+
+
+    file_name = "scientific_categorization_result_mixtral8x7b_v01"
+    with open(f"{file_name}.json") as f:
+        samples = json.load(f)
+
+    for sample_key, sample_value in samples.items():
+        meta_review = sample_value["meta_review"]
+        meta_review_categorization = sample_value["meta_review_categorization"]
+        samples[sample_key]["meta_review_categorization"] = matching_fragments(meta_review,
+                                                                               meta_review_categorization)
+
+        reviews = sample_value["reviews"]
+        review_categorization = sample_value["review_categorization"]
+        review_categorization_new = []
+        for review, categorization in zip(reviews, review_categorization):
+            review_categorization_new.append(matching_fragments(review["comment"], categorization))
+        samples[sample_key]["review_categorization"] = review_categorization_new
+
+    with open(f"{file_name}_processed.json", "w") as f:
+        json.dump(samples, f, indent=4)

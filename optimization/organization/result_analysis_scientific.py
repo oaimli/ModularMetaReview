@@ -905,12 +905,93 @@ def word_level_agreement(results_1, results_2, annotation_data):
 
 
 if __name__ == "__main__":
-    # model_name = "gpt-4o-2024-05-13"
-    # with open("scientific_categorization_result_gpt_4o_processed.json") as f:
-    #     model_results = json.load(f)
-    # model_name = "Mixtral-8x7B-Instruct-v0.1"
-    # with open("scientific_categorization_result_mixtral8x7b_v01_processed.json") as f:
-    #     model_results = json.load(f)
+    model_name = "gpt-4o-2024-05-13"
+    with open("scientific_categorization_result_gpt_4o_processed.json") as f:
+        model_results = json.load(f)
+
+    with open("../../annotations/scientific_reviews/br_annotation_result_fragments.json") as f:
+        bryan_results = json.load(f)
+    with open("../../annotations/scientific_reviews/ze_annotation_result_fragments.json") as f:
+        zenan_results = json.load(f)
+    with open("../../annotations/scientific_reviews/annotation_data_small.json") as f:
+        annotation_data = json.load(f)
+
+    bryan_results_share = {}
+    zenan_results_share = {}
+    model_results_share = {}
+    annotation_data_share = {}
+    shared_ids = list(
+        set(bryan_results.keys()).intersection(set(zenan_results.keys())).intersection(set(model_results.keys())))
+    for key in shared_ids:
+        bryan_results_share[key] = bryan_results[key]
+        zenan_results_share[key] = zenan_results[key]
+        model_results_share[key] = model_results[key]
+        annotation_data_share[key] = annotation_data[key]
+
+    print("Br", len(bryan_results_share), "Ze", len(zenan_results_share), "Model", len(model_results_share),
+          "Annotation data", len(annotation_data_share))
+    assert annotation_data_share.keys() == bryan_results_share.keys() == zenan_results_share.keys() == model_results_share.keys()
+
+    print("################ Agreement Bryan and Zenan: ################")
+    result_bz = word_level_agreement(bryan_results_share, zenan_results_share, annotation_data_share)
+
+    print("################ Agreement Bryan and Model: ################")
+    result_bm = word_level_agreement(bryan_results_share, model_results_share, annotation_data_share)
+
+    print("################ Agreement Zenan and Model: ################")
+    result_zm = word_level_agreement(zenan_results_share, model_results_share, annotation_data_share)
+
+    print(shared_ids)
+
+    print(f"################ All agreements, A1<->A2, A1<->Model and A2<->Model {model_name} {datetime.datetime.now()} ################")
+    for key in result_bm:
+        print(key, "------", result_bz[key], result_bm[key], result_zm[key])
+
+
+    model_name = "Mixtral-8x7B-Instruct-v0.1"
+    with open("scientific_categorization_result_mixtral8x7b_v01_processed.json") as f:
+        model_results = json.load(f)
+
+    with open("../../annotations/scientific_reviews/br_annotation_result_fragments.json") as f:
+        bryan_results = json.load(f)
+    with open("../../annotations/scientific_reviews/ze_annotation_result_fragments.json") as f:
+        zenan_results = json.load(f)
+    with open("../../annotations/scientific_reviews/annotation_data_small.json") as f:
+        annotation_data = json.load(f)
+
+    bryan_results_share = {}
+    zenan_results_share = {}
+    model_results_share = {}
+    annotation_data_share = {}
+    shared_ids = list(
+        set(bryan_results.keys()).intersection(set(zenan_results.keys())).intersection(set(model_results.keys())))
+    for key in shared_ids:
+        bryan_results_share[key] = bryan_results[key]
+        zenan_results_share[key] = zenan_results[key]
+        model_results_share[key] = model_results[key]
+        annotation_data_share[key] = annotation_data[key]
+
+    print("Br", len(bryan_results_share), "Ze", len(zenan_results_share), "Model", len(model_results_share),
+          "Annotation data", len(annotation_data_share))
+    assert annotation_data_share.keys() == bryan_results_share.keys() == zenan_results_share.keys() == model_results_share.keys()
+
+    print("################ Agreement Bryan and Zenan: ################")
+    result_bz = word_level_agreement(bryan_results_share, zenan_results_share, annotation_data_share)
+
+    print("################ Agreement Bryan and Model: ################")
+    result_bm = word_level_agreement(bryan_results_share, model_results_share, annotation_data_share)
+
+    print("################ Agreement Zenan and Model: ################")
+    result_zm = word_level_agreement(zenan_results_share, model_results_share, annotation_data_share)
+
+    print(shared_ids)
+
+    print(
+        f"################ All agreements, A1<->A2, A1<->Model and A2<->Model {model_name} {datetime.datetime.now()} ################")
+    for key in result_bm:
+        print(key, "------", result_bz[key], result_bm[key], result_zm[key])
+
+
     model_name = "LLaMA3.1-70B-Instruct"
     with open("scientific_categorization_result_llama31_70b_processed.json") as f:
         model_results = json.load(f)
@@ -949,6 +1030,7 @@ if __name__ == "__main__":
 
     print(shared_ids)
 
-    print(f"################ All agreements, A1<->A2, A1<->Model and A2<->Model {model_name} {datetime.datetime.now()} ################")
+    print(
+        f"################ All agreements, A1<->A2, A1<->Model and A2<->Model {model_name} {datetime.datetime.now()} ################")
     for key in result_bm:
         print(key, "------", result_bz[key], result_bm[key], result_zm[key])
