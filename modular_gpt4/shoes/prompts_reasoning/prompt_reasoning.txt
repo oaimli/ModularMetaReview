@@ -1,0 +1,8 @@
+You are good at writing summaries for opinionated texts. You are given some opinionated text fragments, please write a concise summary for them.
+
+
+Target input review fragments:
+
+{{review_fragments}}
+
+The final summary of these target input text fragments (just produce the answer without any other content):
