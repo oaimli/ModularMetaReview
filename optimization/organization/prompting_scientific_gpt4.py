@@ -27,15 +27,19 @@ def gpt4_prompting(input_text: str, facet: str, mode: str = "meta"):
 
             all_candidates = []
             all_candidates_len = []
+            tmp = []
             for choice in output_dict.choices:
                 output_content = choice.message.content
                 if "no related fragments" not in output_content.lower():
-                    all_candidates_len.append(len(output_content.split()))
+                    content_len = len(output_content.split())
+                    all_candidates_len.append(content_len)
+                    tmp.append(content_len)
                     all_candidates.append(output_content.split("\n"))
             if len(all_candidates) < 5:
                 outputs = []
             else:
-                outputs = all_candidates[all_candidates_len.index(int(np.median(all_candidates_len)))]
+                tmp.sort()
+                outputs = all_candidates[all_candidates_len.index(tmp[int(len(tmp)/2)])]
             break
         except Exception as e:
             print(e)
