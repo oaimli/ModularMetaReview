@@ -35,15 +35,15 @@ if __name__ == "__main__":
     #     sources.append("\n".join(sample["source"]))
 
 
-    output_file = "/data/gpfs/projects/punim0521/MistralX/results/mistral_7b_instruct_v02_peersum/predictions_zeroshot.jsonl"
-    documents = []
-    summaries = []
-    with jsonlines.open(output_file) as reader:
-        for line in reader:
-            documents.append("\n".join(line["source"]))
-            summaries.append(line["summary"])
-
-    scores_zs, scores_conv = summac_scores(documents, summaries)
-    print(np.mean(scores_zs), np.mean(scores_conv))
+    # output_file = "/data/gpfs/projects/punim0521/MistralX/results/mistral_7b_instruct_v02_peersum/predictions_zeroshot.jsonl"
+    # documents = []
+    # summaries = []
+    # with jsonlines.open(output_file) as reader:
+    #     for line in reader:
+    #         documents.append("\n".join(line["source"]))
+    #         summaries.append(line["summary"])
+    #
+    # scores_zs, scores_conv = summac_scores(documents, summaries)
+    # print(np.mean(scores_zs), np.mean(scores_conv))
 
 
