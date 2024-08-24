@@ -3,6 +3,7 @@ from openai import OpenAI
 import time
 import json
 import random
+from elo_rating import Elo
 
 
 def comparing(source_documents, generation_a, generation_b, dataset_name):
@@ -42,8 +43,48 @@ def comparing(source_documents, generation_a, generation_b, dataset_name):
 
 
 def scoring(samples):
+    # e = Elo()
+    # e.add_match("p1", "p2", 1.0, k=0.15)
+    # e.add_matches([("p1", "p2", 1.0), ("p2", "p1", 0.5)], k=0.15)
+    #
+    # e.ratings() # {"p1": 0.13363123747494593, "p2": -0.1336312374749459}
+    # e.items() # ['p1', 'p2']
+    # e.rankings() # {'p1': 0, 'p2': 1}
+    #
+    # e.ranking('p1') # 0
+    # e.rating('p1')  # 0.13363123747494593
+
+    e = Elo()
+    result_models = {}
+    for sample in samples:
+        comparisons = sample["comparisons"]
+        for comparison in comparisons:
+            model_a = comparison["a"]
+            model_b = comparison["b"]
+            better_one = comparison[comparison["better"]]
+
+            tmp = result_models.get(model_a, [])
+            if better_one == model_a:
+                tmp.append(1)
+                e.add_match(model_a, model_b, 1.0, k=0.15)
+            else:
+                tmp.append(0)
+                e.add_match(model_a, model_b, 0.0, k=0.15)
+            result_models[model_a] = tmp
+
+            tmp = result_models.get(model_b, [])
+            if better_one == model_b:
+                tmp.append(1)
+            else:
+                tmp.append(0)
+            result_models[model_b] = tmp
+
     winning_rates = {}
-    elo_scores = {}
+    for model, result in result_models.items():
+        winning_rates[model] = sum(result) / len(result)
+
+    elo_scores = e.rankings()
+
     return winning_rates, elo_scores
 
 
