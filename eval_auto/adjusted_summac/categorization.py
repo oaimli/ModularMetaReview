@@ -118,6 +118,6 @@ if __name__ == "__main__":
                 sample[generation_info["candidate_key"] + "_shared"] = " ".join(candidate_shared)
                 samples[i] = sample
 
-            # with open(output_name, "w") as f:
-            #     json.dump(samples, f)
+            with open(output_name, "w") as f:
+                json.dump(samples, f)
 
