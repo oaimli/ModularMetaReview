@@ -91,7 +91,7 @@ if __name__ == "__main__":
         for generation_info in generations_info:
             generation_file = generation_info["generation_file"]
             print(generation_file)
-            output_name = "_".join(generation_file.split("/")).split(".")[0] + ".json"
+            output_name = "_".join(generation_file.split("/")[1:]).split(".")[0] + ".json"
             print(output_name)
             candidate_key = generation_info["candidate_key"]
             reference_key = generation_info["reference_key"]
