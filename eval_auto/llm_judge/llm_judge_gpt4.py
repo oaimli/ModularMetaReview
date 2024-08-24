@@ -5,61 +5,46 @@ import json
 import random
 
 
-def parsing_result(output):
-    with open("output_tmp.jsonl", "w") as f:
-        f.write(output.strip())
-    tmp = []
-    try:
-        with jsonlines.open("output_tmp.jsonl") as reader:
-            for line in reader:
-                tmp.append(line)
-    except jsonlines.InvalidLineError as err:
-        print("Jsonlines parsing error,", err)
-    return tmp
-
-
-def comparing(source_documents, generation_a, generation_b):
-    prompt_format = open("prompt_scientific_gpt4.txt").read()
-    review_text = "\n".join(metas_generated)
-    prompt_content = prompt_format.replace("{{metas_generated}}", review_text)
-    # print(prompt_format)
+def comparing(source_documents, generation_a, generation_b, dataset_name):
+    prompt_format = open(f"prompt_comparing_{dataset_name}.txt").read()
+    source_text = "\n".join(source_documents)
+    prompt_content = prompt_format.replace("{{source_documents}}", source_text)
+    prompt_content = prompt_content.replace("{{generation_a}}", generation_a)
+    prompt_content = prompt_content.replace("{{generation_b}}", generation_b)
     while True:
         try:
             output_dict = client.chat.completions.create(
                 model="gpt-4o-2024-05-13",
                 messages=[
                     {"role": "system",
-                     "content": "Always answer with only the summary in JSON Lines, no other content."},
+                     "content": "Always answer with only the answer without any other content."},
                     {"role": "user",
                      "content": prompt_content}
                     ],
-                n=5
+                n=10
                 )
             output = []
             for choice in output_dict.choices:
-                tmp = parsing_result(choice.message.content)
-                if len(tmp) > 0:
-                    output = tmp
-                    break
-            break
+                tmp = choice.message.content.lower()
+                if "a" in tmp:
+                    output.append("a")
+                if "b" in tmp:
+                    output.append("b")
+            if len(output) > 7:
+                prediction = max(output, key=output.count)
+                break
         except Exception as e:
             print(e)
             if ("limit" in str(e)):
                 time.sleep(2)
-    # print(output)
-    meta_review = ""
-    if len(output) > 0:
-        if "meta_review" in output[0].keys():
-            meta_review = output[0]["meta_review"]
-    print(meta_review)
 
-    return meta_review
+    return prediction
+
 
 def scoring(samples):
     winning_rates = {}
     elo_scores = {}
     return winning_rates, elo_scores
-
 
 
 if __name__ == "__main__":
@@ -68,112 +53,52 @@ if __name__ == "__main__":
     model_name = "gpt4"
     client = OpenAI(api_key="sk-proj-jxdkj7TzTCWDjDU0lpEPT3BlbkFJll01Dz3fxt51wM8Rh6wm")
 
-    result_folder = "../results/"
+    with open("../info.json") as f:
+        info = json.load(f)
 
-    # peermeta, 30
-    generations_peermeta = {}
-    with open("") as f:
-        generations_peermeta["gpt_4o_vanilla"] = json.load(f)
-    with open("") as f:
-        generations_peermeta["gpt_4o_logical"] = json.load(f)
-    # constructing pairs
-    all_samples = []
-    with jsonlines.open("../../datasets/peermeta_test.jsonl") as reader:
-        for line in reader:
-            all_samples.append(line)
-    for model, results in generations_peermeta.items():
-        for i, result in enumerate(results):
-            assert result["meta_review"] == all_samples[i]["meta_review"]
-            generations = all_samples[i].get("generations", [])
-            generations.append({"model": model, "generation": result["generated_meta_review"]})
-            all_samples[i]["generations"] = generations
-    all_samples = random.sample(all_samples, 30)
-    for sample_index, sample in enumerate(all_samples):
-        generations = sample["generations"]
-        source_documents = sample["source_documents"]
-        comparisons = []
-        for i in range(len(generations)):
-            for j in range(len(generations)):
-                if j > i:
-                    generation_i = generations[i]
-                    generation_j = generations[j]
-                    prediction = comparing(source_documents, generation_i["generation"], generation_j["generation"])
-                    comparisons.append({"a": generation_i["model"], "b": generation_j["model"], "better": prediction})
-        all_samples[sample_index]["comparisons"] = comparisons
-    with open("peermeta_llm_judged.json", "w") as f:
-        json.dump(all_samples, f)
+    dataset_names = ["peermeta", "space", "amasum_shoes"]
+    for dataset_name in dataset_names:
+        print(dataset_name)
+        generation_files = info[dataset_name]
+        generations_model = {}
+        for generation_file in generation_files:
+            with open(generation_file["generation_file"]) as f:
+                generations_model[generation_file["model_name"]] = json.load(f)
 
-    winning_rates, elo_scores = scoring(all_samples)
-    print("PeerMeta", winning_rates, elo_scores)
+        # constructing pairs
+        all_samples = []
+        with jsonlines.open(f"../../datasets/{dataset_name}_test.jsonl") as reader:
+            for line in reader:
+                all_samples.append(line)
 
-    # space, 20
-    generations_space = {}
-    with open("") as f:
-        generations_space["gpt_4o_vanilla"] = json.load(f)
-    with open("") as f:
-        generations_space["gpt_4o_logical"] = json.load(f)
-    # constructing pairs
-    all_samples = []
-    with jsonlines.open("../../datasets/space_test.jsonl") as reader:
-        for line in reader:
-            all_samples.append(line)
-    for model, results in generations_space.items():
-        for i, result in enumerate(results):
-            assert result["gold_summaries_general"][0] == all_samples[i]["gold_summaries_general"][0]
-            generations = all_samples[i].get("generations", [])
-            generations.append({"model": model, "generation": result["generated_summary_general"]})
-            all_samples[i]["generations"] = generations
-    all_samples = random.sample(all_samples, 20)
-    for sample_index, sample in enumerate(all_samples):
-        generations = sample["generations"]
-        source_documents = sample["source_documents"]
-        comparisons = []
-        for i in range(len(generations)):
-            for j in range(len(generations)):
-                if j > i:
-                    generation_i = generations[i]
-                    generation_j = generations[j]
-                    prediction = comparing(source_documents, generation_i["generation"], generation_j["generation"])
-                    comparisons.append({"a": generation_i["model"], "b": generation_j["model"], "better": prediction})
-        all_samples[sample_index]["comparisons"] = comparisons
-    with open("space_llm_judged.json", "w") as f:
-        json.dump(all_samples, f)
+        for model, results in generations_model.items():
+            reference_key = ""
+            for generation_file in generation_files:
+                if model == generation_file["model_name"]:
+                    reference_key = generation_file["reference_key"]
 
-    winning_rates, elo_scores = scoring(all_samples)
-    print("SPACE", winning_rates, elo_scores)
+            for i, result in enumerate(results):
+                assert result[reference_key] == all_samples[i][reference_key]
+                generations = all_samples[i].get("generations", [])
+                generations.append({"model": model, "generation": result["generated_meta_review"]})
+                all_samples[i]["generations"] = generations
 
-    # amasum-shoes, 20
-    generations_amasum = {}
-    with open("") as f:
-        generations_amasum["gpt_4o_vanilla"] = json.load(f)
-    with open("") as f:
-        generations_amasum["gpt_4o_logical"] = json.load(f)
-    # constructing pairs
-    all_samples = []
-    with jsonlines.open("../../datasets/amasum_shoes_test.jsonl") as reader:
-        for line in reader:
-            all_samples.append(line)
-    for model, results in generations_amasum.items():
-        for i, result in enumerate(results):
-            assert result["meta_review"] == all_samples[i]["meta_review"]
-            generations = all_samples[i].get("generations", [])
-            generations.append({"model": model, "generation": result["generated_meta_review"]})
-            all_samples[i]["generations"] = generations
-    all_samples = random.sample(all_samples, 20)
-    for sample_index, sample in enumerate(all_samples):
-        generations = sample["generations"]
-        source_documents = sample["source_documents"]
-        comparisons = []
-        for i in range(len(generations)):
-            for j in range(len(generations)):
-                if j > i:
-                    generation_i = generations[i]
-                    generation_j = generations[j]
-                    prediction = comparing(source_documents, generation_i["generation"], generation_j["generation"])
-                    comparisons.append({"a": generation_i["model"], "b": generation_j["model"], "better": prediction})
-        all_samples[sample_index]["comparisons"] = comparisons
-    with open("amasum_shoes_llm_judged.json", "w") as f:
-        json.dump(all_samples, f)
+        all_samples = random.sample(all_samples, 30)
+        for sample_index, sample in enumerate(all_samples):
+            generations = sample["generations"]
+            source_documents = sample["source_documents"]
+            comparisons = []
+            for i in range(len(generations)):
+                for j in range(len(generations)):
+                    if j > i:
+                        generation_i = generations[i]
+                        generation_j = generations[j]
+                        prediction = comparing(source_documents, generation_i["generation"], generation_j["generation"], dataset_name)
+                        comparisons.append(
+                            {"a": generation_i["model"], "b": generation_j["model"], "better": prediction})
+            all_samples[sample_index]["comparisons"] = comparisons
+        with open(f"{dataset_name}_llm_judged.json", "w") as f:
+            json.dump(all_samples, f, indent=4)
 
-    winning_rates, elo_scores = scoring(all_samples)
-    print("AmaSum-shoes", winning_rates, elo_scores)
+        winning_rates, elo_scores = scoring(all_samples)
+        print(winning_rates, elo_scores)

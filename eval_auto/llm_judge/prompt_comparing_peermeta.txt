@@ -1,0 +1,18 @@
+There are a bunch of review documents and two meta-reviews for a scientific manuscript below. Which meta-review do you think is in a better quality to summarize the opinions in the provided reviews.
+
+Review documents:
+
+{{source_documents}}
+
+
+Candidate meta-review A:
+
+{{generation_a}}
+
+
+Candidate meta-review B:
+
+{{generation_b}}
+
+
+The better one is (only output A or B, no other content):

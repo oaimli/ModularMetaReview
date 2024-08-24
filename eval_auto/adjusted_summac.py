@@ -82,7 +82,7 @@ if __name__ == "__main__":
     with open("info.json") as f:
         info = json.load(f)
 
-    dataset_names = ["peermeta", "space", "amasum-shoes"]
+    dataset_names = ["peermeta", "space", "amasum_shoes"]
     for dataset_name in dataset_names:
         print(dataset_name)
 
@@ -93,7 +93,7 @@ if __name__ == "__main__":
         if dataset_name == "space":
             facets = ["Building", "Cleanliness", "Food", "Location", "Rooms", "Service"]
             prompt_folder = "../modular_llama3/hotels/prompts_organization"
-        if dataset_name == "amasum-shoes":
+        if dataset_name == "amasum_shoes":
             facets = ["Breathability", "Durability", "Weight", "Cushioning", "Stability", "Flexibility", "Traction", "Sizefit", "Comfort", "Misc"]
             prompt_folder = "../modular_llama3/shoes/prompts_organization"
 
