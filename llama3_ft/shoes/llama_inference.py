@@ -1,6 +1,6 @@
 from transformers import HfArgumentParser, AutoModelForCausalLM, AutoTokenizer
 from arguments import ModelArguments, DataArguments, TrainingArguments
-import jsonlines
+import json
 import random
 from datasets import load_dataset
 import os
@@ -63,9 +63,8 @@ def predict(
         os.mkdir(training_args.output_dir)
 
     output_file = training_args.output_dir + "/%s.jsonl" % training_args.output_file
-    with jsonlines.open(output_file, "w") as writer:
-        writer.write_all(list(results))
-
+    with open(output_file, "w") as f:
+        json.dump(list(results), f)
 
 if __name__ == "__main__":
     parser = HfArgumentParser((ModelArguments, DataArguments, TrainingArguments))

@@ -6,7 +6,7 @@
         {"generation_file": "/home/miao4/punim0521/ModularMetaReview/results/llama3_pr_peermeta/generations_llama31_70b_logic.json", "candidate_key": "generated_meta_review", "reference_key":  "meta_review", "model_name":  "llama3_pr_logic"},
         {"generation_file": "/home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_peermeta/generations_gpt_4o_naive.json", "candidate_key": "generated_meta_review", "reference_key":  "meta_review", "model_name":  ""},
         {"generation_file": "/home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_peermeta/generations_gpt_4o_logic.json", "candidate_key": "generated_meta_review", "reference_key":  "meta_review", "model_name":  ""},
-        {"generation_file": "/home/miao4/punim0521/ModularMetaReview/results/llama31_8b_peermeta/generated_summaries.jsonl", "candidate_key": "meta_review_generated", "reference_key":  "meta_review", "model_name":  ""},
+        {"generation_file": "/home/miao4/punim0521/ModularMetaReview/results/llama31_8b_peermeta/generated_summaries.json", "candidate_key": "meta_review_generated", "reference_key":  "meta_review", "model_name":  ""},
         {"generation_file": "/home/miao4/punim0521/ModularMetaReview/results/led_large_peermeta/generations_led_large.json", "candidate_key": "generated_meta_review", "reference_key":  "meta_review", "model_name":  ""}
     ],
     "space": [
@@ -24,7 +24,7 @@
         {"generation_file": "/home/miao4/punim0521/ModularMetaReview/results/llama3_pr_amasum_shoes/generations_llama31_70b_logic.json", "candidate_key": "generated_meta_review", "reference_key":  "meta_review", "model_name":  ""},
         {"generation_file": "/home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_amasum_shoes/generations_gpt_4o_naive.json", "candidate_key": "generated_meta_review", "reference_key":  "meta_review", "model_name":  ""},
         {"generation_file": "/home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_amasum_shoes/generations_gpt_4o_logic.json", "candidate_key": "generated_meta_review", "reference_key":  "meta_review", "model_name":  ""},
-        {"generation_file": "/home/miao4/punim0521/ModularMetaReview/results/llama31_8b_amasum_shoes/generated_summaries.jsonl", "candidate_key": "meta_review_generated", "reference_key":  "meta_review", "model_name":  ""},
+        {"generation_file": "/home/miao4/punim0521/ModularMetaReview/results/llama31_8b_amasum_shoes/generated_summaries.json", "candidate_key": "meta_review_generated", "reference_key":  "meta_review", "model_name":  ""},
         {"generation_file": "/home/miao4/punim0521/ModularMetaReview/results/led_large_amasum_shoes/generations_led_large.json", "candidate_key": "generated_meta_review", "reference_key":  "meta_review", "model_name":  ""}
     ]
 }
