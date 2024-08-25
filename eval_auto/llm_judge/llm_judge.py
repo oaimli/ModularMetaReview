@@ -65,10 +65,9 @@ if __name__ == "__main__":
         with jsonlines.open(f"../../datasets/{dataset_name}_test.jsonl") as reader:
             for line in reader:
                 all_samples.append(line)
-        print(len(all_samples))
 
         for model, results in generations_model.items():
-            print(len(results))
+            print(len(all_samples), len(results))
             reference_key = ""
             candidate_key = ""
             for generation_file in generation_files:
