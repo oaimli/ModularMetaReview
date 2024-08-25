@@ -1,6 +1,4 @@
-import jsonlines
 import json
-import random
 from elo_rating import Elo
 
 
