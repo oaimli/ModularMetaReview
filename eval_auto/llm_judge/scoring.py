@@ -32,6 +32,7 @@ def scoring(samples):
     winning_rates = {}
     for model, result in result_models.items():
         winning_rates[model] = sum(result) / len(result)
+    winning_rates = sorted(winning_rates.items(), key=lambda x: x[1], reverse=True)
 
     elo_rankings = e.rankings()
 
