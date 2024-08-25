@@ -119,7 +119,7 @@ if __name__ == "__main__":
                 generations.append({"model": "human", "generation": result[reference_key][0]})
             all_samples[j]["generations"] = generations
 
-        all_samples = random.sample(all_samples, 2)
+        all_samples = random.sample(all_samples, 25)
         for sample_index, sample in enumerate(all_samples):
             generations = sample["generations"]
             source_documents = sample["source_documents"]
