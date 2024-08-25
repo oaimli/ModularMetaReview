@@ -2,10 +2,11 @@ import json
 from openai import OpenAI
 from typing import Dict
 import time
+from tqdm import tqdm
 
 
 def llama3_prompting(input_text: str, facet: str, mode: str = "meta"):
-    print("#######")
+    # print("#######")
     prompt_format = open(f"{prompt_folder}/prompt_{mode.lower()}_{facet.lower()}.txt").read()
     prompt_content = prompt_format.replace("{{input_document}}", input_text)
     # print(prompt_format)
@@ -78,7 +79,7 @@ if __name__ == "__main__":
     prompt_folder = "../../modular_llama3/hotels/prompts_organization"
 
     generations_info = info[dataset_name]
-    for generation_info in generations_info:
+    for generation_info in tqdm(generations_info):
         generation_file = generation_info["generation_file"]
         print(generation_file)
         output_name = "_".join(generation_file.split("/")[1:]).split(".")[0] + ".json"
