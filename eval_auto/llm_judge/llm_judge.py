@@ -67,7 +67,6 @@ if __name__ == "__main__":
                 all_samples.append(line)
 
         for model, results in generations_model.items():
-            print(model, len(all_samples), len(results))
             reference_key = ""
             candidate_key = ""
             for generation_file in generation_files:
@@ -77,7 +76,19 @@ if __name__ == "__main__":
                     break
             assert reference_key != "" and candidate_key != ""
 
-            for i, result in enumerate(tqdm(results)):
+            if dataset_name == "peermeta":
+                results_new = []
+                for sample in all_samples:
+                    reference = sample[reference_key]
+                    for result in results:
+                        if reference == result[reference_key]:
+                            results_new.append(result)
+                            break
+            else:
+                results_new = results
+            print(model, len(all_samples), len(results_new))
+
+            for i, result in enumerate(results_new):
                 # print(result[reference_key])
                 # print(all_samples[i][reference_key])
                 assert result[reference_key] == all_samples[i][reference_key]
