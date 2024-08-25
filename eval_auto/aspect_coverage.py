@@ -22,14 +22,11 @@ if __name__ == "__main__":
         facets = []
         if dataset_name == "peermeta":
             facets = ["Novelty", "Soundness", "Clarity", "Advancement", "Compliance", "Overall"]
-            prompt_folder = "../optimization/organization/prompts_scientific"
         if dataset_name == "space":
             facets = ["Building", "Cleanliness", "Food", "Location", "Rooms", "Service"]
-            prompt_folder = "../modular_llama3/hotels/prompts_organization"
         if dataset_name == "amasum_shoes":
             facets = ["Breathability", "Durability", "Weight", "Cushioning", "Stability", "Flexibility", "Traction",
                       "Sizefit", "Comfort", "Misc"]
-            prompt_folder = "../modular_llama3/shoes/prompts_organization"
 
         generations_info = info[dataset_name]
         for generation_info in generations_info:
@@ -37,12 +34,16 @@ if __name__ == "__main__":
             print(generation_file)
             candidate_key = generation_info["candidate_key"]
             reference_key = generation_info["reference_key"]
-            with open(generation_file) as f:
+
+            # use the processed result with shared content from categorization
+            categorization_file = "_".join(generation_file.split("/")[1:]).split(".")[0] + ".json"
+            with open(categorization_file) as f:
                 samples = json.load(f)
 
             candidates = []
             references = []
             review_categorizations = []
+            candidate_categorizations = []
             for sample in samples:
                 candidates.append(sample[candidate_key])
                 if isinstance(sample[reference_key], str):
@@ -50,13 +51,13 @@ if __name__ == "__main__":
                 else:
                     references.append(sample[reference_key][0])  # SPACE has multiple references
                 review_categorizations.append(sample["review_categorization"])
+                candidate_categorizations.append(sample["categorization_candidate"])
 
             # compared with references on only shared aspects
             recalls = []
             precisions = []
             f_measures = []
-            for review_categorization, candidate in zip(review_categorizations, candidates):
-                categorization_candidate = categorizing_meta_review(candidate)
+            for review_categorization, candidate_categorization in zip(review_categorizations, candidate_categorizations):
                 review_count = 0
                 shared_count = 0
                 candidate_count = 0
@@ -69,10 +70,10 @@ if __name__ == "__main__":
                     if flag == 1:
                         review_count += 1
 
-                    if len(categorization_candidate[facet]) > 0:
+                    if len(candidate_categorization[facet]) > 0:
                         candidate_count += 0
 
-                    if flag == 1 and len(categorization_candidate[facet]) > 0:
+                    if flag == 1 and len(candidate_categorization[facet]) > 0:
                         shared_count += 1
                 r = (shared_count + 1) / (review_count + 1)
                 p = (shared_count + 1) / (candidate_count + 1)

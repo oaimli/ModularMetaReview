@@ -2,7 +2,6 @@ import numpy as np
 import json
 from summac.model_summac import SummaCZS, SummaCConv
 from openai import OpenAI
-from typing import Dict
 
 
 def summac_scores(sources, targets):
@@ -29,6 +28,14 @@ if __name__ == "__main__":
     dataset_names = ["peermeta", "space", "amasum_shoes"]
     for dataset_name in dataset_names:
         print(dataset_name)
+        facets = []
+        if dataset_name == "peermeta":
+            facets = ["Novelty", "Soundness", "Clarity", "Advancement", "Compliance", "Overall"]
+        if dataset_name == "space":
+            facets = ["Building", "Cleanliness", "Food", "Location", "Rooms", "Service"]
+        if dataset_name == "amasum_shoes":
+            facets = ["Breathability", "Durability", "Weight", "Cushioning", "Stability", "Flexibility", "Traction",
+                      "Sizefit", "Comfort", "Misc"]
 
         generations_info = info[dataset_name]
         for generation_info in generations_info:
@@ -39,8 +46,8 @@ if __name__ == "__main__":
             source_key = "source_documents"
 
             # use the processed result with shared content from categorization
-            shared_file = "_".join(generation_file.split("/")[1:]).split(".")[0] + "_shared.json"
-            with open(shared_file) as f:
+            categorization_file = "_".join(generation_file.split("/")[1:]).split(".")[0] + ".json"
+            with open(categorization_file) as f:
                 samples = json.load(f)
 
             candidates = []
@@ -56,14 +63,24 @@ if __name__ == "__main__":
                     references.append(sample[reference_key][0])  # SPACE has multiple references
                 source_texts.append("\n".join(sample[source_key]))
 
-                references_shared.append(sample[reference_key + "_shared"])
-                candidates_shared.append(sample[candidate_key + "_shared"])
+                categorization_reference = sample["categorization_reference"]
+                categorization_candidate = sample["categorization_reference"]
+                reference_shared = []
+                candidate_shared = []
+                for facet in facets:
+                    if len(categorization_reference[facet]) > 0 and len(categorization_candidate[facet]) > 0:
+                        reference_shared.extend(categorization_reference[facet])
+                        candidate_shared.extend(categorization_candidate[facet])
+
+                references_shared.append(" ".join(reference_shared))
+                candidates_shared.append(" ".join(candidate_shared))
 
             # compared with source texts
             scores_zs_source, scores_conv_source = summac_scores(source_texts, candidates)
             score_zs_source_avg = np.mean(scores_zs_source)
             score_conv_source_avg = np.mean(scores_conv_source)
 
+            # compared with reference on shared aspects
             scores_zs_reference, scores_conv_reference = summac_scores(references_shared, candidates_shared)
             score_zs_reference_avg = np.mean(scores_zs_reference)
             score_conv_reference_avg = np.mean(scores_conv_reference)
