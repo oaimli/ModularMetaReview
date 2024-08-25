@@ -74,6 +74,8 @@ if __name__ == "__main__":
                     candidate_key = generation_file["candidate_key"]
 
             for i, result in enumerate(results):
+                print(result)
+                print(all_samples[i])
                 assert result[reference_key] == all_samples[i][reference_key]
                 generations = all_samples[i].get("generations", [])
                 generations.append({"model": model, "generation": result[candidate_key]})
