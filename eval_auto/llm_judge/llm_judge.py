@@ -66,7 +66,27 @@ if __name__ == "__main__":
             for line in reader:
                 all_samples.append(line)
 
+        if dataset_name == "peermeta": # get the shared samples in results from all models
+            all_samples_test = []
+            for sample in all_samples:
+                reference = sample["meta_review"]
+                for result in generations_model["llama3_pr_naive"]:
+                    if reference == result["meta_review"]:
+                        all_samples_test.append(sample)
+                        break
+            all_samples = all_samples_test
+
+            for model_name, samples in generations_model.items():
+                samples_new = []
+                for sample_test in all_samples_test:
+                    for sample_model in samples:
+                        if sample_model["meta_review"] == sample_test["meta_review"]:
+                            samples_new.append(sample_model)
+                            break
+                generations_model[model_name] = samples_new
+
         for model, results in generations_model.items():
+            print(model, len(all_samples), len(results))
             reference_key = ""
             candidate_key = ""
             for generation_file in generation_files:
@@ -76,19 +96,7 @@ if __name__ == "__main__":
                     break
             assert reference_key != "" and candidate_key != ""
 
-            if dataset_name == "peermeta":
-                results_new = []
-                for sample in all_samples:
-                    reference = sample[reference_key]
-                    for result in results:
-                        if reference == result[reference_key]:
-                            results_new.append(result)
-                            break
-            else:
-                results_new = results
-            print(model, len(all_samples), len(results_new))
-
-            for i, result in enumerate(results_new):
+            for i, result in enumerate(results):
                 # print(result[reference_key])
                 # print(all_samples[i][reference_key])
                 assert result[reference_key] == all_samples[i][reference_key]

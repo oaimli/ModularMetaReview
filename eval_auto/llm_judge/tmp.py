@@ -18,5 +18,3 @@ for dataset_name in dataset_names:
         print(generation_file)
         with open(generation_file["generation_file"]) as f:
             results = json.load(f)
-
-        for result in results:
