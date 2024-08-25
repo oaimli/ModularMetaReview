@@ -103,7 +103,23 @@ if __name__ == "__main__":
                 generations = all_samples[i].get("generations", [])
                 generations.append({"model": model, "generation": result[candidate_key]})
                 all_samples[i]["generations"] = generations
-        all_samples = random.sample(all_samples, 25)
+
+        # add human reference into comparison
+        reference_key = ""
+        for generation_file in generation_files:
+            if generation_file["model_name"] == "llama3_pr_naive":
+                reference_key = generation_file["reference_key"]
+
+        for j, result in enumerate(generations_model["llama3_pr_naive"]):
+            assert result[reference_key] == all_samples[j][reference_key]
+            generations = all_samples[j].get("generations", [])
+            if isinstance(result[reference_key], str):
+                generations.append({"model": "human", "generation": result[reference_key]})
+            if isinstance(result[reference_key], list):
+                generations.append({"model": "human", "generation": result[reference_key][0]})
+            all_samples[j]["generations"] = generations
+
+        all_samples = random.sample(all_samples, 2)
         for sample_index, sample in enumerate(all_samples):
             generations = sample["generations"]
             source_documents = sample["source_documents"]

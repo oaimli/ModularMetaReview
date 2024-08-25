@@ -64,7 +64,7 @@ if __name__ == "__main__":
                 source_texts.append("\n".join(sample[source_key]))
 
                 categorization_reference = sample["categorization_reference"]
-                categorization_candidate = sample["categorization_reference"]
+                categorization_candidate = sample["categorization_candidate"]
                 reference_shared = []
                 candidate_shared = []
                 for facet in facets:
