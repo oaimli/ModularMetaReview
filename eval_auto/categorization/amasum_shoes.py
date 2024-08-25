@@ -1,12 +1,12 @@
-import numpy as np
 import json
 from openai import OpenAI
 from typing import Dict
 import time
+from tqdm import tqdm
 
 
 def llama3_prompting(input_text: str, facet: str, mode: str = "meta"):
-    print("#######")
+    # print("#######")
     prompt_format = open(f"{prompt_folder}/prompt_{mode.lower()}_{facet.lower()}.txt").read()
     prompt_content = prompt_format.replace("{{input_document}}", input_text)
     # print(prompt_format)
@@ -73,52 +73,37 @@ if __name__ == "__main__":
     with open("../info.json") as f:
         info = json.load(f)
 
-    dataset_names = ["peermeta", "space", "amasum_shoes"]
-    for dataset_name in dataset_names:
-        print(dataset_name)
+    dataset_name = "amasum_shoes"
+    print(dataset_name)
+    facets = ["Breathability", "Durability", "Weight", "Cushioning", "Stability", "Flexibility", "Traction", "Sizefit",
+              "Comfort", "Misc"]
+    prompt_folder = "../../modular_llama3/shoes/prompts_organization"
 
-        facets = []
-        if dataset_name == "peermeta":
-            facets = ["Novelty", "Soundness", "Clarity", "Advancement", "Compliance", "Overall"]
-            prompt_folder = "../../optimization/organization/prompts_scientific"
-        if dataset_name == "space":
-            facets = ["Building", "Cleanliness", "Food", "Location", "Rooms", "Service"]
-            prompt_folder = "../../modular_llama3/hotels/prompts_organization"
-        if dataset_name == "amasum_shoes":
-            facets = ["Breathability", "Durability", "Weight", "Cushioning", "Stability", "Flexibility", "Traction", "Sizefit", "Comfort", "Misc"]
-            prompt_folder = "../../modular_llama3/shoes/prompts_organization"
+    generations_info = info[dataset_name]
+    for generation_info in tqdm(generations_info):
+        generation_file = generation_info["generation_file"]
+        print(generation_file)
+        output_name = "_".join(generation_file.split("/")[1:]).split(".")[0] + ".json"
+        print(output_name)
+        candidate_key = generation_info["candidate_key"]
+        reference_key = generation_info["reference_key"]
+        source_key = "source_documents"
+        with open(generation_file) as f:
+            samples = json.load(f)
 
-        generations_info = info[dataset_name]
-        for generation_info in generations_info:
-            generation_file = generation_info["generation_file"]
-            print(generation_file)
-            output_name = "_".join(generation_file.split("/")[1:]).split(".")[0] + "_shared.json"
-            print(output_name)
-            candidate_key = generation_info["candidate_key"]
-            reference_key = generation_info["reference_key"]
-            source_key = "source_documents"
-            with open(generation_file) as f:
-                samples = json.load(f)
+        for i, sample in enumerate(samples):
+            candidate = sample[candidate_key]
+            if isinstance(sample[reference_key], str):
+                reference = sample[reference_key]
+            else:
+                reference = sample[reference_key][0]  # SPACE has multiple references
 
-            for i, sample in enumerate(samples):
-                candidate = sample[candidate_key]
-                if isinstance(sample[reference_key], str):
-                    reference = sample[reference_key]
-                else:
-                    reference = sample[reference_key][0]  # SPACE has multiple references
+            categorization_reference = categorizing_meta_review(reference)
+            categorization_candidate = categorizing_meta_review(candidate)
+            sample["categorization_reference"] = categorization_reference
+            sample["categorization_candidate"] = categorization_candidate
+            samples[i] = sample
 
-                categorization_reference = categorizing_meta_review(reference)
-                categorization_candidate = categorizing_meta_review(candidate)
-                reference_shared = []
-                candidate_shared = []
-                for facet in facets:
-                    if len(categorization_reference[facet]) > 0 and len(categorization_candidate[facet]) > 0:
-                        reference_shared.extend(categorization_reference[facet])
-                        candidate_shared.extend(categorization_candidate[facet])
-                sample[generation_info["reference_key"] + "_shared"] = " ".join(reference_shared)
-                sample[generation_info["candidate_key"] + "_shared"] = " ".join(candidate_shared)
-                samples[i] = sample
-
-            with open(output_name, "w") as f:
-                json.dump(samples, f)
+        with open(output_name, "w") as f:
+            json.dump(samples, f, indent=4)
 
