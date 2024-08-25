@@ -1,1 +1,1 @@
-# Fragments extraction is required in adjusted_summac and aspect_coverage.
+# Fragments extraction of meta-reviews is required in adjusted_summac and aspect_coverage.
