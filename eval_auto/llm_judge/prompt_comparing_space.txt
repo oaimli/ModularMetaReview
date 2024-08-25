@@ -1,4 +1,4 @@
-There are a bunch of review documents and two summaries for a hotel below. Which summary do you think is in a better quality to summarize the opinions in the provided reviews.
+There are a bunch of review documents and two summaries of them for a hotel below. Which summary do you think is in a better quality to summarize the opinions in the provided reviews.
 
 Review documents:
 

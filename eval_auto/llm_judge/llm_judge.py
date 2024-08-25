@@ -3,15 +3,14 @@ from openai import OpenAI
 import time
 import json
 import random
-from elo_rating import Elo
 
 
 def comparing(source_documents, generation_a, generation_b, dataset_name):
     prompt_format = open(f"prompt_comparing_{dataset_name}.txt").read()
     source_text = "\n".join(source_documents)
-    prompt_content = prompt_format.replace("{{source_documents}}", source_text)
-    prompt_content = prompt_content.replace("{{generation_a}}", generation_a)
-    prompt_content = prompt_content.replace("{{generation_b}}", generation_b)
+    prompt_content = prompt_format.replace("{{source_documents}}", source_text).replace("{{generation_a}}",
+                                                                                        generation_a).replace(
+        "{{generation_b}}", generation_b)
     while True:
         try:
             output_dict = client.chat.completions.create(
@@ -42,42 +41,6 @@ def comparing(source_documents, generation_a, generation_b, dataset_name):
     return prediction
 
 
-def scoring(samples):
-    # The calculation is based on the library of elo-rating
-    e = Elo()
-    result_models = {}
-    for sample in samples:
-        comparisons = sample["comparisons"]
-        for comparison in comparisons:
-            model_a = comparison["a"]
-            model_b = comparison["b"]
-            better_one = comparison[comparison["better"]]
-
-            tmp = result_models.get(model_a, [])
-            if better_one == model_a:
-                tmp.append(1)
-                e.add_match(model_a, model_b, 1.0, k=0.15)
-            else:
-                tmp.append(0)
-                e.add_match(model_a, model_b, 0.0, k=0.15)
-            result_models[model_a] = tmp
-
-            tmp = result_models.get(model_b, [])
-            if better_one == model_b:
-                tmp.append(1)
-            else:
-                tmp.append(0)
-            result_models[model_b] = tmp
-
-    winning_rates = {}
-    for model, result in result_models.items():
-        winning_rates[model] = sum(result) / len(result)
-
-    elo_scores = e.rankings()
-
-    return winning_rates, elo_scores
-
-
 if __name__ == "__main__":
     random.seed(42)
     # pair-wise comparison on test samples in the three domains
@@ -104,14 +67,16 @@ if __name__ == "__main__":
 
         for model, results in generations_model.items():
             reference_key = ""
+            candidate_key = ""
             for generation_file in generation_files:
                 if model == generation_file["model_name"]:
                     reference_key = generation_file["reference_key"]
+                    candidate_key = generation_file["candidate_key"]
 
             for i, result in enumerate(results):
                 assert result[reference_key] == all_samples[i][reference_key]
                 generations = all_samples[i].get("generations", [])
-                generations.append({"model": model, "generation": result["generated_meta_review"]})
+                generations.append({"model": model, "generation": result[candidate_key]})
                 all_samples[i]["generations"] = generations
 
         all_samples = random.sample(all_samples, 30)
@@ -124,12 +89,12 @@ if __name__ == "__main__":
                     if j > i:
                         generation_i = generations[i]
                         generation_j = generations[j]
-                        prediction = comparing(source_documents, generation_i["generation"], generation_j["generation"], dataset_name)
+                        prediction = comparing(source_documents, generation_i["generation"], generation_j["generation"],
+                                               dataset_name)
                         comparisons.append(
                             {"a": generation_i["model"], "b": generation_j["model"], "better": prediction})
             all_samples[sample_index]["comparisons"] = comparisons
+            print(len(generations), len(comparisons))
+
         with open(f"{dataset_name}_llm_judged.json", "w") as f:
             json.dump(all_samples, f, indent=4)
-
-        winning_rates, elo_scores = scoring(all_samples)
-        print(winning_rates, elo_scores)
