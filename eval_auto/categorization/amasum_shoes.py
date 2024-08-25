@@ -91,7 +91,7 @@ if __name__ == "__main__":
         with open(generation_file) as f:
             samples = json.load(f)
 
-        for i, sample in tqdm(enumerate(samples)):
+        for i, sample in enumerate(tqdm(samples)):
             candidate = sample[candidate_key]
             if isinstance(sample[reference_key], str):
                 reference = sample[reference_key]
