@@ -103,8 +103,7 @@ if __name__ == "__main__":
                 generations = all_samples[i].get("generations", [])
                 generations.append({"model": model, "generation": result[candidate_key]})
                 all_samples[i]["generations"] = generations
-
-        all_samples = random.sample(all_samples, 3)
+        all_samples = random.sample(all_samples, 25)
         for sample_index, sample in enumerate(all_samples):
             generations = sample["generations"]
             source_documents = sample["source_documents"]
