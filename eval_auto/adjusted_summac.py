@@ -38,6 +38,30 @@ if __name__ == "__main__":
                       "Sizefit", "Comfort", "Misc"]
 
         generations_info = info[dataset_name]
+
+        # human reference
+        generation_file = generations_info[0]["generation_file"]
+        print("human reference")
+        reference_key = generations_info[0]["reference_key"]
+        source_key = "source_documents"
+        with open(generation_file) as f:
+            samples = json.load(f)
+        references = []
+        source_texts = []
+        for sample in samples:
+            if isinstance(sample[reference_key], str):
+                references.append(sample[reference_key])
+            else:
+                references.append(sample[reference_key][0])  # SPACE has multiple references
+            source_texts.append("\n".join(sample[source_key]))
+        # compared with source texts
+        scores_zs_source, scores_conv_source = summac_scores(source_texts, references)
+        score_zs_source_avg = np.mean(scores_zs_source)
+        score_conv_source_avg = np.mean(scores_conv_source)
+        print("scores zs:", "source", score_zs_source_avg)
+        print("scores conv:", "source", score_conv_source_avg)
+
+        # model generations
         for generation_info in generations_info:
             generation_file = generation_info["generation_file"]
             print(generation_file)
