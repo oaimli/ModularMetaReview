@@ -67,7 +67,7 @@ if __name__ == "__main__":
                 all_samples.append(line)
 
         for model, results in generations_model.items():
-            print(len(all_samples), len(results))
+            print(model, len(all_samples), len(results))
             reference_key = ""
             candidate_key = ""
             for generation_file in generation_files:
