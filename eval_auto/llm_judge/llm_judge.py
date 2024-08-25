@@ -65,18 +65,22 @@ if __name__ == "__main__":
         with jsonlines.open(f"../../datasets/{dataset_name}_test.jsonl") as reader:
             for line in reader:
                 all_samples.append(line)
+        print(len(all_samples))
 
         for model, results in generations_model.items():
+            print(len(results))
             reference_key = ""
             candidate_key = ""
             for generation_file in generation_files:
                 if model == generation_file["model_name"]:
                     reference_key = generation_file["reference_key"]
                     candidate_key = generation_file["candidate_key"]
+                    break
+            assert reference_key != "" and candidate_key != ""
 
             for i, result in enumerate(tqdm(results)):
-                print(result[reference_key])
-                print(all_samples[i][reference_key])
+                # print(result[reference_key])
+                # print(all_samples[i][reference_key])
                 assert result[reference_key] == all_samples[i][reference_key]
                 generations = all_samples[i].get("generations", [])
                 generations.append({"model": model, "generation": result[candidate_key]})
