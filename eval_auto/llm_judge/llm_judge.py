@@ -3,6 +3,7 @@ from openai import OpenAI
 import time
 import json
 import random
+from tqdm import tqdm
 
 
 def comparing(source_documents, generation_a, generation_b, dataset_name):
