@@ -1,0 +1,1 @@
+# Fragments extraction is required in adjusted_summac and aspect_coverage.

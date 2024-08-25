@@ -2,6 +2,7 @@ import numpy as np
 import json
 from openai import OpenAI
 from typing import Dict
+import time
 
 
 def llama3_prompting(input_text: str, facet: str, mode: str = "meta"):
