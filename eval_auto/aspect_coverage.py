@@ -1,16 +1,9 @@
 import numpy as np
 import json
-from openai import OpenAI
 
 
 if __name__ == "__main__":
     model_name = "llama31_70b"
-    openai_api_key = "EMPTY"
-    openai_api_base = "http://localhost:8000/v1"
-    client = OpenAI(
-        api_key=openai_api_key,
-        base_url=openai_api_base,
-        )
 
     with open("info.json") as f:
         info = json.load(f)
