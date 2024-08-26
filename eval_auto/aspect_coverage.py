@@ -31,7 +31,7 @@ if __name__ == "__main__":
 
         # use the processed result with shared content from categorization
         categorization_file = "_".join(generation_file.split("/")[1:]).split(".")[0] + ".json"
-        with open(categorization_file) as f:
+        with open("categorization/" + categorization_file) as f:
             samples = json.load(f)
 
         candidates = []
