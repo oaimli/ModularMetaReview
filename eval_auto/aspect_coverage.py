@@ -23,6 +23,19 @@ if __name__ == "__main__":
 
         generations_info = info[dataset_name]
 
+        # all generation results share the same review-categorization
+        generation_file_target = ""
+        for generation_info in generations_info:
+            if generation_info["model_name"] == "modular_llama3":
+                generation_file_target = generation_info["generation_file"]
+        categorization_file = "_".join(generation_file_target.split("/")[1:]).split(".")[0] + ".json"
+        with open("categorization/" + categorization_file) as f:
+            samples = json.load(f)
+        review_categorizations = []
+        for sample in samples:
+            review_categorizations.append(sample["review_categorization"])
+
+
         # human reference
         generation_file = generations_info[0]["generation_file"]
         print("human reference")
@@ -36,7 +49,6 @@ if __name__ == "__main__":
 
         candidates = []
         references = []
-        review_categorizations = []
         reference_categorizations = []
         for sample in samples:
             candidates.append(sample[candidate_key])
@@ -44,7 +56,6 @@ if __name__ == "__main__":
                 references.append(sample[reference_key])
             else:
                 references.append(sample[reference_key][0])  # SPACE has multiple references
-            review_categorizations.append(sample["review_categorization"])
             reference_categorizations.append(sample["categorization_reference"])
 
         # compared with references on only shared aspects
