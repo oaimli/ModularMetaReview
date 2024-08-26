@@ -119,7 +119,7 @@ if __name__ == "__main__":
                         review_count += 1
 
                     if len(candidate_categorization[facet]) > 0:
-                        candidate_count += 0
+                        candidate_count += 1
 
                     if flag == 1 and len(candidate_categorization[facet]) > 0:
                         shared_count += 1
