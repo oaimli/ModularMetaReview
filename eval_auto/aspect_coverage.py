@@ -101,7 +101,6 @@ if __name__ == "__main__":
 
             candidates = []
             references = []
-            review_categorizations = []
             candidate_categorizations = []
             for sample in samples:
                 candidates.append(sample[candidate_key])
@@ -109,7 +108,6 @@ if __name__ == "__main__":
                     references.append(sample[reference_key])
                 else:
                     references.append(sample[reference_key][0])  # SPACE has multiple references
-                review_categorizations.append(sample["review_categorization"])
                 candidate_categorizations.append(sample["categorization_candidate"])
 
             # compared with references on only shared aspects
