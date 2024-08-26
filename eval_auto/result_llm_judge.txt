@@ -1,0 +1,12 @@
+peermeta
+peermeta_llm_judged.json
+winning rates [('gpt4_pr_logic', 0.8), ('gpt4_pr_naive', 0.72), ('led_large_ft', 0.53), ('llama3_pr_logic', 0.515), ('modular_gpt4', 0.47), ('human', 0.42), ('llama3_pr_naive', 0.385), ('modular_llama3', 0.36), ('llama31_8b_ft', 0.3)]
+elo rankings {'gpt4_pr_logic': 0, 'gpt4_pr_naive': 1, 'modular_gpt4': 2, 'led_large_ft': 3, 'llama3_pr_logic': 4, 'human': 5, 'modular_llama3': 6, 'llama31_8b_ft': 7, 'llama3_pr_naive': 8}
+space
+space_llm_judged.json
+winning rates [('gpt4_pr_logic', 0.9733333333333334), ('gpt4_pr_naive', 0.8066666666666666), ('modular_gpt4', 0.58), ('llama3_pr_logic', 0.5133333333333333), ('modular_llama3', 0.34), ('llama3_pr_naive', 0.2866666666666667), ('human', 0.0)]
+elo rankings {'gpt4_pr_logic': 0, 'gpt4_pr_naive': 1, 'modular_gpt4': 2, 'llama3_pr_logic': 3, 'modular_llama3': 4, 'llama3_pr_naive': 5, 'human': 6}
+amasum_shoes
+amasum_shoes_llm_judged.json
+winning rates [('gpt4_pr_logic', 0.985), ('gpt4_pr_naive', 0.755), ('llama3_pr_logic', 0.695), ('modular_llama3', 0.59), ('modular_gpt4', 0.56), ('llama3_pr_naive', 0.525), ('human', 0.235), ('led_large_ft', 0.155), ('llama31_8b_ft', 0.0)]
+elo rankings {'gpt4_pr_logic': 0, 'gpt4_pr_naive': 1, 'llama3_pr_logic': 2, 'modular_llama3': 3, 'modular_gpt4': 4, 'llama3_pr_naive': 5, 'human': 6, 'led_large_ft': 7, 'llama31_8b_ft': 8}

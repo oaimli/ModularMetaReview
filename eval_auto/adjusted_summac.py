@@ -1,7 +1,6 @@
 import numpy as np
 import json
 from summac.model_summac import SummaCZS, SummaCConv
-from openai import OpenAI
 
 
 def summac_scores(sources, targets):
@@ -15,12 +14,6 @@ def summac_scores(sources, targets):
 
 if __name__ == "__main__":
     model_name = "llama31_70b"
-    openai_api_key = "EMPTY"
-    openai_api_base = "http://localhost:8000/v1"
-    client = OpenAI(
-        api_key=openai_api_key,
-        base_url=openai_api_base,
-        )
 
     with open("info.json") as f:
         info = json.load(f)
