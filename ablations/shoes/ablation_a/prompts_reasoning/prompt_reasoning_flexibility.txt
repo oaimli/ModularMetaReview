@@ -1,0 +1,10 @@
+You are good at writing summaries for opinionated texts. You are given some opinionated review documents, please write a concise summary for them focused on the content for the review aspect of Flexibility.
+
+Definition of Flexibility:
+Evaluation about flexibility of the shoes, such as stiffness, stiffness in the cold, and difference in stiffness in the cold.
+
+Source review documents:
+
+{{source_documents}}
+
+The summary of these review documents only focused on Flexibility (just produce the answer without any other content):

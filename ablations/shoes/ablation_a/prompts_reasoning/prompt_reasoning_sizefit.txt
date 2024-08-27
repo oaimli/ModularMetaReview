@@ -1,0 +1,10 @@
+You are good at writing summaries for opinionated texts. You are given some opinionated review documents, please write a concise summary for them focused on the content for the review aspect of Size and Fit.
+
+Definition of Size and Fit:
+Evaluation about size and fit of the shoes, such as internal length, toebox width at the widest part, and gusset type.
+
+Source review documents:
+
+{{source_documents}}
+
+The summary of these review documents only focused on Size and Fit (just produce the answer without any other content):

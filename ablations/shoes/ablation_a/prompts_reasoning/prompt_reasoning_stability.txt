@@ -1,0 +1,10 @@
+You are good at writing summaries for opinionated texts. You are given some opinionated review documents, please write a concise summary for them focused on the content for the review aspect of Stability.
+
+Definition of Stability:
+Evaluation about stability of the shoes, such as torsional rigidity, heel counter stiffness, midsole width in the forefoot and midsole width in the heel.
+
+Source review documents:
+
+{{source_documents}}
+
+The summary of these review documents only focused on Stability (just produce the answer without any other content):

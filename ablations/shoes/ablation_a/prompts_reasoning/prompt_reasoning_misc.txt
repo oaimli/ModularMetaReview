@@ -1,0 +1,10 @@
+You are good at writing summaries for opinionated texts. You are given some opinionated review documents, please write a concise summary for them focused on the content for the review aspect of Misc.
+
+Definition of Misc:
+Evaluation about reflective elements of the shoes.
+
+Source review documents:
+
+{{source_documents}}
+
+The summary of these review documents only focused on Misc (just produce the answer without any other content):

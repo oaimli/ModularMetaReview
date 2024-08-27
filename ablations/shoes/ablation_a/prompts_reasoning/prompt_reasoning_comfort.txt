@@ -1,0 +1,10 @@
+You are good at writing summaries for opinionated texts. You are given some opinionated review documents, please write a concise summary for them focused on the content for the review aspect of Comfort.
+
+Definition of Comfort:
+Evaluation about comfort of the shoes, such as tongue padding, heel tab, and removable insole.
+
+Source review documents:
+
+{{source_documents}}
+
+The summary of these review documents only focused on Comfort (just produce the answer without any other content):

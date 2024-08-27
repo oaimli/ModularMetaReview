@@ -1,0 +1,10 @@
+You are good at writing summaries for opinionated texts. You are given some opinionated review documents, please write a concise summary for them focused on the content for the review aspect of Cushioning.
+
+Definition of Cushioning:
+Evaluation about cushioning of the shoes, such as heel stack and forefoot stack.
+
+Source review documents:
+
+{{source_documents}}
+
+The summary of these review documents only focused on Cushioning (just produce the answer without any other content):
