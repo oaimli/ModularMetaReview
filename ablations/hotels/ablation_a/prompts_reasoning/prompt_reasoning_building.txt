@@ -1,4 +1,4 @@
-You are good at writing summaries for opinionated texts. You are given some opinionated review documents, please write a concise summary for them focused on the review aspect of Building.
+You are good at writing summaries for opinionated texts. You are given some opinionated review documents, please write a concise summary for them focused on the content for the review aspect of Building.
 
 Definition of Building:
 Analysis of how well the hotel was constructed, its design, functionality, and how these factors contribute to the success and satisfaction of its guests.

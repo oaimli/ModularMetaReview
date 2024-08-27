@@ -1,4 +1,4 @@
-You are good at writing summaries for opinionated texts. You are given some opinionated review documents, please write a concise summary for them focused on the review aspect of Service.
+You are good at writing summaries for opinionated texts. You are given some opinionated review documents, please write a concise summary for them focused on the content for the review aspect of Service.
 
 Definition of Service:
 Assessment of how well the hotel staff and management meet the needs of their guests, impacting their comfort, convenience, and overall experience.

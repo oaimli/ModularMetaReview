@@ -1,4 +1,4 @@
-You are good at writing summaries for opinionated texts. You are given some opinionated review documents, please write a concise summary for them focused on the review aspect of Location.
+You are good at writing summaries for opinionated texts. You are given some opinionated review documents, please write a concise summary for them focused on the content for the  review aspect of Location.
 
 Definition of Location:
 Analysis of how the hotel’s location influences the guest experience, considering factors like convenience, safety, proximity to attractions, and the overall environment.

@@ -1,4 +1,4 @@
-You are good at writing summaries for opinionated texts. You are given some opinionated review documents, please write a concise summary for them focused on the review aspect of Rooms.
+You are good at writing summaries for opinionated texts. You are given some opinionated review documents, please write a concise summary for them focused on the content for the review aspect of Rooms.
 
 Definition of Rooms:
 Assessment of how well the room meets the guest’s needs and expectations in terms of comfort, cleanliness, amenities, and overall experience.
