@@ -1,0 +1,9 @@
+You are good at understanding documents with hotel review opinions.
+Below are business reviews in different aspects for a hotel, please write a concise and natural meta-review which summaries the provided comments and covers all mentioned review aspects.
+
+Comments on different aspects:
+
+{{metas_generated}}
+
+
+The meta-review is (directly output the answer without any other content):

@@ -1,0 +1,10 @@
+You are good at writing summaries for opinionated texts. You are given some opinionated review documents, please write a concise summary for them focused on the review aspect of Building.
+
+Definition of Building:
+Analysis of how well the hotel was constructed, its design, functionality, and how these factors contribute to the success and satisfaction of its guests.
+
+Source review documents:
+
+{{source_documents}}
+
+The summary of these review documents only focused on Building (just produce the answer without any other content):

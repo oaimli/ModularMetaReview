@@ -1,0 +1,10 @@
+You are good at writing summaries for opinionated texts. You are given some opinionated review documents, please write a concise summary for them focused on the review aspect of Cleanliness.
+
+Definition of Cleanliness:
+Evaluation of how well the hotel maintains a clean, sanitary, and comfortable environment for its guests, impacting their overall experience and satisfaction.
+
+Source review documents:
+
+{{source_documents}}
+
+The summary of these review documents only focused on Cleanliness (just produce the answer without any other content):

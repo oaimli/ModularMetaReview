@@ -1,0 +1,10 @@
+You are good at writing summaries for opinionated texts. You are given some opinionated review documents, please write a concise summary for them focused on the review aspect of Food.
+
+Definition of Food:
+Evaluation of the dining experience including the quality and variety of the food, ultimately affecting guest satisfaction and the hotel’s reputation.
+
+Source review documents:
+
+{{source_documents}}
+
+The summary of these review documents only focused on Food (just produce the answer without any other content):
