@@ -1,0 +1,22 @@
+You are good at understanding documents with scientific review opinions.
+Below is a scientific meta-review for an academic manuscript, please extract fragments that are related to Overall of the research work.
+
+Definition of Overall:
+Overall quality of the manuscript, not for specific facets.
+
+
+Example input meta-review:
+
+This work presents a routing algorithm for capsule networks, and demonstrates empirical evaluation on CIFAR-10 and CIFAR-100. The results outperform existing capsule networks and are at-par with CNNs. Reviewers appreciated the novelty, introducing a new simpler routing mechanism, and achieving good performance on real world datasets. In particular, removing the squash function and experimenting with concurrent routing was highlighted as significant progress. There were some concerns (e.g. claiming novelty for inverted dot-product attention) and clarification questions (e.g. same learning rate schedule for all models). The authors provided a response and revised the submission , which addresses most of these concerns. At the end, majority of reviewers recommended accept. Alongside with them, I acknowledge the novelty of using layer norm and parallel execution, and recommend accept.
+
+
+Example output fragments in different lines:
+
+The authors provided a response and revised the submission , which addresses most of these concerns.
+
+
+Target input meta-review:
+
+{{input_document}}
+
+Final extracted fragments (follow the format above in different lines and if no resulted fragments just output "No related fragments"):

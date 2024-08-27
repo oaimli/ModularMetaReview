@@ -1,1 +1,0 @@
-# A logical prompting where models have to find the categorisation themselves first
