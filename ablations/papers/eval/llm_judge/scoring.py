@@ -6,7 +6,7 @@ def scoring(samples):
     # The calculation is based on the library of elo-rating
     e = Elo()
     result_models = {}
-    for sample in samples:
+    for sample_key, sample in samples.items():
         comparisons = sample["comparisons"]
         for comparison in comparisons:
             model_a = comparison["a"]

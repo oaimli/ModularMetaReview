@@ -1,0 +1,19 @@
+space
+human reference
+scores zs: source -0.5160280460082859
+scores conv: source 0.566547737121582
+/home/miao4/punim0521/ModularMetaReview/modular_llama3/hotels/space_generation_result_llama31_70b.json
+<All keys matched successfully>
+<All keys matched successfully>
+scores zs: source -0.40774554370698474 reference -0.1284190023815821 summation -0.5361645460885669
+scores conv: source 0.4288235604763031 reference 0.2189802360534668 summation 0.6478037965297699
+/home/miao4/punim0521/ModularMetaReview/ablations/hotels/ablation_a/space_generation_result_llama31_70b.json
+<All keys matched successfully>
+<All keys matched successfully>
+scores zs: source -0.4510504686870272 reference -0.08810063500287385 summation -0.539151103689901
+scores conv: source 0.4464674830436707 reference 0.2259396892786026 summation 0.6724071723222733
+/home/miao4/punim0521/ModularMetaReview/ablations/hotels/ablation_b/space_generation_result_llama31_70b.json
+<All keys matched successfully>
+<All keys matched successfully>
+scores zs: source -0.39773833826678834 reference -0.05626179014386776 summation -0.45400012841065607
+scores conv: source 0.4565012502670288 reference 0.22269212126731872 summation 0.6791933715343476
