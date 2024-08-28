@@ -25,9 +25,9 @@ def rouge(reference, candidate, types=None, use_stemmer=True, split_summaries=Tr
     scores = scorer.score(reference, candidate)
     for t in types:
         r = {}
-        r["precision"] = '%.4f' % scores[t].precision
-        r["recall"] = '%.4f' % scores[t].recall
-        r["fmeasure"] = '%.4f' % scores[t].fmeasure
+        r["precision"] = format(scores[t].precision, '.4f')
+        r["recall"] = format(scores[t].recall, '.4f')
+        r["fmeasure"] = format(scores[t].fmeasure, '.4f')
         results[t] = r
     return results
 
