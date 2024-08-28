@@ -117,7 +117,7 @@ if __name__ == "__main__":
                 generations.append({"model": "human", "generation": result[reference_key][0]})
             all_samples[result_key]["generations"] = generations
 
-        random_keys = random.sample(list(all_samples.keys()), 25)
+        random_keys = random.sample(list(all_samples.keys()), 5)
         all_samples_new = {}
         for tmp in random_keys:
             all_samples_new[tmp] = all_samples[tmp]
