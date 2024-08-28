@@ -41,7 +41,7 @@ if __name__ == "__main__":
         source_distribution_ratio = {}
         for facet, count in source_distribution.items():
             source_distribution_ratio[facet] = count / sum(list(source_distribution.values()))
-        print("source_distribution_ratio", sorted(source_distribution_ratio))
+        print("source_distribution_ratio", sorted(source_distribution_ratio.items(), key = lambda i: i[0]))
 
         # human reference
         generation_file = generations_info[0]["generation_file"]
@@ -72,7 +72,7 @@ if __name__ == "__main__":
         reference_distribution_ratio = {}
         for facet, count in reference_distribution.items():
             reference_distribution_ratio[facet] = count / sum(list(reference_distribution.values()))
-        print("reference_distribution_ratio", sorted(reference_distribution_ratio))
+        print("reference_distribution_ratio", sorted(reference_distribution_ratio.items(), key = lambda i: i[0]))
 
         # model generations
         for generation_info in generations_info:
