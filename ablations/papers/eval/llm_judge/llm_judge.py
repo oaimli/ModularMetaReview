@@ -123,7 +123,9 @@ if __name__ == "__main__":
             all_samples_new[tmp] = all_samples[tmp]
         for sample_index, sample in all_samples_new.items():
             generations = sample["generations"]
-            source_documents = sample["source_documents"]
+            source_documents = []
+            for review in sample["reviews"]:
+                source_documents.append(review["comment"])
             comparisons = []
             for i in range(len(generations)):
                 for j in range(len(generations)):
