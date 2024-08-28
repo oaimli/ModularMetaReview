@@ -25,9 +25,9 @@ def rouge(reference, candidate, types=None, use_stemmer=True, split_summaries=Tr
     scores = scorer.score(reference, candidate)
     for t in types:
         r = {}
-        r["precision"] = format(scores[t].precision, '.4f')
-        r["recall"] = format(scores[t].recall, '.4f')
-        r["fmeasure"] = format(scores[t].fmeasure, '.4f')
+        r["precision"] = round(scores[t].precision, 4)
+        r["recall"] = round(scores[t].recall, 4)
+        r["fmeasure"] = round(scores[t].fmeasure, 4)
         results[t] = r
     return results
 
@@ -41,7 +41,7 @@ def analyzing(targets, sources):
     rouges = []
     for target, source in zip(targets, sources):
         scores = rouge(target, source)
-        rouges.append((scores["rouge1"]["fmeasure"] + scores["rouge2"]["fmeasure"] + scores["rougeLsum"]["fmeasure"]) / 3)
+        rouges.append(round((scores["rouge1"]["fmeasure"] + scores["rouge2"]["fmeasure"] + scores["rougeLsum"]["fmeasure"]) / 3, 4))
     print("Mean", np.mean(rouges), "Max", np.max(rouges), "Min", np.min(rouges), "Std", np.std(rouges))
 
 
