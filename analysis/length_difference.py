@@ -6,7 +6,7 @@ def analyzing(targets, sources):
     lengths = []
     for target in targets:
         lengths.append(len(target.split()))
-    print(np.mean(lengths), ",", np.max(lengths), ",", np.min(lengths), ",", np.std(lengths))
+    print("Mean", np.mean(lengths), "Max", np.max(lengths), "Min", np.min(lengths), "Std", np.std(lengths))
 
 
 
