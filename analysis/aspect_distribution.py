@@ -3,7 +3,7 @@ import json
 
 
 if __name__ == "__main__":
-    with open("info.json") as f:
+    with open("../eval_auto/info.json") as f:
         info = json.load(f)
 
     dataset_names = ["peermeta", "space", "amasum_shoes"]
