@@ -68,7 +68,7 @@ if __name__ == "__main__":
             all_samples_test = []
             for sample in all_samples:
                 reference = sample["meta_review"]
-                for result in generations_model["llama3_pr_naive"]:
+                for result in generations_model["modular_llama3"]:
                     if reference == result["meta_review"]:
                         all_samples_test.append(sample)
                         break
