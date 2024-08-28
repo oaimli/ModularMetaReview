@@ -32,16 +32,17 @@ if __name__ == "__main__":
         review_categorizations = []
         for sample in samples:
             review_categorizations.append(sample["review_categorization"])
-        source_distribution = {}
-        for review_categorization in review_categorizations:
-            for categorization in review_categorization:
-                for facet, fragments in categorization.items():
-                    if len(fragments) > 0:
-                        source_distribution[facet] = source_distribution.get(facet, 0) + 1
-        source_distribution_ratio = {}
-        for facet, count in source_distribution.items():
-            source_distribution_ratio[facet] = count / sum(list(source_distribution.values()))
-        print("source_distribution_ratio", sorted(source_distribution_ratio.items(), key = lambda i: i[0]))
+
+        # source_distribution = {}
+        # for review_categorization in review_categorizations:
+        #     for categorization in review_categorization:
+        #         for facet, fragments in categorization.items():
+        #             if len(fragments) > 0:
+        #                 source_distribution[facet] = source_distribution.get(facet, 0) + 1
+        # source_distribution_ratio = {}
+        # for facet, count in source_distribution.items():
+        #     source_distribution_ratio[facet] = count / sum(list(source_distribution.values()))
+        # print("source_distribution_ratio", sorted(source_distribution_ratio.items(), key = lambda i: i[0]))
 
         # human reference
         generation_file = generations_info[0]["generation_file"]
