@@ -1,0 +1,10 @@
+You are good at writing summaries for opinionated texts. You are given some opinionated review documents, please write a concise summary for them focused on the content for the review aspect of Novelty.
+
+Definition of Novelty:
+How original the idea (e.g., tasks, datasets, or methods) is, and how clear where the problems and methods sit with respect to existing literature (i.e., meaningful comparison).
+
+Source review documents:
+
+{{source_documents}}
+
+The summary of these review documents only focused on Novelty (just produce the answer without any other content):
