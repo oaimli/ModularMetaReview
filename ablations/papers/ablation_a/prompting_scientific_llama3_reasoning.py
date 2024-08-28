@@ -46,7 +46,7 @@ def facet_reasoning(categorization_pairs: List, source_documents: List) -> List:
     for pair in categorization_pairs:
         review_fragments = pair["review_fragments"]
         facet = pair["facet"]
-        pair["meta_generated"] = llama3_prompting(review_fragments, source_documents, facet)
+        pair["meta_generated"] = llama3_prompting(review_fragments, source_documents, facet.lower())
         result.append(pair)
 
     return result
