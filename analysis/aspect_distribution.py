@@ -27,7 +27,7 @@ if __name__ == "__main__":
             if generation_info["model_name"] == "modular_llama3":
                 generation_file_target = generation_info["generation_file"]
         categorization_file = "_".join(generation_file_target.split("/")[1:]).split(".")[0] + ".json"
-        with open("categorization/" + categorization_file) as f:
+        with open("../eval_auto/categorization/" + categorization_file) as f:
             samples = json.load(f)
         review_categorizations = []
         for sample in samples:
@@ -49,7 +49,7 @@ if __name__ == "__main__":
         reference_key = generations_info[0]["reference_key"]
 
         categorization_file = "_".join(generation_file.split("/")[1:]).split(".")[0] + ".json"
-        with open("categorization/" + categorization_file) as f:
+        with open("../eval_auto/categorization/" + categorization_file) as f:
             samples = json.load(f)
 
         candidates = []
@@ -81,7 +81,7 @@ if __name__ == "__main__":
 
             # use the processed result with shared content from categorization
             categorization_file = "_".join(generation_file.split("/")[1:]).split(".")[0] + ".json"
-            with open("categorization/" + categorization_file) as f:
+            with open("../eval_auto/categorization/" + categorization_file) as f:
                 samples = json.load(f)
 
             candidates = []
