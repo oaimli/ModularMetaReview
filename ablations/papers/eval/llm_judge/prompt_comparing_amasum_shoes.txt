@@ -1,0 +1,18 @@
+There are a bunch of review documents and two summaries of them for a pair of shoes below. Which summary do you think is in a better quality to summarize the opinions in the provided reviews.
+
+Review documents:
+
+{{source_documents}}
+
+
+Candidate summary A:
+
+{{generation_a}}
+
+
+Candidate summary B:
+
+{{generation_b}}
+
+
+The better one is (only output A or B, no other content):
