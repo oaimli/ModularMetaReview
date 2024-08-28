@@ -162,10 +162,10 @@ if __name__ == "__main__":
                     if flag == 1 and len(candidate_categorization[facet]) > 0:
                         shared_count += 1
 
-                    if flag == 1 and len(reference_categorization[facet]) == 0:
+                    if flag == 1 and len(candidate_categorization[facet]) == 0:
                         not_recalled[facet] = not_recalled.get(facet, 0) + 1
 
-                    if flag == 0 and len(reference_categorization[facet]) > 0:
+                    if flag == 0 and len(candidate_categorization[facet]) > 0:
                         not_precision[facet] = not_precision.get(facet, 0) + 1
 
                 r = (shared_count + 1) / (review_count + 1)
