@@ -77,7 +77,7 @@ if __name__ == "__main__":
             for model_name, samples in generations_model.items():
                 samples_new = {}
                 for sample_test_key, sample_test in all_samples_test.items():
-                    for sample_model in samples:
+                    for sample_model_key, sample_model in samples.items():
                         if sample_model["meta_review"] == sample_test["meta_review"]:
                             samples_new[sample_test_key] = sample_model
                             break

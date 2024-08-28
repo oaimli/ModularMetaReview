@@ -1,0 +1,19 @@
+amasum_shoes
+human reference
+scores zs: source -0.5294048065912156
+scores conv: source 0.40451106667518616
+/home/miao4/punim0521/ModularMetaReview/modular_llama3/shoes/amasum_shoes_generation_result_llama31_70b.json
+<All keys matched successfully>
+<All keys matched successfully>
+scores zs: source -0.26012338020688014 reference -0.024914386897892146 summation -0.2850377671047723
+scores conv: source 0.3960753971338272 reference 0.22502511620521545 summation 0.6211005133390427
+/home/miao4/punim0521/ModularMetaReview/ablations/shoes/ablation_a/amasum_shoes_generation_result_llama31_70b.json
+<All keys matched successfully>
+<All keys matched successfully>
+scores zs: source -0.29372287205287384 reference 0.03296367221683651 summation -0.26075919983603735
+scores conv: source 0.37081612795591357 reference 0.2177216023206711 summation 0.5885377302765846
+/home/miao4/punim0521/ModularMetaReview/ablations/shoes/ablation_b/amasum_shoes_generation_result_llama31_70b.json
+<All keys matched successfully>
+<All keys matched successfully>
+scores zs: source -0.2606702383132208 reference 0.003962134179614838 summation -0.25670810413360595
+scores conv: source 0.3922187215089798 reference 0.22002880603075028 summation 0.6122475275397301

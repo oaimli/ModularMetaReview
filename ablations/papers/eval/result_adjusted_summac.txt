@@ -1,0 +1,29 @@
+peermeta
+human reference
+scores zs: source -0.36560623168945316
+scores conv: source 0.5937855660915374
+/home/miao4/punim0521/ModularMetaReview/optimization/generation/scientific_generation_result_llama31_70b.json
+<All keys matched successfully>
+<All keys matched successfully>
+scores zs: source -0.4411111450195312 reference -0.13194166651363842 summation -0.5730528115331697
+scores conv: source 0.399774444103241 reference 0.22407261729240419 summation 0.6238470613956452
+/home/miao4/punim0521/ModularMetaReview/ablations/papers/ablation_a/scientific_generation_result_llama31_70b.json
+<All keys matched successfully>
+<All keys matched successfully>
+scores zs: source -0.32584240323021296 reference -0.08109421048845564 summation -0.4069366137186686
+scores conv: source 0.41386215686798095 reference 0.2309361696243286 summation 0.6447983264923096
+/home/miao4/punim0521/ModularMetaReview/ablations/papers/ablation_b/scientific_generation_result_llama31_70b.json
+<All keys matched successfully>
+<All keys matched successfully>
+scores zs: source -0.2862075461625709 reference -0.051454842142212444 summation -0.33766238830478335
+scores conv: source 0.4198708951473236 reference 0.2336337000131607 summation 0.6535045951604843
+/home/miao4/punim0521/ModularMetaReview/ablations/papers/ablation_c_br/scientific_generation_result_llama31_70b.json
+<All keys matched successfully>
+<All keys matched successfully>
+scores zs: source -0.3754589335123698 reference -0.11540107182094028 summation -0.4908600053333101
+scores conv: source 0.3967532396316528 reference 0.23735134303569794 summation 0.6341045826673508
+/home/miao4/punim0521/ModularMetaReview/ablations/papers/ablation_c_ze/scientific_generation_result_llama31_70b.json
+<All keys matched successfully>
+<All keys matched successfully>
+scores zs: source -0.39408116658528647 reference -0.25690258661905924 summation -0.6509837532043456
+scores conv: source 0.39198426008224485 reference 0.21728218495845794 summation 0.6092664450407028
