@@ -38,7 +38,7 @@ if __name__ == "__main__":
                 for facet, fragments in categorization.items():
                     source_distribution[facet] = source_distribution.get(facet, 0) + 1
         source_distribution_ratio = {}
-        for facet, count in source_distribution:
+        for facet, count in source_distribution.items():
             source_distribution_ratio[facet] = count / sum(list(source_distribution.values()))
         print("source_distribution_ratio", source_distribution_ratio)
 
@@ -68,7 +68,7 @@ if __name__ == "__main__":
             for facet, fragments in reference_categorization.items():
                 reference_distribution[facet] = reference_distribution.get(facet, 0) + 1
         reference_distribution_ratio = {}
-        for facet, count in reference_distribution:
+        for facet, count in reference_distribution.items():
             reference_distribution_ratio[facet] = count / sum(list(reference_distribution.values()))
         print("reference_distribution_ratio", reference_distribution_ratio)
 
@@ -100,6 +100,6 @@ if __name__ == "__main__":
                 for facet, fragments in candidate_categorization.items():
                     candidate_distribution[facet] = candidate_distribution.get(facet, 0) + 1
             candidate_distribution_ratio = {}
-            for facet, count in candidate_distribution:
+            for facet, count in candidate_distribution.items():
                 candidate_distribution_ratio[facet] = count / sum(list(candidate_distribution.values()))
             print("candidate_distribution_ratio", candidate_distribution_ratio)
