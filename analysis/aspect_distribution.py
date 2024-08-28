@@ -97,7 +97,7 @@ if __name__ == "__main__":
                 if flag == 0 and len(reference_categorization[facet]) > 0:
                     not_precision[facet] = not_precision.get(facet, 0) + 1
                 else:
-                    not_recalled[facet] = not_recalled.get(facet, 0) + 0
+                    not_precision[facet] = not_precision.get(facet, 0) + 0
 
             r = (shared_count + 1) / (review_count + 1)
             p = (shared_count + 1) / (candidate_count + 1)
