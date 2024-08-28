@@ -121,7 +121,7 @@ if __name__ == "__main__":
         all_samples_new = {}
         for tmp in random_keys:
             all_samples_new[tmp] = all_samples[tmp]
-        for sample_index, sample in enumerate(all_samples_new):
+        for sample_index, sample in all_samples_new.items():
             generations = sample["generations"]
             source_documents = sample["source_documents"]
             comparisons = []
