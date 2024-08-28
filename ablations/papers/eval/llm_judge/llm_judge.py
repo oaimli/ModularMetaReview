@@ -51,7 +51,7 @@ if __name__ == "__main__":
     with open("../info.json") as f:
         info = json.load(f)
 
-    dataset_names = ["space"]
+    dataset_names = ["peermeta"]
     for dataset_name in dataset_names:
         print(dataset_name)
         generation_files = info[dataset_name]

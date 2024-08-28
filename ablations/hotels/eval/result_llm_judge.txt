@@ -1,0 +1,4 @@
+space
+space_llm_judged.json
+winning rates [('ablation_b', 0.8266666666666667), ('ablation_a', 0.6666666666666666), ('modular_llama3', 0.4666666666666667), ('human', 0.04)]
+elo rankings {'ablation_b': 0, 'ablation_a': 1, 'modular_llama3': 2, 'human': 3}
