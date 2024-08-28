@@ -105,8 +105,10 @@ if __name__ == "__main__":
             precisions.append(p)
             f_measures.append(2 * (r * p) / (r + p))
         print("recall", np.mean(recalls), "precision", np.mean(precisions), "f-measure", np.mean(f_measures))
-        print("not_recalled", [(x, y/len(reference_categorizations)) for x, y in not_recalled.items()])
-        print("not_precision", [(x, y/len(reference_categorizations)) for x, y in not_precision.items()])
+        print("not_recalled", [x for x, y in not_recalled.items()])
+        print("not_recalled", [y / len(reference_categorizations) for x, y in not_recalled.items()])
+        print("not_precision", [x for x, y in not_precision.items()])
+        print("not_precision", [y / len(reference_categorizations) for x, y in not_precision.items()])
 
         # reference_distribution = {}
         # for reference_categorization in reference_categorizations:
@@ -182,8 +184,10 @@ if __name__ == "__main__":
                 precisions.append(p)
                 f_measures.append(2 * (r * p) / (r + p))
             print("recall", np.mean(recalls), "precision", np.mean(precisions), "f-measure", np.mean(f_measures))
-            print("not_recalled", [(x, y / len(reference_categorizations)) for x, y in not_recalled.items()])
-            print("not_precision", [(x, y / len(reference_categorizations)) for x, y in not_precision.items()])
+            print("not_recalled", [x for x, y in not_recalled.items()])
+            print("not_recalled", [y / len(reference_categorizations) for x, y in not_recalled.items()])
+            print("not_precision", [x for x, y in not_precision.items()])
+            print("not_precision", [y / len(reference_categorizations) for x, y in not_precision.items()])
 
             # candidate_distribution = {}
             # for candidate_categorization in candidate_categorizations:
