@@ -55,7 +55,6 @@ if __name__ == "__main__":
                 references.append(sample[reference_key][0])  # SPACE has multiple references
             reference_categorizations.append(sample["categorization_reference"])
 
-        # compared with references on only shared aspects
         recalls = []
         precisions = []
         f_measures = []
