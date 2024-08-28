@@ -61,7 +61,7 @@ if __name__ == "__main__":
                 generations_model[generation_file["model_name"]] = json.load(f)
 
         # constructing pairs
-        with open("/home/miao4/punim0521/ModularMetaReview/modular_llama3/hotels/space_generation_result_llama31_70b.json") as f:
+        with open("/home/miao4/punim0521/ModularMetaReview/modular_llama3/shoes/amasum_shoes_generation_result_llama31_70b.json") as f:
             all_samples = json.load(f)
 
         if dataset_name == "peermeta": # get the shared samples in results from all models
