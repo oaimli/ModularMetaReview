@@ -76,7 +76,7 @@ if __name__ == "__main__":
     dataset_name = "space"
     print(dataset_name)
     facets = ["Building", "Cleanliness", "Food", "Location", "Rooms", "Service"]
-    prompt_folder = "../../modular_llama3/hotels/prompts_organization"
+    prompt_folder = "../../../../modular_llama3/hotels/prompts_organization"
 
     generations_info = info[dataset_name]
     for generation_info in tqdm(generations_info):
