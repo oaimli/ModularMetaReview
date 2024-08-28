@@ -32,7 +32,15 @@ if __name__ == "__main__":
         review_categorizations = []
         for sample in samples:
             review_categorizations.append(sample["review_categorization"])
-
+        source_distribution = {}
+        for review_categorization in review_categorizations:
+            for categorization in review_categorization:
+                for facet, fragments in categorization.items():
+                    source_distribution[facet] = source_distribution.get(facet, 0) + 1
+        source_distribution_ratio = {}
+        for facet, count in source_distribution:
+            source_distribution_ratio[facet] = count / sum(list(source_distribution.values()))
+        print("source_distribution_ratio", source_distribution_ratio)
 
         # human reference
         generation_file = generations_info[0]["generation_file"]
@@ -55,34 +63,14 @@ if __name__ == "__main__":
                 references.append(sample[reference_key][0])  # SPACE has multiple references
             reference_categorizations.append(sample["categorization_reference"])
 
-        # compared with references on only shared aspects
-        recalls = []
-        precisions = []
-        f_measures = []
-        for review_categorization, reference_categorization in zip(review_categorizations, reference_categorizations):
-            review_count = 0
-            shared_count = 0
-            candidate_count = 0
-            for facet in facets:
-                flag = 0
-                for categorization in review_categorization:
-                    if len(categorization[facet]) > 0:
-                        flag = 1
-                        break
-                if flag == 1:
-                    review_count += 1
-
-                if len(reference_categorization[facet]) > 0:
-                    candidate_count += 1
-
-                if flag == 1 and len(reference_categorization[facet]) > 0:
-                    shared_count += 1
-            r = (shared_count + 1) / (review_count + 1)
-            p = (shared_count + 1) / (candidate_count + 1)
-            recalls.append(r)
-            precisions.append(p)
-            f_measures.append(2 * (r * p) / (r + p))
-        print("recall", np.mean(recalls), "precision", np.mean(precisions), "f-measure", np.mean(f_measures))
+        reference_distribution = {}
+        for reference_categorization in reference_categorizations:
+            for facet, fragments in reference_categorization.items():
+                reference_distribution[facet] = reference_distribution.get(facet, 0) + 1
+        reference_distribution_ratio = {}
+        for facet, count in reference_distribution:
+            reference_distribution_ratio[facet] = count / sum(list(reference_distribution.values()))
+        print("reference_distribution_ratio", reference_distribution_ratio)
 
         # model generations
         for generation_info in generations_info:
@@ -107,30 +95,11 @@ if __name__ == "__main__":
                     references.append(sample[reference_key][0])  # SPACE has multiple references
                 candidate_categorizations.append(sample["categorization_candidate"])
 
-            recalls = []
-            precisions = []
-            f_measures = []
-            for review_categorization, candidate_categorization in zip(review_categorizations, candidate_categorizations):
-                review_count = 0
-                shared_count = 0
-                candidate_count = 0
-                for facet in facets:
-                    flag = 0
-                    for categorization in review_categorization:
-                        if len(categorization[facet]) > 0:
-                            flag = 1
-                            break
-                    if flag == 1:
-                        review_count += 1
-
-                    if len(candidate_categorization[facet]) > 0:
-                        candidate_count += 1
-
-                    if flag == 1 and len(candidate_categorization[facet]) > 0:
-                        shared_count += 1
-                r = (shared_count + 1) / (review_count + 1)
-                p = (shared_count + 1) / (candidate_count + 1)
-                recalls.append(r)
-                precisions.append(p)
-                f_measures.append(2 * (r * p) / (r + p))
-            print("recall", np.mean(recalls), "precision", np.mean(precisions), "f-measure", np.mean(f_measures))
+            candidate_distribution = {}
+            for candidate_categorization in candidate_categorizations:
+                for facet, fragments in candidate_categorization.items():
+                    candidate_distribution[facet] = candidate_distribution.get(facet, 0) + 1
+            candidate_distribution_ratio = {}
+            for facet, count in candidate_distribution:
+                candidate_distribution_ratio[facet] = count / sum(list(candidate_distribution.values()))
+            print("candidate_distribution_ratio", candidate_distribution_ratio)
