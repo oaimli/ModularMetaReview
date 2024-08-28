@@ -105,7 +105,7 @@ if __name__ == "__main__":
         # add human reference into comparison
         reference_key = ""
         for generation_file in generation_files:
-            if generation_file["model_name"] == "llama3_pr_naive":
+            if generation_file["model_name"] == "modular_llama3":
                 reference_key = generation_file["reference_key"]
 
         for j, result in enumerate(generations_model["modular_llama3"]):
