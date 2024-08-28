@@ -1,0 +1,7 @@
+space
+/home/miao4/punim0521/ModularMetaReview/modular_llama3/hotels/space_generation_result_llama31_70b.json
+Average F1 0.22381963858385281
+/home/miao4/punim0521/ModularMetaReview/ablations/hotels/ablation_a/space_generation_result_llama31_70b.json
+Average F1 0.24401208951493567
+/home/miao4/punim0521/ModularMetaReview/ablations/hotels/ablation_b/space_generation_result_llama31_70b.json
+Average F1 0.2362286993133084

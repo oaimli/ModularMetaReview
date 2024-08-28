@@ -44,7 +44,7 @@ if __name__ == "__main__":
     with open("../info.json") as f:
         info = json.load(f)
 
-    dataset_names = ["peermeta", "space", "amasum_shoes"]
+    dataset_names = ["space"]
     for dataset_name in dataset_names:
         print(dataset_name)
         output_name = f"{dataset_name}_llm_judged.json"

@@ -1,0 +1,13 @@
+peermeta
+human reference
+recall 0.7999999999999999 precision 1.0 f-measure 0.8755244755244757
+/home/miao4/punim0521/ModularMetaReview/optimization/generation/scientific_generation_result_llama31_70b.json
+recall 0.9428571428571428 precision 1.0 f-measure 0.9692307692307691
+/home/miao4/punim0521/ModularMetaReview/ablations/papers/ablation_a/scientific_generation_result_llama31_70b.json
+recall 0.9714285714285715 precision 1.0 f-measure 0.9846153846153847
+/home/miao4/punim0521/ModularMetaReview/ablations/papers/ablation_b/scientific_generation_result_llama31_70b.json
+recall 0.9714285714285715 precision 1.0 f-measure 0.9846153846153847
+/home/miao4/punim0521/ModularMetaReview/ablations/papers/ablation_c_br/scientific_generation_result_llama31_70b.json
+recall 0.9714285714285715 precision 1.0 f-measure 0.9846153846153847
+/home/miao4/punim0521/ModularMetaReview/ablations/papers/ablation_c_ze/scientific_generation_result_llama31_70b.json
+recall 0.8857142857142858 precision 1.0 f-measure 0.9384615384615383

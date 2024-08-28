@@ -1,0 +1,11 @@
+peermeta
+/home/miao4/punim0521/ModularMetaReview/optimization/generation/scientific_generation_result_llama31_70b.json
+Average F1 0.23762821597828646
+/home/miao4/punim0521/ModularMetaReview/ablations/papers/ablation_a/scientific_generation_result_llama31_70b.json
+Average F1 0.21860333133121113
+/home/miao4/punim0521/ModularMetaReview/ablations/papers/ablation_b/scientific_generation_result_llama31_70b.json
+Average F1 0.23784626670731793
+/home/miao4/punim0521/ModularMetaReview/ablations/papers/ablation_c_br/scientific_generation_result_llama31_70b.json
+Average F1 0.23199305473055387
+/home/miao4/punim0521/ModularMetaReview/ablations/papers/ablation_c_ze/scientific_generation_result_llama31_70b.json
+Average F1 0.20677299023577786

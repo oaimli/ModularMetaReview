@@ -1,0 +1,9 @@
+space
+human reference
+recall 0.9771428571428572 precision 1.0 f-measure 0.9871794871794871
+/home/miao4/punim0521/ModularMetaReview/modular_llama3/hotels/space_generation_result_llama31_70b.json
+recall 0.9828571428571429 precision 1.0 f-measure 0.9907692307692308
+/home/miao4/punim0521/ModularMetaReview/ablations/hotels/ablation_a/space_generation_result_llama31_70b.json
+recall 0.9771428571428572 precision 1.0 f-measure 0.9876923076923078
+/home/miao4/punim0521/ModularMetaReview/ablations/hotels/ablation_b/space_generation_result_llama31_70b.json
+recall 0.9542857142857143 precision 1.0 f-measure 0.9748717948717949

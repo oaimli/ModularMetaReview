@@ -1,0 +1,9 @@
+amasum_shoes
+human reference
+recall 0.697534632034632 precision 0.9431825396825395 f-measure 0.7821009535699938
+/home/miao4/punim0521/ModularMetaReview/modular_llama3/shoes/amasum_shoes_generation_result_llama31_70b.json
+recall 0.7647460317460317 precision 0.996 f-measure 0.8572469558305471
+/home/miao4/punim0521/ModularMetaReview/ablations/shoes/ablation_a/amasum_shoes_generation_result_llama31_70b.json
+recall 0.8078059163059162 precision 0.9373730158730159 f-measure 0.8528783940517686
+/home/miao4/punim0521/ModularMetaReview/ablations/shoes/ablation_b/amasum_shoes_generation_result_llama31_70b.json
+recall 0.7292763347763348 precision 0.9966666666666667 f-measure 0.8301434965103693

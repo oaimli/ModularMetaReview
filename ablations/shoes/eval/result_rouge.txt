@@ -1,0 +1,7 @@
+amasum_shoes
+/home/miao4/punim0521/ModularMetaReview/modular_llama3/shoes/amasum_shoes_generation_result_llama31_70b.json
+Average F1 0.15309535685914066
+/home/miao4/punim0521/ModularMetaReview/ablations/shoes/ablation_a/amasum_shoes_generation_result_llama31_70b.json
+Average F1 0.1743982398100038
+/home/miao4/punim0521/ModularMetaReview/ablations/shoes/ablation_b/amasum_shoes_generation_result_llama31_70b.json
+Average F1 0.17082095247349993
