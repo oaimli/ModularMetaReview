@@ -61,25 +61,25 @@ if __name__ == "__main__":
                 generations_model[generation_file["model_name"]] = json.load(f)
 
         # constructing pairs
-        with open("/home/miao4/punim0521/ModularMetaReview/modular_llama3/shoes/amasum_shoes_generation_result_llama31_70b.json") as f:
+        with open("/home/miao4/punim0521/ModularMetaReview/optimization/generation/scientific_generation_result_llama31_70b.json") as f:
             all_samples = json.load(f)
 
         if dataset_name == "peermeta": # get the shared samples in results from all models
-            all_samples_test = []
-            for sample in all_samples:
+            all_samples_test = {}
+            for sample_key, sample in all_samples.items():
                 reference = sample["meta_review"]
-                for result in generations_model["llama3_pr_naive"]:
+                for result_key, result in generations_model["modular_llama3"].items():
                     if reference == result["meta_review"]:
-                        all_samples_test.append(sample)
+                        all_samples_test[result_key] = sample
                         break
             all_samples = all_samples_test
 
             for model_name, samples in generations_model.items():
-                samples_new = []
-                for sample_test in all_samples_test:
+                samples_new = {}
+                for sample_test_key, sample_test in all_samples_test.items():
                     for sample_model in samples:
                         if sample_model["meta_review"] == sample_test["meta_review"]:
-                            samples_new.append(sample_model)
+                            samples_new[sample_test_key] = sample_model
                             break
                 generations_model[model_name] = samples_new
 
@@ -94,13 +94,13 @@ if __name__ == "__main__":
                     break
             assert reference_key != "" and candidate_key != ""
 
-            for i, result in enumerate(results):
+            for result_key, result in results.items():
                 # print(result[reference_key])
                 # print(all_samples[i][reference_key])
-                assert result[reference_key] == all_samples[i][reference_key]
-                generations = all_samples[i].get("generations", [])
+                assert result[reference_key] == all_samples[result_key][reference_key]
+                generations = all_samples[result_key].get("generations", [])
                 generations.append({"model": model, "generation": result[candidate_key]})
-                all_samples[i]["generations"] = generations
+                all_samples[result_key]["generations"] = generations
 
         # add human reference into comparison
         reference_key = ""
@@ -108,17 +108,20 @@ if __name__ == "__main__":
             if generation_file["model_name"] == "llama3_pr_naive":
                 reference_key = generation_file["reference_key"]
 
-        for j, result in enumerate(generations_model["llama3_pr_naive"]):
-            assert result[reference_key] == all_samples[j][reference_key]
-            generations = all_samples[j].get("generations", [])
+        for result_key, result in generations_model["llama3_pr_naive"].items():
+            assert result[reference_key] == all_samples[result_key][reference_key]
+            generations = all_samples[result_key].get("generations", [])
             if isinstance(result[reference_key], str):
                 generations.append({"model": "human", "generation": result[reference_key]})
             if isinstance(result[reference_key], list):
                 generations.append({"model": "human", "generation": result[reference_key][0]})
-            all_samples[j]["generations"] = generations
+            all_samples[result_key]["generations"] = generations
 
-        all_samples = random.sample(all_samples, 25)
-        for sample_index, sample in enumerate(all_samples):
+        random_keys = random.sample(list(all_samples.keys()), 25)
+        all_samples_new = {}
+        for tmp in random_keys:
+            all_samples_new[tmp] = all_samples[tmp]
+        for sample_index, sample in enumerate(all_samples_new):
             generations = sample["generations"]
             source_documents = sample["source_documents"]
             comparisons = []
@@ -131,8 +134,8 @@ if __name__ == "__main__":
                                                dataset_name)
                         comparisons.append(
                             {"a": generation_i["model"], "b": generation_j["model"], "better": prediction})
-            all_samples[sample_index]["comparisons"] = comparisons
+            all_samples_new[sample_index]["comparisons"] = comparisons
             print(len(generations), len(comparisons))
 
         with open(f"{dataset_name}_llm_judged.json", "w") as f:
-            json.dump(all_samples, f, indent=4)
+            json.dump(all_samples_new, f, indent=4)

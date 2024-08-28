@@ -18,7 +18,7 @@ if __name__ == "__main__":
     with open("info.json") as f:
         info = json.load(f)
 
-    dataset_names = ["amasum_shoes"]
+    dataset_names = ["peermeta"]
     for dataset_name in dataset_names:
         print(dataset_name)
         facets = []
@@ -41,12 +41,15 @@ if __name__ == "__main__":
             samples = json.load(f)
         references = []
         source_texts = []
-        for sample in samples:
+        for sample_key, sample in samples.items():
             if isinstance(sample[reference_key], str):
                 references.append(sample[reference_key])
             else:
                 references.append(sample[reference_key][0])  # SPACE has multiple references
-            source_texts.append("\n".join(sample[source_key]))
+            source_documents = []
+            for review in sample["reviews"]:
+                source_documents.append(review["comment"])
+            source_texts.append("\n".join(source_documents))
         # compared with source texts
         scores_zs_source, scores_conv_source = summac_scores(source_texts, references)
         score_zs_source_avg = np.mean(scores_zs_source)
@@ -60,7 +63,7 @@ if __name__ == "__main__":
             print(generation_file)
             candidate_key = generation_info["candidate_key"]
             reference_key = generation_info["reference_key"]
-            source_key = "source_documents"
+            source_key = "reviews"
 
             # use the processed result with shared content from categorization
             categorization_file = "_".join(generation_file.split("/")[1:]).split(".")[0] + ".json"
@@ -72,13 +75,16 @@ if __name__ == "__main__":
             source_texts = []
             references_shared = []
             candidates_shared = []
-            for sample in samples:
+            for sample_index, sample in samples.items():
                 candidates.append(sample[candidate_key])
                 if isinstance(sample[reference_key], str):
                     references.append(sample[reference_key])
                 else:
                     references.append(sample[reference_key][0])  # SPACE has multiple references
-                source_texts.append("\n".join(sample[source_key]))
+                source_documents = []
+                for review in sample["reviews"]:
+                    source_documents.append(review["comment"])
+                source_texts.append("\n".join(source_documents))
 
                 categorization_reference = sample["categorization_reference"]
                 categorization_candidate = sample["categorization_candidate"]

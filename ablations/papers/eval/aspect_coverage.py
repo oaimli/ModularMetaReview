@@ -8,7 +8,7 @@ if __name__ == "__main__":
     with open("info.json") as f:
         info = json.load(f)
 
-    dataset_names = ["amasum_shoes"]
+    dataset_names = ["peermeta"]
     for dataset_name in dataset_names:
         print(dataset_name)
 
@@ -32,7 +32,7 @@ if __name__ == "__main__":
         with open("categorization/" + categorization_file) as f:
             samples = json.load(f)
         review_categorizations = []
-        for sample in samples:
+        for sample_key, sample in samples.items():
             review_categorizations.append(sample["review_categorization"])
 
 
@@ -50,7 +50,7 @@ if __name__ == "__main__":
         candidates = []
         references = []
         reference_categorizations = []
-        for sample in samples:
+        for sample_key, sample in samples.items():
             candidates.append(sample[candidate_key])
             if isinstance(sample[reference_key], str):
                 references.append(sample[reference_key])
@@ -101,7 +101,7 @@ if __name__ == "__main__":
             candidates = []
             references = []
             candidate_categorizations = []
-            for sample in samples:
+            for sample_key, sample in samples.items():
                 candidates.append(sample[candidate_key])
                 if isinstance(sample[reference_key], str):
                     references.append(sample[reference_key])
