@@ -108,7 +108,7 @@ if __name__ == "__main__":
             if generation_file["model_name"] == "llama3_pr_naive":
                 reference_key = generation_file["reference_key"]
 
-        for result_key, result in generations_model["llama3_pr_naive"].items():
+        for result_key, result in generations_model["modular_llama3"].items():
             assert result[reference_key] == all_samples[result_key][reference_key]
             generations = all_samples[result_key].get("generations", [])
             if isinstance(result[reference_key], str):
