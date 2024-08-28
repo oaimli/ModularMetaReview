@@ -1,0 +1,7 @@
+{
+    "space": [
+        {"generation_file": "/home/miao4/punim0521/ModularMetaReview/modular_llama3/hotels/space_generation_result_llama31_70b.json", "candidate_key": "meta_review_generated", "reference_key":  "gold_summaries_general", "model_name":  "modular_llama3"},
+        {"generation_file": "/home/miao4/punim0521/ModularMetaReview/ablations/hotels/ablation_a/space_generation_result_llama31_70b.json", "candidate_key": "meta_review_generated", "reference_key":  "gold_summaries_general", "model_name":  "ablation_a"},
+        {"generation_file": "/home/miao4/punim0521/ModularMetaReview/ablations/hotels/ablation_b/space_generation_result_llama31_70b.json", "candidate_key": "meta_review_generated", "reference_key":  "gold_summaries_general", "model_name":  "ablation_b"},
+    ]
+}

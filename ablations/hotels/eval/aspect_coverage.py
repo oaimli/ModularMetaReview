@@ -8,7 +8,7 @@ if __name__ == "__main__":
     with open("info.json") as f:
         info = json.load(f)
 
-    dataset_names = ["peermeta", "space", "amasum_shoes"]
+    dataset_names = ["space"]
     for dataset_name in dataset_names:
         print(dataset_name)
 
@@ -42,6 +42,7 @@ if __name__ == "__main__":
         candidate_key = generations_info[0]["candidate_key"]
         reference_key = generations_info[0]["reference_key"]
 
+        # use the processed result with shared content from categorization
         categorization_file = "_".join(generation_file.split("/")[1:]).split(".")[0] + ".json"
         with open("categorization/" + categorization_file) as f:
             samples = json.load(f)
@@ -57,7 +58,6 @@ if __name__ == "__main__":
                 references.append(sample[reference_key][0])  # SPACE has multiple references
             reference_categorizations.append(sample["categorization_reference"])
 
-        # compared with references on only shared aspects
         recalls = []
         precisions = []
         f_measures = []
