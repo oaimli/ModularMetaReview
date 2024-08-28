@@ -105,4 +105,4 @@ if __name__ == "__main__":
             candidate_distribution_ratio = {}
             for facet, count in candidate_distribution.items():
                 candidate_distribution_ratio[facet] = count / sum(list(candidate_distribution.values()))
-            print("candidate_distribution_ratio", sorted(candidate_distribution_ratio, key = lambda i: i[0]))
+            print("candidate_distribution_ratio", sorted(candidate_distribution_ratio.items(), key = lambda i: i[0]))
