@@ -1,5 +1,7 @@
 There are a bunch of review documents and two summaries of them for a hotel below. Which summary do you think is in a better quality to summarize the opinions in the provided reviews.
 
+A good summary of reviews is a concise synthesis of the key points and findings from multiple reviews on a particular topic, product, service, or study. It should distill the most important insights, trends, and opinions from the reviews, providing a clear and balanced overview for readers.
+
 Review documents:
 
 {{source_documents}}

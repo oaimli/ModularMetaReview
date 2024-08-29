@@ -18,7 +18,7 @@ def comparing(source_documents, generation_a, generation_b, dataset_name):
                 model="gpt-4o-2024-05-13",
                 messages=[
                     {"role": "system",
-                     "content": "Always answer with only the answer without any other content."},
+                     "content": "Always output only the answer without any other content."},
                     {"role": "user",
                      "content": prompt_content}
                     ],
