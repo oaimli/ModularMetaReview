@@ -33,14 +33,14 @@ def comparing(source_documents, generation_a, generation_b, dataset_name):
                     output.append("a")
                 if "b" in tmp:
                     output.append("b")
-            if len(output) > 7:
+            if len(output) > 5:
                 prediction = max(output, key=output.count)
                 break
         except Exception as e:
             print(e)
             if ("limit" in str(e)):
                 time.sleep(2)
-    print(all_candidates)
+    # print(all_candidates)
     return prediction
 
 
