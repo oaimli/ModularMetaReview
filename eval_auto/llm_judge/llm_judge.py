@@ -25,8 +25,10 @@ def comparing(source_documents, generation_a, generation_b, dataset_name):
                 n=10
                 )
             output = []
+            all_candidates = []
             for choice in output_dict.choices:
                 tmp = choice.message.content.lower()
+                all_candidates.append(tmp)
                 if "a" in tmp:
                     output.append("a")
                 if "b" in tmp:
@@ -38,7 +40,7 @@ def comparing(source_documents, generation_a, generation_b, dataset_name):
             print(e)
             if ("limit" in str(e)):
                 time.sleep(2)
-
+    print(all_candidates)
     return prediction
 
 
