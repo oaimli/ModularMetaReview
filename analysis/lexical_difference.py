@@ -41,8 +41,8 @@ def analyzing(targets, sources):
     rouges = []
     for target, source in zip(targets, sources):
         scores = rouge(target, source)
-        rouges.append(round((scores["rouge1"]["fmeasure"] + scores["rouge2"]["fmeasure"] + scores["rougeLsum"]["fmeasure"]) / 3, 4))
-    print("Mean", np.mean(rouges), "Max", np.max(rouges), "Min", np.min(rouges), "Std", np.std(rouges))
+        rouges.append(round((scores["rouge1"]["precision"] + scores["rouge2"]["precision"]) / 2, 4))
+    print("Mean", np.around(np.mean(rouges), 4), "Max", np.max(rouges), "Min", np.min(rouges), "Std", np.std(rouges))
 
 
 
