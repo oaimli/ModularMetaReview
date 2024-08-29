@@ -1,4 +1,4 @@
-Prompt without quality description
+######## Prompt without quality description
 peermeta
 peermeta_llm_judged.json
 winning rates [('gpt4_pr_logic', 0.8), ('gpt4_pr_naive', 0.72), ('led_large_ft', 0.53), ('llama3_pr_logic', 0.515), ('modular_gpt4', 0.47), ('human', 0.42), ('llama3_pr_naive', 0.385), ('modular_llama3', 0.36), ('llama31_8b_ft', 0.3)]
@@ -13,7 +13,7 @@ winning rates [('gpt4_pr_logic', 0.985), ('gpt4_pr_naive', 0.755), ('llama3_pr_l
 elo rankings {'gpt4_pr_logic': 0, 'gpt4_pr_naive': 1, 'llama3_pr_logic': 2, 'modular_llama3': 3, 'modular_gpt4': 4, 'llama3_pr_naive': 5, 'human': 6, 'led_large_ft': 7, 'llama31_8b_ft': 8}
 
 
-Prompt with the description of "A good summary of reviews is a concise synthesis of the key points and findings from multiple reviews on a particular topic, product, service, or study. It should distill the most important insights, trends, and opinions from the reviews, providing a clear and balanced overview for readers."
+######## Prompt with the description of "A good summary of reviews is a concise synthesis of the key points and findings from multiple reviews on a particular topic, product, service, or study. It should distill the most important insights, trends, and opinions from the reviews, providing a clear and balanced overview for readers."
 peermeta
 peermeta_llm_judged.json
 winning rates [('gpt4_pr_naive', 0.755), ('gpt4_pr_logic', 0.755), ('modular_gpt4', 0.57), ('llama3_pr_logic', 0.545), ('llama3_pr_naive', 0.495), ('led_large_ft', 0.44), ('modular_llama3', 0.38), ('human', 0.325), ('llama31_8b_ft', 0.235)]
@@ -26,6 +26,3 @@ amasum_shoes
 amasum_shoes_llm_judged.json
 winning rates [('gpt4_pr_logic', 0.975), ('llama3_pr_logic', 0.735), ('gpt4_pr_naive', 0.695), ('modular_gpt4', 0.59), ('modular_llama3', 0.59), ('llama3_pr_naive', 0.52), ('human', 0.235), ('led_large_ft', 0.16), ('llama31_8b_ft', 0.0)]
 elo rankings {'gpt4_pr_logic': 0, 'llama3_pr_logic': 1, 'gpt4_pr_naive': 2, 'modular_gpt4': 3, 'modular_llama3': 4, 'llama3_pr_naive': 5, 'human': 6, 'led_large_ft': 7, 'llama31_8b_ft': 8}
-
-
-Prompt with the description of "A good summary of reviews is a concise synthesis of the key points and findings from multiple reviews on a particular topic, product, service, or study. It should distill the most important insights, trends, and opinions from the reviews in comprehensive aspects, providing a clear and balanced overview for readers."
