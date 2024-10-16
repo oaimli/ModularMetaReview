@@ -13,7 +13,7 @@ import jsonlines
 
 def meta_generation(source_documents: List) -> (str, str):
     source_text = "\n".join(source_documents)
-    prompt_content = f"Please give me sequential steps to write a summary for the following reviews on an academic paper.\n\n Reviews on a paper:\n {source_text}\n\nThe steps to write a summary in different lines:"
+    prompt_content = f"Please give me sequential steps to write a summary specific for the following reviews on an academic paper.\n\n Reviews on a paper:\n {source_text}\n\nThe steps to write a summary in different lines:"
     # print(prompt_format)
     while True:
         try:
