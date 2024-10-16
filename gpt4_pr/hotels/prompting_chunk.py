@@ -24,7 +24,7 @@ def meta_generation(source_documents: List, aspect: str) -> str:
             while True:
                 try:
                     output_dict = client.chat.completions.create(
-                        model="meta-llama/Meta-Llama-3.1-70B-Instruct",
+                        model="gpt-4o-2024-05-13",
                         messages=[
                             {"role": "system",
                              "content": "You are requested to do summarization. Please output the final answer with only the summary, no other useless content."},
@@ -46,7 +46,7 @@ def meta_generation(source_documents: List, aspect: str) -> str:
         while True:
             try:
                 output_dict = client.chat.completions.create(
-                    model="meta-llama/Meta-Llama-3.1-70B-Instruct",
+                    model="gpt-4o-2024-05-13",
                     messages=[
                         {"role": "system",
                          "content": "You are requested to do summarization. Please output the final answer with only the summary, no other useless content."},
@@ -69,7 +69,7 @@ def meta_generation(source_documents: List, aspect: str) -> str:
             while True:
                 try:
                     output_dict = client.chat.completions.create(
-                        model="meta-llama/Meta-Llama-3.1-70B-Instruct",
+                        model="gpt-4o-2024-05-13",
                         messages=[
                             {"role": "system",
                              "content": "You are requested to do summarization. Please output the final answer with only the summary, no other useless content."},
@@ -91,7 +91,7 @@ def meta_generation(source_documents: List, aspect: str) -> str:
         while True:
             try:
                 output_dict = client.chat.completions.create(
-                    model="meta-llama/Meta-Llama-3.1-70B-Instruct",
+                    model="gpt-4o-2024-05-13",
                     messages=[
                         {"role": "system",
                          "content": "You are requested to do summarization. Please output the final answer with only the summary, no other useless content."},
@@ -110,13 +110,8 @@ def meta_generation(source_documents: List, aspect: str) -> str:
 
 
 if __name__ == "__main__":
-    model_name = "llama31_70b"
-    openai_api_key = "EMPTY"
-    openai_api_base = "http://localhost:8000/v1"
-    client = OpenAI(
-        api_key=openai_api_key,
-        base_url=openai_api_base,
-        )
+    model_name = "gpt_4o"
+    client = OpenAI(api_key="sk-proj-jxdkj7TzTCWDjDU0lpEPT3BlbkFJll01Dz3fxt51wM8Rh6wm")
 
     test_samples = []
     with jsonlines.open("../../datasets/space_test.jsonl") as reader:
