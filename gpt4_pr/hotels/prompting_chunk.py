@@ -132,7 +132,7 @@ if __name__ == "__main__":
         # print(sample)
 
     print(len(results))
-    output_dir = "../../results/llama3_pr_space"
+    output_dir = "../../results/gpt4_pr_space"
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
     with open(f"{output_dir}/generations_{model_name}_chunk.json", "w") as f:

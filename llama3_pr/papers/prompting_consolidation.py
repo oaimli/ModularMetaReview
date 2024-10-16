@@ -59,7 +59,7 @@ if __name__ == "__main__":
         # print(sample)
 
     print(len(results))
-    output_dir = "../../results/gpt4_pr_peermeta"
+    output_dir = "../../results/llama3_pr_peermeta"
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
     with open(f"{output_dir}/generations_{model_name}_consolidation.json", "w") as f:
