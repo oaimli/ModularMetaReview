@@ -48,7 +48,6 @@ def meta_generation(source_documents: List) -> str:
                 n=1
                 )
             output = output_dict.choices[0].message.content
-            small_summaries.append(output)
             break
         except Exception as e:
             if "limit" in str(e):

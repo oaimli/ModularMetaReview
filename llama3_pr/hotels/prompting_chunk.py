@@ -8,9 +8,36 @@ from typing import List
 
 
 def meta_generation(source_documents: List, aspect: str) -> str:
-    source_text = "\n".join(source_documents)
+    document_groups = []
+
+
     if aspect == "general":
-        prompt_content = f"Please write a summary for the following reviews on a hotel.\n\n Reviews on a hotel:\n {source_text}\n\nThe output summary:"
+        small_summaries = []
+        for group in document_groups:
+            source_text = "\n".join(group)
+            prompt_content = f"Please write a summary for the following reviews on a hotel.\n\n Reviews on a hotel:\n {source_text}\n\nThe output summary:"
+            # print(prompt_format)
+            while True:
+                try:
+                    output_dict = client.chat.completions.create(
+                        model="meta-llama/Meta-Llama-3.1-70B-Instruct",
+                        messages=[
+                            {"role": "system",
+                             "content": "You are requested to do summarization. Please output the final answer with only the summary, no other useless content."},
+                            {"role": "user",
+                             "content": prompt_content}
+                            ],
+                        n=1
+                        )
+                    output = output_dict.choices[0].message.content
+                    small_summaries.append(output)
+                    break
+                except Exception as e:
+                    if "limit" in str(e):
+                        time.sleep(2)
+
+        source_text = "\n".join(small_summaries)
+        prompt_content = f"Please write a summary for the following text.\n\n The text:\n {source_text}\n\nThe output summary:"
         # print(prompt_format)
         while True:
             try:
