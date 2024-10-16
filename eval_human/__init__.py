@@ -1,1 +1,1 @@
-# Human evaluaiton on test samples in the three domains together
+# Human evaluaiton only on scientific reviews
