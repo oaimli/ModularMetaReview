@@ -5,7 +5,7 @@
 # aspect coverage
 
 
-# The output results of different approaches for different datasets
+# The output results of different approaches for different datasets (info_all), while info.txt contains results currently evaluated
 # PeerMeta
 # /home/miao4/punim0521/ModularMetaReview/modular_gpt4/papers/peemeta_generation_result_gpt_4o.json
 # /home/miao4/punim0521/ModularMetaReview/modular_llama3/papers/peemeta_generation_result_llama31_70b.json
