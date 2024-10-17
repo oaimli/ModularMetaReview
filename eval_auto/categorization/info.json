@@ -1,0 +1,13 @@
+{
+    "peermeta": [
+        {"generation_file": "/home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_peermeta/generations_gpt_4o_decomposed.json", "candidate_key": "generated_meta_review", "reference_key":  "meta_review", "model_name":  "gpt4_pr_decomposed"}
+    ],
+    "space": [
+        {"generation_file": "/home/miao4/punim0521/ModularMetaReview/results/llama3_pr_space/generations_llama31_70b_decomposed.json", "candidate_key": "generated_summary_general", "reference_key":  "gold_summaries_general", "model_name":  "llama3_pr_decomposed"},
+        {"generation_file": "/home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_space/generations_gpt_4o_decomposed.json", "candidate_key": "generated_summary_general", "reference_key":  "gold_summaries_general", "model_name":  "gpt4_pr_decomposed"}
+    ],
+    "amasum_shoes": [
+        {"generation_file": "/home/miao4/punim0521/ModularMetaReview/results/llama3_pr_amasum_shoes/generations_llama31_70b_decomposed.json", "candidate_key": "generated_meta_review", "reference_key":  "meta_review", "model_name":  "llama3_pr_decomposed"},
+        {"generation_file": "/home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_amasum_shoes/generations_gpt_4o_decomposed.json", "candidate_key": "generated_meta_review", "reference_key":  "meta_review", "model_name":  "gpt4_pr_decomposed"}
+    ]
+}

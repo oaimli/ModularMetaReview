@@ -70,7 +70,7 @@ if __name__ == "__main__":
         base_url=openai_api_base,
         )
 
-    with open("../info.json") as f:
+    with open("info.json") as f:
         info = json.load(f)
 
     dataset_name = "amasum_shoes"
