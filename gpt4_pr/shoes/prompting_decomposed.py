@@ -1,19 +1,18 @@
 """
 Implementation of the prompted prompting work
 """
-
 import os.path
+import jsonlines
 from openai import OpenAI
 import time
 import json
 from tqdm import tqdm
 from typing import List
-import jsonlines
 
 
 def meta_generation(source_documents: List) -> (str, str):
     source_text = "\n".join(source_documents)
-    prompt_content = f"Please give me sequential steps to write a summary specific for the following reviews on an academic paper.\n\n Reviews on a paper:\n {source_text}\n\nThe steps to write a summary in different lines:"
+    prompt_content = f"Please give me sequential steps to write a summary specific for the following reviews on a pair of sports shoes.\n\n Reviews on a pair of sports shoes:\n {source_text}\n\nThe steps to write a summary in different lines:"
     # print(prompt_format)
     while True:
         try:
@@ -69,7 +68,7 @@ if __name__ == "__main__":
     client = OpenAI(api_key="sk-proj-jxdkj7TzTCWDjDU0lpEPT3BlbkFJll01Dz3fxt51wM8Rh6wm")
 
     test_samples = []
-    with jsonlines.open("../../datasets/peermeta_test.jsonl") as reader:
+    with jsonlines.open("../../datasets/amasum_shoes_test.jsonl") as reader:
         for line in reader:
             test_samples.append(line)
 
@@ -77,13 +76,13 @@ if __name__ == "__main__":
     for sample in tqdm(test_samples):
         source_documents = sample["source_documents"]
         result, steps = meta_generation(source_documents)
-        sample["generated_meta_review"] = result
         sample["generated_steps"] = steps
+        sample["generated_meta_review"] = result
         results.append(sample)
         # print(sample)
 
     print(len(results))
-    output_dir = "../../results/gpt4_pr_peermeta"
+    output_dir = "../../results/gpt4_pr_amasum_shoes"
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
     with open(f"{output_dir}/generations_{model_name}_decomposed.json", "w") as f:
