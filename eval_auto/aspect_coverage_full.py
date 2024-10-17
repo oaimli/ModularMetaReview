@@ -21,7 +21,7 @@ if __name__ == "__main__":
 
         generations_info = info[dataset_name]
 
-        # all generation results share the same review-categorization
+        # all generation results share the same review-categorization and there must be the modular row in the batch
         generation_file_target = ""
         for generation_info in generations_info:
             if generation_info["model_name"] == "modular_llama3":

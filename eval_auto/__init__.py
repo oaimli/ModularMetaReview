@@ -1,4 +1,4 @@
-# There are four types of automatic evaluation metrics
+# There are four types of automatic evaluation metrics on full and truncated generated results
 # rouge
 # adjusted summac
 # llm judge
