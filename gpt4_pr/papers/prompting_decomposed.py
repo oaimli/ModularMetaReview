@@ -1,5 +1,5 @@
 """
-Implementation of the prompted prompting work
+Implementation of the decomposed prompting work
 """
 
 import os.path
