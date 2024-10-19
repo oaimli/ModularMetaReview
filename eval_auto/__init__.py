@@ -4,6 +4,7 @@
 # llm judge
 # aspect coverage
 
+# Use truncating.py to truncate the generation results before calculate the metrics
 
 # The output results of different approaches for different datasets (info_all), while info.txt contains results currently evaluated
 # PeerMeta

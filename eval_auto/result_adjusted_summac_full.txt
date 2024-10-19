@@ -1,7 +1,8 @@
 peermeta
 human reference
 <All keys matched successfully>
-/data/projects/punim0478/miao4/anaconda/envs/summac/lib/python3.9/site-packages/summac/model_summac.py:298: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /opt/conda/conda-bld/pytorch_1670525539683/work/torch/csrc/utils/tensor_new.cpp:230.)
+/data/projects/punim0478/miao4/anaconda/envs/summac/lib/python3.9/site-packages/summac/model_summac.py:298: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting
+ the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /opt/conda/conda-bld/pytorch_1670525539683/work/torch/csrc/utils/tensor_new.cpp:230.)
   histograms = torch.FloatTensor(histograms).to(self.device)
 scores zs: source -0.34004343660920183
 scores conv: source 0.5015322145819664
@@ -45,6 +46,36 @@ scores conv: source 0.7119880853096644 reference 0.223583284864823 summation 0.9
 <All keys matched successfully>
 scores zs: source -0.1493566723056183 reference -0.22162285460214184 summation -0.37097952690776015
 scores conv: source 0.6809065878391266 reference 0.22359889621535936 summation 0.9045054840544859
+/home/miao4/punim0521/ModularMetaReview/results/llama3_pr_peermeta/generations_llama31_70b_chunk.json
+<All keys matched successfully>
+<All keys matched successfully>
+scores zs: source -0.3321272716522216 reference -0.15064172959224487 summation -0.4827690012444665
+scores conv: source 0.4727819207310677 reference 0.21296864435076712 summation 0.6857505650818347
+/home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_peermeta/generations_gpt_4o_chunk.json
+<All keys matched successfully>
+<All keys matched successfully>
+scores zs: source -0.27824750061640663 reference -0.1792588206423627 summation -0.45750632125876933
+scores conv: source 0.4763858509063721 reference 0.21384179443120957 summation 0.6902276453375816
+/home/miao4/punim0521/ModularMetaReview/results/llama3_pr_peermeta/generations_llama31_70b_consolidation.json
+<All keys matched successfully>
+<All keys matched successfully>
+scores zs: source -0.27054966830379995 reference -0.17832944419246352 summation -0.44887911249626344
+scores conv: source 0.4511782628297806 reference 0.21687782406806946 summation 0.66805608689785
+/home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_peermeta/generations_gpt_4o_consolidation.json
+<All keys matched successfully>
+<All keys matched successfully>
+scores zs: source -0.32146338488154713 reference -0.17150990752257303 summation -0.49297329240412013
+scores conv: source 0.5492164182662964 reference 0.21932151407003403 summation 0.7685379323363304
+/home/miao4/punim0521/ModularMetaReview/results/llama3_pr_peermeta/generations_llama31_70b_decomposed.json
+<All keys matched successfully>
+<All keys matched successfully>
+scores zs: source -0.4777801232204041 reference -0.15239359436269104 summation -0.6301737175830951
+scores conv: source 0.48748825043439864 reference 0.20698434934020044 summation 0.6944725997745991
+/home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_peermeta/generations_gpt_4o_decomposed.json
+<All keys matched successfully>
+<All keys matched successfully>
+scores zs: source -0.40678059688309387 reference -0.16627519282128653 summation -0.5730557897043804
+scores conv: source 0.4858792114257813 reference 0.21057028636336328 summation 0.6964494977891446
 space
 human reference
 <All keys matched successfully>
@@ -80,6 +111,26 @@ scores conv: source 0.43951884627342225 reference 0.21876684606075286 summation 
 <All keys matched successfully>
 scores zs: source -0.3893292189132039 reference -0.11158804077709278 summation -0.5009172596902967
 scores conv: source 0.4760579860210419 reference 0.21742118299007415 summation 0.6934791690111161
+/home/miao4/punim0521/ModularMetaReview/results/llama3_pr_space/generations_llama31_70b_chunk.json
+<All keys matched successfully>
+<All keys matched successfully>
+scores zs: source -0.5053256225585938 reference -0.15018831879752026 summation -0.6555139413561141
+scores conv: source 0.4259821903705597 reference 0.21858086824417114 summation 0.6445630586147308
+/home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_space/generations_gpt_4o_chunk.json
+<All keys matched successfully>
+<All keys matched successfully>
+scores zs: source -0.5190530497233072 reference -0.22648826126825242 summation -0.7455413109915596
+scores conv: source 0.4321033275127411 reference 0.21705262303352357 summation 0.6491559505462647
+/home/miao4/punim0521/ModularMetaReview/results/llama3_pr_space/generations_llama31_70b_decomposed.json
+<All keys matched successfully>
+<All keys matched successfully>
+scores zs: source -0.4673147536769058 reference -0.04186687850952149 summation -0.5091816321864273
+scores conv: source 0.5610179150104523 reference 0.22547196745872497 summation 0.7864898824691773
+/home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_space/generations_gpt_4o_decomposed.json
+<All keys matched successfully>
+<All keys matched successfully>
+scores zs: source -0.6256676483154296 reference -0.13399854437097325 summation -0.7596661926864029
+scores conv: source 0.5448304033279419 reference 0.22108471691608428 summation 0.7659151202440262
 amasum_shoes
 human reference
 <All keys matched successfully>
@@ -125,3 +176,23 @@ scores conv: source 0.5090577188134193 reference 0.21131009727716446 summation 0
 <All keys matched successfully>
 scores zs: source -0.45517371368408205 reference 0.07471905678037613 summation -0.38045465690370595
 scores conv: source 0.42986432164907457 reference 0.22429153561592102 summation 0.6541558572649956
+/home/miao4/punim0521/ModularMetaReview/results/llama3_pr_amasum_shoes/generations_llama31_70b_chunk.json
+<All keys matched successfully>
+<All keys matched successfully>
+scores zs: source -0.33384638468424477 reference 0.08320335769653318 summation -0.25064302698771157
+scores conv: source 0.410368395447731 reference 0.22289949029684067 summation 0.6332678857445717
+/home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_amasum_shoes/generations_gpt_4o_chunk.json
+<All keys matched successfully>
+<All keys matched successfully>
+scores zs: source -0.39875797271728514 reference -0.03533293760390508 summation -0.43409091032119024
+scores conv: source 0.40534051448106767 reference 0.21581490725278854 summation 0.6211554217338562
+/home/miao4/punim0521/ModularMetaReview/results/llama3_pr_amasum_shoes/generations_llama31_70b_decomposed.json
+<All keys matched successfully>
+<All keys matched successfully>
+scores zs: source -0.5750186665852864 reference -0.023400421142578124 summation -0.5984190877278646
+scores conv: source 0.4020989465713501 reference 0.20486855894327163 summation 0.6069675055146218
+/home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_amasum_shoes/generations_gpt_4o_decomposed.json
+<All keys matched successfully>
+<All keys matched successfully>
+scores zs: source -0.48493542734781897 reference 0.0116290283203125 summation -0.4733063990275065
+scores conv: source 0.3923280954360962 reference 0.21449244946241378 summation 0.60682054489851
