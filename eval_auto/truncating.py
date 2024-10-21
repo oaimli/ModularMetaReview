@@ -28,10 +28,10 @@ if __name__ == "__main__":
                 lengths_reference = []
                 for reference in references:
                     lengths_reference.append(len(reference.split()))
-                avg_length_reference = int(np.mean(lengths_reference))
+                avg_length_reference = np.mean(lengths_reference)
 
                 candidate = sample[candidate_key]
-                sample[candidate_key] = " ".join(candidate.split()[:avg_length_reference])
+                sample[candidate_key] = " ".join(candidate.split()[:int(avg_length_reference)])
                 samples[i] = sample
 
                 lengths_diff.append(abs(avg_length_reference - len(candidate.split())))
