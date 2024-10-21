@@ -1,8 +1,8 @@
 {
     "peermeta": [
-        {"generation_file": "/home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_peermeta/generations_gpt_4o_consolidation.json", "candidate_key": "generated_meta_review", "reference_key":  "meta_review", "model_name":  "gpt4_pr_consolidation"},
-        {"generation_file": "/home/miao4/punim0521/ModularMetaReview/results/llama3_pr_peermeta/generations_llama31_70b_decomposed.json", "candidate_key": "generated_meta_review", "reference_key":  "meta_review", "model_name":  "llama3_pr_decomposed"},
-        {"generation_file": "/home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_peermeta/generations_gpt_4o_decomposed.json", "candidate_key": "generated_meta_review", "reference_key":  "meta_review", "model_name":  "gpt4_pr_decomposed"}
+        {"generation_file": "/home/miao4/punim0521/ModularMetaReview/results/llama3_pr_peermeta/generations_llama31_70b_chunk.json", "candidate_key": "generated_meta_review", "reference_key":  "meta_review", "model_name":  "llama3_pr_chunk"},
+        {"generation_file": "/home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_peermeta/generations_gpt_4o_chunk.json", "candidate_key": "generated_meta_review", "reference_key":  "meta_review", "model_name":  "gpt4_pr_chunk"},
+        {"generation_file": "/home/miao4/punim0521/ModularMetaReview/results/llama3_pr_peermeta/generations_llama31_70b_consolidation.json", "candidate_key": "generated_meta_review", "reference_key":  "meta_review", "model_name":  "llama3_pr_consolidation"}
     ],
     "space": [
         {"generation_file": "/home/miao4/punim0521/ModularMetaReview/modular_gpt4/hotels/space_generation_result_gpt_4o.json", "candidate_key": "meta_review_generated", "reference_key":  "gold_summaries_general", "model_name":  "modular_gpt4"},
