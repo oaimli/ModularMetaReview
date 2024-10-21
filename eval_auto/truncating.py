@@ -40,7 +40,10 @@ if __name__ == "__main__":
                 diff = len(candidate.split()) - avg_length_reference
                 if diff > 0:
                     lengths_diff.append(diff)
-            print(np.mean(lengths_diff))
+            if len(lengths_diff) > 0:
+                print(np.mean(lengths_diff))
+            else:
+                print(0)
             # save truncated results
             output_file = generation_file[:-5] + "_truncated.json"
             with open(output_file, "w") as f:
