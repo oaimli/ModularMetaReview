@@ -37,7 +37,9 @@ if __name__ == "__main__":
                 sample[candidate_key] = " ".join(candidate.split()[:int(avg_length_reference)])
                 samples[i] = sample
 
-                lengths_diff.append(abs(avg_length_reference - len(candidate.split())))
+                diff = len(candidate.split()) - avg_length_reference
+                if diff > 0:
+                    lengths_diff.append(diff)
             print(np.mean(lengths_diff))
             # save truncated results
             output_file = generation_file[:-5] + "_truncated.json"
