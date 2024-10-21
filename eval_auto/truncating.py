@@ -9,7 +9,7 @@ if __name__ == "__main__":
     dataset_names = ["peermeta", "space", "amasum_shoes"]
     for dataset_name in dataset_names:
         print(dataset_name)
-        avg_length_reference = -1
+        target_length_reference = -1
         generations_info = info[dataset_name]
         for generation_info in generations_info:
             generation_file = generation_info["generation_file"]
@@ -19,7 +19,7 @@ if __name__ == "__main__":
             with open(generation_file) as f:
                 samples = json.load(f)
 
-            if avg_length_reference == -1:
+            if target_length_reference == -1:
                 lengths_reference = []
                 for i, sample in enumerate(samples):
                     # calculate the length of the reference
@@ -29,15 +29,15 @@ if __name__ == "__main__":
                     else:
                         reference = sample[reference_key]
                     lengths_reference.append(len(reference.split()))
-                avg_length_reference = np.mean(lengths_reference)
+                target_length_reference = np.mean(lengths_reference)
 
             lengths_diff = []
             for i, sample in enumerate(samples):
                 candidate = sample[candidate_key]
-                sample[candidate_key] = " ".join(candidate.split()[:int(avg_length_reference)])
+                sample[candidate_key] = " ".join(candidate.split()[:int(target_length_reference)])
                 samples[i] = sample
 
-                diff = len(candidate.split()) - avg_length_reference
+                diff = len(candidate.split()) - target_length_reference
                 if diff > 0:
                     lengths_diff.append(diff)
             if len(lengths_diff) > 0:
