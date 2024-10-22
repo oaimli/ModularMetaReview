@@ -1,0 +1,1 @@
+# Selection here is only groupting of extracted texts in organization
