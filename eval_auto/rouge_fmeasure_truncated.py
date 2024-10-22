@@ -68,6 +68,9 @@ if __name__ == "__main__":
         info = json.load(f)
 
     dataset_names = ["peermeta", "space", "amasum_shoes"]
+
+    # calculate ROUGE based on human references
+    print("########### ROUGE based on references ################")
     for dataset_name in dataset_names:
         print(dataset_name)
         generations_info = info[dataset_name]
@@ -87,9 +90,53 @@ if __name__ == "__main__":
                 if isinstance(sample[reference_key], str):
                     references.append(sample[reference_key])
                 else:
-                    references.append(sample[reference_key][0]) # SPACE has multiple references
+                    references.append(sample[reference_key][0])  # SPACE has multiple references
 
             scores = rouge_corpus(references, candidates, types=['rouge1', 'rouge2', 'rougeLsum'])
 
             print("Average F1",
                   (scores["rouge1"]["fmeasure"] + scores["rouge2"]["fmeasure"] + scores["rougeLsum"]["fmeasure"]) / 3)
+
+    # calculate ROUGE based on source reviews
+    print("########### ROUGE based on source reviews ################")
+    for dataset_name in dataset_names:
+        print(dataset_name)
+        generations_info = info[dataset_name]
+        for generation_info in generations_info:
+            generation_file = generation_info["generation_file"]
+            generation_file = generation_file[:-5] + "_truncated.json"
+            print(generation_file)
+            candidate_key = generation_info["candidate_key"]
+            with open(generation_file) as f:
+                samples = json.load(f)
+
+            candidates = []
+            source_texts = []
+            for sample in samples:
+                candidates.append(sample[candidate_key])
+                source_texts.append("\n".join(sample["source_documents"]))
+
+            scores = rouge_corpus(source_texts, candidates, types=['rouge1', 'rouge2', 'rougeLsum'])
+
+            print("Average F1",
+                  (scores["rouge1"]["fmeasure"] + scores["rouge2"]["fmeasure"] + scores["rougeLsum"][
+                      "fmeasure"]) / 3)
+
+    # calculate lengths of generations
+    print("########### lengths of generated meta-reviews ################")
+    for dataset_name in dataset_names:
+        print(dataset_name)
+        generations_info = info[dataset_name]
+        for generation_info in generations_info:
+            generation_file = generation_info["generation_file"]
+            generation_file = generation_file[:-5] + "_truncated.json"
+            print(generation_file)
+            candidate_key = generation_info["candidate_key"]
+            with open(generation_file) as f:
+                samples = json.load(f)
+
+            candidate_lengths = []
+            for sample in samples:
+                candidate_lengths.append(len(sample[candidate_key].split()))
+
+            print("Average length of generations:", np.mean(candidate_lengths))
