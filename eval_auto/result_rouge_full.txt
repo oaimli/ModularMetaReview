@@ -77,6 +77,8 @@ Average F1 0.09007214861159925
 ########### ROUGE based on source reviews ################
 peermeta
 /home/miao4/punim0521/ModularMetaReview/modular_gpt4/papers/peermeta_generation_result_gpt_4o.json
+human reference
+Average F1 0.046754174788930736
 Average F1 0.04386642558483032
 /home/miao4/punim0521/ModularMetaReview/modular_llama3/papers/peermeta_generation_result_llama31_70b.json
 Average F1 0.04403763670269584
@@ -106,6 +108,8 @@ Average F1 0.019458820581905817
 Average F1 0.03076114666331023
 space
 /home/miao4/punim0521/ModularMetaReview/modular_gpt4/hotels/space_generation_result_gpt_4o.json
+human reference
+Average F1 0.009624669298271802
 Average F1 0.012525208689336256
 /home/miao4/punim0521/ModularMetaReview/modular_llama3/hotels/space_generation_result_llama31_70b.json
 Average F1 0.014955928044932064
@@ -127,6 +131,8 @@ Average F1 0.0032511703690399642
 Average F1 0.0036796583409864324
 amasum_shoes
 /home/miao4/punim0521/ModularMetaReview/modular_gpt4/shoes/amasum_shoes_generation_result_gpt_4o.json
+human reference
+Average F1 0.142773115728402
 Average F1 0.10601299328429614
 /home/miao4/punim0521/ModularMetaReview/modular_llama3/shoes/amasum_shoes_generation_result_llama31_70b.json
 Average F1 0.10995135310405475
@@ -153,6 +159,8 @@ Average F1 0.04001962166368854
 ########### lengths of generated meta-reviews ################
 peermeta
 /home/miao4/punim0521/ModularMetaReview/modular_gpt4/papers/peermeta_generation_result_gpt_4o.json
+human references
+Average length of generations: 156.06
 Average length of generations: 129.06
 /home/miao4/punim0521/ModularMetaReview/modular_llama3/papers/peermeta_generation_result_llama31_70b.json
 Average length of generations: 123.31
@@ -182,6 +190,8 @@ Average length of generations: 65.78
 Average length of generations: 119.49
 space
 /home/miao4/punim0521/ModularMetaReview/modular_gpt4/hotels/space_generation_result_gpt_4o.json
+human references
+Average length of generations: 75.68
 Average length of generations: 123.8
 /home/miao4/punim0521/ModularMetaReview/modular_llama3/hotels/space_generation_result_llama31_70b.json
 Average length of generations: 134.8
@@ -203,6 +213,8 @@ Average length of generations: 34.36
 Average length of generations: 41.36
 amasum_shoes
 /home/miao4/punim0521/ModularMetaReview/modular_gpt4/shoes/amasum_shoes_generation_result_gpt_4o.json
+human references
+Average length of generations: 190.02
 Average length of generations: 94.28
 /home/miao4/punim0521/ModularMetaReview/modular_llama3/shoes/amasum_shoes_generation_result_llama31_70b.json
 Average length of generations: 98.22
