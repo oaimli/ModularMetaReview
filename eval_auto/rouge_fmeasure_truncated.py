@@ -90,7 +90,7 @@ if __name__ == "__main__":
                 if isinstance(sample[reference_key], str):
                     references.append(sample[reference_key])
                 else:
-                    references.append(sample[reference_key][0])  # SPACE has multiple references
+                    references.append(sample[reference_key][0]) # SPACE has multiple references
 
             scores = rouge_corpus(references, candidates, types=['rouge1', 'rouge2', 'rougeLsum'])
 
@@ -102,13 +102,31 @@ if __name__ == "__main__":
     for dataset_name in dataset_names:
         print(dataset_name)
         generations_info = info[dataset_name]
+        reference_calculation = -1
+
         for generation_info in generations_info:
             generation_file = generation_info["generation_file"]
             generation_file = generation_file[:-5] + "_truncated.json"
             print(generation_file)
             candidate_key = generation_info["candidate_key"]
+            reference_key = generation_info["reference_key"]
             with open(generation_file) as f:
                 samples = json.load(f)
+
+            if reference_calculation == -1:
+                print("human reference")
+                references = []
+                source_texts = []
+                for sample in samples:
+                    references.append(sample[reference_key])
+                    source_texts.append("\n".join(sample["source_documents"]))
+
+                scores = rouge_corpus(source_texts, references, types=['rouge1', 'rouge2', 'rougeLsum'])
+
+                print("Average F1",
+                      (scores["rouge1"]["fmeasure"] + scores["rouge2"]["fmeasure"] + scores["rougeLsum"][
+                          "fmeasure"]) / 3)
+                reference_calculation = 0
 
             candidates = []
             source_texts = []
@@ -127,13 +145,24 @@ if __name__ == "__main__":
     for dataset_name in dataset_names:
         print(dataset_name)
         generations_info = info[dataset_name]
+        reference_calculation = -1
         for generation_info in generations_info:
             generation_file = generation_info["generation_file"]
             generation_file = generation_file[:-5] + "_truncated.json"
             print(generation_file)
             candidate_key = generation_info["candidate_key"]
+            reference_key = generation_info["reference_key"]
             with open(generation_file) as f:
                 samples = json.load(f)
+
+            if reference_calculation == -1:
+                print("human references")
+                reference_lengths = []
+                for sample in samples:
+                    reference_lengths.append(len(sample[reference_key].split()))
+
+                print("Average length of generations:", np.mean(reference_lengths))
+                reference_calculation = 0
 
             candidate_lengths = []
             for sample in samples:
