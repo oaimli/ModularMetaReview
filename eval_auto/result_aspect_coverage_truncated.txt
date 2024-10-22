@@ -1,0 +1,81 @@
+peermeta
+human reference
+recall 0.7645238095238094 precision 0.998 f-measure 0.851549728049728
+/home/miao4/punim0521/ModularMetaReview/modular_gpt4/papers/peermeta_generation_result_gpt_4o_truncated.json
+recall 0.9100000000000001 precision 0.9985714285714287 f-measure 0.9497086247086246
+/home/miao4/punim0521/ModularMetaReview/modular_llama3/papers/peermeta_generation_result_llama31_70b_truncated.json
+recall 0.9383333333333335 precision 0.9983333333333333 f-measure 0.9656410256410255
+/home/miao4/punim0521/ModularMetaReview/results/llama3_pr_peermeta/generations_llama31_70b_naive_truncated.json
+recall 0.7409523809523809 precision 1.0 f-measure 0.8369526029526029
+/home/miao4/punim0521/ModularMetaReview/results/llama3_pr_peermeta/generations_llama31_70b_logic_truncated.json
+recall 0.7388095238095237 precision 1.0 f-measure 0.8352191142191141
+/home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_peermeta/generations_gpt_4o_naive_truncated.json
+recall 0.840952380952381 precision 0.9983333333333333 f-measure 0.907025641025641
+/home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_peermeta/generations_gpt_4o_logic_truncated.json
+recall 0.6788095238095238 precision 1.0 f-measure 0.7922167832167833
+/home/miao4/punim0521/ModularMetaReview/results/llama31_8b_peermeta/generated_summaries_truncated.json
+recall 0.6416666666666666 precision 0.998 f-measure 0.7588108003108003
+/home/miao4/punim0521/ModularMetaReview/results/led_large_peermeta/generations_led_large_truncated.json
+recall 0.716190476190476 precision 0.998 f-measure 0.8188492618492619
+/home/miao4/punim0521/ModularMetaReview/results/llama3_pr_peermeta/generations_llama31_70b_chunk_truncated.json
+recall 0.725238095238095 precision 1.0 f-measure 0.8307381507381507
+/home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_peermeta/generations_gpt_4o_chunk_truncated.json
+recall 0.7973809523809524 precision 0.9983333333333333 f-measure 0.8788648018648019
+/home/miao4/punim0521/ModularMetaReview/results/llama3_pr_peermeta/generations_llama31_70b_consolidation_truncated.json
+recall 0.8499999999999999 precision 0.9971428571428572 f-measure 0.9108927738927737
+/home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_peermeta/generations_gpt_4o_consolidation_truncated.json
+recall 0.7514285714285716 precision 0.9985714285714287 f-measure 0.8481996891996891
+/home/miao4/punim0521/ModularMetaReview/results/llama3_pr_peermeta/generations_llama31_70b_decomposed_truncated.json
+recall 0.43714285714285717 precision 1.0 f-measure 0.5751961926961927
+/home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_peermeta/generations_gpt_4o_decomposed_truncated.json
+recall 0.564047619047619 precision 1.0 f-measure 0.7005117660117659
+space
+human reference
+recall 0.9714285714285714 precision 1.0 f-measure 0.9841025641025641
+/home/miao4/punim0521/ModularMetaReview/modular_gpt4/hotels/space_generation_result_gpt_4o_truncated.json
+recall 0.9028571428571429 precision 1.0 f-measure 0.9456410256410256
+/home/miao4/punim0521/ModularMetaReview/modular_llama3/hotels/space_generation_result_llama31_70b_truncated.json
+recall 0.9257142857142857 precision 1.0 f-measure 0.9594871794871794
+/home/miao4/punim0521/ModularMetaReview/results/llama3_pr_space/generations_llama31_70b_naive_truncated.json
+recall 0.8742857142857144 precision 1.0 f-measure 0.928205128205128
+/home/miao4/punim0521/ModularMetaReview/results/llama3_pr_space/generations_llama31_70b_logic_truncated.json
+recall 0.7371428571428571 precision 1.0 f-measure 0.83793006993007
+/home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_space/generations_gpt_4o_naive_truncated.json
+recall 0.8342857142857144 precision 1.0 f-measure 0.9056410256410256
+/home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_space/generations_gpt_4o_logic_truncated.json
+recall 0.5771428571428572 precision 1.0 f-measure 0.7237917637917636
+/home/miao4/punim0521/ModularMetaReview/results/llama3_pr_space/generations_llama31_70b_chunk_truncated.json
+recall 0.8628571428571429 precision 1.0 f-measure 0.923076923076923
+/home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_space/generations_gpt_4o_chunk_truncated.json
+recall 0.8971428571428572 precision 1.0 f-measure 0.9425641025641024
+/home/miao4/punim0521/ModularMetaReview/results/llama3_pr_space/generations_llama31_70b_decomposed_truncated.json
+recall 0.49142857142857144 precision 1.0 f-measure 0.6026604506604507
+/home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_space/generations_gpt_4o_decomposed_truncated.json
+recall 0.5257142857142857 precision 1.0 f-measure 0.6430194250194249
+amasum_shoes
+human reference
+recall 0.7015346320346321 precision 0.9378015873015874 f-measure 0.7822561317251719
+/home/miao4/punim0521/ModularMetaReview/modular_gpt4/shoes/amasum_shoes_generation_result_gpt_4o_truncated.json
+recall 0.7491746031746033 precision 0.9925 f-measure 0.8458641812264104
+/home/miao4/punim0521/ModularMetaReview/modular_llama3/shoes/amasum_shoes_generation_result_llama31_70b_truncated.json
+recall 0.7595793650793652 precision 0.996 f-measure 0.853848517667403
+/home/miao4/punim0521/ModularMetaReview/results/llama3_pr_amasum_shoes/generations_llama31_70b_naive_truncated.json
+recall 0.521619769119769 precision 0.9966666666666667 f-measure 0.6677893674952498
+/home/miao4/punim0521/ModularMetaReview/results/llama3_pr_amasum_shoes/generations_llama31_70b_logic_truncated.json
+recall 0.5829841269841269 precision 0.9908333333333335 f-measure 0.7195497737556561
+/home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_amasum_shoes/generations_gpt_4o_naive_truncated.json
+recall 0.5736825396825397 precision 1.0 f-measure 0.7145420712758173
+/home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_amasum_shoes/generations_gpt_4o_logic_truncated.json
+recall 0.6857020202020202 precision 0.9966666666666666 f-measure 0.7976452613434035
+/home/miao4/punim0521/ModularMetaReview/results/llama31_8b_amasum_shoes/generated_summaries_truncated.json
+recall 0.3472958152958153 precision 0.9605952380952381 f-measure 0.4805850228203169
+/home/miao4/punim0521/ModularMetaReview/results/led_large_amasum_shoes/generations_led_large_truncated.json
+recall 0.5588412698412699 precision 0.9663333333333333 f-measure 0.6943958557782086
+/home/miao4/punim0521/ModularMetaReview/results/llama3_pr_amasum_shoes/generations_llama31_70b_chunk_truncated.json
+recall 0.5221955266955267 precision 0.9975 f-measure 0.6701240426240426
+/home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_amasum_shoes/generations_gpt_4o_chunk_truncated.json
+recall 0.6200483405483406 precision 0.9934999999999999 f-measure 0.744975122228992
+/home/miao4/punim0521/ModularMetaReview/results/llama3_pr_amasum_shoes/generations_llama31_70b_decomposed_truncated.json
+recall 0.23299134199134197 precision 1.0 f-measure 0.3517254967254967
+/home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_amasum_shoes/generations_gpt_4o_decomposed_truncated.json
+recall 0.36792640692640693 precision 0.9933333333333333 f-measure 0.5179635364635365

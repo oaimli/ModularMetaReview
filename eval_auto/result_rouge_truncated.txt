@@ -1,0 +1,75 @@
+peermeta
+/home/miao4/punim0521/ModularMetaReview/modular_gpt4/papers/peermeta_generation_result_gpt_4o_truncated.json
+Average F1 0.20752149350952545
+/home/miao4/punim0521/ModularMetaReview/modular_llama3/papers/peermeta_generation_result_llama31_70b_truncated.json
+Average F1 0.22579205594657945
+/home/miao4/punim0521/ModularMetaReview/results/llama3_pr_peermeta/generations_llama31_70b_naive_truncated.json
+Average F1 0.24032247257600647
+/home/miao4/punim0521/ModularMetaReview/results/llama3_pr_peermeta/generations_llama31_70b_logic_truncated.json
+Average F1 0.24131632585524784
+/home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_peermeta/generations_gpt_4o_naive_truncated.json
+Average F1 0.22326243358008524
+/home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_peermeta/generations_gpt_4o_logic_truncated.json
+Average F1 0.21908560024809084
+/home/miao4/punim0521/ModularMetaReview/results/llama31_8b_peermeta/generated_summaries_truncated.json
+Average F1 0.22976933119205997
+/home/miao4/punim0521/ModularMetaReview/results/led_large_peermeta/generations_led_large_truncated.json
+Average F1 0.24894083155163468
+/home/miao4/punim0521/ModularMetaReview/results/llama3_pr_peermeta/generations_llama31_70b_chunk_truncated.json
+Average F1 0.21804926712683406
+/home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_peermeta/generations_gpt_4o_chunk_truncated.json
+Average F1 0.20381869794344273
+/home/miao4/punim0521/ModularMetaReview/results/llama3_pr_peermeta/generations_llama31_70b_consolidation_truncated.json
+Average F1 0.25570292158513563
+/home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_peermeta/generations_gpt_4o_consolidation_truncated.json
+Average F1 0.23338257964523254
+/home/miao4/punim0521/ModularMetaReview/results/llama3_pr_peermeta/generations_llama31_70b_decomposed_truncated.json
+Average F1 0.1223377171029905
+/home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_peermeta/generations_gpt_4o_decomposed_truncated.json
+Average F1 0.13792902691442732
+space
+/home/miao4/punim0521/ModularMetaReview/modular_gpt4/hotels/space_generation_result_gpt_4o_truncated.json
+Average F1 0.21680722337518246
+/home/miao4/punim0521/ModularMetaReview/modular_llama3/hotels/space_generation_result_llama31_70b_truncated.json
+Average F1 0.23986294006658568
+/home/miao4/punim0521/ModularMetaReview/results/llama3_pr_space/generations_llama31_70b_naive_truncated.json
+Average F1 0.2524949894777125
+/home/miao4/punim0521/ModularMetaReview/results/llama3_pr_space/generations_llama31_70b_logic_truncated.json
+Average F1 0.24982407121982408
+/home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_space/generations_gpt_4o_naive_truncated.json
+Average F1 0.22268559075220373
+/home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_space/generations_gpt_4o_logic_truncated.json
+Average F1 0.2114216958609013
+/home/miao4/punim0521/ModularMetaReview/results/llama3_pr_space/generations_llama31_70b_chunk_truncated.json
+Average F1 0.2236429100900076
+/home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_space/generations_gpt_4o_chunk_truncated.json
+Average F1 0.1966841900021339
+/home/miao4/punim0521/ModularMetaReview/results/llama3_pr_space/generations_llama31_70b_decomposed_truncated.json
+Average F1 0.1039865933863023
+/home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_space/generations_gpt_4o_decomposed_truncated.json
+Average F1 0.12275632538501964
+amasum_shoes
+/home/miao4/punim0521/ModularMetaReview/modular_gpt4/shoes/amasum_shoes_generation_result_gpt_4o_truncated.json
+Average F1 0.14382668478925661
+/home/miao4/punim0521/ModularMetaReview/modular_llama3/shoes/amasum_shoes_generation_result_llama31_70b_truncated.json
+Average F1 0.15309535685914066
+/home/miao4/punim0521/ModularMetaReview/results/llama3_pr_amasum_shoes/generations_llama31_70b_naive_truncated.json
+Average F1 0.15221964201100532
+/home/miao4/punim0521/ModularMetaReview/results/llama3_pr_amasum_shoes/generations_llama31_70b_logic_truncated.json
+Average F1 0.1815176158828646
+/home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_amasum_shoes/generations_gpt_4o_naive_truncated.json
+Average F1 0.15724886413456474
+/home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_amasum_shoes/generations_gpt_4o_logic_truncated.json
+Average F1 0.1974637445260492
+/home/miao4/punim0521/ModularMetaReview/results/llama31_8b_amasum_shoes/generated_summaries_truncated.json
+Average F1 0.14367829240321509
+/home/miao4/punim0521/ModularMetaReview/results/led_large_amasum_shoes/generations_led_large_truncated.json
+Average F1 0.27599694645806205
+/home/miao4/punim0521/ModularMetaReview/results/llama3_pr_amasum_shoes/generations_llama31_70b_chunk_truncated.json
+Average F1 0.1020487566975486
+/home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_amasum_shoes/generations_gpt_4o_chunk_truncated.json
+Average F1 0.1404140914236822
+/home/miao4/punim0521/ModularMetaReview/results/llama3_pr_amasum_shoes/generations_llama31_70b_decomposed_truncated.json
+Average F1 0.05317003025124357
+/home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_amasum_shoes/generations_gpt_4o_decomposed_truncated.json
+Average F1 0.09007214861159925
