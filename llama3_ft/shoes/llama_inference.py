@@ -21,7 +21,7 @@ def predict(
     print("tokenizer unk", tokenizer.unk_token, tokenizer.unk_token_id)
 
     model = AutoModelForCausalLM.from_pretrained(model_args.model_name_or_path, trust_remote_code=True, torch_dtype=torch.bfloat16,
-                                                 device_map="auto")
+                                                 device_map="auto", attn_implementation="flash_attention_2")
     print(model.config)
 
     test_data = load_dataset('json', data_files=data_args.dataset_path + '%s_test.jsonl' % data_args.dataset_name,
