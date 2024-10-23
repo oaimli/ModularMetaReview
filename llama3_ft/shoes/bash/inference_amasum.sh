@@ -2,8 +2,8 @@
 cd ../
 DATASET_NAME="amasum_shoes"
 
-#MODEL_NAME_OR_PATH="meta-llama/Meta-Llama-3.1-8B"
-MODEL_NAME_OR_PATH="/home/miao4/punim0521/ModularMetaReview/results/llama31_8b_amasum_shoes/checkpoint-20000"
+MODEL_NAME_OR_PATH="meta-llama/Meta-Llama-3.1-8B"
+#MODEL_NAME_OR_PATH="/home/miao4/punim0521/ModularMetaReview/results/llama31_8b_amasum_shoes/checkpoint-20000"
 SAVE_NAME="llama31_8b"
 
 
