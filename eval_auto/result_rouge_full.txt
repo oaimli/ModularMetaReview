@@ -49,6 +49,14 @@ Average F1 0.19601567695271846
 Average F1 0.10404700860772698
 /home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_space/generations_gpt_4o_decomposed.json
 Average F1 0.12337341957837622
+/home/miao4/punim0521/ModularMetaReview/results/hiro_space/hiro_extractive.json
+Average F1 0.27377832839853816
+/home/miao4/punim0521/ModularMetaReview/results/hiro_space/hiro_oneshot_llama7b_1.json
+Average F1 0.2520125739032458
+/home/miao4/punim0521/ModularMetaReview/results/hiro_space/hiro_oneshot_llama7b_2.json
+Average F1 0.2649903222357417
+/home/miao4/punim0521/ModularMetaReview/results/hiro_space/hiro_oneshot_llama7b_3.json
+Average F1 0.24819220865496594
 amasum_shoes
 /home/miao4/punim0521/ModularMetaReview/modular_gpt4/shoes/amasum_shoes_generation_result_gpt_4o.json
 Average F1 0.14382668478925661
@@ -129,6 +137,14 @@ Average F1 0.009813891543168573
 Average F1 0.0032511703690399642
 /home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_space/generations_gpt_4o_decomposed.json
 Average F1 0.0036796583409864324
+/home/miao4/punim0521/ModularMetaReview/results/hiro_space/hiro_extractive.json
+Average F1 0.007900418195050092
+/home/miao4/punim0521/ModularMetaReview/results/hiro_space/hiro_oneshot_llama7b_1.json
+Average F1 0.006907268766400058
+/home/miao4/punim0521/ModularMetaReview/results/hiro_space/hiro_oneshot_llama7b_2.json
+Average F1 0.006525562680507774
+/home/miao4/punim0521/ModularMetaReview/results/hiro_space/hiro_oneshot_llama7b_3.json
+Average F1 0.0069007570650884585
 amasum_shoes
 /home/miao4/punim0521/ModularMetaReview/modular_gpt4/shoes/amasum_shoes_generation_result_gpt_4o.json
 human reference
@@ -211,6 +227,14 @@ Average length of generations: 95.48
 Average length of generations: 34.36
 /home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_space/generations_gpt_4o_decomposed.json
 Average length of generations: 41.36
+/home/miao4/punim0521/ModularMetaReview/results/hiro_space/hiro_extractive.json
+Average length of generations: 58.88
+/home/miao4/punim0521/ModularMetaReview/results/hiro_space/hiro_oneshot_llama7b_1.json
+Average length of generations: 57.72
+/home/miao4/punim0521/ModularMetaReview/results/hiro_space/hiro_oneshot_llama7b_2.json
+Average length of generations: 53.44
+/home/miao4/punim0521/ModularMetaReview/results/hiro_space/hiro_oneshot_llama7b_3.json
+Average length of generations: 56.28
 amasum_shoes
 /home/miao4/punim0521/ModularMetaReview/modular_gpt4/shoes/amasum_shoes_generation_result_gpt_4o.json
 human references
