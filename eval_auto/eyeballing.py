@@ -22,7 +22,7 @@ if __name__ == "__main__":
                 tmp = outputs_combined.get(str(i), {})
                 tmp["reference"] = sample[reference_key]
                 existing_candidates = tmp.get("generations", [])
-                existing_candidates.append({generation_info["model_name"]: sample[candidate_key]})
+                existing_candidates.append((generation_info["model_name"], sample[candidate_key]))
                 tmp["generations"] = existing_candidates
                 outputs_combined[str(i)] = tmp
 
