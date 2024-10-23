@@ -19,7 +19,7 @@ if __name__ == "__main__":
             with open(generation_file) as f:
                 samples = json.load(f)
             for i, sample in enumerate(samples):
-                tmp = outputs_combined.get(str(i))
+                tmp = outputs_combined.get(str(i), {})
                 tmp[reference_key] = sample[reference_key]
                 tmp[candidate_key] = tmp.get(candidate_key, []).append(sample[candidate_key])
                 outputs_combined[str(i)] = tmp
