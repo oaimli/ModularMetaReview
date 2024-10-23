@@ -10,7 +10,7 @@ if __name__ == "__main__":
 
     for dataset_name in dataset_names:
         print(dataset_name)
-        with open(f"{dataset_name}_summac_source.json") as f:
+        with open(f"{dataset_name}_summac_source_full.json") as f:
             all_scores_summac_source = json.load(f)
         generations_info = info[dataset_name]
         outputs_combined = {}
