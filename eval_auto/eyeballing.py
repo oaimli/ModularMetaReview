@@ -58,7 +58,10 @@ if __name__ == "__main__":
                 samples = json.load(f)
             for i, sample in enumerate(samples):
                 tmp = outputs_combined.get(str(i), {})
-                tmp["reference"] = sample[reference_key]
+                if isinstance(sample[reference_key], str):
+                    tmp["reference"] = sample[reference_key]
+                else:
+                    tmp["reference"] = sample[reference_key][0]
                 existing_candidates = tmp.get("generations", [])
                 existing_candidates.append((generation_info["model_name"], sample[candidate_key]))
                 tmp["generations"] = existing_candidates
