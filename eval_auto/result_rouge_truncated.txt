@@ -20,9 +20,18 @@ Average F1 0.24894083155163468
 Average F1 0.21804926712683406
 /home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_peermeta/generations_gpt_4o_chunk_truncated.json
 Average F1 0.20381869794344273
+/home/miao4/punim0521/ModularMetaReview/results/llama3_pr_peermeta/generations_llama31_70b_consolidation_truncated.json
+Average F1 0.25570292158513563
+/home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_peermeta/generations_gpt_4o_consolidation_truncated.json
+Average F1 0.23338257964523254
+/home/miao4/punim0521/ModularMetaReview/results/llama3_pr_peermeta/generations_llama31_70b_decomposed_truncated.json
+Average F1 0.1223377171029905
+/home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_peermeta/generations_gpt_4o_decomposed_truncated.json
+Average F1 0.13792902691442732
+space
+/home/miao4/punim0521/ModularMetaReview/modular_gpt4/hotels/space_generation_result_gpt_4o_truncated.json
 Average F1 0.21680722337518246
 /home/miao4/punim0521/ModularMetaReview/modular_llama3/hotels/space_generation_result_llama31_70b_truncated.json
-Average F1 0.23986294006658568
 Average F1 0.23986294006658568
 /home/miao4/punim0521/ModularMetaReview/results/llama3_pr_space/generations_llama31_70b_naive_truncated.json
 Average F1 0.2524949894777125
@@ -40,6 +49,14 @@ Average F1 0.1966841900021339
 Average F1 0.1039865933863023
 /home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_space/generations_gpt_4o_decomposed_truncated.json
 Average F1 0.12275632538501964
+/home/miao4/punim0521/ModularMetaReview/results/hiro_space/hiro_extractive_truncated.json
+Average F1 0.2738306358383689
+/home/miao4/punim0521/ModularMetaReview/results/hiro_space/hiro_oneshot_llama7b_1_truncated.json
+Average F1 0.2517924999631769
+/home/miao4/punim0521/ModularMetaReview/results/hiro_space/hiro_oneshot_llama7b_2_truncated.json
+Average F1 0.2651279354393297
+/home/miao4/punim0521/ModularMetaReview/results/hiro_space/hiro_oneshot_llama7b_3_truncated.json
+Average F1 0.2470858284119389
 amasum_shoes
 /home/miao4/punim0521/ModularMetaReview/modular_gpt4/shoes/amasum_shoes_generation_result_gpt_4o_truncated.json
 Average F1 0.14382668478925661
