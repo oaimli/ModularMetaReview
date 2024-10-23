@@ -20,10 +20,10 @@ if __name__ == "__main__":
                 samples = json.load(f)
             for i, sample in enumerate(samples):
                 tmp = outputs_combined.get(str(i), {})
-                tmp[reference_key] = sample[reference_key]
+                tmp["reference"] = sample[reference_key]
                 existing_candidates = tmp.get(candidate_key, [])
-                existing_candidates.append(sample[candidate_key])
-                tmp[candidate_key] = existing_candidates
+                existing_candidates.append({generation_info["model_name"]: sample[candidate_key]})
+                tmp["generations"] = existing_candidates
                 outputs_combined[str(i)] = tmp
 
         output_file = f"{dataset_name}_generations.json"
