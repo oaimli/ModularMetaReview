@@ -12,6 +12,6 @@
     ],
     "amasum_shoes": [
         {"generation_file": "/home/miao4/punim0521/ModularMetaReview/modular_gpt4/shoes/amasum_shoes_generation_result_gpt_4o.json", "candidate_key": "meta_review_generated", "reference_key":  "meta_review", "model_name":  "modular_gpt4"},
-        {"generation_file": "/home/miao4/punim0521/ModularMetaReview/modular_llama3/shoes/amasum_shoes_generation_result_llama31_70b.json", "candidate_key": "meta_review_generated", "reference_key":  "meta_review", "model_name":  "modular_llama3"},
+        {"generation_file": "/home/miao4/punim0521/ModularMetaReview/modular_llama3/shoes/amasum_shoes_generation_result_llama31_70b.json", "candidate_key": "meta_review_generated", "reference_key":  "meta_review", "model_name":  "modular_llama3"}
     ]
 }
