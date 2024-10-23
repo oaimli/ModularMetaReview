@@ -20,6 +20,7 @@ if __name__ == "__main__":
 
     dataset_names = ["peermeta", "space", "amasum_shoes"]
     for dataset_name in dataset_names:
+        scores_source = {}
         print(dataset_name)
         facets = []
         if dataset_name == "peermeta":
@@ -49,6 +50,7 @@ if __name__ == "__main__":
             source_texts.append("\n".join(sample[source_key]))
         # compared with source texts
         scores_zs_source, scores_conv_source = summac_scores(source_texts, references)
+        scores_source["human_reference"] = scores_conv_source
         score_zs_source_avg = np.mean(scores_zs_source)
         score_conv_source_avg = np.mean(scores_conv_source)
         print("scores zs:", "source", score_zs_source_avg)
@@ -94,6 +96,7 @@ if __name__ == "__main__":
 
             # compared with source texts
             scores_zs_source, scores_conv_source = summac_scores(source_texts, candidates)
+            scores_source[generation_file] = scores_conv_source
             score_zs_source_avg = np.mean(scores_zs_source)
             score_conv_source_avg = np.mean(scores_conv_source)
 
@@ -106,3 +109,5 @@ if __name__ == "__main__":
                   score_zs_source_avg + score_zs_reference_avg)
             print("scores conv:", "source", score_conv_source_avg, "reference", score_conv_reference_avg, "summation",
                   score_conv_source_avg + score_conv_reference_avg)
+        with open(f"{dataset_name}_summac_source.json", "w") as f:
+            json.dump(scores_source, f, indent=4)

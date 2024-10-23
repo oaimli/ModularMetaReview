@@ -52,6 +52,14 @@ recall 0.8971428571428572 precision 1.0 f-measure 0.9425641025641024
 recall 0.49142857142857144 precision 1.0 f-measure 0.6026604506604507
 /home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_space/generations_gpt_4o_decomposed_truncated.json
 recall 0.5257142857142857 precision 1.0 f-measure 0.6430194250194249
+/home/miao4/punim0521/ModularMetaReview/results/hiro_space/hiro_extractive_truncated.json
+recall 0.7371428571428572 precision 1.0 f-measure 0.8432634032634031
+/home/miao4/punim0521/ModularMetaReview/results/hiro_space/hiro_oneshot_llama7b_1_truncated.json
+recall 0.8171428571428572 precision 1.0 f-measure 0.8945920745920745
+/home/miao4/punim0521/ModularMetaReview/results/hiro_space/hiro_oneshot_llama7b_2_truncated.json
+recall 0.7542857142857141 precision 1.0 f-measure 0.8503558663558662
+/home/miao4/punim0521/ModularMetaReview/results/hiro_space/hiro_oneshot_llama7b_3_truncated.json
+recall 0.7714285714285714 precision 1.0 f-measure 0.8649417249417248
 amasum_shoes
 human reference
 recall 0.7015346320346321 precision 0.9378015873015874 f-measure 0.7822561317251719

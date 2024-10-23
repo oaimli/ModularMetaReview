@@ -6,5 +6,5 @@
 /datasets/peermeta_test.json
 /datasets/space_dev.json
 /datasets/space_test.json
-/eval_auto/peermeta_generations.json
-/eval_auto/space_generations.json
+/eval_auto/peermeta_generations_full.json
+/eval_auto/space_generations_full.json
