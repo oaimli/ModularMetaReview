@@ -71,6 +71,7 @@ def batch_process(batch):
     result["source_documents"] = batch["source_documents"]
     result['meta_review'] = batch["meta_review"]
     result["generated_meta_review"] = tokenizer.batch_decode(predicted_abstract_ids.tolist(), skip_special_tokens=True)
+    print(result["generated_meta_review"])
     result["label"] = batch["label"]
     print(len(batch["label"]))
     return result
