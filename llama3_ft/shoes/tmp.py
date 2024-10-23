@@ -14,5 +14,5 @@ import torch
 from transformers import AutoModelForCausalLM
 
 model = AutoModelForCausalLM.from_pretrained("meta-llama/Meta-Llama-3.1-8B", trust_remote_code=True, torch_dtype=torch.bfloat16,
-                                                 device_map="auto", attn_implementation="flash_attention_2")
+                                                 device_map="auto")
 print(model.config)
