@@ -11,7 +11,19 @@
         {"generation_file": "/home/miao4/punim0521/ModularMetaReview/results/hiro_space/hiro_oneshot_llama7b_3.json", "candidate_key": "generated_summary_general", "reference_key":  "gold_summaries_general", "model_name":  "hiro_oneshot_llama7b"}
     ],
     "amasum_shoes": [
-        {"generation_file": "/home/miao4/punim0521/ModularMetaReview/modular_gpt4/shoes/amasum_shoes_generation_result_gpt_4o.json", "candidate_key": "meta_review_generated", "reference_key":  "meta_review", "model_name":  "modular_gpt4"},
-        {"generation_file": "/home/miao4/punim0521/ModularMetaReview/modular_llama3/shoes/amasum_shoes_generation_result_llama31_70b.json", "candidate_key": "meta_review_generated", "reference_key":  "meta_review", "model_name":  "modular_llama3"},
+        {"generation_file": "/home/miao4/punim0521/ModularMetaReview/results/llama3_pr_amasum_shoes/generations_llama31_70b_naive.json", "candidate_key": "generated_meta_review", "reference_key":  "meta_review", "model_name":  "llama3_pr_naive"},
+        {"generation_file": "/home/miao4/punim0521/ModularMetaReview/results/llama3_pr_amasum_shoes/generations_llama31_70b_logic.json", "candidate_key": "generated_meta_review", "reference_key":  "meta_review", "model_name":  "llama3_pr_logic"},
+        {"generation_file": "/home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_amasum_shoes/generations_gpt_4o_naive.json", "candidate_key": "generated_meta_review", "reference_key":  "meta_review", "model_name":  "gpt4_pr_naive"},
+        {"generation_file": "/home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_amasum_shoes/generations_gpt_4o_logic.json", "candidate_key": "generated_meta_review", "reference_key":  "meta_review", "model_name":  "gpt4_pr_logic"},
+        {"generation_file": "/home/miao4/punim0521/ModularMetaReview/results/llama31_8b_amasum_shoes/generated_summaries.json", "candidate_key": "meta_review_generated", "reference_key":  "meta_review", "model_name":  "llama31_8b_ft"},
+        {"generation_file": "/home/miao4/punim0521/ModularMetaReview/results/led_large_amasum_shoes/generations_led_large.json", "candidate_key": "generated_meta_review", "reference_key":  "meta_review", "model_name":  "led_large_ft"},
+        {"generation_file": "/home/miao4/punim0521/ModularMetaReview/results/llama3_pr_amasum_shoes/generations_llama31_70b_chunk.json", "candidate_key": "generated_meta_review", "reference_key":  "meta_review", "model_name":  "llama3_pr_chunk"},
+        {"generation_file": "/home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_amasum_shoes/generations_gpt_4o_chunk.json", "candidate_key": "generated_meta_review", "reference_key":  "meta_review", "model_name":  "gpt4_pr_chunk"},
+        {"generation_file": "/home/miao4/punim0521/ModularMetaReview/results/llama3_pr_amasum_shoes/generations_llama31_70b_decomposed.json", "candidate_key": "generated_meta_review", "reference_key":  "meta_review", "model_name":  "llama3_pr_decomposed"},
+        {"generation_file": "/home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_amasum_shoes/generations_gpt_4o_decomposed.json", "candidate_key": "generated_meta_review", "reference_key":  "meta_review", "model_name":  "gpt4_pr_decomposed"},
+        {"generation_file": "/home/miao4/punim0521/ModularMetaReview/results/hiro_amasum_shoes/hiro_extractive.json", "candidate_key": "generated_meta_review", "reference_key":  "meta_review", "model_name":  "hiro_extractive"},
+        {"generation_file": "/home/miao4/punim0521/ModularMetaReview/results/hiro_amasum_shoes/hiro_piecewise_llama7b_1.json", "candidate_key": "generated_meta_review", "reference_key":  "meta_review", "model_name":  "hiro_piecewise_llama7b"},
+        {"generation_file": "/home/miao4/punim0521/ModularMetaReview/results/hiro_amasum_shoes/hiro_piecewise_llama7b_2.json", "candidate_key": "generated_meta_review", "reference_key":  "meta_review", "model_name":  "hiro_piecewise_llama7b"},
+        {"generation_file": "/home/miao4/punim0521/ModularMetaReview/results/hiro_amasum_shoes/hiro_piecewise_llama7b_3.json", "candidate_key": "generated_meta_review", "reference_key":  "meta_review", "model_name":  "hiro_piecewise_llama7b"}
     ]
 }
