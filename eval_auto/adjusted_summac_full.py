@@ -109,5 +109,5 @@ if __name__ == "__main__":
                   score_zs_source_avg + score_zs_reference_avg)
             print("scores conv:", "source", score_conv_source_avg, "reference", score_conv_reference_avg, "summation",
                   score_conv_source_avg + score_conv_reference_avg)
-        with open(f"{dataset_name}_summac_source.json", "w") as f:
+        with open(f"{dataset_name}_summac_source_full.json", "w") as f:
             json.dump(scores_source, f, indent=4)
