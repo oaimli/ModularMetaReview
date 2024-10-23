@@ -130,6 +130,26 @@ scores conv: source 0.5648962926864624 reference 0.22121085464954376 summation 0
 <All keys matched successfully>
 scores zs: source -0.6147393290201822 reference -0.15501647358848936 summation -0.7697558026086716
 scores conv: source 0.5604956865310669 reference 0.2246973592042923 summation 0.7851930457353591
+/home/miao4/punim0521/ModularMetaReview/results/hiro_space/hiro_extractive_truncated.json
+<All keys matched successfully>
+<All keys matched successfully>
+scores zs: source -0.2241168710617792 reference 0.004598815936599745 summation -0.21951805512517944
+scores conv: source 0.7604997527599334 reference 0.309757382273674 summation 1.0702571350336074
+/home/miao4/punim0521/ModularMetaReview/results/hiro_space/hiro_oneshot_llama7b_1_truncated.json
+<All keys matched successfully>
+<All keys matched successfully>
+scores zs: source -0.31036326671781994 reference 0.04277906490507579 summation -0.26758420181274417
+scores conv: source 0.5014326012134552 reference 0.23056885123252868 summation 0.7320014524459839
+/home/miao4/punim0521/ModularMetaReview/results/hiro_space/hiro_oneshot_llama7b_2_truncated.json
+<All keys matched successfully>
+<All keys matched successfully>
+scores zs: source -0.3115857238769531 reference -0.0342179827235994 summation -0.3458037066005525
+scores conv: source 0.5251835453510284 reference 0.22449515521526336 summation 0.7496787005662917
+/home/miao4/punim0521/ModularMetaReview/results/hiro_space/hiro_oneshot_llama7b_3_truncated.json
+<All keys matched successfully>
+<All keys matched successfully>
+scores zs: source -0.3677961730957031 reference 0.004921016693115235 summation -0.3628751564025879
+scores conv: source 0.5063650941848755 reference 0.22778453409671784 summation 0.7341496282815934
 amasum_shoes
 human reference
 <All keys matched successfully>
