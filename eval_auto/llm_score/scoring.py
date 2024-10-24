@@ -21,7 +21,7 @@ def scoring_faithfulness(source_documents, generation, dataset_name):
                     {"role": "user",
                      "content": prompt_content}
                     ],
-                n=20
+                n=10
                 )
             output = []
             for choice in output_dict.choices:
@@ -116,3 +116,12 @@ if __name__ == "__main__":
 
         with open(f"{dataset_name}_llm_scored.json", "w") as f:
             json.dump(all_samples, f, indent=4)
+
+        scores_models = {}
+        for sample in all_samples:
+            for score_item in sample["scores"]:
+                tmp = scores_models.get(score_item["model"], [])
+                tmp.append(score_item["score"])
+                scores_models[score_item["model"]] = tmp
+        for model, score_group in scores_models.items():
+            print(model, np.mean(score_group))
