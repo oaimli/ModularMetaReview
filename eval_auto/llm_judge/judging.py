@@ -53,11 +53,11 @@ if __name__ == "__main__":
     dataset_names = ["space", "peermeta", "amasum_shoes"]
     for dataset_name in dataset_names:
         print(dataset_name)
-        generation_files = info[dataset_name]
+        generation_infos = info[dataset_name]
         generations_model = {}
-        for generation_file in generation_files:
-            with open(generation_file["generation_file"]) as f:
-                generations_model[generation_file["model_name"]] = json.load(f)
+        for generation_info in generation_infos:
+            with open(generation_info["generation_file"]) as f:
+                generations_model[generation_info["model_name"]] = json.load(f)
 
         # constructing pairs
         all_samples = []
@@ -65,33 +65,14 @@ if __name__ == "__main__":
             for line in reader:
                 all_samples.append(line)
 
-        if dataset_name == "peermeta": # get the shared samples in results from all models
-            all_samples_test = []
-            for sample in all_samples:
-                reference = sample["meta_review"]
-                for result in generations_model["llama3_pr_naive"]:
-                    if reference == result["meta_review"]:
-                        all_samples_test.append(sample)
-                        break
-            all_samples = all_samples_test
-
-            for model_name, samples in generations_model.items():
-                samples_new = []
-                for sample_test in all_samples_test:
-                    for sample_model in samples:
-                        if sample_model["meta_review"] == sample_test["meta_review"]:
-                            samples_new.append(sample_model)
-                            break
-                generations_model[model_name] = samples_new
-
         for model, results in generations_model.items():
             print(model, len(all_samples), len(results))
             reference_key = ""
             candidate_key = ""
-            for generation_file in generation_files:
-                if model == generation_file["model_name"]:
-                    reference_key = generation_file["reference_key"]
-                    candidate_key = generation_file["candidate_key"]
+            for generation_info in generation_infos:
+                if model == generation_info["model_name"]:
+                    reference_key = generation_info["reference_key"]
+                    candidate_key = generation_info["candidate_key"]
                     break
             assert reference_key != "" and candidate_key != ""
 
@@ -105,9 +86,9 @@ if __name__ == "__main__":
 
         # add human reference into comparison
         reference_key = ""
-        for generation_file in generation_files:
-            if generation_file["model_name"] == "llama3_pr_naive":
-                reference_key = generation_file["reference_key"]
+        for generation_info in generation_infos:
+            if generation_info["model_name"] == "llama3_pr_naive":
+                reference_key = generation_info["reference_key"]
 
         for j, result in enumerate(generations_model["llama3_pr_naive"]):
             assert result[reference_key] == all_samples[j][reference_key]
@@ -118,7 +99,8 @@ if __name__ == "__main__":
                 generations.append({"model": "human", "generation": result[reference_key][0]})
             all_samples[j]["generations"] = generations
 
-        all_samples = random.sample(all_samples, 25)
+        # construct comparison pairs
+        all_samples = random.sample(all_samples, 10)
         for sample_index, sample in enumerate(all_samples):
             generations = sample["generations"]
             source_documents = sample["source_documents"]
@@ -131,7 +113,9 @@ if __name__ == "__main__":
                         prediction = comparing(source_documents, generation_i["generation"], generation_j["generation"],
                                                dataset_name)
                         comparisons.append(
-                            {"a": generation_i["model"], "b": generation_j["model"], "better": prediction})
+                            {"model_a": generation_i["model"], "generation_a": generation_i["generation"],
+                             "generation_b": generation_j["generation"], "model_b": generation_j["model"],
+                             "better": prediction, "source_documents": source_documents})
             all_samples[sample_index]["comparisons"] = comparisons
             print(len(generations), len(comparisons))
 
