@@ -35,6 +35,7 @@ if __name__ == "__main__":
             source_texts.append("\n".join(sample[source_key]))
         # compared with source texts
         scores_align = scorer.score(contexts=source_texts, claims=references)
+        print(scores_align)
         scores_source["human_reference"] = scores_align
         print("scores alignscore:", "source", np.mean(scores_align))
 
