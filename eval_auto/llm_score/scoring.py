@@ -27,7 +27,7 @@ def scoring_faithfulness(source_documents, generation, dataset_name):
             for choice in output_dict.choices:
                 tmp = choice.message.content.lower()
                 # print(tmp)
-                if 0<= float(tmp.strip()) <=1:
+                if tmp.strip().isdigit() and 0<= float(tmp.strip()) <=1:
                     output.append(float(tmp))
 
             if len(output) > 5:
