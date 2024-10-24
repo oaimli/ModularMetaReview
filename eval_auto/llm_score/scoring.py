@@ -51,81 +51,49 @@ if __name__ == "__main__":
     model_name = "gpt4"
     client = OpenAI(api_key="sk-proj-jxdkj7TzTCWDjDU0lpEPT3BlbkFJll01Dz3fxt51wM8Rh6wm")
 
-    with open("../all.json") as f:
+    with open("../info.json") as f:
         info = json.load(f)
 
-    dataset_names = ["space", "peermeta", "amasum_shoes"]
+    # dataset_names = ["space", "peermeta", "amasum_shoes"]
+    dataset_names = ["space", "peermeta"]
     for dataset_name in dataset_names:
         print(dataset_name)
         generation_infos = info[dataset_name]
-        generations_model = {}
+
+        output_scores = {}
+        generation_file = generation_infos[0]["generation_file"]
+        print("human reference")
+        reference_key = generation_infos[0]["reference_key"]
+        source_key = "source_documents"
+        with open(generation_file) as f:
+            samples = json.load(f)
+        scores = []
+        for sample in samples:
+            if isinstance(sample[reference_key], str):
+                reference = sample[reference_key]
+            else:
+                reference = sample[reference_key][0]  # SPACE has multiple references
+            score = scoring_faithfulness(sample[source_key], reference, dataset_name)
+            scores.append(score)
+        print(np.mean(scores))
+        output_scores["human_reference"] = scores
+
         for generation_info in generation_infos:
-            with open(generation_info["generation_file"]) as f:
-                generations_model[generation_info["model_name"]] = json.load(f)
+            generation_file = generation_info["generation_file"]
+            print(generation_file)
+            with open(generation_file) as f:
+                all_samples = json.load(f)
+            reference_key = generation_info["reference_key"]
+            candidate_key = generation_info["candidate_key"]
 
-        # constructing pairs
-        all_samples = []
-        with jsonlines.open(f"../../datasets/{dataset_name}_test.jsonl") as reader:
-            for line in reader:
-                all_samples.append(line)
-
-        for model, results in generations_model.items():
-            print(model, len(all_samples), len(results))
-            reference_key = ""
-            candidate_key = ""
-            for generation_info in generation_infos:
-                if model == generation_info["model_name"]:
-                    reference_key = generation_info["reference_key"]
-                    candidate_key = generation_info["candidate_key"]
-                    break
-            assert reference_key != "" and candidate_key != ""
-
-            for i, result in enumerate(results):
-                # print(result[reference_key])
-                # print(all_samples[i][reference_key])
-                assert result[reference_key] == all_samples[i][reference_key]
-                generations = all_samples[i].get("generations", [])
-                generations.append({"model": model, "generation": result[candidate_key]})
-                all_samples[i]["generations"] = generations
-
-        # add human reference into comparison
-        reference_key = ""
-        for generation_info in generation_infos:
-            if generation_info["model_name"] == "llama3_pr_naive":
-                reference_key = generation_info["reference_key"]
-
-        for j, result in enumerate(generations_model["llama3_pr_naive"]):
-            assert result[reference_key] == all_samples[j][reference_key]
-            generations = all_samples[j].get("generations", [])
-            if isinstance(result[reference_key], str):
-                generations.append({"model": "human", "generation": result[reference_key]})
-            if isinstance(result[reference_key], list):
-                generations.append({"model": "human", "generation": result[reference_key][0]})
-            all_samples[j]["generations"] = generations
-
-        # construct comparison pairs
-        all_samples = random.sample(all_samples, 10)
-        for sample_index, sample in enumerate(all_samples):
-            print("sample index", sample_index)
-            generations = sample["generations"]
-            source_documents = sample["source_documents"]
             scores = []
-            for i in range(len(generations)):
-                generation_i = generations[i]
-                score = scoring_faithfulness(source_documents, generation_i["generation"], dataset_name)
-                scores.append({"model": generation_i["model"], "generation": generation_i["generation"],
-                                    "score": score})
-            all_samples[sample_index]["scores"] = scores
-            print(sample_index, len(generations), len(scores))
+            for sample in all_samples:
+                candidate = sample[candidate_key]
+                source_documents = sample["source_documents"]
+                score = scoring_faithfulness(source_documents, candidate, dataset_name)
+                scores.append(score)
+            print(np.mean(scores))
+            output_scores[generation_file] = scores
 
-        with open(f"{dataset_name}_llm_scored.json", "w") as f:
-            json.dump(all_samples, f, indent=4)
-
-        scores_models = {}
-        for sample in all_samples:
-            for score_item in sample["scores"]:
-                tmp = scores_models.get(score_item["model"], [])
-                tmp.append(score_item["score"])
-                scores_models[score_item["model"]] = tmp
-        for model, score_group in scores_models.items():
-            print(model, np.mean(score_group))
+        with open(f"{dataset_name}_llm_scored_full.json", "w") as f:
+            json.dump(output_scores, f, indent=4)
