@@ -16,8 +16,6 @@
         {"generation_file": "/home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_peermeta/generations_gpt_4o_decomposed.json", "candidate_key": "generated_meta_review", "reference_key":  "meta_review", "model_name":  "gpt4_pr_decomposed"}
     ],
     "space": [
-        {"generation_file": "/home/miao4/punim0521/ModularMetaReview/modular_gpt4/hotels/space_generation_result_gpt_4o.json", "candidate_key": "meta_review_generated", "reference_key":  "gold_summaries_general", "model_name":  "modular_gpt4"},
-        {"generation_file": "/home/miao4/punim0521/ModularMetaReview/modular_llama3/hotels/space_generation_result_llama31_70b.json", "candidate_key": "meta_review_generated", "reference_key":  "gold_summaries_general", "model_name":  "modular_llama3"},
         {"generation_file": "/home/miao4/punim0521/ModularMetaReview/results/llama3_pr_space/generations_llama31_70b_naive.json", "candidate_key": "generated_summary_general", "reference_key":  "gold_summaries_general", "model_name":  "llama3_pr_naive"},
         {"generation_file": "/home/miao4/punim0521/ModularMetaReview/results/llama3_pr_space/generations_llama31_70b_logic.json", "candidate_key": "generated_summary_general", "reference_key":  "gold_summaries_general", "model_name":  "llama3_pr_logic"},
         {"generation_file": "/home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_space/generations_gpt_4o_naive.json", "candidate_key": "generated_summary_general", "reference_key":  "gold_summaries_general", "model_name":  "gpt4_pr_naive"},

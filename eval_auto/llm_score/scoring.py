@@ -75,7 +75,7 @@ if __name__ == "__main__":
                 reference = sample[reference_key][0]  # SPACE has multiple references
             score = scoring_faithfulness(sample[source_key], reference, dataset_name)
             scores.append(score)
-        print(np.mean(scores))
+        print("faithfulness", np.mean(scores))
         output_scores["human_reference"] = scores
 
         for generation_info in generation_infos:
@@ -92,7 +92,7 @@ if __name__ == "__main__":
                 source_documents = sample["source_documents"]
                 score = scoring_faithfulness(source_documents, candidate, dataset_name)
                 scores.append(score)
-            print(np.mean(scores))
+            print("faithfulness", np.mean(scores))
             output_scores[generation_file] = scores
 
         with open(f"{dataset_name}_llm_scored_full.json", "w") as f:
