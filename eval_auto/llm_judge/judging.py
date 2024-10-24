@@ -11,6 +11,7 @@ def comparing(source_documents, generation_a, generation_b, dataset_name):
     prompt_content = prompt_format.replace("{{source_documents}}", source_text).replace("{{generation_a}}",
                                                                                         generation_a).replace(
         "{{generation_b}}", generation_b)
+    print(len(source_text.split()), len(generation_a.split()), len(generation_b.split()), len(prompt_content.split()))
     while True:
         try:
             output_dict = client.chat.completions.create(
