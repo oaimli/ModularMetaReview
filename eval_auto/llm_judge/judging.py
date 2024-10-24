@@ -115,7 +115,7 @@ if __name__ == "__main__":
                                                dataset_name)
                         comparisons.append(
                             {"model_a": generation_i["model"], "generation_a": generation_i["generation"],
-                             "generation_b": generation_j["generation"], "model_b": generation_j["model"],
+                             "model_b": generation_j["model"], "generation_b": generation_j["generation"],
                              "better": prediction, "source_documents": source_documents})
             all_samples[sample_index]["comparisons"] = comparisons
             print(len(generations), len(comparisons))
