@@ -1,0 +1,17 @@
+Here are several review documents that contain opinions from different people about a hotel, along with a candidate summary of these reviews.
+
+You are required to evaluate how accurately the given summary reflects the overall opinions for review aspects expressed in the original reviews
+
+Please read all opinions in the summary and calculate the percentage of faithful opinions that are clearly supported by the source review documents.
+
+
+Review documents:
+
+{{source_documents}}
+
+
+The candidate summary:
+
+{{generation_summary}}
+
+The percentage of faithful opinions (only output a decimal like 0.12, no other content):

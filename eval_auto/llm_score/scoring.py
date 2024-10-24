@@ -3,15 +3,14 @@ from openai import OpenAI
 import time
 import json
 import random
+import numpy as np
 
-
-def comparing(source_documents, generation_a, generation_b, dataset_name):
+def scoring_faithfulness(source_documents, generation, dataset_name):
     prompt_format = open(f"prompt_comparing_{dataset_name}.txt").read()
     source_text = "\n".join(source_documents)
-    prompt_content = prompt_format.replace("{{source_documents}}", source_text).replace("{{generation_a}}",
-                                                                                        generation_a).replace(
-        "{{generation_b}}", generation_b)
-    print(len(source_text.split()), len(generation_a.split()), len(generation_b.split()), len(prompt_content.split()))
+    prompt_content = prompt_format.replace("{{source_documents}}", source_text).replace("{{generation_summary}}",
+                                                                                        generation)
+    print(len(source_text.split()), len(generation.split()), len(prompt_content.split()))
     while True:
         try:
             output_dict = client.chat.completions.create(
@@ -22,18 +21,18 @@ def comparing(source_documents, generation_a, generation_b, dataset_name):
                     {"role": "user",
                      "content": prompt_content}
                     ],
-                n=10
+                n=20
                 )
             output = []
             for choice in output_dict.choices:
                 tmp = choice.message.content.lower()
                 print(tmp)
-                if "a" in tmp:
-                    output.append("a")
-                if "b" in tmp:
-                    output.append("b")
+                if tmp.isdigit():
+                    if 0<= float(tmp) <=1:
+                        output.append(float(tmp))
+
             if len(output) > 5:
-                prediction = max(output, key=output.count)
+                prediction = np.mean(output)
                 break
         except Exception as e:
             print(e)
@@ -106,20 +105,14 @@ if __name__ == "__main__":
         for sample_index, sample in enumerate(all_samples):
             generations = sample["generations"]
             source_documents = sample["source_documents"]
-            comparisons = []
+            scores = []
             for i in range(len(generations)):
-                for j in range(len(generations)):
-                    if j > i:
-                        generation_i = generations[i]
-                        generation_j = generations[j]
-                        prediction = comparing(source_documents, generation_i["generation"], generation_j["generation"],
-                                               dataset_name)
-                        comparisons.append(
-                            {"model_a": generation_i["model"], "generation_a": generation_i["generation"],
-                             "model_b": generation_j["model"], "generation_b": generation_j["generation"],
-                             "better": prediction})
-            all_samples[sample_index]["comparisons"] = comparisons
-            print(sample_index, len(generations), len(comparisons))
+                generation_i = generations[i]
+                score = scoring_faithfulness(source_documents, generation_i["generation"], dataset_name)
+                scores.append({"model": generation_i["model"], "generation": generation_i["generation"],
+                                    "score": score})
+            all_samples[sample_index]["scores"] = scores
+            print(sample_index, len(generations), len(scores))
 
-        with open(f"{dataset_name}_llm_judged.json", "w") as f:
+        with open(f"{dataset_name}_llm_scored.json", "w") as f:
             json.dump(all_samples, f, indent=4)
