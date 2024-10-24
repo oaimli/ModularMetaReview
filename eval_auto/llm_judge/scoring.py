@@ -11,7 +11,7 @@ def scoring(samples):
         for comparison in comparisons:
             model_a = comparison["model_a"]
             model_b = comparison["model_b"]
-            better_one = comparison[comparison["better"]]
+            better_one = comparison["better"]
 
             tmp = result_models.get(model_a, [])
             if better_one == model_a:
