@@ -1,1 +1,1 @@
-# Fine-tuning Mistral on meta-review generation
+# Prompting Llama3.1-70B-Instruct on meta-review generation
