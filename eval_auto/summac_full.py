@@ -13,8 +13,6 @@ def summac_scores(sources, targets):
 
 
 if __name__ == "__main__":
-    model_name = "llama31_70b"
-
     with open("info.json") as f:
         info = json.load(f)
 
