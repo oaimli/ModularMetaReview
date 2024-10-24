@@ -12,6 +12,7 @@ for dataset_name in dataset_names:
     with jsonlines.open(f"../../datasets/{dataset_name}_test.jsonl") as reader:
         for line in reader:
             all_samples.append(line)
+    len(all_samples)
 
     generation_files = info[dataset_name]
     for generation_file in generation_files:
