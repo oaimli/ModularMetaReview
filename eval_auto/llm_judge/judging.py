@@ -3,7 +3,6 @@ from openai import OpenAI
 import time
 import json
 import random
-from tqdm import tqdm
 
 
 def comparing(source_documents, generation_a, generation_b, dataset_name):
@@ -25,10 +24,8 @@ def comparing(source_documents, generation_a, generation_b, dataset_name):
                 n=10
                 )
             output = []
-            all_candidates = []
             for choice in output_dict.choices:
                 tmp = choice.message.content.lower()
-                all_candidates.append(tmp)
                 if "a" in tmp:
                     output.append("a")
                 if "b" in tmp:
@@ -50,10 +47,10 @@ if __name__ == "__main__":
     model_name = "gpt4"
     client = OpenAI(api_key="sk-proj-jxdkj7TzTCWDjDU0lpEPT3BlbkFJll01Dz3fxt51wM8Rh6wm")
 
-    with open("../info.json") as f:
+    with open("../all.json") as f:
         info = json.load(f)
 
-    dataset_names = ["peermeta", "space", "amasum_shoes"]
+    dataset_names = ["space", "peermeta", "amasum_shoes"]
     for dataset_name in dataset_names:
         print(dataset_name)
         generation_files = info[dataset_name]

@@ -1,2 +1,1 @@
-# LLM judge with GPT-4
-# This is only for full version of generation results
+# Judging faithfulness with GPT-4 with comparison

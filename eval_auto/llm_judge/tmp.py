@@ -2,7 +2,7 @@ import  json
 import jsonlines
 
 
-with open("../info.json") as f:
+with open("../all.json") as f:
     info = json.load(f)
 
 dataset_names = ["peermeta", "space", "amasum_shoes"]
@@ -18,3 +18,8 @@ for dataset_name in dataset_names:
         print(generation_file)
         with open(generation_file["generation_file"]) as f:
             results = json.load(f)
+        print(len(results))
+
+output = ["a", "a", "b"]
+prediction = max(output, key=output.count)
+print(prediction)
