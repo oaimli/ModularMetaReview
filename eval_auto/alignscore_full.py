@@ -36,14 +36,13 @@ if __name__ == "__main__":
         scores_align = scorer.score(contexts=source_texts, claims=references)
         print(scores_align)
         scores_source["human_reference"] = scores_align
-        print("scores alignscore:", "source", np.mean(scores_align))
+        print("scores alignscore:", np.mean(scores_align))
 
         # model generations
         for generation_info in generations_info:
             generation_file = generation_info["generation_file"]
             print(generation_file)
             candidate_key = generation_info["candidate_key"]
-            reference_key = generation_info["reference_key"]
             source_key = "source_documents"
 
             candidates = []
@@ -54,7 +53,7 @@ if __name__ == "__main__":
 
             scores_align = scorer.score(contexts=source_texts, claims=candidates)
             scores_source[generation_file] = scores_align
-            print("scores alignscore:", "source", np.mean(scores_align))
+            print("scores alignscore", np.mean(scores_align))
 
 
         with open(f"{dataset_name}_alignscore_full.json", "w") as f:
