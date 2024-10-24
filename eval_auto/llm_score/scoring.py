@@ -26,13 +26,14 @@ def scoring_faithfulness(source_documents, generation, dataset_name):
             output = []
             for choice in output_dict.choices:
                 tmp = choice.message.content.lower()
-                print(tmp)
+                # print(tmp)
                 if tmp.isdigit():
                     if 0<= float(tmp) <=1:
                         output.append(float(tmp))
 
             if len(output) > 5:
                 prediction = np.mean(output)
+                print(prediction)
                 break
         except Exception as e:
             print(e)
@@ -103,6 +104,7 @@ if __name__ == "__main__":
         # construct comparison pairs
         all_samples = random.sample(all_samples, 10)
         for sample_index, sample in enumerate(all_samples):
+            print("sample index", sample_index)
             generations = sample["generations"]
             source_documents = sample["source_documents"]
             scores = []
