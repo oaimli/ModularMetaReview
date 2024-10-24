@@ -10,7 +10,7 @@ def scoring_faithfulness(source_documents, generation, dataset_name):
     source_text = "\n".join(source_documents)
     prompt_content = prompt_format.replace("{{source_documents}}", source_text).replace("{{generation_summary}}",
                                                                                         generation)
-    print(len(source_text.split()), len(generation.split()), len(prompt_content.split()))
+    # print(len(source_text.split()), len(generation.split()), len(prompt_content.split()))
     while True:
         try:
             output_dict = client.chat.completions.create(
@@ -35,7 +35,7 @@ def scoring_faithfulness(source_documents, generation, dataset_name):
 
             if len(output) > 5:
                 prediction = np.mean(output)
-                print(prediction)
+                # print(prediction)
                 break
         except Exception as e:
             print(e)
