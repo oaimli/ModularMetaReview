@@ -27,6 +27,7 @@ def comparing(source_documents, generation_a, generation_b, dataset_name):
             output = []
             for choice in output_dict.choices:
                 tmp = choice.message.content.lower()
+                print(tmp)
                 if "a" in tmp:
                     output.append("a")
                 if "b" in tmp:
@@ -118,7 +119,7 @@ if __name__ == "__main__":
                              "model_b": generation_j["model"], "generation_b": generation_j["generation"],
                              "better": prediction, "source_documents": source_documents})
             all_samples[sample_index]["comparisons"] = comparisons
-            print(len(generations), len(comparisons))
+            print(sample_index, len(generations), len(comparisons))
 
         with open(f"{dataset_name}_llm_judged.json", "w") as f:
             json.dump(all_samples, f, indent=4)

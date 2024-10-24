@@ -9,8 +9,8 @@ def scoring(samples):
     for sample in samples:
         comparisons = sample["comparisons"]
         for comparison in comparisons:
-            model_a = comparison["a"]
-            model_b = comparison["b"]
+            model_a = comparison["model_a"]
+            model_b = comparison["model_b"]
             better_one = comparison[comparison["better"]]
 
             tmp = result_models.get(model_a, [])
@@ -32,6 +32,7 @@ def scoring(samples):
     winning_rates = {}
     for model, result in result_models.items():
         winning_rates[model] = sum(result) / len(result)
+
     winning_rates = sorted(winning_rates.items(), key=lambda x: x[1], reverse=True)
 
     elo_rankings = e.rankings()
