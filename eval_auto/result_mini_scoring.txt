@@ -1,62 +1,62 @@
 peermeta
-human_reference
-0.6392515420913696
+human reference
+faithfulness 0.7005699999999999
 /home/miao4/punim0521/ModularMetaReview/modular_gpt4/papers/peermeta_generation_result_gpt_4o.json
-0.7843109571933746
+faithfulness 0.80703
 /home/miao4/punim0521/ModularMetaReview/modular_llama3/papers/peermeta_generation_result_llama31_70b.json
-0.804482850432396
+faithfulness 0.7717
 /home/miao4/punim0521/ModularMetaReview/results/llama3_pr_peermeta/generations_llama31_70b_naive.json
-0.8512653928995132
+faithfulness 0.8158699999999999
 /home/miao4/punim0521/ModularMetaReview/results/llama3_pr_peermeta/generations_llama31_70b_logic.json
-0.849094489812851
+faithfulness 0.8057599999999999
 /home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_peermeta/generations_gpt_4o_naive.json
-0.8511186075210572
+faithfulness 0.8266500000000001
 /home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_peermeta/generations_gpt_4o_logic.json
-0.816692470908165
+faithfulness 0.82407
 /home/miao4/punim0521/ModularMetaReview/results/llama31_8b_peermeta/generated_summaries.json
-0.9126764005422592
+faithfulness 0.76578
 /home/miao4/punim0521/ModularMetaReview/results/led_large_peermeta/generations_led_large.json
-0.9027300173044205
+faithfulness 0.75539
 /home/miao4/punim0521/ModularMetaReview/results/llama3_pr_peermeta/generations_llama31_70b_chunk.json
-0.8319685193896293
+faithfulness 0.7952400000000001
 /home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_peermeta/generations_gpt_4o_chunk.json
-0.8379613989591599
+faithfulness 0.8122700000000002
 /home/miao4/punim0521/ModularMetaReview/results/llama3_pr_peermeta/generations_llama31_70b_consolidation.json
-0.8173999989032745
+faithfulness 0.8039399999999999
 /home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_peermeta/generations_gpt_4o_consolidation.json
-0.7933889234066009
+faithfulness 0.82196
 /home/miao4/punim0521/ModularMetaReview/results/llama3_pr_peermeta/generations_llama31_70b_decomposed.json
-0.6615383683890105
+faithfulness 0.4833699999999999
 /home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_peermeta/generations_gpt_4o_decomposed.json
-0.6394456614553928
+faithfulness 0.37799999999999995
 space
-human_reference
-0.8538226127624512
+human reference
+faithfulness 0.7680400000000001
 /home/miao4/punim0521/ModularMetaReview/modular_gpt4/hotels/space_generation_result_gpt_4o.json
-0.847190682888031
+faithfulness 0.86572
 /home/miao4/punim0521/ModularMetaReview/modular_llama3/hotels/space_generation_result_llama31_70b.json
-0.8427053451538086
+faithfulness 0.8418399999999999
 /home/miao4/punim0521/ModularMetaReview/results/llama3_pr_space/generations_llama31_70b_naive.json
-0.8532396101951599
+faithfulness 0.85276
 /home/miao4/punim0521/ModularMetaReview/results/llama3_pr_space/generations_llama31_70b_logic.json
-0.8485313248634339
+faithfulness 0.8560800000000001
 /home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_space/generations_gpt_4o_naive.json
-0.8559807872772217
+faithfulness 0.86816
 /home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_space/generations_gpt_4o_logic.json
-0.8161516261100769
+faithfulness 0.8741600000000002
 /home/miao4/punim0521/ModularMetaReview/results/llama3_pr_space/generations_llama31_70b_chunk.json
-0.8862816762924194
+faithfulness 0.8530000000000001
 /home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_space/generations_gpt_4o_chunk.json
-0.8516533708572388
+faithfulness 0.8632
 /home/miao4/punim0521/ModularMetaReview/results/llama3_pr_space/generations_llama31_70b_decomposed.json
-0.7683590319752693
+faithfulness 0.6236
 /home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_space/generations_gpt_4o_decomposed.json
-0.6818291079998017
+faithfulness 0.5278400000000001
 /home/miao4/punim0521/ModularMetaReview/results/hiro_space/hiro_extractive.json
-0.9726309108734131
+faithfulness 0.6724000000000001
 /home/miao4/punim0521/ModularMetaReview/results/hiro_space/hiro_oneshot_llama7b_1.json
-0.9244695520401001
+faithfulness 0.82136
 /home/miao4/punim0521/ModularMetaReview/results/hiro_space/hiro_oneshot_llama7b_2.json
-0.9185165238380432
+faithfulness 0.8269199999999999
 /home/miao4/punim0521/ModularMetaReview/results/hiro_space/hiro_oneshot_llama7b_3.json
-0.9269250822067261
+faithfulness 0.8173600000000001
