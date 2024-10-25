@@ -60,3 +60,7 @@ if __name__ == "__main__":
 
         with open(f"{dataset_name}_alignscore_full.json", "w") as f:
             json.dump(scores_source, f, indent=4)
+
+        for generation_name, score_source in scores_source.items():
+            print(generation_name)
+            print(np.mean(score_source))
