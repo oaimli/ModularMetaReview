@@ -29,3 +29,34 @@ human_reference
 0.5653199999999999
 /home/miao4/punim0521/ModularMetaReview/results/hiro_space/hiro_oneshot_llama7b_3.json
 0.547608
+peermeta
+human reference
+faithfulness 0.5771949999999999
+/home/miao4/punim0521/ModularMetaReview/modular_gpt4/papers/peermeta_generation_result_gpt_4o.json
+faithfulness 0.7628450000000001
+/home/miao4/punim0521/ModularMetaReview/modular_llama3/papers/peermeta_generation_result_llama31_70b.json
+faithfulness 0.7640214999999999
+/home/miao4/punim0521/ModularMetaReview/results/llama3_pr_peermeta/generations_llama31_70b_naive.json
+faithfulness 0.7837149999999999
+/home/miao4/punim0521/ModularMetaReview/results/llama3_pr_peermeta/generations_llama31_70b_logic.json
+faithfulness 0.807688
+/home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_peermeta/generations_gpt_4o_naive.json
+faithfulness 0.8416824999999999
+/home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_peermeta/generations_gpt_4o_logic.json
+faithfulness 0.8367499999999999
+/home/miao4/punim0521/ModularMetaReview/results/llama31_8b_peermeta/generated_summaries.json
+faithfulness 0.5968731500000001
+/home/miao4/punim0521/ModularMetaReview/results/led_large_peermeta/generations_led_large.json
+faithfulness 0.6445497
+/home/miao4/punim0521/ModularMetaReview/results/llama3_pr_peermeta/generations_llama31_70b_chunk.json
+faithfulness 0.7228349999999999
+/home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_peermeta/generations_gpt_4o_chunk.json
+faithfulness 0.799265
+/home/miao4/punim0521/ModularMetaReview/results/llama3_pr_peermeta/generations_llama31_70b_consolidation.json
+faithfulness 0.7851100000000001
+/home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_peermeta/generations_gpt_4o_consolidation.json
+faithfulness 0.8182330000000002
+/home/miao4/punim0521/ModularMetaReview/results/llama3_pr_peermeta/generations_llama31_70b_decomposed.json
+faithfulness 0.31356799999999996
+/home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_peermeta/generations_gpt_4o_decomposed.json
+faithfulness 0.153658
