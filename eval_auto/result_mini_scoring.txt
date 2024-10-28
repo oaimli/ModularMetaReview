@@ -60,3 +60,36 @@ faithfulness 0.82136
 faithfulness 0.8269199999999999
 /home/miao4/punim0521/ModularMetaReview/results/hiro_space/hiro_oneshot_llama7b_3.json
 faithfulness 0.8173600000000001
+amasum_shoes
+human reference
+faithfulness 0.6849000000000001
+/home/miao4/punim0521/ModularMetaReview/modular_llama3/shoes/amasum_shoes_generation_result_llama31_70b.json
+faithfulness 0.8116399999999999
+/home/miao4/punim0521/ModularMetaReview/results/llama3_pr_amasum_shoes/generations_llama31_70b_naive.json
+faithfulness 0.82392
+/home/miao4/punim0521/ModularMetaReview/results/llama3_pr_amasum_shoes/generations_llama31_70b_logic.json
+faithfulness 0.8344199999999999
+/home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_amasum_shoes/generations_gpt_4o_naive.json
+faithfulness 0.8384
+/home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_amasum_shoes/generations_gpt_4o_logic.json
+faithfulness 0.8555800000000001
+/home/miao4/punim0521/ModularMetaReview/results/llama31_8b_amasum_shoes/generated_summaries.json
+faithfulness 0.3018
+/home/miao4/punim0521/ModularMetaReview/results/led_large_amasum_shoes/generations_led_large.json
+faithfulness 0.71072
+/home/miao4/punim0521/ModularMetaReview/results/llama3_pr_amasum_shoes/generations_llama31_70b_chunk.json
+faithfulness 0.83028
+/home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_amasum_shoes/generations_gpt_4o_chunk.json
+faithfulness 0.8459399999999999
+/home/miao4/punim0521/ModularMetaReview/results/llama3_pr_amasum_shoes/generations_llama31_70b_decomposed.json
+faithfulness 0.40968000000000004
+/home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_amasum_shoes/generations_gpt_4o_decomposed.json
+faithfulness 0.6179
+/home/miao4/punim0521/ModularMetaReview/results/hiro_amasum_shoes/hiro_extractive.json
+faithfulness 0.35975999999999997
+/home/miao4/punim0521/ModularMetaReview/results/hiro_amasum_shoes/hiro_piecewise_llama7b_1.json
+faithfulness 0.6277000000000001
+/home/miao4/punim0521/ModularMetaReview/results/hiro_amasum_shoes/hiro_piecewise_llama7b_2.json
+faithfulness 0.61714
+/home/miao4/punim0521/ModularMetaReview/results/hiro_amasum_shoes/hiro_piecewise_llama7b_3.json
+faithfulness 0.62928
