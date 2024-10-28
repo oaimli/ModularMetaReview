@@ -154,65 +154,82 @@ scores conv: source 0.5045200645923614 reference 0.2279694837331772 summation 0.
 amasum_shoes
 human reference
 <All keys matched successfully>
-scores zs: source -0.5294048065912156
-scores conv: source 0.40451106667518616
-/home/miao4/punim0521/ModularMetaReview/modular_gpt4/shoes/amasum_shoes_generation_result_gpt_4o.json
-<All keys matched successfully>
-<All keys matched successfully>
-scores zs: source -0.39736612665085574 reference -0.09242100315038948 summation -0.4897871298012452
-scores conv: source 0.39777149856090543 reference 0.21623010516166688 summation 0.6140016037225723
+/data/projects/punim0478/miao4/anaconda/envs/summac/lib/python3.9/site-packages/summac/model_summac.py:298: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /opt/conda/conda-bld/pytorch_1670525539683/work/torch/csrc/utils/tensor_new.cpp:230.)
+  histograms = torch.FloatTensor(histograms).to(self.device)
+scores zs: source -0.5923845621744792
+scores conv: source 0.5808087861537934
 /home/miao4/punim0521/ModularMetaReview/modular_llama3/shoes/amasum_shoes_generation_result_llama31_70b.json
 <All keys matched successfully>
 <All keys matched successfully>
-scores zs: source -0.26012338020688014 reference -0.016787201245625816 summation -0.27691058145250597
-scores conv: source 0.3960753971338272 reference 0.22292612344026566 summation 0.6190015205740929
+scores zs: source -0.3962039672003852 reference -0.0062343118758428654 summation -0.4024382790762281
+scores conv: source 0.48882894575595853 reference 0.21189797729253768 summation 0.7007269230484963
 /home/miao4/punim0521/ModularMetaReview/results/llama3_pr_amasum_shoes/generations_llama31_70b_naive.json
 <All keys matched successfully>
 <All keys matched successfully>
-scores zs: source -0.3396387045724052 reference 0.046144734246390214 summation -0.293493970326015
-scores conv: source 0.3763385236263275 reference 0.2185407343506813 summation 0.5948792579770088
+scores zs: source -0.43510312616257435 reference 0.02347846546627226 summation -0.4116246606963021
+scores conv: source 0.455585018992424 reference 0.2082180231809616 summation 0.6638030421733856
 /home/miao4/punim0521/ModularMetaReview/results/llama3_pr_amasum_shoes/generations_llama31_70b_logic.json
 <All keys matched successfully>
 <All keys matched successfully>
-scores zs: source -0.2693156090235787 reference 0.0820236277050442 summation -0.1872919813185345
-scores conv: source 0.37067582219839096 reference 0.2190620085597038 summation 0.5897378307580947
+scores zs: source -0.39832007953733983 reference 0.000650094153389098 summation -0.3976699853839507
+scores conv: source 0.4430005460977554 reference 0.20920636087656022 summation 0.6522069069743156
 /home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_amasum_shoes/generations_gpt_4o_naive.json
 <All keys matched successfully>
 <All keys matched successfully>
-scores zs: source -0.3300366814022972 reference -0.024666007995605466 summation -0.35470268939790267
-scores conv: source 0.3893475925922394 reference 0.2216633078455925 summation 0.6110109004378319
+scores zs: source -0.4953142685663132 reference -0.07678355807349796 summation -0.5720978266398111
+scores conv: source 0.47858122408390047 reference 0.20984603673219682 summation 0.6884272608160973
 /home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_amasum_shoes/generations_gpt_4o_logic.json
 <All keys matched successfully>
 <All keys matched successfully>
-scores zs: source -0.29936851285890087 reference 0.005719046412708138 summation -0.2936494664461927
-scores conv: source 0.4136153155565262 reference 0.21513037800788878 summation 0.628745693564415
+scores zs: source -0.40760258500839525 reference -0.03779548268343081 summation -0.44539806769182605
+scores conv: source 0.5254678392410278 reference 0.2083870843052864 summation 0.7338549235463142
 /home/miao4/punim0521/ModularMetaReview/results/llama31_8b_amasum_shoes/generated_summaries.json
 <All keys matched successfully>
 <All keys matched successfully>
-scores zs: source -0.33990376662317495 reference 0.043639242224461305 summation -0.29626452439871365
-scores conv: source 0.5090577188134193 reference 0.21131009727716446 summation 0.7203678160905838
+scores zs: source -0.33990376662317495 reference 0.039063110721000084 summation -0.30084065590217485
+scores conv: source 0.5090577188134193 reference 0.2129126951098442 summation 0.7219704139232636
 /home/miao4/punim0521/ModularMetaReview/results/led_large_amasum_shoes/generations_led_large.json
 <All keys matched successfully>
 <All keys matched successfully>
-scores zs: source -0.45517371368408205 reference 0.07471905678037613 summation -0.38045465690370595
-scores conv: source 0.42986432164907457 reference 0.22429153561592102 summation 0.6541558572649956
+scores zs: source -0.5837590201241629 reference 0.021012056714012503 summation -0.5627469634101504
+scores conv: source 0.5171471560001373 reference 0.21045663267374037 summation 0.7276037886738776
 /home/miao4/punim0521/ModularMetaReview/results/llama3_pr_amasum_shoes/generations_llama31_70b_chunk.json
 <All keys matched successfully>
 <All keys matched successfully>
-scores zs: source -0.33384638468424477 reference 0.08320335769653318 summation -0.25064302698771157
-scores conv: source 0.410368395447731 reference 0.22289949029684067 summation 0.6332678857445717
+scores zs: source -0.4824559911092123 reference -0.05557828648885091 summation -0.5380342775980632
+scores conv: source 0.4897551077604294 reference 0.2102626383304596 summation 0.700017746090889
 /home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_amasum_shoes/generations_gpt_4o_chunk.json
 <All keys matched successfully>
 <All keys matched successfully>
-scores zs: source -0.39875797271728514 reference -0.03533293760390508 summation -0.43409091032119024
-scores conv: source 0.40534051448106767 reference 0.21581490725278854 summation 0.6211554217338562
+scores zs: source -0.5042216389973958 reference -0.007075913111368815 summation -0.5112975521087646
+scores conv: source 0.4964037972688675 reference 0.21034399181604385 summation 0.7067477890849114
 /home/miao4/punim0521/ModularMetaReview/results/llama3_pr_amasum_shoes/generations_llama31_70b_decomposed.json
 <All keys matched successfully>
 <All keys matched successfully>
-scores zs: source -0.5750186665852864 reference -0.023400421142578124 summation -0.5984190877278646
-scores conv: source 0.4020989465713501 reference 0.20486855894327163 summation 0.6069675055146218
+scores zs: source -0.6017566144538649 reference 0.03269862220400856 summation -0.5690579922498563
+scores conv: source 0.5525600326061249 reference 0.20537657141685486 summation 0.7579366040229797
 /home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_amasum_shoes/generations_gpt_4o_decomposed.json
 <All keys matched successfully>
 <All keys matched successfully>
-scores zs: source -0.48493542734781897 reference 0.0116290283203125 summation -0.4733063990275065
-scores conv: source 0.3923280954360962 reference 0.21449244946241378 summation 0.60682054489851
+scores zs: source -0.53978490847633 reference -0.040101916676475884 summation -0.5798868251528059
+scores conv: source 0.5242872792482376 reference 0.21053814351558686 summation 0.7348254227638245
+/home/miao4/punim0521/ModularMetaReview/results/hiro_amasum_shoes/hiro_extractive.json
+<All keys matched successfully>
+<All keys matched successfully>
+scores zs: source -0.2554723750523159 reference -0.21134110244115192 summation -0.4668134774934678
+scores conv: source 0.8968978464603424 reference 0.2093440356850624 summation 1.1062418821454048
+/home/miao4/punim0521/ModularMetaReview/results/hiro_amasum_shoes/hiro_piecewise_llama7b_1.json
+<All keys matched successfully>
+<All keys matched successfully>
+scores zs: source -0.44935223841457045 reference -0.03396141617620616 summation -0.48331365459077663
+scores conv: source 0.7420757240056992 reference 0.21917139559984208 summation 0.9612471196055413
+/home/miao4/punim0521/ModularMetaReview/results/hiro_amasum_shoes/hiro_piecewise_llama7b_2.json
+<All keys matched successfully>
+<All keys matched successfully>
+scores zs: source -0.4622073167828132 reference -0.03166568476881987 summation -0.49387300155163305
+scores conv: source 0.7395586323738098 reference 0.21864913105964662 summation 0.9582077634334565
+/home/miao4/punim0521/ModularMetaReview/results/hiro_amasum_shoes/hiro_piecewise_llama7b_3.json
+<All keys matched successfully>
+<All keys matched successfully>
+scores zs: source -0.46324051045545 reference -0.05839307929331805 summation -0.5216335897487681
+scores conv: source 0.7226216632127762 reference 0.2164400625228882 summation 0.9390617257356644
