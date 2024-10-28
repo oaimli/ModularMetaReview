@@ -62,28 +62,34 @@ recall 0.7542857142857141 precision 1.0 f-measure 0.8503558663558662
 recall 0.7714285714285714 precision 1.0 f-measure 0.8649417249417248
 amasum_shoes
 human reference
-recall 0.7015346320346321 precision 0.9378015873015874 f-measure 0.7822561317251719
-/home/miao4/punim0521/ModularMetaReview/modular_gpt4/shoes/amasum_shoes_generation_result_gpt_4o_truncated.json
-recall 0.7491746031746033 precision 0.9925 f-measure 0.8458641812264104
+recall 0.523151515151515 precision 1.0 f-measure 0.6745475585645865
 /home/miao4/punim0521/ModularMetaReview/modular_llama3/shoes/amasum_shoes_generation_result_llama31_70b_truncated.json
-recall 0.7595793650793652 precision 0.996 f-measure 0.853848517667403
+recall 0.6533131313131313 precision 1.0 f-measure 0.7843336773305813
 /home/miao4/punim0521/ModularMetaReview/results/llama3_pr_amasum_shoes/generations_llama31_70b_naive_truncated.json
-recall 0.521619769119769 precision 0.9966666666666667 f-measure 0.6677893674952498
+recall 0.4506666666666666 precision 1.0 f-measure 0.6155713567478274
 /home/miao4/punim0521/ModularMetaReview/results/llama3_pr_amasum_shoes/generations_llama31_70b_logic_truncated.json
-recall 0.5829841269841269 precision 0.9908333333333335 f-measure 0.7195497737556561
+recall 0.43230303030303036 precision 1.0 f-measure 0.596739819004525
 /home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_amasum_shoes/generations_gpt_4o_naive_truncated.json
-recall 0.5736825396825397 precision 1.0 f-measure 0.7145420712758173
+recall 0.4718787878787879 precision 1.0 f-measure 0.6323343124024238
 /home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_amasum_shoes/generations_gpt_4o_logic_truncated.json
-recall 0.6857020202020202 precision 0.9966666666666666 f-measure 0.7976452613434035
+recall 0.3866262626262626 precision 1.0 f-measure 0.5521816418875242
 /home/miao4/punim0521/ModularMetaReview/results/llama31_8b_amasum_shoes/generated_summaries_truncated.json
-recall 0.3472958152958153 precision 0.9605952380952381 f-measure 0.4805850228203169
+recall 0.2758383838383839 precision 1.0 f-measure 0.4111219238278061
 /home/miao4/punim0521/ModularMetaReview/results/led_large_amasum_shoes/generations_led_large_truncated.json
-recall 0.5588412698412699 precision 0.9663333333333333 f-measure 0.6943958557782086
+recall 0.35800000000000004 precision 0.995 f-measure 0.5200061898885429
 /home/miao4/punim0521/ModularMetaReview/results/llama3_pr_amasum_shoes/generations_llama31_70b_chunk_truncated.json
-recall 0.5221955266955267 precision 0.9975 f-measure 0.6701240426240426
+recall 0.40480808080808084 precision 1.0 f-measure 0.5663216714486065
 /home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_amasum_shoes/generations_gpt_4o_chunk_truncated.json
-recall 0.6200483405483406 precision 0.9934999999999999 f-measure 0.744975122228992
+recall 0.4502626262626263 precision 1.0 f-measure 0.6139655700336815
 /home/miao4/punim0521/ModularMetaReview/results/llama3_pr_amasum_shoes/generations_llama31_70b_decomposed_truncated.json
-recall 0.23299134199134197 precision 1.0 f-measure 0.3517254967254967
+recall 0.20030303030303034 precision 0.996 f-measure 0.31315821759939405
 /home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_amasum_shoes/generations_gpt_4o_decomposed_truncated.json
-recall 0.36792640692640693 precision 0.9933333333333333 f-measure 0.5179635364635365
+recall 0.34519191919191916 precision 1.0 f-measure 0.4936550790111161
+/home/miao4/punim0521/ModularMetaReview/results/hiro_amasum_shoes/hiro_extractive_truncated.json
+recall 0.2998989898989899 precision 1.0 f-measure 0.455565934065934
+/home/miao4/punim0521/ModularMetaReview/results/hiro_amasum_shoes/hiro_piecewise_llama7b_1_truncated.json
+recall 0.34080808080808084 precision 0.9898095238095237 f-measure 0.493906319171025
+/home/miao4/punim0521/ModularMetaReview/results/hiro_amasum_shoes/hiro_piecewise_llama7b_2_truncated.json
+recall 0.34670707070707074 precision 0.9883333333333334 f-measure 0.5015736910148675
+/home/miao4/punim0521/ModularMetaReview/results/hiro_amasum_shoes/hiro_piecewise_llama7b_3_truncated.json
+recall 0.33276767676767677 precision 0.996 f-measure 0.489433958198664

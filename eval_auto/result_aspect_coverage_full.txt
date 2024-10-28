@@ -62,28 +62,34 @@ recall 0.7599999999999999 precision 1.0 f-measure 0.857090909090909
 recall 0.7771428571428571 precision 1.0 f-measure 0.8680186480186479
 amasum_shoes
 human reference
-recall 0.6988528138528137 precision 0.934079365079365 f-measure 0.7796344984564797
-/home/miao4/punim0521/ModularMetaReview/modular_gpt4/shoes/amasum_shoes_generation_result_gpt_4o.json
-recall 0.7489927849927851 precision 0.995 f-measure 0.8471619108445734
+recall 0.5273737373737374 precision 1.0 f-measure 0.6785994964787534
 /home/miao4/punim0521/ModularMetaReview/modular_llama3/shoes/amasum_shoes_generation_result_llama31_70b.json
-recall 0.7654278499278501 precision 0.996 f-measure 0.8581157700228905
+recall 0.7187676767676767 precision 1.0 f-measure 0.831453879797533
 /home/miao4/punim0521/ModularMetaReview/results/llama3_pr_amasum_shoes/generations_llama31_70b_naive.json
-recall 0.521619769119769 precision 0.9966666666666667 f-measure 0.6677893674952498
+recall 0.44703030303030306 precision 1.0 f-measure 0.610058895353013
 /home/miao4/punim0521/ModularMetaReview/results/llama3_pr_amasum_shoes/generations_llama31_70b_logic.json
-recall 0.5853023088023087 precision 0.9908333333333335 f-measure 0.720841162105868
+recall 0.4845252525252526 precision 1.0 f-measure 0.6442816751531921
 /home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_amasum_shoes/generations_gpt_4o_naive.json
-recall 0.5805396825396826 precision 1.0 f-measure 0.7198005382989902
+recall 0.49206060606060603 precision 1.0 f-measure 0.6510857498194959
 /home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_amasum_shoes/generations_gpt_4o_logic.json
-recall 0.692520202020202 precision 0.9966666666666666 f-measure 0.8045749202637746
+recall 0.5393737373737373 precision 1.0 f-measure 0.689569105644957
 /home/miao4/punim0521/ModularMetaReview/results/llama31_8b_amasum_shoes/generated_summaries.json
-recall 0.3648513708513709 precision 0.9572619047619049 f-measure 0.49651148851148846
+recall 0.30911111111111106 precision 1.0 f-measure 0.4462850805884861
 /home/miao4/punim0521/ModularMetaReview/results/led_large_amasum_shoes/generations_led_large.json
-recall 0.5742857142857143 precision 0.9663333333333333 f-measure 0.7073514687926452
+recall 0.4003636363636363 precision 0.995 f-measure 0.5626157662427013
 /home/miao4/punim0521/ModularMetaReview/results/llama3_pr_amasum_shoes/generations_llama31_70b_chunk.json
-recall 0.5251955266955267 precision 0.9975 f-measure 0.6733236795883853
+recall 0.41044444444444445 precision 1.0 f-measure 0.5738088509357859
 /home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_amasum_shoes/generations_gpt_4o_chunk.json
-recall 0.6164372294372295 precision 0.9941666666666668 f-measure 0.741880217134087
+recall 0.4518989898989899 precision 1.0 f-measure 0.614459034085969
 /home/miao4/punim0521/ModularMetaReview/results/llama3_pr_amasum_shoes/generations_llama31_70b_decomposed.json
-recall 0.226991341991342 precision 1.0 f-measure 0.345956265956266
+recall 0.20230303030303032 precision 0.9975 f-measure 0.3132852017263782
 /home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_amasum_shoes/generations_gpt_4o_decomposed.json
-recall 0.3731486291486291 precision 0.9933333333333333 f-measure 0.5221759906759906
+recall 0.3504242424242424 precision 0.9981818181818182 f-measure 0.49537149125384417
+/home/miao4/punim0521/ModularMetaReview/results/hiro_amasum_shoes/hiro_extractive.json
+recall 0.30353535353535355 precision 1.0 f-measure 0.45975641025641023
+/home/miao4/punim0521/ModularMetaReview/results/hiro_amasum_shoes/hiro_piecewise_llama7b_1.json
+recall 0.37503030303030305 precision 0.9901666666666668 f-measure 0.5282248078718667
+/home/miao4/punim0521/ModularMetaReview/results/hiro_amasum_shoes/hiro_piecewise_llama7b_2.json
+recall 0.3847474747474747 precision 0.9888095238095238 f-measure 0.5393505237452605
+/home/miao4/punim0521/ModularMetaReview/results/hiro_amasum_shoes/hiro_piecewise_llama7b_3.json
+recall 0.37630303030303025 precision 0.9931428571428572 f-measure 0.5347028298498886
