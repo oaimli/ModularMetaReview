@@ -38,6 +38,8 @@ if __name__ == "__main__":
             print(len(scores_alignscore_generation))
             print(len(scores_llm_score_reference))
             print(len(scores_llm_score_generation))
+            print(len(scores_mini_score_reference))
+            print(len(scores_mini_score_generation))
 
             candidate_key = generation_info["candidate_key"]
             reference_key = generation_info["reference_key"]
