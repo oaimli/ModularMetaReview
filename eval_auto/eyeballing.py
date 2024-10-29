@@ -23,13 +23,6 @@ if __name__ == "__main__":
             generation_file = generation_info["generation_file"]
             with open(generation_file) as f:
                 samples = json.load(f)
-            print("samples", len(samples))
-            print(len(all_scores_summac_source))
-            print(len(all_scores_alignscore_source))
-            print(len(all_scores_llm_score))
-            print(len(all_scores_mini_score))
-            print(generation_file)
-
             scores_summac_source_reference = all_scores_summac_source["human_reference"]
             scores_summac_source_generation = all_scores_summac_source[generation_file]
             scores_alignscore_reference = all_scores_alignscore_source["human_reference"]
@@ -52,6 +45,9 @@ if __name__ == "__main__":
                     scores_llm_score_reference,
                     scores_mini_score_generation,
                     scores_mini_score_reference):
+
+                assert len(samples) == len(score_reference_summac_source) == len(score_generation_summac_source) == len(score_generation_alignscore_source) == len(score_reference_alignscore_source)
+
                 tmp = outputs_combined.get(str(i), {})
                 if isinstance(sample[reference_key], str):
                     tmp["reference"] = {"text": sample[reference_key],
