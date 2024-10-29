@@ -16,7 +16,7 @@ def meta_generation(source_documents: List) -> str:
         while True:
             try:
                 output_dict = client.chat.completions.create(
-                    model="meta-llama/Meta-Llama-3.1-70B-Instruct",
+                    model="meta-llama/Llama-3.1-8B-Instruct",
                     messages=[
                         {"role": "system",
                          "content": "You are requested to do summarization. Please output the final answer with only the summary, no other useless content."},
@@ -38,7 +38,7 @@ def meta_generation(source_documents: List) -> str:
     while True:
         try:
             output_dict = client.chat.completions.create(
-                model="meta-llama/Meta-Llama-3.1-70B-Instruct",
+                model="meta-llama/Llama-3.1-8B-Instruct",
                 messages=[
                     {"role": "system",
                      "content": "You are requested to do summarization. Please output the final answer with only the summary, no other useless content."},
@@ -57,7 +57,7 @@ def meta_generation(source_documents: List) -> str:
 
 
 if __name__ == "__main__":
-    model_name = "llama31_70b"
+    model_name = "llama31_8b"
     openai_api_key = "EMPTY"
     openai_api_base = "http://localhost:8000/v1"
     client = OpenAI(
@@ -78,7 +78,7 @@ if __name__ == "__main__":
         # print(sample)
 
     print(len(results))
-    output_dir = "../../results/llama3_pr_peermeta"
+    output_dir = "../../results/llama3_8b_pr_peermeta"
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
     with open(f"{output_dir}/generations_{model_name}_chunk.json", "w") as f:
