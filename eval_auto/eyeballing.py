@@ -31,21 +31,46 @@ if __name__ == "__main__":
             scores_summac_source_reference = all_scores_summac_source["human_reference"]
             scores_summac_source_generation = all_scores_summac_source[generation_file]
             scores_alignscore_reference = all_scores_alignscore_source["human_reference"]
-
+            scores_alignscore_generation = all_scores_alignscore_source[generation_file]
+            scores_llm_score_reference = all_scores_llm_score["human_reference"]
+            scores_llm_score_generation = all_scores_llm_score[generation_file]
+            scores_mini_score_reference = all_scores_mini_score["human_reference"]
+            scores_mini_score_generation = all_scores_mini_score[generation_file]
 
             candidate_key = generation_info["candidate_key"]
             reference_key = generation_info["reference_key"]
             i = 0
-            for sample, score_generation_summac_source, score_reference_summac_source in zip(samples, scores_summac_source_generation,
-                                                                                             scores_summac_source_reference):
+            for sample, score_generation_summac_source, score_reference_summac_source, score_generation_alignscore_source, score_reference_alignscore_source, score_generation_llm_score, score_reference_llm_score, score_generation_mini_score, score_reference_mini_score in zip(
+                    samples,
+                    scores_summac_source_generation,
+                    scores_summac_source_reference,
+                    scores_alignscore_generation,
+                    scores_alignscore_reference,
+                    scores_llm_score_generation,
+                    scores_llm_score_reference,
+                    scores_mini_score_generation,
+                    scores_mini_score_reference):
                 tmp = outputs_combined.get(str(i), {})
                 if isinstance(sample[reference_key], str):
-                    tmp["reference"] = [sample[reference_key], score_reference_summac_source]
+                    tmp["reference"] = {"text": sample[reference_key],
+                                        "summac-source": score_reference_summac_source,
+                                        "alignscore-source": score_reference_alignscore_source,
+                                        "llm-score": score_reference_llm_score,
+                                        "mini-score": score_reference_mini_score}
                 else:
-                    tmp["reference"] = [sample[reference_key][0], score_reference_summac_source]
+                    tmp["reference"] = {"text": sample[reference_key][0],
+                                        "summac-source": score_reference_summac_source,
+                                        "alignscore-source": score_reference_alignscore_source,
+                                        "llm-score": score_reference_llm_score,
+                                        "mini-score": score_reference_mini_score}
 
                 existing_candidates = tmp.get("generations", [])
-                existing_candidates.append({"model": generation_info["model_name"], "generation": sample[candidate_key], "summac-source": score_generation_summac_source})
+                existing_candidates.append({"model": generation_info["model_name"],
+                                            "generation": sample[candidate_key],
+                                            "summac-source": score_generation_summac_source,
+                                            "alignscore-source": score_generation_alignscore_source,
+                                            "llm-score": score_generation_llm_score,
+                                            "mini-score": score_generation_mini_score})
                 tmp["generations"] = existing_candidates
                 tmp["source_documents"] = sample["source_documents"]
                 outputs_combined[str(i)] = tmp
