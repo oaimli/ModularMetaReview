@@ -1,0 +1,11 @@
+You are good at understanding documents with sports shoes review opinions.
+Below is a product review for a pair of shoes, please extract fragments that are related to Traction of shoes.
+
+Definition of Traction:
+Evaluation about traction of the shoes, such as lug depth.
+
+Target input review:
+
+{{input_document}}
+
+Final extracted fragments (follow the format above in different lines and if no resulted fragments just output "No related fragments"):

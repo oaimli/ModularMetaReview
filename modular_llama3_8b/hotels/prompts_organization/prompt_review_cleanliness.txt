@@ -1,0 +1,11 @@
+You are good at understanding documents with hotel review opinions.
+Below is a business review for a hotel, please extract fragments that are related to Cleanliness of the hotel.
+
+Definition of Cleanliness:
+Evaluation of how well the hotel maintains a clean, sanitary, and comfortable environment for its guests, impacting their overall experience and satisfaction.
+
+Target input review:
+
+{{input_document}}
+
+Final extracted fragments (follow the format above in different lines and if no resulted fragments just output "No related fragments"):

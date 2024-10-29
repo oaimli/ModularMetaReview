@@ -1,0 +1,11 @@
+You are good at understanding documents with sports shoes review opinions.
+Below is a product review for a pair of shoes, please extract fragments that are related to Size and Fit of shoes.
+
+Definition of Size and Fit:
+Evaluation about size and fit of the shoes, such as internal length, toebox width at the widest part, and gusset type.
+
+Target input review:
+
+{{input_document}}
+
+Final extracted fragments (follow the format above in different lines and if no resulted fragments just output "No related fragments"):
