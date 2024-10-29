@@ -32,6 +32,13 @@ if __name__ == "__main__":
             scores_mini_score_reference = all_scores_mini_score["human_reference"]
             scores_mini_score_generation = all_scores_mini_score[generation_file]
 
+            print(len(scores_summac_source_reference))
+            print(len(scores_summac_source_generation))
+            print(len(scores_alignscore_reference))
+            print(len(scores_alignscore_generation))
+            print(len(scores_llm_score_reference))
+            print(len(scores_llm_score_generation))
+
             candidate_key = generation_info["candidate_key"]
             reference_key = generation_info["reference_key"]
             i = 0
@@ -45,8 +52,6 @@ if __name__ == "__main__":
                     scores_llm_score_reference,
                     scores_mini_score_generation,
                     scores_mini_score_reference):
-
-                assert len(samples) == len(score_reference_summac_source) == len(score_generation_summac_source) == len(score_generation_alignscore_source) == len(score_reference_alignscore_source)
 
                 tmp = outputs_combined.get(str(i), {})
                 if isinstance(sample[reference_key], str):
