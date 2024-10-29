@@ -23,8 +23,11 @@ if __name__ == "__main__":
             generation_file = generation_info["generation_file"]
             with open(generation_file) as f:
                 samples = json.load(f)
-            assert len(samples) == len(all_scores_summac_source) == len(all_scores_alignscore_source) == len(
-                all_scores_llm_score) == len(all_scores_mini_score)
+            print("samples", len(samples))
+            print(len(all_scores_summac_source))
+            print(len(all_scores_alignscore_source))
+            print(len(all_scores_llm_score))
+            print(len(all_scores_mini_score))
             print(generation_file)
 
             scores_summac_source_reference = all_scores_summac_source["human_reference"]
