@@ -6,8 +6,8 @@ if __name__ == "__main__":
     with open("info.json") as f:
         info = json.load(f)
 
-    # dataset_names = ["peermeta", "space", "amasum_shoes"]
-    dataset_names = ["amasum_shoes"]
+    dataset_names = ["peermeta", "space", "amasum_shoes"]
+    # dataset_names = ["amasum_shoes"]
     for dataset_name in dataset_names:
         print(dataset_name)
 
