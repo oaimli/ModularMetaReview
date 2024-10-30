@@ -16,7 +16,7 @@ def llama3_prompting(input_text: str, facet: str, mode: str = "meta"):
     while True:
         try:
             output_dict = client.chat.completions.create(
-                model="meta-llama/Meta-Llama-3.1-70B-Instruct",
+                model="meta-llama/Llama-3.1-8B-Instruct",
                 messages=[
                     {"role": "system", "content": "You are requested to do some extraction work. You must output the answer following the format of the example output, without any other useless content."},
                     {"role": "user",

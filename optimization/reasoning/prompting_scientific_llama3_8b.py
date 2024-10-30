@@ -13,7 +13,7 @@ def llama3_prompting(review_fragments: List):
     while True:
         try:
             output_dict = client.chat.completions.create(
-                model="meta-llama/Meta-Llama-3.1-70B-Instruct",
+                model="meta-llama/Llama-3.1-8B-Instruct",
                 messages=[
                     {"role": "system", "content": "Always answer with only the summary, without other content."},
                     {"role": "user",
@@ -45,14 +45,17 @@ def facet_reasoning(categorization_pairs: List) -> List:
     result = []
     for pair in categorization_pairs:
         review_fragments = pair["review_fragments"]
-        pair["meta_generated"] = llama3_prompting(review_fragments)
+        if len(review_fragments) == 0:
+            pair["meta_generated"] = ""
+        else:
+            pair["meta_generated"] = llama3_prompting(review_fragments)
         result.append(pair)
 
     return result
 
 
 if __name__ == "__main__":
-    model_name = "llama31_70b"
+    model_name = "llama31_8b"
     openai_api_key = "EMPTY"
     openai_api_base = "http://localhost:8000/v1"
     client = OpenAI(api_key=openai_api_key, base_url=openai_api_base)

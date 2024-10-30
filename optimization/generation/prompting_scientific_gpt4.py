@@ -45,7 +45,8 @@ def gpt4_prompting(metas_generated: List):
 def meta_generation(categorization_pairs: List) -> str:
     metas_generated = []
     for pair in categorization_pairs:
-        metas_generated.append(pair["meta_generated"])
+        if pair["meta_generated"] != "":
+            metas_generated.append(pair["meta_generated"])
 
     meta_review = gpt4_prompting(metas_generated)
 
