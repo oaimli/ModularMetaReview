@@ -46,6 +46,7 @@ def facet_reasoning(categorization_pairs: List) -> List:
     for pair in categorization_pairs:
         review_fragments = pair["review_fragments"]
         pair["meta_generated"] = gpt4_prompting(review_fragments)
+        print(pair)
         result.append(pair)
 
     return result
@@ -64,11 +65,12 @@ if __name__ == "__main__":
         test_samples = json.load(f)
 
     results = []
-    for sample in tqdm(test_samples):
-        categorization_pairs = sample["categorization_pairs"]
-        sample["categorization_pairs"] = facet_reasoning(categorization_pairs)
-        results.append(sample)
-        # print(sample)
+    for i, sample in tqdm(enumerate(test_samples)):
+        if i>=30:
+            categorization_pairs = sample["categorization_pairs"]
+            sample["categorization_pairs"] = facet_reasoning(categorization_pairs)
+            results.append(sample)
+            # print(sample)
 
     print(len(results))
     with open(f"amasum_shoes_reasoning_result_{model_name}.json", "w") as f:
