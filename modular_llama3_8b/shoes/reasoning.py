@@ -9,7 +9,7 @@ def gpt4_prompting(review_fragments: List):
     prompt_format = open("prompts_reasoning/prompt_reasoning.txt").read()
     review_text = "\n".join(review_fragments)
     prompt_content = prompt_format.replace("{{review_fragments}}", review_text)
-    # print(prompt_format)
+    print(prompt_content)
     while True:
         try:
             output_dict = client.chat.completions.create(
@@ -37,7 +37,7 @@ def gpt4_prompting(review_fragments: List):
             print(e)
             if ("limit" in str(e)):
                 time.sleep(2)
-    print(meta_generated)
+    # print(meta_generated)
     return meta_generated
 
 
