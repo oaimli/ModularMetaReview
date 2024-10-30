@@ -280,3 +280,101 @@ Average length of generations: 98.9
 Average length of generations: 98.08
 /home/miao4/punim0521/ModularMetaReview/results/hiro_amasum_shoes/hiro_piecewise_llama7b_3.json
 Average length of generations: 101.26
+
+
+########### ROUGE based on references ################
+peermeta
+/home/miao4/punim0521/ModularMetaReview/modular_llama3/papers/peermeta_generation_result_llama31_70b.json
+Average F1 0.22051604750104156
+/home/miao4/punim0521/ModularMetaReview/modular_llama3_8b/papers/peermeta_generation_result_llama31_8b.json
+Average F1 0.21122944152666343
+/home/miao4/punim0521/ModularMetaReview/results/llama3_8b_pr_peermeta/generations_llama31_8b_chunk.json
+Average F1 0.21199175481284094
+/home/miao4/punim0521/ModularMetaReview/results/llama3_8b_pr_peermeta/generations_llama31_8b_decomposed.json
+Average F1 0.11982917529714328
+space
+/home/miao4/punim0521/ModularMetaReview/modular_llama3/hotels/space_generation_result_llama31_70b.json
+Average F1 0.2345698951223344
+/home/miao4/punim0521/ModularMetaReview/modular_llama3_8b/hotels/space_generation_result_llama31_8b.json
+Average F1 0.2204631538009778
+/home/miao4/punim0521/ModularMetaReview/results/llama3_8b_pr_space/generations_llama31_8b_chunk.json
+Average F1 0.22938106121502333
+/home/miao4/punim0521/ModularMetaReview/results/llama3_8b_pr_space/generations_llama31_8b_decomposed.json
+Average F1 0.1380461222909034
+amasum_shoes
+/home/miao4/punim0521/ModularMetaReview/modular_llama3/shoes/amasum_shoes_generation_result_llama31_70b.json
+Average F1 0.15908803539269437
+/home/miao4/punim0521/ModularMetaReview/modular_llama3_8b/shoes/amasum_shoes_generation_result_llama31_8b.json
+Average F1 0.16437036291701426
+/home/miao4/punim0521/ModularMetaReview/results/llama3_8b_pr_amasum_shoes/generations_llama31_8b_chunk.json
+Average F1 0.1658722078045048
+/home/miao4/punim0521/ModularMetaReview/results/llama3_8b_pr_amasum_shoes/generations_llama31_8b_decomposed.json
+Average F1 0.09225241340855687
+########### ROUGE based on source reviews ################
+peermeta
+/home/miao4/punim0521/ModularMetaReview/modular_llama3/papers/peermeta_generation_result_llama31_70b.json
+human reference
+Average F1 0.046754174788930736
+Average F1 0.043840050191598874
+/home/miao4/punim0521/ModularMetaReview/modular_llama3_8b/papers/peermeta_generation_result_llama31_8b.json
+Average F1 0.037454044790093295
+/home/miao4/punim0521/ModularMetaReview/results/llama3_8b_pr_peermeta/generations_llama31_8b_chunk.json
+Average F1 0.0353397530247083
+/home/miao4/punim0521/ModularMetaReview/results/llama3_8b_pr_peermeta/generations_llama31_8b_decomposed.json
+Average F1 0.06545211200542644
+space
+/home/miao4/punim0521/ModularMetaReview/modular_llama3/hotels/space_generation_result_llama31_70b.json
+human reference
+Average F1 0.009624669298271802
+Average F1 0.014512596617338808
+/home/miao4/punim0521/ModularMetaReview/modular_llama3_8b/hotels/space_generation_result_llama31_8b.json
+Average F1 0.013140868282470602
+/home/miao4/punim0521/ModularMetaReview/results/llama3_8b_pr_space/generations_llama31_8b_chunk.json
+Average F1 0.010912447368482384
+/home/miao4/punim0521/ModularMetaReview/results/llama3_8b_pr_space/generations_llama31_8b_decomposed.json
+Average F1 0.016099788057079203
+amasum_shoes
+/home/miao4/punim0521/ModularMetaReview/modular_llama3/shoes/amasum_shoes_generation_result_llama31_70b.json
+human reference
+Average F1 0.015720909245085565
+Average F1 0.02240786809006857
+/home/miao4/punim0521/ModularMetaReview/modular_llama3_8b/shoes/amasum_shoes_generation_result_llama31_8b.json
+Average F1 0.018953670099165095
+/home/miao4/punim0521/ModularMetaReview/results/llama3_8b_pr_amasum_shoes/generations_llama31_8b_chunk.json
+Average F1 0.014226869078012948
+/home/miao4/punim0521/ModularMetaReview/results/llama3_8b_pr_amasum_shoes/generations_llama31_8b_decomposed.json
+Average F1 0.021762352858260465
+########### lengths of generated meta-reviews ################
+peermeta
+/home/miao4/punim0521/ModularMetaReview/modular_llama3/papers/peermeta_generation_result_llama31_70b.json
+human references
+Average length of generations: 156.06
+Average length of generations: 120.1
+/home/miao4/punim0521/ModularMetaReview/modular_llama3_8b/papers/peermeta_generation_result_llama31_8b.json
+Average length of generations: 101.63
+/home/miao4/punim0521/ModularMetaReview/results/llama3_8b_pr_peermeta/generations_llama31_8b_chunk.json
+Average length of generations: 95.62
+/home/miao4/punim0521/ModularMetaReview/results/llama3_8b_pr_peermeta/generations_llama31_8b_decomposed.json
+Average length of generations: 266.42
+space
+/home/miao4/punim0521/ModularMetaReview/modular_llama3/hotels/space_generation_result_llama31_70b.json
+human references
+Average length of generations: 75.68
+Average length of generations: 131.56
+/home/miao4/punim0521/ModularMetaReview/modular_llama3_8b/hotels/space_generation_result_llama31_8b.json
+Average length of generations: 119.68
+/home/miao4/punim0521/ModularMetaReview/results/llama3_8b_pr_space/generations_llama31_8b_chunk.json
+Average length of generations: 95.52
+/home/miao4/punim0521/ModularMetaReview/results/llama3_8b_pr_space/generations_llama31_8b_decomposed.json
+Average length of generations: 173.68
+amasum_shoes
+/home/miao4/punim0521/ModularMetaReview/modular_llama3/shoes/amasum_shoes_generation_result_llama31_70b.json
+human references
+Average length of generations: 94.82
+Average length of generations: 137.18
+/home/miao4/punim0521/ModularMetaReview/modular_llama3_8b/shoes/amasum_shoes_generation_result_llama31_8b.json
+Average length of generations: 116.64
+/home/miao4/punim0521/ModularMetaReview/results/llama3_8b_pr_amasum_shoes/generations_llama31_8b_chunk.json
+Average length of generations: 80.46
+/home/miao4/punim0521/ModularMetaReview/results/llama3_8b_pr_amasum_shoes/generations_llama31_8b_decomposed.json
+Average length of generations: 197.6

@@ -106,3 +106,25 @@ faithfulness 0.8075200000000001
 faithfulness 0.8039200000000001
 /home/miao4/punim0521/ModularMetaReview/results/llama3_8b_pr_space/generations_llama31_8b_decomposed.json
 faithfulness 0.06602000000000001
+peermeta
+human reference
+faithfulness 0.5832120000000001
+/home/miao4/punim0521/ModularMetaReview/modular_llama3/papers/peermeta_generation_result_llama31_70b.json
+faithfulness 0.7599749999999998
+/home/miao4/punim0521/ModularMetaReview/modular_llama3_8b/papers/peermeta_generation_result_llama31_8b.json
+faithfulness 0.65519
+/home/miao4/punim0521/ModularMetaReview/results/llama3_8b_pr_peermeta/generations_llama31_8b_chunk.json
+faithfulness 0.6531549999999998
+/home/miao4/punim0521/ModularMetaReview/results/llama3_8b_pr_peermeta/generations_llama31_8b_decomposed.json
+faithfulness 0.2009537
+amasum_shoes
+human reference
+faithfulness 0.39457280000000006
+/home/miao4/punim0521/ModularMetaReview/modular_llama3/shoes/amasum_shoes_generation_result_llama31_70b.json
+faithfulness 0.8593940000000001
+/home/miao4/punim0521/ModularMetaReview/modular_llama3_8b/shoes/amasum_shoes_generation_result_llama31_8b.json
+faithfulness 0.7754199999999999
+/home/miao4/punim0521/ModularMetaReview/results/llama3_8b_pr_amasum_shoes/generations_llama31_8b_chunk.json
+faithfulness 0.7958
+/home/miao4/punim0521/ModularMetaReview/results/llama3_8b_pr_amasum_shoes/generations_llama31_8b_decomposed.json
+faithfulness 0.109684
