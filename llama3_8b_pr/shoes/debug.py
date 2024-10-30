@@ -34,34 +34,34 @@ def meta_generation(source_documents: List) -> (str, str):
                 time.sleep(2)
     # print(steps)
 
-    steps_list = steps.split("\n")
-    for step_id, step in enumerate(steps_list):
-        if step_id == 0:
-            prompt_content = f"{source_text}\nPlease follow the instruction below and give your output.\n {step}\nThe output:"
-        else:
-            prompt_content = f"{output}\nPlease follow the instruction below and give your output.\n {step}\nThe output:"
-        # print(prompt_format)
-        while True:
-            try:
-                output_dict = client.chat.completions.create(
-                    model="meta-llama/Llama-3.1-8B-Instruct",
-                    messages=[
-                        {"role": "system",
-                         "content": "You are requested to follow the instruction and only generate the requested output."},
-                        {"role": "user",
-                         "content": prompt_content}
-                        ],
-                    n=1
-                    )
-                output = output_dict.choices[0].message.content
-                break
-            except Exception as e:
-                if "limit" in str(e):
-                    time.sleep(2)
-        # print("******************************\n", output)
+    # steps_list = steps.split("\n")
+    # for step_id, step in enumerate(steps_list):
+    #     if step_id == 0:
+    #         prompt_content = f"{source_text}\nPlease follow the instruction below and give your output.\n {step}\nThe output:"
+    #     else:
+    #         prompt_content = f"{output}\nPlease follow the instruction below and give your output.\n {step}\nThe output:"
+    #     # print(prompt_format)
+    #     while True:
+    #         try:
+    #             output_dict = client.chat.completions.create(
+    #                 model="meta-llama/Llama-3.1-8B-Instruct",
+    #                 messages=[
+    #                     {"role": "system",
+    #                      "content": "You are requested to follow the instruction and only generate the requested output."},
+    #                     {"role": "user",
+    #                      "content": prompt_content}
+    #                     ],
+    #                 n=1
+    #                 )
+    #             output = output_dict.choices[0].message.content
+    #             break
+    #         except Exception as e:
+    #             if "limit" in str(e):
+    #                 time.sleep(2)
+    #     print("******************************\n", output)
 
     # print("###############################\n", output)
-    return output, steps
+    return None, steps
 
 
 if __name__ == "__main__":
@@ -78,16 +78,6 @@ if __name__ == "__main__":
         for line in reader:
             test_samples.append(line)
 
-    results = []
     for sample in tqdm(test_samples):
         source_documents = sample["source_documents"]
         result, steps = meta_generation(source_documents)
-        sample["generated_steps"] = steps
-        sample["generated_meta_review"] = result
-        results.append(sample)
-        # print(sample)
-
-    print(len(results))
-    output_dir = "../../results/llama3_8b_pr_amasum_shoes"
-    if not os.path.exists(output_dir):
-        os.makedirs(output_dir)
