@@ -95,5 +95,5 @@ if __name__ == "__main__":
             print("faithfulness", np.mean(scores))
             output_scores[generation_file] = scores
 
-        with open(f"{dataset_name}_llm_scored_full.json", "w") as f:
+        with open(f"{dataset_name}_llm_scored_full_tmp.json", "w") as f:
             json.dump(output_scores, f, indent=4)
