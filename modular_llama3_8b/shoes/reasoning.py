@@ -9,7 +9,7 @@ def gpt4_prompting(review_fragments: List):
     prompt_format = open("prompts_reasoning/prompt_reasoning.txt").read()
     review_text = "\n".join(review_fragments)
     prompt_content = prompt_format.replace("{{review_fragments}}", review_text)
-    print(prompt_content)
+    # print(prompt_content)
     while True:
         try:
             output_dict = client.chat.completions.create(
@@ -46,7 +46,7 @@ def facet_reasoning(categorization_pairs: List) -> List:
     for pair in categorization_pairs:
         review_fragments = pair["review_fragments"]
         pair["meta_generated"] = gpt4_prompting(review_fragments)
-        print(pair)
+        print(pair["facet"])
         result.append(pair)
 
     return result
@@ -66,7 +66,7 @@ if __name__ == "__main__":
 
     results = []
     for i, sample in tqdm(enumerate(test_samples)):
-        if i>=31:
+        if i==31:
             categorization_pairs = sample["categorization_pairs"]
             sample["categorization_pairs"] = facet_reasoning(categorization_pairs)
             results.append(sample)
