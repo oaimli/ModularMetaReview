@@ -14,7 +14,7 @@ def meta_generation(source_documents: List) -> (str, str):
     source_text = "\n".join(source_documents)
     prompt_content = f"Please give me sequential steps to write a summary specific for the following reviews on a pair of sports shoes.\n\n Reviews on a pair of sports shoes:\n {source_text}\n\nThe steps to write a summary in different lines:"
     # print(prompt_format)
-    print(len(prompt_content.split()))
+    print(len(source_documents), len(source_text.split()), len(prompt_content.split()))
     while True:
         try:
             output_dict = client.chat.completions.create(
