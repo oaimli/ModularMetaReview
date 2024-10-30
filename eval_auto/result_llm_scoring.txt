@@ -93,3 +93,16 @@ faithfulness 0.34687200000000007
 faithfulness 0.331236
 /home/miao4/punim0521/ModularMetaReview/results/hiro_amasum_shoes/hiro_piecewise_llama7b_3.json
 faithfulness 0.3525235555555556
+
+
+space
+human reference
+faithfulness 0.449912
+/home/miao4/punim0521/ModularMetaReview/modular_llama3/hotels/space_generation_result_llama31_70b.json
+faithfulness 0.8531311111111112
+/home/miao4/punim0521/ModularMetaReview/modular_llama3_8b/hotels/space_generation_result_llama31_8b.json
+faithfulness 0.8075200000000001
+/home/miao4/punim0521/ModularMetaReview/results/llama3_8b_pr_space/generations_llama31_8b_chunk.json
+faithfulness 0.8039200000000001
+/home/miao4/punim0521/ModularMetaReview/results/llama3_8b_pr_space/generations_llama31_8b_decomposed.json
+faithfulness 0.06602000000000001
