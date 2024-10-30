@@ -9,6 +9,7 @@ def gpt4_prompting(review_fragments: List):
     prompt_format = open("prompts_reasoning/prompt_reasoning.txt").read()
     review_text = "\n".join(review_fragments)
     prompt_content = prompt_format.replace("{{review_fragments}}", review_text)
+    prompt_content = prompt_format
     print(prompt_content)
     while True:
         try:
