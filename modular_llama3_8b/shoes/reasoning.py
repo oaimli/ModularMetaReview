@@ -20,19 +20,20 @@ def gpt4_prompting(review_fragments: List):
                     {"role": "user",
                      "content": prompt_content}
                     ],
-                n=8
+                n=1
                 )
-            all_candidates = []
-            all_candidates_len = []
-            tmp = []
-            for choice in output_dict.choices:
-                output_content = choice.message.content
-                content_len = len(output_content.split())
-                all_candidates_len.append(content_len)
-                tmp.append(content_len)
-                all_candidates.append(output_content)
-            tmp.sort()
-            meta_generated = all_candidates[all_candidates_len.index(tmp[int(len(tmp) / 2)])]
+            # all_candidates = []
+            # all_candidates_len = []
+            # tmp = []
+            # for choice in output_dict.choices:
+            #     output_content = choice.message.content
+            #     content_len = len(output_content.split())
+            #     all_candidates_len.append(content_len)
+            #     tmp.append(content_len)
+            #     all_candidates.append(output_content)
+            # tmp.sort()
+            # meta_generated = all_candidates[all_candidates_len.index(tmp[int(len(tmp) / 2)])]
+            meta_generated = output_dict.choices[0].message.content
             break
         except Exception as e:
             print(e)
