@@ -45,8 +45,10 @@ def facet_reasoning(categorization_pairs: List) -> List:
     result = []
     for pair in categorization_pairs:
         review_fragments = pair["review_fragments"]
-        pair["meta_generated"] = gpt4_prompting(review_fragments)
-        print(pair["facet"])
+        if len(review_fragments) == 0:
+            pair["meta_generated"] = ""
+        else:
+            pair["meta_generated"] = gpt4_prompting(review_fragments)
         result.append(pair)
 
     return result
@@ -66,7 +68,7 @@ if __name__ == "__main__":
 
     results = []
     for i, sample in tqdm(enumerate(test_samples)):
-        if i==31:
+        if i==30:
             categorization_pairs = sample["categorization_pairs"]
             sample["categorization_pairs"] = facet_reasoning(categorization_pairs)
             results.append(sample)

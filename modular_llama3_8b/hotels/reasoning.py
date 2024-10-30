@@ -37,7 +37,7 @@ def gpt4_prompting(review_fragments: List):
             print(e)
             if ("limit" in str(e)):
                 time.sleep(2)
-    print(meta_generated )
+    print(meta_generated)
     return meta_generated
 
 
@@ -45,7 +45,10 @@ def facet_reasoning(categorization_pairs: List) -> List:
     result = []
     for pair in categorization_pairs:
         review_fragments = pair["review_fragments"]
-        pair["meta_generated"] = gpt4_prompting(review_fragments)
+        if len(review_fragments) == 0:
+            pair["meta_generated"] = ""
+        else:
+            pair["meta_generated"] = gpt4_prompting(review_fragments)
         result.append(pair)
 
     return result
