@@ -13,7 +13,7 @@ def gpt4_prompting(review_fragments: List):
     while True:
         try:
             output_dict = client.chat.completions.create(
-                model="meta-llama/Llama-3.1-8B-Instruct",
+                model="meta-llama/Meta-Llama-3.1-70B-Instruct",
                 messages=[
                     {"role": "system", "content": "Always answer with only the summary, without other content."},
                     {"role": "user",

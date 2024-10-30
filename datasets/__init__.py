@@ -1,7 +1,7 @@
 # Processed datasets in the same format
 
 # AmaSum: https://github.com/abrazinskas/SelSum, min_10_revs_filt_complete
-# train/dev/test: 25203 (428)/56/50
+# train/dev/test: 25203 (428)/50/50
 
 # SPACE: https://github.com/stangelid/qt
 # dev/test: 25/25
