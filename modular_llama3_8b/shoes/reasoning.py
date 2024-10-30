@@ -44,6 +44,7 @@ def gpt4_prompting(review_fragments: List):
 def facet_reasoning(categorization_pairs: List) -> List:
     result = []
     for pair in categorization_pairs:
+        print(pair["facet"])
         review_fragments = pair["review_fragments"]
         if len(review_fragments) == 0:
             pair["meta_generated"] = ""
