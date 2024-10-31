@@ -46,7 +46,7 @@ if __name__ == "__main__":
                 # print(sample.keys())
                 candidates.append(sample[candidate_key])
                 reference = sample[reference_key]
-                if isinstance(reference) == str:
+                if isinstance(reference, str):
                     references.append(reference)
                 else:
                     references.append(reference[0])
