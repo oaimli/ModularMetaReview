@@ -63,9 +63,12 @@ if __name__ == "__main__":
             reference_score[generation_file] = scores_align
             print("scores alignscore reference", np.mean(scores_align))
 
-            scores_align = scorer.score(contexts=references_shared, claims=candidates_shared)
-            reference_score_aspect[generation_file] = scores_align
-            print("scores alignscore reference based on shared aspects", np.mean(scores_align))
+            if len(references_shared) > 0 and len(candidates_shared) > 0:
+                scores_align = scorer.score(contexts=references_shared, claims=candidates_shared)
+                reference_score_aspect[generation_file] = scores_align
+                print("scores alignscore reference based on shared aspects", np.mean(scores_align))
+            else:
+                print("No shared aspects")
 
         # with open(f"{dataset_name}_alignscore_reference_full.json", "w") as f:
         #     json.dump(reference_source, f, indent=4)
