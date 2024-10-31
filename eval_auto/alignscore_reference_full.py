@@ -30,8 +30,10 @@ if __name__ == "__main__":
         generations_info = info[dataset_name]
         for generation_info in generations_info:
             generation_file = generation_info["generation_file"]
-            print(generation_file)
-            with open(generation_file) as f:
+            # use the processed result with shared content from categorization
+            categorization_file = "_".join(generation_file.split("/")[1:]).split(".")[0] + ".json"
+            print(categorization_file)
+            with open("categorization/" + categorization_file) as f:
                 samples = json.load(f)
             candidate_key = generation_info["candidate_key"]
             reference_key = generation_info["reference_key"]
