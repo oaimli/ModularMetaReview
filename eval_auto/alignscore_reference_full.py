@@ -55,9 +55,9 @@ if __name__ == "__main__":
                     if len(categorization_reference[facet]) > 0 and len(categorization_candidate[facet]) > 0:
                         reference_shared.extend(categorization_reference[facet])
                         candidate_shared.extend(categorization_candidate[facet])
-
-                references_shared.append(" ".join(reference_shared))
-                candidates_shared.append(" ".join(candidate_shared))
+                if len(reference_shared) > 0 and len(candidate_shared) > 0:
+                    references_shared.append(" ".join(reference_shared))
+                    candidates_shared.append(" ".join(candidate_shared))
 
             scores_align = scorer.score(contexts=references, claims=candidates)
             reference_score[generation_file] = scores_align
