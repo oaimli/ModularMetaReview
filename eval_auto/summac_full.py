@@ -20,6 +20,7 @@ if __name__ == "__main__":
     # dataset_names = ["amasum_shoes"]
     for dataset_name in dataset_names:
         scores_source = {}
+        scores_reference = {}
         print(dataset_name)
         facets = []
         if dataset_name == "peermeta":
@@ -108,6 +109,7 @@ if __name__ == "__main__":
             scores_zs_reference, scores_conv_reference = summac_scores(references, candidates)
             score_zs_reference_avg = np.mean(scores_zs_reference)
             score_conv_reference_avg = np.mean(scores_conv_reference)
+            scores_reference[generation_file] = score_conv_reference_avg
 
             # compare reference with itself
             scores_zs_reference_self, scores_conv_reference_self = summac_scores(references, references)
@@ -118,5 +120,5 @@ if __name__ == "__main__":
                   score_zs_reference_avg, "test", score_zs_reference_self_avg)
             print("scores conv:", "source", score_conv_source_avg, "reference aspect", score_conv_reference_aspect_avg, "reference",
                   score_conv_reference_avg, "test", score_conv_reference_self_avg)
-        with open(f"{dataset_name}_summac_source_full.json", "w") as f:
-            json.dump(scores_source, f, indent=4)
+        with open(f"{dataset_name}_summac_reference_full.json", "w") as f:
+            json.dump(scores_reference, f, indent=4)
