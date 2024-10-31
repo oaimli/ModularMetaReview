@@ -50,7 +50,7 @@ if __name__ == "__main__":
     # pair-wise comparison on test samples in the three domains
     client = OpenAI(api_key="sk-proj-jxdkj7TzTCWDjDU0lpEPT3BlbkFJll01Dz3fxt51wM8Rh6wm")
 
-    with open("../info.json") as f:
+    with open("info.json") as f:
         info = json.load(f)
 
     # dataset_names = ["space", "peermeta", "amasum_shoes"]

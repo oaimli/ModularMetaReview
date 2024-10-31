@@ -1,7 +1,7 @@
 import json
 
 if __name__ == "__main__":
-    with open("info.json") as f:
+    with open("all.json") as f:
         info = json.load(f)
 
     dataset_names = ["space", "peermeta", "amasum_shoes"]

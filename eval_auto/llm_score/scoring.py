@@ -51,7 +51,7 @@ if __name__ == "__main__":
     model_name = "gpt4"
     client = OpenAI(api_key="sk-proj-jxdkj7TzTCWDjDU0lpEPT3BlbkFJll01Dz3fxt51wM8Rh6wm")
 
-    with open("../info.json") as f:
+    with open("info.json") as f:
         info = json.load(f)
 
     # dataset_names = ["space", "peermeta", "amasum_shoes"]
