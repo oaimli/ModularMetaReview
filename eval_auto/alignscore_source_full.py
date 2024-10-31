@@ -4,7 +4,7 @@ from alignscore import AlignScore
 
 
 if __name__ == "__main__":
-    scorer = AlignScore(model='roberta-large', batch_size=16, device='cuda:0,1', ckpt_path='../tmp/AlignScore/AlignScore-large.ckpt',
+    scorer = AlignScore(model='roberta-large', batch_size=16, device='cuda:0', ckpt_path='../tmp/AlignScore/AlignScore-large.ckpt',
                         evaluation_mode='nli_sp')
 
     with open("all.json") as f:
