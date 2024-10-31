@@ -100,13 +100,18 @@ if __name__ == "__main__":
             score_conv_source_avg = np.mean(scores_conv_source)
 
             # compared with reference on shared aspects
-            scores_zs_reference, scores_conv_reference = summac_scores(references_shared, candidates_shared)
+            scores_zs_reference_aspect, scores_conv_reference_aspect = summac_scores(references_shared, candidates_shared)
+            score_zs_reference_aspect_avg = np.mean(scores_zs_reference_aspect)
+            score_conv_reference_aspect_avg = np.mean(scores_conv_reference_aspect)
+
+            # compared with the whole reference
+            scores_zs_reference, scores_conv_reference = summac_scores(references, candidates)
             score_zs_reference_avg = np.mean(scores_zs_reference)
             score_conv_reference_avg = np.mean(scores_conv_reference)
 
-            print("scores zs:", "source", score_zs_source_avg, "reference", score_zs_reference_avg, "summation",
-                  score_zs_source_avg + score_zs_reference_avg)
-            print("scores conv:", "source", score_conv_source_avg, "reference", score_conv_reference_avg, "summation",
-                  score_conv_source_avg + score_conv_reference_avg)
+            print("scores zs:", "source", score_zs_source_avg, "reference aspect", score_zs_reference_aspect_avg, "reference",
+                  score_zs_reference_avg)
+            print("scores conv:", "source", score_conv_source_avg, "reference aspect", score_conv_reference_aspect_avg, "reference",
+                  score_conv_reference_avg)
         with open(f"{dataset_name}_summac_source_full.json", "w") as f:
             json.dump(scores_source, f, indent=4)
