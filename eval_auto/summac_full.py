@@ -16,8 +16,8 @@ if __name__ == "__main__":
     with open("all.json") as f:
         info = json.load(f)
 
-    # dataset_names = ["space", "peermeta", "amasum_shoes"]
-    dataset_names = ["amasum_shoes"]
+    dataset_names = ["space", "peermeta", "amasum_shoes"]
+    # dataset_names = ["amasum_shoes"]
     for dataset_name in dataset_names:
         scores_source = {}
         print(dataset_name)
@@ -109,9 +109,14 @@ if __name__ == "__main__":
             score_zs_reference_avg = np.mean(scores_zs_reference)
             score_conv_reference_avg = np.mean(scores_conv_reference)
 
+            # compare reference with itself
+            scores_zs_reference_self, scores_conv_reference_self = summac_scores(references, references)
+            score_zs_reference_self_avg = np.mean(scores_zs_reference_self)
+            score_conv_reference_self_avg = np.mean(scores_conv_reference_self)
+
             print("scores zs:", "source", score_zs_source_avg, "reference aspect", score_zs_reference_aspect_avg, "reference",
-                  score_zs_reference_avg)
+                  score_zs_reference_avg, "test", score_zs_reference_self_avg)
             print("scores conv:", "source", score_conv_source_avg, "reference aspect", score_conv_reference_aspect_avg, "reference",
-                  score_conv_reference_avg)
+                  score_conv_reference_avg, "test", score_conv_reference_self_avg)
         with open(f"{dataset_name}_summac_source_full.json", "w") as f:
             json.dump(scores_source, f, indent=4)
