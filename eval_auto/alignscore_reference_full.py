@@ -72,7 +72,7 @@ if __name__ == "__main__":
 
             if len(references_shared) > 0 and len(candidates_shared) > 0:
                 print(len(candidates_shared), len(samples))
-                scores_align = scorer.score(contexts=references_shared, claims=references_shared)
+                scores_align = scorer.score(contexts=references_shared, claims=candidates_shared)
                 reference_score_aspect[generation_file] = scores_align
                 print("scores alignscore reference based on shared aspects", np.mean(scores_align))
             else:
