@@ -60,6 +60,7 @@ if __name__ == "__main__":
                         reference_shared.extend(categorization_reference[facet])
                         candidate_shared.extend(categorization_candidate[facet])
                 if len(reference_shared) > 0 and len(candidate_shared) > 0:
+                    print(facet)
                     print("\nREFERENCE ######\n"," ".join(reference_shared))
                     print("\nCANDIDATE ######\n".join(candidate_shared))
                     references_shared.append(" ".join(reference_shared))
