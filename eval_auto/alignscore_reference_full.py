@@ -79,8 +79,8 @@ if __name__ == "__main__":
                 print(len(candidates_shared), len(samples))
                 print("There are no samples applicable.")
 
-        # with open(f"{dataset_name}_alignscore_reference_full.json", "w") as f:
-        #     json.dump(reference_source, f, indent=4)
+        with open(f"{dataset_name}_alignscore_reference_full.json", "w") as f:
+            json.dump(reference_score, f, indent=4)
 
         for generation_name, score_source in reference_score.items():
             print(generation_name)
