@@ -17,9 +17,9 @@ if __name__ == "__main__":
         print(dataset_name)
         if dataset_name == "peermeta":
             facets = ["Novelty", "Soundness", "Clarity", "Advancement", "Compliance", "Overall"]
-        if dataset_name == "space":
+        elif dataset_name == "space":
             facets = ["Building", "Cleanliness", "Food", "Location", "Rooms", "Service"]
-        if dataset_name == "amasum_shoes":
+        elif dataset_name == "amasum_shoes":
             facets = ["Breathability", "Durability", "Weight", "Cushioning", "Stability", "Flexibility", "Traction",
                       "Sizefit", "Comfort", "Misc"]
         else:
