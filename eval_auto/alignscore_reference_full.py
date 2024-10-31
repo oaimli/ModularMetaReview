@@ -7,7 +7,7 @@ if __name__ == "__main__":
     scorer = AlignScore(model='roberta-large', batch_size=64, device='cuda:0', ckpt_path='../tmp/AlignScore/AlignScore-large.ckpt',
                         evaluation_mode='nli_sp')
 
-    with open("info.json") as f:
+    with open("all.json") as f:
         info = json.load(f)
 
     dataset_names = ["space", "peermeta", "amasum_shoes"]
