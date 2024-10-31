@@ -45,7 +45,11 @@ if __name__ == "__main__":
             for sample in samples:
                 # print(sample.keys())
                 candidates.append(sample[candidate_key])
-                references.append(sample[reference_key])
+                reference = sample[reference_key]
+                if isinstance(reference) == str:
+                    references.append(reference)
+                else:
+                    references.append(reference[0])
 
                 categorization_reference = sample["categorization_reference"]
                 categorization_candidate = sample["categorization_candidate"]
