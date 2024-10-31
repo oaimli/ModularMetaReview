@@ -10,7 +10,8 @@ if __name__ == "__main__":
     with open("info.json") as f:
         info = json.load(f)
 
-    dataset_names = ["space", "peermeta", "amasum_shoes"]
+    # dataset_names = ["space", "peermeta", "amasum_shoes"]
+    dataset_names = ["amasum_shoes"]
     for dataset_name in dataset_names:
         reference_score = {} # alignscore based on the whole references
         reference_score_aspect = {} # alignscore based on shared aspects
