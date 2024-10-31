@@ -60,6 +60,8 @@ if __name__ == "__main__":
                         reference_shared.extend(categorization_reference[facet])
                         candidate_shared.extend(categorization_candidate[facet])
                 if len(reference_shared) > 0 and len(candidate_shared) > 0:
+                    print(" ".join(reference_shared))
+                    print(" ".join(candidate_shared))
                     references_shared.append(" ".join(reference_shared))
                     candidates_shared.append(" ".join(candidate_shared))
 
@@ -81,4 +83,4 @@ if __name__ == "__main__":
 
         for generation_name, score_source in reference_score.items():
             print(generation_name)
-            print(np.mean(score_source))
+            print(np.mean(score_source), np.mean(reference_score_aspect[generation_name]))
