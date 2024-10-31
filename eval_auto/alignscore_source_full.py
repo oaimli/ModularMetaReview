@@ -4,14 +4,14 @@ from alignscore import AlignScore
 
 
 if __name__ == "__main__":
-    scorer = AlignScore(model='roberta-large', batch_size=32, device='cuda:0', ckpt_path='../tmp/AlignScore/AlignScore-large.ckpt',
+    scorer = AlignScore(model='roberta-large', batch_size=64, device='cuda:0', ckpt_path='../tmp/AlignScore/AlignScore-large.ckpt',
                         evaluation_mode='nli_sp')
 
     with open("info.json") as f:
         info = json.load(f)
 
-    # dataset_names = ["space", "peermeta", "amasum_shoes"]
-    dataset_names = ["amasum_shoes"]
+    dataset_names = ["space", "peermeta", "amasum_shoes"]
+    # dataset_names = ["amasum_shoes"]
     for dataset_name in dataset_names:
         scores_source = {}
         print(dataset_name)
