@@ -41,6 +41,7 @@ if __name__ == "__main__":
             candidates_shared = []
             references_shared = []
             for sample in samples:
+                print(sample.keys())
                 candidates.append(sample[candidate_key])
                 references.append(sample[reference_key])
 
