@@ -57,12 +57,12 @@ if __name__ == "__main__":
                 candidate_shared = []
                 for facet in facets:
                     if len(categorization_reference[facet]) > 0 and len(categorization_candidate[facet]) > 0:
+                        print(facet)
                         reference_shared.extend(categorization_reference[facet])
                         candidate_shared.extend(categorization_candidate[facet])
                 if len(reference_shared) > 0 and len(candidate_shared) > 0:
-                    print(facet)
-                    print("\nREFERENCE ######\n"," ".join(reference_shared))
-                    print("\nCANDIDATE ######\n".join(candidate_shared))
+                    print("\nREFERENCE ######\n", " ".join(reference_shared))
+                    print("\nCANDIDATE ######\n", " ".join(candidate_shared))
                     references_shared.append(" ".join(reference_shared))
                     candidates_shared.append(" ".join(candidate_shared))
 
