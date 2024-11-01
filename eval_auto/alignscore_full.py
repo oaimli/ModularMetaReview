@@ -1,18 +1,13 @@
 import numpy as np
 import json
-from summac.model_summac import SummaCZS, SummaCConv
-
-
-def summac_scores(sources, targets):
-    model_zs = SummaCZS(granularity="sentence", model_name="vitc", device="cuda")
-    model_conv = SummaCConv(models=["vitc"], bins='percentile', granularity="sentence", nli_labels="e", device="cuda",
-                            start_file="default", agg="mean")
-    score_zs = model_zs.score(sources, targets)
-    score_conv = model_conv.score(sources, targets)
-    return score_zs["scores"], score_conv["scores"]
+from alignscore import AlignScore
 
 
 if __name__ == "__main__":
+    scorer = AlignScore(model='roberta-large', batch_size=8, device='cuda:0',
+                        ckpt_path='../tmp/AlignScore/AlignScore-large.ckpt',
+                        evaluation_mode='nli_sp')
+
     with open("all.json") as f:
         info = json.load(f)
 
@@ -84,19 +79,16 @@ if __name__ == "__main__":
                 source_texts_shared.append(" ".join(source_text_shared))
 
         # reference compared with source texts
-        scores_zs_source, scores_conv_source = summac_scores(source_texts, references)
-        scores_source["human_reference"] = scores_conv_source
-        score_zs_source_avg = np.mean(scores_zs_source)
-        score_conv_source_avg = np.mean(scores_conv_source)
-        print("source", "scores zs:", score_zs_source_avg, "scores conv:", score_conv_source_avg)
+        scores_align = scorer.score(contexts=source_texts, claims=references)
+        scores_source["human_reference"] = scores_align
+        score_avg = np.mean(scores_align)
+        print("source", score_avg)
 
         # reference compared with source texts on shared aspects
-        scores_zs_source, scores_conv_source = summac_scores(source_texts_shared, references_shared)
-        scores_source_aspect["human_reference"] = scores_conv_source
-        score_zs_source_avg = np.mean(scores_zs_source)
-        score_conv_source_avg = np.mean(scores_conv_source)
-        print(len(references_shared), source_texts_shared)
-        print("source aspect", "scores zs:", score_zs_source_avg, "scores conv:", score_conv_source_avg)
+        scores_align = scorer.score(contexts=source_texts_shared, claims=references_shared)
+        scores_source_aspect["human_reference"] = scores_align
+        score_avg = np.mean(scores_align)
+        print("source aspect", score_avg)
 
         # model generations
         for generation_info in generations_info:
@@ -155,47 +147,54 @@ if __name__ == "__main__":
                     source_texts_shared.append(" ".join(source_text_shared))
 
             # compared with source texts on shared aspects
-            scores_zs_source_aspect, scores_conv_source_aspect = summac_scores(source_texts_shared, candidates_shared_source)
-            scores_source_aspect[generation_file] = scores_conv_source_aspect
-            score_zs_source_aspect_avg = np.mean(scores_zs_source)
-            score_conv_source_aspect_avg = np.mean(scores_conv_source)
-            print(len(source_texts_shared), len(candidates_shared_source))
-            print("source aspect", "scores zs:", score_zs_source_avg, "scores conv:", score_conv_source_avg)
-
+            scores_align = scorer.score(contexts=source_texts_shared, claims=candidates_shared_source)
+            scores_source_aspect[generation_file] = scores_align
+            score_avg = np.mean(scores_align)
+            print("source aspect", score_avg, len(source_texts_shared), len(candidates_shared_source))
 
             # compared with source texts
-            scores_zs_source, scores_conv_source = summac_scores(source_texts, candidates)
-            scores_source[generation_file] = scores_conv_source
-            score_zs_source_avg = np.mean(scores_zs_source)
-            score_conv_source_avg = np.mean(scores_conv_source)
-            print("source", "scores zs:", score_zs_source_avg, "scores conv:", score_conv_source_avg)
+            scores_align = scorer.score(contexts=source_texts, claims=candidates)
+            scores_source[generation_file] = scores_align
+            score_avg = np.mean(scores_align)
+            print("source", score_avg)
 
             # compared with reference on shared aspects
-            scores_zs_reference_aspect, scores_conv_reference_aspect = summac_scores(references_shared, candidates_shared_reference)
-            scores_reference_aspect[generation_file] = scores_conv_source
-            score_zs_reference_aspect_avg = np.mean(scores_zs_reference_aspect)
-            score_conv_reference_aspect_avg = np.mean(scores_conv_reference_aspect)
-            print(len(references_shared), len(candidates_shared_reference))
-            print("reference aspect", "scores zs:", score_zs_reference_aspect_avg, "scores conv:", score_conv_reference_aspect_avg)
+            scores_align = scorer.score(contexts=references_shared, claims=candidates_shared_reference)
+            scores_reference_aspect[generation_file] = scores_align
+            score_avg = np.mean(scores_align)
+            print("reference aspect", score_avg, len(references_shared), len(candidates_shared_reference))
 
             # compared with the whole reference
-            scores_zs_reference, scores_conv_reference = summac_scores(references, candidates)
-            scores_reference[generation_file] = scores_conv_reference
-            score_zs_reference_avg = np.mean(scores_zs_reference)
-            score_conv_reference_avg = np.mean(scores_conv_reference)
-            print("reference", "scores zs:", score_zs_reference_avg, "scores conv:", score_conv_reference_avg)
+            scores_align = scorer.score(contexts=references, claims=candidates)
+            scores_reference[generation_file] = scores_align
+            score_avg = np.mean(scores_align)
+            print("reference", score_avg)
 
             # compare reference with itself
-            scores_zs_reference_self, scores_conv_reference_self = summac_scores(references, references)
-            score_zs_reference_self_avg = np.mean(scores_zs_reference_self)
-            score_conv_reference_self_avg = np.mean(scores_conv_reference_self)
-            print("reference self", "scores zs:", score_zs_reference_self_avg, "scores conv:", score_conv_reference_self_avg)
-        
+            scores_align = scorer.score(contexts=references, claims=references)
+            score_avg = np.mean(scores_align)
+            print("reference itself", score_avg)
+
         with open(f"{dataset_name}_summac_reference_full.json", "w") as f:
             json.dump(scores_reference, f, indent=4)
+        print("scores_reference")
+        for generation_name, score in scores_reference.items():
+            print(generation_name)
+            print(np.mean(score))
         with open(f"{dataset_name}_summac_reference_aspect_full.json", "w") as f:
             json.dump(scores_reference_aspect, f, indent=4)
+        print("scores_reference_aspect")
+        for generation_name, score in scores_reference_aspect.items():
+            print(generation_name)
+            print(np.mean(score))
         with open(f"{dataset_name}_summac_source_full.json", "w") as f:
             json.dump(scores_source, f, indent=4)
-        with open(f"{dataset_name}_summac_source_aspect_full.json", "w") as f:
+        print("scores_source")
+        for generation_name, score in scores_source.items():
+            print(generation_name)
+            print(np.mean(score))
+        with open(f"{dataset_name}_alignscore_source_aspect_full.json", "w") as f:
             json.dump(scores_source_aspect, f, indent=4)
+        for generation_name, score in scores_source_aspect.items():
+            print(generation_name)
+            print(np.mean(score))
