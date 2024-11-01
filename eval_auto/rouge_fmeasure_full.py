@@ -64,10 +64,11 @@ def rouge_corpus(references, candidates, types=None, use_stemmer=True, split_sum
 
 
 if __name__ == "__main__":
-    with open("all.json") as f:
+    with open("categorization/info.json") as f:
         info = json.load(f)
 
-    dataset_names = ["peermeta", "space", "amasum_shoes"]
+    # dataset_names = ["peermeta", "space", "amasum_shoes"]
+    dataset_names = ["amasum_shoes"]
 
     # calculate ROUGE based on human references
     print("########### ROUGE based on references ################")

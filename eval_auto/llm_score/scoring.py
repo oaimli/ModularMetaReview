@@ -55,7 +55,7 @@ if __name__ == "__main__":
         info = json.load(f)
 
     # dataset_names = ["space", "peermeta", "amasum_shoes"]
-    dataset_names = ["peermeta", "amasum_shoes"]
+    dataset_names = ["amasum_shoes"]
     for dataset_name in dataset_names:
         print(dataset_name)
         generation_infos = info[dataset_name]
