@@ -1,235 +1,718 @@
-peermeta
-human reference
+amasum
+/home/miao4/punim0521/ModularMetaReview/modular_gpt4/shoes/amasum_shoes_generation_result_gpt_4o.json
 <All keys matched successfully>
-/data/projects/punim0478/miao4/anaconda/envs/summac/lib/python3.9/site-packages/summac/model_summac.py:298: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting
- the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /opt/conda/conda-bld/pytorch_1670525539683/work/torch/csrc/utils/tensor_new.cpp:230.)
-  histograms = torch.FloatTensor(histograms).to(self.device)
-scores zs: source -0.34004343660920183
-scores conv: source 0.5015322145819664
-/home/miao4/punim0521/ModularMetaReview/modular_gpt4/papers/peermeta_generation_result_gpt_4o.json
+50 50
+source aspect scores zs: -0.4363130187988281 scores conv: 0.7379028576612473
 <All keys matched successfully>
+source scores zs: -0.5012738981095572 scores conv: 0.5089393573999405
 <All keys matched successfully>
-scores zs: source -0.35012569503178675 reference -0.20477301150097524 summation -0.554898706532762
-scores conv: source 0.41961263805627824 reference 0.21514688357710837 summation 0.6347595216333866
-/home/miao4/punim0521/ModularMetaReview/modular_llama3/papers/peermeta_generation_result_llama31_70b.json
+50 50
+reference aspect scores zs: -0.059033659526279994 scores conv: 0.20885519444942474
 <All keys matched successfully>
+reference scores zs: -0.04852820529634991 scores conv: 0.2124667751789093
 <All keys matched successfully>
-scores zs: source -0.3216563805171422 reference -0.15219802007501562 summation -0.4738544005921578
-scores conv: source 0.41601626843214035 reference 0.21891488194465636 summation 0.6349311503767967
-/home/miao4/punim0521/ModularMetaReview/results/llama3_pr_peermeta/generations_llama31_70b_naive.json
-<All keys matched successfully>
-<All keys matched successfully>
-scores zs: source -0.2474854878804796 reference -0.14587515120586209 summation -0.39336063908634167
-scores conv: source 0.49662533670663833 reference 0.21627110982934633 summation 0.7128964465359846
-/home/miao4/punim0521/ModularMetaReview/results/llama3_pr_peermeta/generations_llama31_70b_logic.json
-<All keys matched successfully>
-<All keys matched successfully>
-scores zs: source -0.2664321889231948 reference -0.15519668361556238 summation -0.4216288725387572
-scores conv: source 0.5001384547352791 reference 0.21760967229803405 summation 0.7177481270333131
-/home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_peermeta/generations_gpt_4o_naive.json
-<All keys matched successfully>
-<All keys matched successfully>
-scores zs: source -0.26011095374705695 reference -0.14373850410342365 summation -0.4038494578504806
-scores conv: source 0.49705939402182897 reference 0.21862538918852806 summation 0.715684783210357
-/home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_peermeta/generations_gpt_4o_logic.json
-<All keys matched successfully>
-<All keys matched successfully>
-scores zs: source -0.2629160513928171 reference -0.16110132324209483 summation -0.42401737463491196
-scores conv: source 0.5765649377306302 reference 0.21841726447145143 summation 0.7949822022020816
-/home/miao4/punim0521/ModularMetaReview/results/llama31_8b_peermeta/generated_summaries.json
-<All keys matched successfully>
-<All keys matched successfully>
-scores zs: source -0.09510570579063538 reference -0.20706886055154852 summation -0.30217456634218387
-scores conv: source 0.7119880853096644 reference 0.223583284864823 summation 0.9355713701744874
-/home/miao4/punim0521/ModularMetaReview/results/led_large_peermeta/generations_led_large.json
-<All keys matched successfully>
-<All keys matched successfully>
-scores zs: source -0.1493566723056183 reference -0.22162285460214184 summation -0.37097952690776015
-scores conv: source 0.6809065878391266 reference 0.22359889621535936 summation 0.9045054840544859
-/home/miao4/punim0521/ModularMetaReview/results/llama3_pr_peermeta/generations_llama31_70b_chunk.json
-<All keys matched successfully>
-<All keys matched successfully>
-scores zs: source -0.3321272716522216 reference -0.15064172959224487 summation -0.4827690012444665
-scores conv: source 0.4727819207310677 reference 0.21296864435076712 summation 0.6857505650818347
-/home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_peermeta/generations_gpt_4o_chunk.json
-<All keys matched successfully>
-<All keys matched successfully>
-scores zs: source -0.27824750061640663 reference -0.1792588206423627 summation -0.45750632125876933
-scores conv: source 0.4763858509063721 reference 0.21384179443120957 summation 0.6902276453375816
-/home/miao4/punim0521/ModularMetaReview/results/llama3_pr_peermeta/generations_llama31_70b_consolidation.json
-<All keys matched successfully>
-<All keys matched successfully>
-scores zs: source -0.27054966830379995 reference -0.17832944419246352 summation -0.44887911249626344
-scores conv: source 0.4511782628297806 reference 0.21687782406806946 summation 0.66805608689785
-/home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_peermeta/generations_gpt_4o_consolidation.json
-<All keys matched successfully>
-<All keys matched successfully>
-scores zs: source -0.32146338488154713 reference -0.17150990752257303 summation -0.49297329240412013
-scores conv: source 0.5492164182662964 reference 0.21932151407003403 summation 0.7685379323363304
-/home/miao4/punim0521/ModularMetaReview/results/llama3_pr_peermeta/generations_llama31_70b_decomposed.json
-<All keys matched successfully>
-<All keys matched successfully>
-scores zs: source -0.4777801232204041 reference -0.15239359436269104 summation -0.6301737175830951
-scores conv: source 0.48748825043439864 reference 0.20698434934020044 summation 0.6944725997745991
-/home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_peermeta/generations_gpt_4o_decomposed.json
-<All keys matched successfully>
-<All keys matched successfully>
-scores zs: source -0.40678059688309387 reference -0.16627519282128653 summation -0.5730557897043804
-scores conv: source 0.4858792114257813 reference 0.21057028636336328 summation 0.6964494977891446
-space
-human reference
-<All keys matched successfully>
-scores zs: source -0.5160280460082859
-scores conv: source 0.566547737121582
-/home/miao4/punim0521/ModularMetaReview/modular_gpt4/hotels/space_generation_result_gpt_4o.json
-<All keys matched successfully>
-<All keys matched successfully>
-scores zs: source -0.5149578610374814 reference -0.17825545224276454 summation -0.6932133132802459
-scores conv: source 0.45574241638183594 reference 0.22525375962257385 summation 0.6809961760044098
-/home/miao4/punim0521/ModularMetaReview/modular_llama3/hotels/space_generation_result_llama31_70b.json
-<All keys matched successfully>
-<All keys matched successfully>
-scores zs: source -0.40774554370698474 reference -0.13038298663813552 summation -0.5381285303451202
-scores conv: source 0.4288235604763031 reference 0.21897024750709534 summation 0.6477938079833985
-/home/miao4/punim0521/ModularMetaReview/results/llama3_pr_space/generations_llama31_70b_naive.json
-<All keys matched successfully>
-<All keys matched successfully>
-scores zs: source -0.43760101972307475 reference -0.03201857828715491 summation -0.4696195980102297
-scores conv: source 0.44195112347602844 reference 0.23589353859424592 summation 0.6778446620702744
-/home/miao4/punim0521/ModularMetaReview/results/llama3_pr_space/generations_llama31_70b_logic.json
-<All keys matched successfully>
-<All keys matched successfully>
-scores zs: source -0.4255011585815051 reference -0.04281354388541328 summation -0.4683147024669184
-scores conv: source 0.4257479798793793 reference 0.21620118379592895 summation 0.6419491636753083
-/home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_space/generations_gpt_4o_naive.json
-<All keys matched successfully>
-<All keys matched successfully>
-scores zs: source -0.4964676089486347 reference -0.22910873328314885 summation -0.7255763422317836
-scores conv: source 0.43951884627342225 reference 0.21876684606075286 summation 0.6582856923341751
-/home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_space/generations_gpt_4o_logic.json
-<All keys matched successfully>
-<All keys matched successfully>
-scores zs: source -0.3893292189132039 reference -0.11158804077709278 summation -0.5009172596902967
-scores conv: source 0.4760579860210419 reference 0.21742118299007415 summation 0.6934791690111161
-/home/miao4/punim0521/ModularMetaReview/results/llama3_pr_space/generations_llama31_70b_chunk.json
-<All keys matched successfully>
-<All keys matched successfully>
-scores zs: source -0.5053256225585938 reference -0.15018831879752026 summation -0.6555139413561141
-scores conv: source 0.4259821903705597 reference 0.21858086824417114 summation 0.6445630586147308
-/home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_space/generations_gpt_4o_chunk.json
-<All keys matched successfully>
-<All keys matched successfully>
-scores zs: source -0.5190530497233072 reference -0.22648826126825242 summation -0.7455413109915596
-scores conv: source 0.4321033275127411 reference 0.21705262303352357 summation 0.6491559505462647
-/home/miao4/punim0521/ModularMetaReview/results/llama3_pr_space/generations_llama31_70b_decomposed.json
-<All keys matched successfully>
-<All keys matched successfully>
-scores zs: source -0.4673147536769058 reference -0.04186687850952149 summation -0.5091816321864273
-scores conv: source 0.5610179150104523 reference 0.22547196745872497 summation 0.7864898824691773
-/home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_space/generations_gpt_4o_decomposed.json
-<All keys matched successfully>
-<All keys matched successfully>
-scores zs: source -0.6256676483154296 reference -0.13399854437097325 summation -0.7596661926864029
-scores conv: source 0.5448304033279419 reference 0.22108471691608428 summation 0.7659151202440262
-/home/miao4/punim0521/ModularMetaReview/results/hiro_space/hiro_extractive.json
-<All keys matched successfully>
-<All keys matched successfully>
-scores zs: source -0.22549303799583797 reference 0.01952563315801316 summation -0.20596740483782483
-scores conv: source 0.7612553012371063 reference 0.29844637811183927 summation 1.0597016793489455
-/home/miao4/punim0521/ModularMetaReview/results/hiro_space/hiro_oneshot_llama7b_1.json
-<All keys matched successfully>
-<All keys matched successfully>
-scores zs: source -0.31513649865352744 reference -0.00030385689508346305 summation -0.3154403555486109
-scores conv: source 0.48515247702598574 reference 0.22264680325984954 summation 0.7077992802858353
-/home/miao4/punim0521/ModularMetaReview/results/hiro_space/hiro_oneshot_llama7b_2.json
-<All keys matched successfully>
-<All keys matched successfully>
-scores zs: source -0.3212566223144531 reference -0.03751590928577242 summation -0.35877253160022554
-scores conv: source 0.5121294105052948 reference 0.23591599583625794 summation 0.7480454063415527
-/home/miao4/punim0521/ModularMetaReview/results/hiro_space/hiro_oneshot_llama7b_3.json
-<All keys matched successfully>
-<All keys matched successfully>
-scores zs: source -0.38820037841796873 reference -0.02111704263233003 summation -0.4093174210502988
-scores conv: source 0.5045200645923614 reference 0.2279694837331772 summation 0.7324895483255386
-amasum_shoes
-human reference
-<All keys matched successfully>
-/data/projects/punim0478/miao4/anaconda/envs/summac/lib/python3.9/site-packages/summac/model_summac.py:298: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /opt/conda/conda-bld/pytorch_1670525539683/work/torch/csrc/utils/tensor_new.cpp:230.)
-  histograms = torch.FloatTensor(histograms).to(self.device)
-scores zs: source -0.5923845621744792
-scores conv: source 0.5808087861537934
+reference self scores zs: 0.8391646989186604 scores conv: 0.8489127659797668
 /home/miao4/punim0521/ModularMetaReview/modular_llama3/shoes/amasum_shoes_generation_result_llama31_70b.json
 <All keys matched successfully>
+50 50
+source aspect scores zs: -0.5012738981095572 scores conv: 0.5089393573999405
 <All keys matched successfully>
-scores zs: source -0.3962039672003852 reference -0.0062343118758428654 summation -0.4024382790762281
-scores conv: source 0.48882894575595853 reference 0.21189797729253768 summation 0.7007269230484963
+source scores zs: -0.4252576201908171 scores conv: 0.47975390911102295
+<All keys matched successfully>
+50 50
+reference aspect scores zs: -0.025761812027054604 scores conv: 0.21112639874219893
+<All keys matched successfully>
+reference scores zs: 0.0024119447072347006 scores conv: 0.2130709147453308
+<All keys matched successfully>
+reference self scores zs: 0.8391646989186604 scores conv: 0.8489127659797668
 /home/miao4/punim0521/ModularMetaReview/results/llama3_pr_amasum_shoes/generations_llama31_70b_naive.json
 <All keys matched successfully>
+50 50
+source aspect scores zs: -0.4252576201908171 scores conv: 0.47975390911102295
 <All keys matched successfully>
-scores zs: source -0.43510312616257435 reference 0.02347846546627226 summation -0.4116246606963021
-scores conv: source 0.455585018992424 reference 0.2082180231809616 summation 0.6638030421733856
+source scores zs: -0.43510312616257435 scores conv: 0.455585018992424
+<All keys matched successfully>
+50 50
+reference aspect scores zs: 0.02347846546627226 scores conv: 0.2082180231809616
+<All keys matched successfully>
+reference scores zs: 0.03251278872716995 scores conv: 0.21323548197746278
+<All keys matched successfully>
+reference self scores zs: 0.8391646989186604 scores conv: 0.8489127659797668
 /home/miao4/punim0521/ModularMetaReview/results/llama3_pr_amasum_shoes/generations_llama31_70b_logic.json
 <All keys matched successfully>
+50 50
+source aspect scores zs: -0.43510312616257435 scores conv: 0.455585018992424
 <All keys matched successfully>
-scores zs: source -0.39832007953733983 reference 0.000650094153389098 summation -0.3976699853839507
-scores conv: source 0.4430005460977554 reference 0.20920636087656022 summation 0.6522069069743156
+source scores zs: -0.39832007953733983 scores conv: 0.4430005460977554
+<All keys matched successfully>
+50 50
+reference aspect scores zs: 0.000650094153389098 scores conv: 0.20920636087656022
+<All keys matched successfully>
+reference scores zs: 0.038204112027077 scores conv: 0.2142198845744133
+<All keys matched successfully>
+reference self scores zs: 0.8391646989186604 scores conv: 0.8489127659797668
 /home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_amasum_shoes/generations_gpt_4o_naive.json
 <All keys matched successfully>
+50 50
+source aspect scores zs: -0.39832007953733983 scores conv: 0.4430005460977554
 <All keys matched successfully>
-scores zs: source -0.4953142685663132 reference -0.07678355807349796 summation -0.5720978266398111
-scores conv: source 0.47858122408390047 reference 0.20984603673219682 summation 0.6884272608160973
+source scores zs: -0.4953142685663132 scores conv: 0.47858122408390047
+<All keys matched successfully>
+50 50
+reference aspect scores zs: -0.07678355807349796 scores conv: 0.20984603673219682
+<All keys matched successfully>
+reference scores zs: -0.03701503653753371 scores conv: 0.21371310472488403
+<All keys matched successfully>
+reference self scores zs: 0.8391646989186604 scores conv: 0.8489127659797668
 /home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_amasum_shoes/generations_gpt_4o_logic.json
 <All keys matched successfully>
+50 50
+source aspect scores zs: -0.4953142685663132 scores conv: 0.47858122408390047
 <All keys matched successfully>
-scores zs: source -0.40760258500839525 reference -0.03779548268343081 summation -0.44539806769182605
-scores conv: source 0.5254678392410278 reference 0.2083870843052864 summation 0.7338549235463142
+source scores zs: -0.40760258500839525 scores conv: 0.5254678392410278
+<All keys matched successfully>
+50 50
+reference aspect scores zs: -0.03779548268343081 scores conv: 0.2083870843052864
+<All keys matched successfully>
+reference scores zs: 0.0035161610629862988 scores conv: 0.21337024629116058
+<All keys matched successfully>
+reference self scores zs: 0.8391646989186604 scores conv: 0.8489127659797668
 /home/miao4/punim0521/ModularMetaReview/results/llama31_8b_amasum_shoes/generated_summaries.json
 <All keys matched successfully>
+43 43
+source aspect scores zs: -0.40760258500839525 scores conv: 0.5254678392410278
 <All keys matched successfully>
-scores zs: source -0.33990376662317495 reference 0.039063110721000084 summation -0.30084065590217485
-scores conv: source 0.5090577188134193 reference 0.2129126951098442 summation 0.7219704139232636
+source scores zs: -0.33990376662317495 scores conv: 0.5090577188134193
+<All keys matched successfully>
+41 41
+reference aspect scores zs: 0.04763793990365864 scores conv: 0.21572330048898372                                                                                                                                                                                                                                                                                  [125/1155]
+<All keys matched successfully>
+reference scores zs: -0.04179947295046988 scores conv: 0.2258454269170761
+<All keys matched successfully>
+reference self scores zs: 0.8250307280828082 scores conv: 0.8673865306377411
 /home/miao4/punim0521/ModularMetaReview/results/led_large_amasum_shoes/generations_led_large.json
 <All keys matched successfully>
+50 50
+source aspect scores zs: -0.33990376662317495 scores conv: 0.5090577188134193
 <All keys matched successfully>
-scores zs: source -0.5837590201241629 reference 0.021012056714012503 summation -0.5627469634101504
-scores conv: source 0.5171471560001373 reference 0.21045663267374037 summation 0.7276037886738776
+source scores zs: -0.5837590201241629 scores conv: 0.5171471560001373
+<All keys matched successfully>
+49 49
+reference aspect scores zs: 0.021440874197971947 scores conv: 0.2106678123985018
+<All keys matched successfully>
+reference scores zs: 0.06636069624764578 scores conv: 0.2175140157341957
+<All keys matched successfully>
+reference self scores zs: 0.8391646989186604 scores conv: 0.8489127659797668
 /home/miao4/punim0521/ModularMetaReview/results/llama3_pr_amasum_shoes/generations_llama31_70b_chunk.json
 <All keys matched successfully>
+50 50
+source aspect scores zs: -0.5837590201241629 scores conv: 0.5171471560001373
 <All keys matched successfully>
-scores zs: source -0.4824559911092123 reference -0.05557828648885091 summation -0.5380342775980632
-scores conv: source 0.4897551077604294 reference 0.2102626383304596 summation 0.700017746090889
+source scores zs: -0.4824559911092123 scores conv: 0.4897551077604294
+<All keys matched successfully>
+50 50
+reference aspect scores zs: -0.05557828648885091 scores conv: 0.2102626383304596
+<All keys matched successfully>
+reference scores zs: 0.004267429669698081 scores conv: 0.21358373790979385
+<All keys matched successfully>
+reference self scores zs: 0.8391646989186604 scores conv: 0.8489127659797668
 /home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_amasum_shoes/generations_gpt_4o_chunk.json
 <All keys matched successfully>
+50 50
+source scores zs: -0.4824559911092123 scores conv: 0.4897551077604294
 <All keys matched successfully>
-scores zs: source -0.5042216389973958 reference -0.007075913111368815 summation -0.5112975521087646
-scores conv: source 0.4964037972688675 reference 0.21034399181604385 summation 0.7067477890849114
+50 50
+reference aspect scores zs: -0.05557828648885091 scores conv: 0.2102626383304596
+<All keys matched successfully>
+reference scores zs: 0.004267429669698081 scores conv: 0.21358373790979385
+<All keys matched successfully>
+reference self scores zs: 0.8391646989186604 scores conv: 0.8489127659797668
+/home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_amasum_shoes/generations_gpt_4o_chunk.json
+<All keys matched successfully>
+50 50
+source aspect scores zs: -0.4824559911092123 scores conv: 0.4897551077604294
+<All keys matched successfully>
+source scores zs: -0.5042216389973958 scores conv: 0.4964037972688675
+<All keys matched successfully>
+50 50
+reference aspect scores zs: -0.007075913111368815 scores conv: 0.21034399181604385
+<All keys matched successfully>
+reference scores zs: 0.013490617388770696 scores conv: 0.2162459224462509
+<All keys matched successfully>
+reference self scores zs: 0.8391646989186604 scores conv: 0.8489127659797668
 /home/miao4/punim0521/ModularMetaReview/results/llama3_pr_amasum_shoes/generations_llama31_70b_decomposed.json
 <All keys matched successfully>
+23 23
+source aspect scores zs: -0.5042216389973958 scores conv: 0.4964037972688675
 <All keys matched successfully>
-scores zs: source -0.6017566144538649 reference 0.03269862220400856 summation -0.5690579922498563
-scores conv: source 0.5525600326061249 reference 0.20537657141685486 summation 0.7579366040229797
-/home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_amasum_shoes/generations_gpt_4o_decomposed.json
+source scores zs: -0.6017566144538649 scores conv: 0.5525600326061249
 <All keys matched successfully>
+22 22
+reference aspect scores zs: 0.07431505046365582 scores conv: 0.21208097447048535
 <All keys matched successfully>
-scores zs: source -0.53978490847633 reference -0.040101916676475884 summation -0.5798868251528059
-scores conv: source 0.5242872792482376 reference 0.21053814351558686 summation 0.7348254227638245
+reference scores zs: -0.18577278581429355 scores conv: 0.22145410537719726
+<All keys matched successfully>
+reference self scores zs: 0.8391646989186604 scores conv: 0.8489127659797668
+me/miao4/punim0521/ModularMetaReview/results/gpt4_pr_amasum_shoes/generations_gpt_4o_decomposed.json
+<All keys matched successfully>
+44 44
+source aspect scores zs: -0.6017566144538649 scores conv: 0.5525600326061249
+<All keys matched successfully>
+source scores zs: -0.53978490847633 scores conv: 0.5242872792482376
+<All keys matched successfully>
+43 43
+reference aspect scores zs: -0.046630135670320795 scores conv: 0.21223593936410062
+<All keys matched successfully>
+reference scores zs: -0.11599370615822929 scores conv: 0.21247748613357545
+<All keys matched successfully>
+reference self scores zs: 0.8391646989186604 scores conv: 0.8489127659797668
 /home/miao4/punim0521/ModularMetaReview/results/hiro_amasum_shoes/hiro_extractive.json
 <All keys matched successfully>
+50 50
+source aspect scores zs: -0.53978490847633 scores conv: 0.5242872792482376
 <All keys matched successfully>
-scores zs: source -0.2554723750523159 reference -0.21134110244115192 summation -0.4668134774934678
-scores conv: source 0.8968978464603424 reference 0.2093440356850624 summation 1.1062418821454048
+source scores zs: -0.2554723750523159 scores conv: 0.8968978464603424
+<All keys matched successfully>
+48 48
+reference aspect scores zs: -0.22014698170953328 scores conv: 0.20972883608192205
+<All keys matched successfully>
+reference scores zs: -0.1350341956672214 scores conv: 0.21834884375333785
+<All keys matched successfully>
+reference self scores zs: 0.8391646989186604 scores conv: 0.8489127659797668
 /home/miao4/punim0521/ModularMetaReview/results/hiro_amasum_shoes/hiro_piecewise_llama7b_1.json
 <All keys matched successfully>
+50 50
+source aspect scores zs: -0.2554723750523159 scores conv: 0.8968978464603424
 <All keys matched successfully>
-scores zs: source -0.44935223841457045 reference -0.03396141617620616 summation -0.48331365459077663
-scores conv: source 0.7420757240056992 reference 0.21917139559984208 summation 0.9612471196055413
+source scores zs: -0.44935223841457045 scores conv: 0.7420757240056992
+<All keys matched successfully>
+50 50
+reference aspect scores zs: -0.03396141617620616 scores conv: 0.21917139559984208
+<All keys matched successfully>
+reference scores zs: -0.020894669006941556 scores conv: 0.23063757330179213
+<All keys matched successfully>
+reference self scores zs: 0.8391646989186604 scores conv: 0.8489127659797668
 /home/miao4/punim0521/ModularMetaReview/results/hiro_amasum_shoes/hiro_piecewise_llama7b_2.json
 <All keys matched successfully>
+50 50
+source aspect scores zs: -0.44935223841457045 scores conv: 0.7420757240056992
 <All keys matched successfully>
-scores zs: source -0.4622073167828132 reference -0.03166568476881987 summation -0.49387300155163305
-scores conv: source 0.7395586323738098 reference 0.21864913105964662 summation 0.9582077634334565
+source scores zs: -0.4622073167828132 scores conv: 0.7395586323738098
+<All keys matched successfully>
+49 49
+reference aspect scores zs: -0.032311923233489664 scores conv: 0.21902750462901835
+<All keys matched successfully>
+reference scores zs: -0.014738457071994497 scores conv: 0.22555421322584152
+<All keys matched successfully>
+reference self scores zs: 0.8391646989186604 scores conv: 0.8489127659797668
 /home/miao4/punim0521/ModularMetaReview/results/hiro_amasum_shoes/hiro_piecewise_llama7b_3.json
 <All keys matched successfully>
+50 50
+source aspect scores zs: -0.4622073167828132 scores conv: 0.7395586323738098
 <All keys matched successfully>
-scores zs: source -0.46324051045545 reference -0.05839307929331805 summation -0.5216335897487681
-scores conv: source 0.7226216632127762 reference 0.2164400625228882 summation 0.9390617257356644
+source scores zs: -0.46324051045545 scores conv: 0.7226216632127762
+<All keys matched successfully>
+49 49
+reference aspect scores zs: -0.05958477478910004 scores conv: 0.2167733530608975
+<All keys matched successfully>
+reference scores zs: 0.014442334115325558 scores conv: 0.2265496888756752
+<All keys matched successfully>
+reference self scores zs: 0.8391646989186604 scores conv: 0.8489127659797668
+/home/miao4/punim0521/ModularMetaReview/modular_llama3_8b/shoes/amasum_shoes_generation_result_llama31_8b.json
+<All keys matched successfully>
+50 50
+source aspect scores zs: -0.46324051045545 scores conv: 0.7226216632127762                                                                                                                                                                                                                                                                                          [0/1155]
+<All keys matched successfully>
+source scores zs: -0.43506071980794275 scores conv: 0.5263043141365051
+<All keys matched successfully>
+50 50
+reference aspect scores zs: 0.005464044154636445 scores conv: 0.21086672008037566
+<All keys matched successfully>
+reference scores zs: 0.0405219216573806 scores conv: 0.21596987426280975
+<All keys matched successfully>
+reference self scores zs: 0.8391646989186604 scores conv: 0.8489127659797668
+/home/miao4/punim0521/ModularMetaReview/results/llama3_8b_pr_amasum_shoes/generations_llama31_8b_chunk.json
+<All keys matched successfully>
+50 50
+source aspect scores zs: -0.43506071980794275 scores conv: 0.5263043141365051
+<All keys matched successfully>
+source scores zs: -0.44531023261660624 scores conv: 0.4885671353340149
+<All keys matched successfully>
+50 50
+reference aspect scores zs: 0.013056525230407717 scores conv: 0.2085817524790764
+<All keys matched successfully>
+reference scores zs: 0.0399361359278361 scores conv: 0.2157953581213951
+<All keys matched successfully>
+reference self scores zs: 0.8391646989186604 scores conv: 0.8489127659797668
+/home/miao4/punim0521/ModularMetaReview/results/llama3_8b_pr_amasum_shoes/generations_llama31_8b_decomposed.json
+<All keys matched successfully>
+33 33
+source aspect scores zs: -0.44531023261660624 scores conv: 0.4885671353340149
+<All keys matched successfully>
+source scores zs: -0.5290907316214442 scores conv: 0.6261868393421173
+<All keys matched successfully>
+31 31
+reference aspect scores zs: -0.19548718027133424 scores conv: 0.21022899496939876
+<All keys matched successfully>
+reference scores zs: -0.22677587949440242 scores conv: 0.21266581296920775
+<All keys matched successfully>
+reference self scores zs: 0.8391646989186604 scores conv: 0.8489127659797668
+
+
+peermeta
+/home/miao4/punim0521/ModularMetaReview/modular_gpt4/papers/peermeta_generation_result_gpt_4o.json
+<All keys matched successfully>
+100 100
+source aspect scores zs: -0.37081851522120707 scores conv: 0.4632634360982914
+<All keys matched successfully>
+source scores zs: -0.35012569503178675 scores conv: 0.41961263805627824
+<All keys matched successfully>
+99 99
+reference aspect scores zs: -0.20684142575856085 scores conv: 0.21529878314697382
+<All keys matched successfully>
+reference scores zs: -0.21100174494773621 scores conv: 0.21245339155197143
+<All keys matched successfully>
+reference self scores zs: 0.7430475005681795 scores conv: 0.8712067198753357
+/home/miao4/punim0521/ModularMetaReview/modular_llama3/papers/peermeta_generation_result_llama31_70b.json
+<All keys matched successfully>
+100 100
+source aspect scores zs: -0.35012569503178675 scores conv: 0.41961263805627824
+<All keys matched successfully>
+source scores zs: -0.3210858965374175 scores conv: 0.41633794248104095
+<All keys matched successfully>
+99 99
+reference aspect scores zs: -0.1568754618638873 scores conv: 0.22204921673042605
+<All keys matched successfully>
+reference scores zs: -0.1685389186087109 scores conv: 0.21431510254740715
+<All keys matched successfully>
+reference self scores zs: 0.7430475005681795 scores conv: 0.8712067198753357
+/home/miao4/punim0521/ModularMetaReview/results/llama3_pr_peermeta/generations_llama31_70b_naive.json
+<All keys matched successfully>
+100 100
+source aspect scores zs: -0.3210858965374175 scores conv: 0.41633794248104095
+<All keys matched successfully>
+source scores zs: -0.23495908809981134 scores conv: 0.5135137304663658
+<All keys matched successfully>
+99 99
+reference aspect scores zs: -0.1739040578162454 scores conv: 0.21331308149930203
+<All keys matched successfully>
+reference scores zs: -0.17194419771114638 scores conv: 0.21461207449436187
+<All keys matched successfully>
+reference self scores zs: 0.7430475005681795 scores conv: 0.8712067198753357
+/home/miao4/punim0521/ModularMetaReview/results/llama3_pr_peermeta/generations_llama31_70b_logic.json
+<All keys matched successfully>
+100 100
+source aspect scores zs: -0.23495908809981134 scores conv: 0.5135137304663658
+<All keys matched successfully>
+source scores zs: -0.28982855026521565 scores conv: 0.48488322019577024
+<All keys matched successfully>
+99 99
+reference aspect scores zs: -0.1756345736594958 scores conv: 0.21766448321968618
+<All keys matched successfully>
+reference scores zs: -0.18343585455263178 scores conv: 0.2157898238301277
+<All keys matched successfully>
+reference self scores zs: 0.7430475005681795 scores conv: 0.8712067198753357
+/home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_peermeta/generations_gpt_4o_naive.json
+<All keys matched successfully>
+100 100
+source aspect scores zs: -0.28982855026521565 scores conv: 0.48488322019577024
+<All keys matched successfully>
+source scores zs: -0.24542938317077595 scores conv: 0.5298643204569816
+<All keys matched successfully>
+99 99
+reference aspect scores zs: -0.16339051755678688 scores conv: 0.21843698891726407
+<All keys matched successfully>
+reference scores zs: -0.17834903359755164 scores conv: 0.2177881446480751
+<All keys matched successfully>
+reference self scores zs: 0.7430475005681795 scores conv: 0.8712067198753357
+/home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_peermeta/generations_gpt_4o_logic.json
+<All keys matched successfully>
+100 100
+source aspect scores zs: -0.24542938317077595 scores conv: 0.5298643204569816
+<All keys matched successfully>
+source scores zs: -0.2351876354957544 scores conv: 0.5960042524337769
+<All keys matched successfully>
+99 99
+reference aspect scores zs: -0.17835929327921193 scores conv: 0.2192701968279752
+<All keys matched successfully>
+reference scores zs: -0.19900138926327773 scores conv: 0.21982297345995902
+<All keys matched successfully>
+reference self scores zs: 0.7430475005681795 scores conv: 0.8712067198753357
+/home/miao4/punim0521/ModularMetaReview/results/llama31_8b_peermeta/generated_summaries.json
+<All keys matched successfully>
+99 99
+source aspect scores zs: -0.2351876354957544 scores conv: 0.5960042524337769
+<All keys matched successfully>
+source scores zs: -0.04938655873821347 scores conv: 0.738864925801754
+<All keys matched successfully>
+99 99
+reference aspect scores zs: -0.2160679585250689 scores conv: 0.22506593604280492
+<All keys matched successfully>
+reference scores zs: -0.20023713927480927 scores conv: 0.23463447734713555
+<All keys matched successfully>
+reference self scores zs: 0.7308387767375621 scores conv: 0.8694117337465286
+/home/miao4/punim0521/ModularMetaReview/results/led_large_peermeta/generations_led_large.json
+<All keys matched successfully>
+100 100
+source aspect scores zs: -0.04938655873821347 scores conv: 0.738864925801754
+<All keys matched successfully>
+source scores zs: -0.1267776611031511 scores conv: 0.685291585624218
+<All keys matched successfully>
+99 99
+reference aspect scores zs: -0.21910638025718904 scores conv: 0.2279506501826373
+<All keys matched successfully>
+reference scores zs: -0.1930770043352095 scores conv: 0.22320920705795289
+<All keys matched successfully>
+reference self scores zs: 0.7430475005681795 scores conv: 0.8712067198753357
+/home/miao4/punim0521/ModularMetaReview/results/llama3_pr_peermeta/generations_llama31_70b_chunk.json
+<All keys matched successfully>
+100 100
+source aspect scores zs: -0.1267776611031511 scores conv: 0.685291585624218
+<All keys matched successfully>
+source scores zs: -0.3321272716522216 scores conv: 0.4727819207310677
+<All keys matched successfully>
+99 99
+reference aspect scores zs: -0.15216336322448976 scores conv: 0.21309854150420487
+<All keys matched successfully>
+reference scores zs: -0.18620089157422384 scores conv: 0.21474288076162337
+<All keys matched successfully>
+reference self scores zs: 0.7430475005681795 scores conv: 0.8712067198753357
+/home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_peermeta/generations_gpt_4o_chunk.json
+<All keys matched successfully>
+100 100
+source aspect scores zs: -0.3321272716522216 scores conv: 0.4727819207310677
+<All keys matched successfully>
+source scores zs: -0.27824750061640663 scores conv: 0.4763858509063721
+<All keys matched successfully>
+99 99
+reference aspect scores zs: -0.18106951580036634 scores conv: 0.21398051128242956
+<All keys matched successfully>
+reference scores zs: -0.19253542209806895 scores conv: 0.21362506836652756
+<All keys matched successfully>
+reference self scores zs: 0.7430475005681795 scores conv: 0.8712067198753357
+/home/miao4/punim0521/ModularMetaReview/results/llama3_pr_peermeta/generations_llama31_70b_consolidation.json
+<All keys matched successfully>
+100 100
+source aspect scores zs: -0.27824750061640663 scores conv: 0.4763858509063721
+<All keys matched successfully>
+source scores zs: -0.27054966830379995 scores conv: 0.4511782628297806
+<All keys matched successfully>
+99 99
+reference aspect scores zs: -0.18013075170955908 scores conv: 0.21704720788531834
+<All keys matched successfully>
+reference scores zs: -0.16785824723429232 scores conv: 0.21505625993013383
+<All keys matched successfully>
+reference self scores zs: 0.7430475005681795 scores conv: 0.8712067198753357
+/home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_peermeta/generations_gpt_4o_consolidation.json
+<All keys matched successfully>
+100 100
+source aspect scores zs: -0.27054966830379995 scores conv: 0.4511782628297806
+<All keys matched successfully>
+source scores zs: -0.32146338488154713 scores conv: 0.5492164182662964
+<All keys matched successfully>
+99 99
+reference aspect scores zs: -0.1732423308308818 scores conv: 0.2195155816246765
+<All keys matched successfully>
+reference scores zs: -0.22270279164244347 scores conv: 0.21758609712123872
+<All keys matched successfully>
+reference self scores zs: 0.7430475005681795 scores conv: 0.8712067198753357
+/home/miao4/punim0521/ModularMetaReview/results/llama3_pr_peermeta/generations_llama31_70b_decomposed.json
+<All keys matched successfully>
+78 78
+source aspect scores zs: -0.32146338488154713 scores conv: 0.5492164182662964
+<All keys matched successfully>
+source scores zs: -0.4777801232204041 scores conv: 0.48748825043439864
+<All keys matched successfully>
+75 75
+reference aspect scores zs: -0.20319145915025472 scores conv: 0.2092761904001236
+<All keys matched successfully>
+reference scores zs: -0.34479186056006667 scores conv: 0.2180593803524971
+<All keys matched successfully>
+reference self scores zs: 0.7430475005681795 scores conv: 0.8712067198753357
+/home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_peermeta/generations_gpt_4o_decomposed.json
+<All keys matched successfully>
+94 94
+source aspect scores zs: -0.4777801232204041 scores conv: 0.48748825043439864
+<All keys matched successfully>
+source scores zs: -0.40678059688309387 scores conv: 0.4858792114257813
+<All keys matched successfully>
+90 90
+reference aspect scores zs: -0.18475021424587393 scores conv: 0.21173267083035574
+<All keys matched successfully>
+reference scores zs: -0.24312203336951607 scores conv: 0.21554980129003526
+<All keys matched successfully>
+reference self scores zs: 0.7430475005681795 scores conv: 0.8712067198753357
+/home/miao4/punim0521/ModularMetaReview/modular_llama3_8b/papers/peermeta_generation_result_llama31_8b.json
+<All keys matched successfully>
+100 100
+source aspect scores zs: -0.40678059688309387 scores conv: 0.4858792114257813
+<All keys matched successfully>
+source scores zs: -0.3174315627415975 scores conv: 0.43809313505887987
+<All keys matched successfully>
+99 99
+reference aspect scores zs: -0.15289608889717152 scores conv: 0.21599308032580097
+<All keys matched successfully>
+reference scores zs: -0.16254620520273846 scores conv: 0.21469840914011
+<All keys matched successfully>
+reference self scores zs: 0.7430475005681795 scores conv: 0.8712067198753357
+/home/miao4/punim0521/ModularMetaReview/results/llama3_8b_pr_peermeta/generations_llama31_8b_chunk.json
+<All keys matched successfully>
+100 100
+source aspect scores zs: -0.3174315627415975 scores conv: 0.43809313505887987
+<All keys matched successfully>
+source scores zs: -0.2751862331874787 scores conv: 0.5068757686018944
+<All keys matched successfully>
+98 98
+reference aspect scores zs: -0.1712378023973668 scores conv: 0.21121099332765658
+<All keys matched successfully>
+reference scores zs: -0.18342848911739526 scores conv: 0.21513847559690474
+<All keys matched successfully>
+reference self scores zs: 0.7430475005681795 scores conv: 0.8712067198753357
+/home/miao4/punim0521/ModularMetaReview/results/llama3_8b_pr_peermeta/generations_llama31_8b_decomposed.json
+<All keys matched successfully>
+70 70
+source aspect scores zs: -0.2751862331874787 scores conv: 0.5068757686018944
+<All keys matched successfully>
+source scores zs: -0.443656837104146 scores conv: 0.5666253578662872
+<All keys matched successfully>
+66 66
+reference aspect scores zs: -0.21232804848172893 scores conv: 0.21297650061773532
+<All keys matched successfully>
+reference scores zs: -0.28275752183627567 scores conv: 0.22640605464577676
+<All keys matched successfully>
+reference self scores zs: 0.7430475005681795 scores conv: 0.8712067198753357
+
+
+space
+/home/miao4/punim0521/ModularMetaReview/modular_gpt4/hotels/space_generation_result_gpt_4o.json
+<All keys matched successfully>
+25 25
+source aspect scores zs: -0.4379398944078586 scores conv: 0.6325964796543121
+<All keys matched successfully>
+source scores zs: -0.5149578610374814 scores conv: 0.45574241638183594
+<All keys matched successfully>
+25 25
+reference aspect scores zs: -0.17825545224276454 scores conv: 0.22525375962257385
+<All keys matched successfully>
+reference scores zs: -0.12575656400408064 scores conv: 0.21066302418708802
+<All keys matched successfully>
+reference self scores zs: 0.846270617556077 scores conv: 0.8808993172645568
+/home/miao4/punim0521/ModularMetaReview/modular_llama3/hotels/space_generation_result_llama31_70b.json
+<All keys matched successfully>
+25 25
+source aspect scores zs: -0.5149578610374814 scores conv: 0.45574241638183594
+<All keys matched successfully>
+source scores zs: -0.43164208984374997 scores conv: 0.4404802513122559
+<All keys matched successfully>
+25 25
+reference aspect scores zs: -0.1562479061853318 scores conv: 0.22733427762985228
+<All keys matched successfully>
+reference scores zs: -0.09628537732078916 scores conv: 0.21099405586719513
+<All keys matched successfully>
+reference self scores zs: 0.846270617556077 scores conv: 0.8808993172645568
+/home/miao4/punim0521/ModularMetaReview/results/llama3_pr_space/generations_llama31_70b_naive.json
+<All keys matched successfully>
+25 25
+source aspect scores zs: -0.43164208984374997 scores conv: 0.4404802513122559
+<All keys matched successfully>
+source scores zs: -0.43760101972307475 scores conv: 0.44195112347602844
+<All keys matched successfully>
+25 25
+reference aspect scores zs: -0.03201857828715491 scores conv: 0.23589353859424592
+<All keys matched successfully>
+reference scores zs: -0.04221464765639532 scores conv: 0.21862689197063445
+<All keys matched successfully>
+reference self scores zs: 0.846270617556077 scores conv: 0.8808993172645568
+/home/miao4/punim0521/ModularMetaReview/results/llama3_pr_space/generations_llama31_70b_logic.json
+<All keys matched successfully>
+25 25
+source aspect scores zs: -0.43760101972307475 scores conv: 0.44195112347602844
+<All keys matched successfully>
+source scores zs: -0.4255011585815051 scores conv: 0.4257479798793793
+<All keys matched successfully>
+25 25
+reference aspect scores zs: -0.04281354388541328 scores conv: 0.21620118379592895
+<All keys matched successfully>
+reference scores zs: -0.048495886154140716 scores conv: 0.21029672861099244
+<All keys matched successfully>
+reference self scores zs: 0.846270617556077 scores conv: 0.8808993172645568
+/home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_space/generations_gpt_4o_naive.json
+<All keys matched successfully>
+25 25
+source aspect scores zs: -0.4255011585815051 scores conv: 0.4257479798793793
+<All keys matched successfully>
+source scores zs: -0.4964676089486347 scores conv: 0.43951884627342225
+<All keys matched successfully>
+25 25
+reference aspect scores zs: -0.22910873328314885 scores conv: 0.21876684606075286
+<All keys matched successfully>
+reference scores zs: -0.12451187059201548 scores conv: 0.2092135626077652
+<All keys matched successfully>
+reference self scores zs: 0.846270617556077 scores conv: 0.8808993172645568
+/home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_space/generations_gpt_4o_logic.json
+<All keys matched successfully>
+25 25
+source aspect scores zs: -0.4964676089486347 scores conv: 0.43951884627342225
+<All keys matched successfully>
+source scores zs: -0.3893292189132039 scores conv: 0.4760579860210419
+<All keys matched successfully>
+25 25
+reference aspect scores zs: -0.11158804077709278 scores conv: 0.21742118299007415
+<All keys matched successfully>
+reference scores zs: -0.124370709125117 scores conv: 0.2134292459487915
+<All keys matched successfully>
+reference self scores zs: 0.846270617556077 scores conv: 0.8808993172645568
+/home/miao4/punim0521/ModularMetaReview/results/llama3_pr_space/generations_llama31_70b_chunk.json
+<All keys matched successfully>
+25 25
+source aspect scores zs: -0.3893292189132039 scores conv: 0.4760579860210419
+<All keys matched successfully>
+source scores zs: -0.5053256225585938 scores conv: 0.4259821903705597
+<All keys matched successfully>
+25 25
+reference aspect scores zs: -0.15018831879752026 scores conv: 0.21858086824417114
+<All keys matched successfully>
+reference scores zs: -0.0799909299214681 scores conv: 0.2091533797979355
+<All keys matched successfully>
+reference self scores zs: 0.846270617556077 scores conv: 0.8808993172645568
+/home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_space/generations_gpt_4o_chunk.json
+<All keys matched successfully>
+25 25
+source aspect scores zs: -0.5053256225585938 scores conv: 0.4259821903705597
+<All keys matched successfully>
+source scores zs: -0.5190530497233072 scores conv: 0.4321033275127411
+<All keys matched successfully>
+25 25
+reference aspect scores zs: -0.22648826126825242 scores conv: 0.21705262303352357
+<All keys matched successfully>
+reference scores zs: -0.12182024256388348 scores conv: 0.20880579948425293
+<All keys matched successfully>
+reference self scores zs: 0.846270617556077 scores conv: 0.8808993172645568
+/home/miao4/punim0521/ModularMetaReview/results/llama3_pr_space/generations_llama31_70b_decomposed.json
+<All keys matched successfully>
+19 19
+source aspect scores zs: -0.5190530497233072 scores conv: 0.4321033275127411
+<All keys matched successfully>
+source scores zs: -0.4673147536769058 scores conv: 0.5610179150104523
+<All keys matched successfully>
+19 19
+reference aspect scores zs: -0.05508799803884407 scores conv: 0.23348138050029152
+<All keys matched successfully>
+reference scores zs: -0.2368608410575173 scores conv: 0.2144971126317978
+<All keys matched successfully>
+reference self scores zs: 0.846270617556077 scores conv: 0.8808993172645568
+/home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_space/generations_gpt_4o_decomposed.json
+<All keys matched successfully>
+21 21
+source aspect scores zs: -0.4673147536769058 scores conv: 0.5610179150104523
+<All keys matched successfully>
+source scores zs: -0.6256676483154296 scores conv: 0.5448304033279419
+<All keys matched successfully>
+21 21
+reference aspect scores zs: -0.15952207663211104 scores conv: 0.22508012467906588
+<All keys matched successfully>
+reference scores zs: -0.23925731658935548 scores conv: 0.21683403432369233
+<All keys matched successfully>
+reference self scores zs: 0.846270617556077 scores conv: 0.8808993172645568
+/home/miao4/punim0521/ModularMetaReview/results/hiro_space/hiro_extractive.json
+<All keys matched successfully>
+25 25
+source aspect scores zs: -0.6256676483154296 scores conv: 0.5448304033279419
+<All keys matched successfully>
+source scores zs: -0.22549303799583797 scores conv: 0.7612553012371063
+<All keys matched successfully>
+25 25
+reference aspect scores zs: 0.01952563315801316 scores conv: 0.29844637811183927
+<All keys matched successfully>
+reference scores zs: 0.006767909254346589 scores conv: 0.26180994749069214
+<All keys matched successfully>
+reference self scores zs: 0.846270617556077 scores conv: 0.8808993172645568
+/home/miao4/punim0521/ModularMetaReview/results/hiro_space/hiro_oneshot_llama7b_1.json
+<All keys matched successfully>
+25 25
+source aspect scores zs: -0.22549303799583797 scores conv: 0.7612553012371063
+<All keys matched successfully>
+source scores zs: -0.31513649865352744 scores conv: 0.48515247702598574
+<All keys matched successfully>
+25 25
+reference aspect scores zs: -0.00030385689508346305 scores conv: 0.22264680325984954
+<All keys matched successfully>
+reference scores zs: -0.038368970177390355 scores conv: 0.21545201957225799
+<All keys matched successfully>
+reference self scores zs: 0.846270617556077 scores conv: 0.8808993172645568
+/home/miao4/punim0521/ModularMetaReview/results/hiro_space/hiro_oneshot_llama7b_2.json
+<All keys matched successfully>
+25 25
+source scores zs: -0.31513649865352744 scores conv: 0.48515247702598574
+<All keys matched successfully>
+25 25
+reference aspect scores zs: -0.00030385689508346305 scores conv: 0.22264680325984954
+<All keys matched successfully>
+reference scores zs: -0.038368970177390355 scores conv: 0.21545201957225799
+<All keys matched successfully>
+reference self scores zs: 0.846270617556077 scores conv: 0.8808993172645568
+/home/miao4/punim0521/ModularMetaReview/results/hiro_space/hiro_oneshot_llama7b_2.json
+<All keys matched successfully>
+25 25
+source aspect scores zs: -0.31513649865352744 scores conv: 0.48515247702598574
+<All keys matched successfully>
+source scores zs: -0.3212566223144531 scores conv: 0.5121294105052948
+<All keys matched successfully>
+25 25
+reference aspect scores zs: -0.03751590928577242 scores conv: 0.23591599583625794
+<All keys matched successfully>
+reference scores zs: -0.06374646186828613 scores conv: 0.2183163583278656
+<All keys matched successfully>
+reference self scores zs: 0.846270617556077 scores conv: 0.8808993172645568
+/home/miao4/punim0521/ModularMetaReview/results/hiro_space/hiro_oneshot_llama7b_3.json
+<All keys matched successfully>
+25 25
+source aspect scores zs: -0.3212566223144531 scores conv: 0.5121294105052948
+<All keys matched successfully>
+source scores zs: -0.38820037841796873 scores conv: 0.5045200645923614
+<All keys matched successfully>
+25 25
+reference aspect scores zs: -0.02111704263233003 scores conv: 0.2279694837331772
+<All keys matched successfully>
+reference scores zs: -0.02012005488077799 scores conv: 0.21533800005912782
+<All keys matched successfully>
+reference self scores zs: 0.846270617556077 scores conv: 0.8808993172645568
+/home/miao4/punim0521/ModularMetaReview/modular_llama3_8b/hotels/space_generation_result_llama31_8b.json
+<All keys matched successfully>
+25 25
+source aspect scores zs: -0.38820037841796873 scores conv: 0.5045200645923614
+<All keys matched successfully>
+source scores zs: -0.43320832824707023 scores conv: 0.4728368854522705
+<All keys matched successfully>
+25 25
+reference aspect scores zs: -0.132394346751864 scores conv: 0.2222671377658844
+<All keys matched successfully>
+reference scores zs: -0.12510933589935302 scores conv: 0.21063821494579316
+<All keys matched successfully>
+reference self scores zs: 0.846270617556077 scores conv: 0.8808993172645568
+/home/miao4/punim0521/ModularMetaReview/results/llama3_8b_pr_space/generations_llama31_8b_chunk.json
+<All keys matched successfully>
+25 25
+source aspect scores zs: -0.43320832824707023 scores conv: 0.4728368854522705
+<All keys matched successfully>
+source scores zs: -0.47123531595865886 scores conv: 0.45611580967903137
+<All keys matched successfully>
+25 25
+reference aspect scores zs: -0.1738288785761053 scores conv: 0.22685027062892915
+<All keys matched successfully>
+reference scores zs: -0.0829814599355062 scores conv: 0.2110146987438202
+<All keys matched successfully>
+reference self scores zs: 0.846270617556077 scores conv: 0.8808993172645568
+/home/miao4/punim0521/ModularMetaReview/results/llama3_8b_pr_space/generations_llama31_8b_decomposed.json
+<All keys matched successfully>
+20 20
+source aspect scores zs: -0.47123531595865886 scores conv: 0.45611580967903137
+<All keys matched successfully>
+source scores zs: -0.5085202204386394 scores conv: 0.6443596124649048
+<All keys matched successfully>
+20 20
+reference aspect scores zs: -0.18570744500928743 scores conv: 0.21889035701751708
+<All keys matched successfully>
+reference scores zs: -0.3270523288060748 scores conv: 0.22409541726112367
+<All keys matched successfully>
+reference self scores zs: 0.846270617556077 scores conv: 0.8808993172645568

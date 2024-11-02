@@ -1,6 +1,7 @@
 import json
 import numpy as np
 
+
 with open("scientific_reasoning_result_gpt_4o.json") as f:
     samples = json.load(f)
 

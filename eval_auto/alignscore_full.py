@@ -195,6 +195,7 @@ if __name__ == "__main__":
             print(np.mean(score))
         with open(f"{dataset_name}_alignscore_source_aspect_full.json", "w") as f:
             json.dump(scores_source_aspect, f, indent=4)
+        print("scores_source_aspect")
         for generation_name, score in scores_source_aspect.items():
             print(generation_name)
             print(np.mean(score))

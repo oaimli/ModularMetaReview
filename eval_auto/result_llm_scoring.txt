@@ -63,6 +63,8 @@ faithfulness 0.153658
 amasum_shoes
 human reference
 faithfulness 0.3800414
+/home/miao4/punim0521/ModularMetaReview/modular_gpt4/shoes/amasum_shoes_generation_result_gpt_4o.json
+faithfulness 0.82788
 /home/miao4/punim0521/ModularMetaReview/modular_llama3/shoes/amasum_shoes_generation_result_llama31_70b.json
 faithfulness 0.8577799999999999
 /home/miao4/punim0521/ModularMetaReview/results/llama3_pr_amasum_shoes/generations_llama31_70b_naive.json

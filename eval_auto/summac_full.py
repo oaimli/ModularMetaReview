@@ -95,7 +95,7 @@ if __name__ == "__main__":
         scores_source_aspect["human_reference"] = scores_conv_source
         score_zs_source_avg = np.mean(scores_zs_source)
         score_conv_source_avg = np.mean(scores_conv_source)
-        print(len(references_shared), source_texts_shared)
+        print(len(references_shared), len(source_texts_shared))
         print("source aspect", "scores zs:", score_zs_source_avg, "scores conv:", score_conv_source_avg)
 
         # model generations
