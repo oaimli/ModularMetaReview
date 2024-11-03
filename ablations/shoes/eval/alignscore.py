@@ -12,7 +12,7 @@ if __name__ == "__main__":
         info = json.load(f)
 
     # dataset_names = ["space", "peermeta", "amasum_shoes"]
-    dataset_names = ["space"]
+    dataset_names = ["peermeta"]
     for dataset_name in dataset_names:
         scores_source = {}
         scores_reference = {}
@@ -175,19 +175,19 @@ if __name__ == "__main__":
             score_avg = np.mean(scores_align)
             print("reference itself", score_avg)
 
-        with open(f"{dataset_name}_alignscore_reference_full.json", "w") as f:
+        with open(f"{dataset_name}_summac_reference_full.json", "w") as f:
             json.dump(scores_reference, f, indent=4)
         print("scores_reference")
         for generation_name, score in scores_reference.items():
             print(generation_name)
             print(np.mean(score))
-        with open(f"{dataset_name}_alignscore_reference_aspect_full.json", "w") as f:
+        with open(f"{dataset_name}_summac_reference_aspect_full.json", "w") as f:
             json.dump(scores_reference_aspect, f, indent=4)
         print("scores_reference_aspect")
         for generation_name, score in scores_reference_aspect.items():
             print(generation_name)
             print(np.mean(score))
-        with open(f"{dataset_name}_alignscore_source_full.json", "w") as f:
+        with open(f"{dataset_name}_summac_source_full.json", "w") as f:
             json.dump(scores_source, f, indent=4)
         print("scores_source")
         for generation_name, score in scores_source.items():
