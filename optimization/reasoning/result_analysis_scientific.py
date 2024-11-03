@@ -66,7 +66,7 @@ def rouge_corpus(references, candidates, types=None, use_stemmer=True, split_sum
 
 if __name__ == "__main__":
     scorer = AlignScore(model='roberta-large', batch_size=8, device='cuda:0',
-                        ckpt_path='../tmp/AlignScore/AlignScore-large.ckpt',
+                        ckpt_path='../../tmp/AlignScore/AlignScore-large.ckpt',
                         evaluation_mode='nli_sp')
 
     model_names = ["gpt_4o", "llama31_70b", "llama31_8b", "mixtral8x7b_v01"]
