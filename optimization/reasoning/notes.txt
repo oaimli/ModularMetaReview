@@ -1,10 +1,39 @@
-GPT-4 results:
-{'bert_recall': 0.17956775426864624, 'bert_precision': 0.14836837351322174, 'bert_fmeasure': 0.16231705248355865, 'rouge1_fmeasure': 0.26048365640343907, 'rouge2_fmeasure': 0.053411392513826976, 'rougeLsum_fmeasure': 0.20813505226128684, 'score_bart': -4.33004472472451, 'unieval_coherence': 0.9187453128589784, 'unieval_consistency': 0.8392747783381588, 'unieval_fluency': 0.946266332290861, 'unieval_relevance': 0.7682594481274069, 'unieval_overall': 0.8681364679038512}
-scores zs generation -0.1031194513494318 scores conv generation 0.27907282317226584
-scores zs ground truths -0.24052189913662997 scores conv ground truth 0.31158059632236307
+Average ROUGE 0.1740100337261843
+gpt_4o
+AlignScore 0.8147872894240374
+AlignScore in Novelty 0.8988781720399857 4
+AlignScore in Soundness 0.6964162985483805 3
+AlignScore in Clarity 0.9111456473668417 3
+AlignScore in Advancement 0.6236069997772574 5
+AlignScore in Compliance 0.9639191627502441 2
+AlignScore in Overall 0.8922497034072876 5
 
+Average ROUGE 0.1693191860906166
+llama31_70b
+AlignScore 0.8725931740958582
+AlignScore in Novelty 0.9778336882591248 4
+AlignScore in Soundness 0.6497795383135477 3
+AlignScore in Clarity 0.892798642317454 3
+AlignScore in Advancement 0.7718906350433826 5
+AlignScore in Compliance 0.9443106055259705 2
+AlignScore in Overall 0.9819812297821044 5
 
-LLaMA31-70B-Instruct results:
-{'bert_recall': 0.1544521152973175, 'bert_precision': 0.23212116956710815, 'bert_fmeasure': 0.1902368664741516, 'rouge1_fmeasure': 0.25684213059544453, 'rouge2_fmeasure': 0.05693849379353329, 'rougeLsum_fmeasure': 0.19417693388287202, 'score_bart': -4.4339869455857714, 'unieval_coherence': 0.9195012593727835, 'unieval_consistency': 0.9169519416635258, 'unieval_fluency': 0.9553242563949959, 'unieval_relevance': 0.7685308855024625, 'unieval_overall': 0.8900770857334419}
-scores zs generation -0.23713736100630325 scores conv generation 0.24205472455783325
-scores zs ground truths -0.24052189913662997 scores conv ground truth 0.31158059632236307
+Average ROUGE 0.18241981513942038
+llama31_8b
+AlignScore 0.8243527283405208
+AlignScore in Novelty 0.8586562126874924 4
+AlignScore in Soundness 0.7212511996428171 3
+AlignScore in Clarity 0.8052150011062622 3
+AlignScore in Advancement 0.7521396605763584 5
+AlignScore in Compliance 0.9903403520584106 2
+AlignScore in Overall 0.8760715126991272 5
+
+Average ROUGE 0.19510344293546225
+mixtral8x7b_v01
+AlignScore 0.8469022160226648
+AlignScore in Novelty 0.8682019710540771 4
+AlignScore in Soundness 0.826207439104716 3
+AlignScore in Clarity 0.8625612656275431 3
+AlignScore in Advancement 0.6879740834236145 5
+AlignScore in Compliance 0.963690847158432 2
+AlignScore in Overall 0.9450965285301208 5
