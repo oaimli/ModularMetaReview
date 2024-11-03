@@ -1,4 +1,0 @@
-peermeta
-peermeta_llm_judged.json
-winning rates [('ablation_a', 0.6), ('human', 0.6), ('ablation_b', 0.56), ('ablation_c_ze', 0.44), ('modular_llama3', 0.4), ('ablation_c_br', 0.4)]
-elo rankings {'human': 0, 'ablation_b': 1, 'ablation_a': 2, 'ablation_c_br': 3, 'ablation_c_ze': 4, 'modular_llama3': 5}

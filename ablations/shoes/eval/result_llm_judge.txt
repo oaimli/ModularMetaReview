@@ -1,4 +1,0 @@
-amasum_shoes
-amasum_shoes_llm_judged.json
-winning rates [('ablation_a', 0.7733333333333333), ('ablation_b', 0.7066666666666667), ('modular_llama3', 0.5066666666666667), ('human', 0.013333333333333334)]
-elo rankings {'ablation_a': 0, 'ablation_b': 1, 'modular_llama3': 2, 'human': 3}

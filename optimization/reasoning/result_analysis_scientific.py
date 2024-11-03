@@ -105,7 +105,7 @@ if __name__ == "__main__":
             for score, pair_facet in zip(scores_align, pair_facets):
                 if pair_facet == facet:
                     tmp.append(score)
-            print(f"AlignScore in {facet}", np.mean(tmp), print(len(tmp)))
+            print(f"AlignScore in {facet}", np.mean(tmp), len(tmp))
 
 
 
