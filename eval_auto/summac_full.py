@@ -16,8 +16,8 @@ if __name__ == "__main__":
     with open("all.json") as f:
         info = json.load(f)
 
-    # dataset_names = ["space", "peermeta", "amasum_shoes"]
-    dataset_names = ["amasum_shoes"]
+    dataset_names = ["space", "peermeta", "amasum_shoes"]
+    # dataset_names = ["amasum_shoes"]
     for dataset_name in dataset_names:
         scores_source = {}
         scores_reference = {}
