@@ -40,7 +40,7 @@ if __name__ == "__main__":
         with open("categorization/" + categorization_file) as f:
             samples = json.load(f)
         review_categorizations = []
-        for sample in samples:
+        for sample_index, sample in samples.items():
             print(sample.keys())
             review_categorizations.append(sample["review_categorization"])
 
@@ -57,7 +57,8 @@ if __name__ == "__main__":
         source_texts = []
         references_shared = []
         source_texts_shared = []
-        for sample, categorization_reviews in zip(samples, review_categorizations):
+        for sample_index, categorization_reviews in zip(samples.keys(), review_categorizations):
+            sample = samples[sample_index]
             if isinstance(sample[reference_key], str):
                 reference = sample[reference_key]
             else:
@@ -112,7 +113,8 @@ if __name__ == "__main__":
             candidates_shared_source = []
             source_texts_shared = []
 
-            for sample, categorization_reviews in zip(samples, review_categorizations):
+            for sample_index, categorization_reviews in zip(samples.keys(), review_categorizations):
+                sample = samples[sample_index]
                 candidates.append(sample[candidate_key])
                 if isinstance(sample[reference_key], str):
                     references.append(sample[reference_key])
