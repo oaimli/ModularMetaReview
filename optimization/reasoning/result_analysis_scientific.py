@@ -98,6 +98,7 @@ if __name__ == "__main__":
 
         scores_align = scorer.score(contexts=sources, claims=generations)
         score_avg = np.mean(scores_align)
+        print(model_name)
         print("AlignScore", score_avg)
 
         for facet in facets:
