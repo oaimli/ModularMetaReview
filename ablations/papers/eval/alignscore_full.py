@@ -51,7 +51,7 @@ if __name__ == "__main__":
             samples = json.load(f)
         print("human reference")
         reference_key = generations_info[0]["reference_key"]
-        source_key = "source_documents"
+        source_key = "reviews"
 
         references = []
         source_texts = []
@@ -64,7 +64,10 @@ if __name__ == "__main__":
             else:
                 reference = sample[reference_key][0]  # SPACE has multiple references
             references.append(reference)
-            source_texts.append("\n".join(sample[source_key]))
+            source_reviews = []
+            for review in sample[source_key]:
+                source_reviews.append(review["comment"])
+            source_texts.append("\n".join(source_reviews))
             categorization_reference = sample["categorization_reference"]
             reference_shared = []
             source_text_shared = []
@@ -98,7 +101,7 @@ if __name__ == "__main__":
             print(generation_file)
             candidate_key = generation_info["candidate_key"]
             reference_key = generation_info["reference_key"]
-            source_key = "source_documents"
+            source_key = "reviews"
 
             # use the processed result with shared content from categorization
             categorization_file = "_".join(generation_file.split("/")[1:]).split(".")[0] + ".json"
@@ -120,7 +123,10 @@ if __name__ == "__main__":
                     references.append(sample[reference_key])
                 else:
                     references.append(sample[reference_key][0])  # SPACE has multiple references
-                source_texts.append("\n".join(sample[source_key]))
+                source_reviews = []
+                for review in sample[source_key]:
+                    source_reviews.append(review["comment"])
+                source_texts.append("\n".join(source_reviews))
 
                 categorization_reference = sample["categorization_reference"]
                 categorization_candidate = sample["categorization_candidate"]
