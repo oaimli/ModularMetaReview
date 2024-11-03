@@ -41,6 +41,7 @@ if __name__ == "__main__":
             samples = json.load(f)
         review_categorizations = []
         for sample in samples:
+            print(sample.keys())
             review_categorizations.append(sample["review_categorization"])
 
         # human reference
