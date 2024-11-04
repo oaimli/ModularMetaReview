@@ -1,3 +1,4 @@
+import random
 from openai import OpenAI
 import time
 import json
@@ -5,9 +6,9 @@ from tqdm import tqdm
 from typing import List
 
 
-def llama3_prompting(metas_generated: List):
+def llama3_prompting(review_fragments: List):
     prompt_format = open("prompt_generation_scientific.txt").read()
-    review_text = "\n".join(metas_generated)
+    review_text = "\n".join(review_fragments)
     prompt_content = prompt_format.replace("{{metas_generated}}", review_text)
     # print(prompt_format)
     while True:
@@ -47,7 +48,7 @@ def meta_generation(categorization_pairs: List) -> str:
     review_fragments = []
     for pair in categorization_pairs:
         review_fragments.extend(pair["review_fragments"])
-
+    random.shuffle(review_fragments)
     meta_review = llama3_prompting(review_fragments)
 
     return meta_review

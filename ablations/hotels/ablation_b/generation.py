@@ -1,3 +1,4 @@
+import random
 from openai import OpenAI
 import time
 import json
@@ -47,7 +48,7 @@ def meta_generation(categorization_pairs: List) -> str:
     review_fragments = []
     for pair in categorization_pairs:
         review_fragments.extend(pair["review_fragments"])
-
+    random.shuffle(review_fragments)
     meta_review = gpt4_prompting(review_fragments)
 
     return meta_review

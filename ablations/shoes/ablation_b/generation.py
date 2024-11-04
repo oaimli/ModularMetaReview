@@ -3,11 +3,12 @@ import time
 import json
 from tqdm import tqdm
 from typing import List
+import random
 
 
-def gpt4_prompting(metas_generated: List):
+def gpt4_prompting(review_fragments: List):
     prompt_format = open("prompts_generation/prompt_generation.txt").read()
-    review_text = "\n".join(metas_generated)
+    review_text = "\n".join(review_fragments)
     prompt_content = prompt_format.replace("{{metas_generated}}", review_text)
     # print(prompt_format)
     while True:
@@ -38,7 +39,7 @@ def meta_generation(categorization_pairs: List) -> str:
     review_fragments = []
     for pair in categorization_pairs:
         review_fragments.extend(pair["review_fragments"])
-
+    random.shuffle(review_fragments)
     meta_review = gpt4_prompting(review_fragments)
 
     return meta_review
