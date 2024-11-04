@@ -5,10 +5,10 @@ from tqdm import tqdm
 from typing import List
 
 
-def gpt4_prompting(metas_generated: List):
+def gpt4_prompting(review_fragments: List):
     prompt_format = open("prompts_generation/prompt_generation.txt").read()
-    review_text = "\n".join(metas_generated)
-    prompt_content = prompt_format.replace("{{metas_generated}}", review_text)
+    review_text = "\n".join(review_fragments)
+    prompt_content = prompt_format.replace("{{review_fragments}}", review_text)
     # print(prompt_format)
     while True:
         try:

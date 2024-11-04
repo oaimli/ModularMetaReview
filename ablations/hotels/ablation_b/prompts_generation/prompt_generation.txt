@@ -3,7 +3,7 @@ Below are business reviews in different aspects for a hotel, please write a conc
 
 Comments on different aspects:
 
-{{metas_generated}}
+{{review_fragments}}
 
 
 The meta-review is (directly output the answer without any other content):
