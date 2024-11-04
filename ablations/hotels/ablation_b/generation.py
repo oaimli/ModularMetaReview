@@ -10,7 +10,7 @@ def gpt4_prompting(review_fragments: List):
     prompt_format = open("prompts_generation/prompt_generation.txt").read()
     review_text = "\n".join(review_fragments)
     prompt_content = prompt_format.replace("{{review_fragments}}", review_text)
-    # print(prompt_format)
+    print(len(prompt_format.split()), len(review_text.split()), len(prompt_content.split()))
     while True:
         try:
             output_dict = client.chat.completions.create(
