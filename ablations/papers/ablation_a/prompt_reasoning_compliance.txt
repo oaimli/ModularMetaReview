@@ -1,4 +1,4 @@
-You are good at writing summaries for opinionated texts. You are given some opinionated review documents, please write a concise summary for them focused on the content for the review aspect of Compliance.
+You are good at writing summaries for opinionated texts. You are given some opinionated review documents, please write a concise and fluent summary for them focused on the content for the review aspect of Compliance.
 
 Definition of Compliance:
 Whether the manuscript fits the venue, and all ethical and publication requirements are met.

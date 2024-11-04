@@ -1,4 +1,4 @@
-You are good at writing summaries for opinionated texts. You are given some opinionated review documents, please write a concise summary for them focused on the content for the review aspect of Weight.
+You are good at writing summaries for opinionated texts. You are given some opinionated review documents, please write a concise and fluent summary for them focused on the content for the review aspect of Weight.
 
 Definition of Weight:
 Evaluation about weight of the shoes.

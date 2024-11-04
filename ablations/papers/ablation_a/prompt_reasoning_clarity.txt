@@ -1,4 +1,4 @@
-You are good at writing summaries for opinionated texts. You are given some opinionated review documents, please write a concise summary for them focused on the content for the review aspect of Clarity.
+You are good at writing summaries for opinionated texts. You are given some opinionated review documents, please write a concise and fluent summary for them focused on the content for the review aspect of Clarity.
 
 Definition of Clarity:
 The readability of the writing (e.g., structure and language), reproducibility of details, and how accurately what the research question is, what was done and what was the conclusion are presented.
