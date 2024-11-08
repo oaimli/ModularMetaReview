@@ -7,6 +7,7 @@ with open("info.json") as f:
     all_info = json.load(f)
 
 for dataset_name, generation_infos in all_info.items():
+    print(dataset_name)
     samples = {}
     for generation_info in generation_infos:
         candidate_key = generation_info["candidate_key"]
