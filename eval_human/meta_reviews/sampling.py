@@ -29,9 +29,9 @@ for dataset_name, generation_infos in all_info.items():
         if dataset_name == "peermeta":
             source_threshhold = 6
         elif dataset_name == "amasum_shoes":
-            source_threshhold = 500
+            source_threshhold = 300
         elif dataset_name == "space":
-            source_threshhold = 50
+            source_threshhold = 80
         else:
             print("the dataset name is incorrect.")
             source_threshhold = 0
