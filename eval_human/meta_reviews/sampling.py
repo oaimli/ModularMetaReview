@@ -18,7 +18,7 @@ for dataset_name, generation_infos in all_info.items():
             sample_new["source_documents"] = generation["source_documents"]
             tmp = sample_new.get("generations", {})
             tmp["human_reference"]: generation[reference_key]
-            tmp[generation["model_name"]] = generation[candidate_key]
+            tmp[generation_info["model_name"]] = generation[candidate_key]
             sample_new["generations"] = tmp
             samples[f"index_{i}"] = sample_new
 
