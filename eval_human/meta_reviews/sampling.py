@@ -39,6 +39,6 @@ for dataset_name, generation_infos in all_info.items():
             indexes.append(sample_key)
     print(len(indexes))
 
-    with open(f"generations_{dataset_name}.json") as f:
+    with open(f"generations_{dataset_name}.json", "w") as f:
         json.dump(samples, f, indent=4)
 
