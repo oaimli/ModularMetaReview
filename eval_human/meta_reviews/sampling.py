@@ -27,7 +27,7 @@ for dataset_name, generation_infos in all_info.items():
     for sample_key, sample_value in samples.items():
         source_documents = sample_value["source_documents"]
         if dataset_name == "peermeta":
-            source_threshhold = 8
+            source_threshhold = 6
         elif dataset_name == "amasum_shoes":
             source_threshhold = 200
         elif dataset_name == "space":
