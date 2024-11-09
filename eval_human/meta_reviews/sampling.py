@@ -16,6 +16,9 @@ for dataset_name, generation_infos in all_info.items():
             generations = json.load(f)
         for i, generation in enumerate(generations):
             sample_new = samples.get(f"index_{i}", {})
+            source_documents = sample_new.get("source_documents", [])
+            if len(source_documents) > 0:
+                assert source_documents[0] == generation["source_documents"][0]
             sample_new["source_documents"] = generation["source_documents"]
             tmp = sample_new.get("generations", {})
             tmp["human_reference"] = generation[reference_key]
@@ -47,4 +50,3 @@ for dataset_name, generation_infos in all_info.items():
 
     with open(f"generations_{dataset_name}.json", "w") as f:
         json.dump(samples_sampled, f, indent=4)
-
