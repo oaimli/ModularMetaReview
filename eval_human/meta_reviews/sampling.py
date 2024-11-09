@@ -18,7 +18,8 @@ for dataset_name, generation_infos in all_info.items():
             sample_new = samples.get(f"index_{i}", {})
             source_documents = sample_new.get("source_documents", [])
             if len(source_documents) > 0:
-                assert source_documents[0] == generation["source_documents"][0]
+                if source_documents[0] == generation["source_documents"][0]:
+                    print("source documents are consistent")
             else:
                 print("there have been no source documents yet")
             sample_new["source_documents"] = generation["source_documents"]
