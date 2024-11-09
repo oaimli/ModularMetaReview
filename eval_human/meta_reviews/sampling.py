@@ -19,6 +19,8 @@ for dataset_name, generation_infos in all_info.items():
             source_documents = sample_new.get("source_documents", [])
             if len(source_documents) > 0:
                 assert source_documents[0] == generation["source_documents"][0]
+            else:
+                print("there have been no source documents yet")
             sample_new["source_documents"] = generation["source_documents"]
             tmp = sample_new.get("generations", {})
             if dataset_name == "space":
