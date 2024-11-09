@@ -10,6 +10,7 @@ for dataset_name, generation_infos in all_info.items():
     print(dataset_name)
     samples = {}
     for generation_info in generation_infos:
+        print(generation_info)
         candidate_key = generation_info["candidate_key"]
         reference_key = generation_info["reference_key"]
         with open(generation_info["generation_file"]) as f:
