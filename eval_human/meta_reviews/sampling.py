@@ -21,7 +21,10 @@ for dataset_name, generation_infos in all_info.items():
                 assert source_documents[0] == generation["source_documents"][0]
             sample_new["source_documents"] = generation["source_documents"]
             tmp = sample_new.get("generations", {})
-            tmp["human_reference"] = generation[reference_key]
+            if dataset_name == "space":
+                tmp["human_reference"] = generation[reference_key][random.randint(0, 2)]
+            else:
+                tmp["human_reference"] = generation[reference_key]
             tmp[generation_info["model_name"]] = generation[candidate_key]
             sample_new["generations"] = tmp
             samples[f"index_{i}"] = sample_new
