@@ -9,3 +9,6 @@
 /eval_auto/peermeta_generations_full.json
 /eval_auto/space_generations_full.json
 /eval_auto/amasum_shoes_generations_full.json
+/eval_human/meta_reviews/generations_amasum_shoes.json
+/eval_human/meta_reviews/generations_peermeta.json
+/eval_human/meta_reviews/generations_space.json
