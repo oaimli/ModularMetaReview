@@ -39,7 +39,12 @@ for dataset_name, generation_infos in all_info.items():
         if len(source_documents) <= source_threshhold:
             indexes.append(sample_key)
     print(len(indexes))
+    indexes_sampled = random.sample(indexes, 10)
+
+    samples_sampled = {}
+    for sample_index in indexes_sampled:
+        samples_sampled[sample_index] = samples[sample_index]
 
     with open(f"generations_{dataset_name}.json", "w") as f:
-        json.dump(samples, f, indent=4)
+        json.dump(samples_sampled, f, indent=4)
 
