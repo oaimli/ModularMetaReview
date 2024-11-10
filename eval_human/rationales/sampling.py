@@ -87,7 +87,8 @@ for sample_modular, sample_decomposed in zip(samples_modular, samples_decomposed
     # steps from decomposed prompting
     decomposed_steps = []
     for action in sample_decomposed["generated_steps"].split("\n"):
-        decomposed_steps.append({"action": action, "output": ""})
+        if action != "":
+            decomposed_steps.append({"action": action, "output": ""})
     sample_new["steps_decomposed"] = decomposed_steps
 
     # generated meta-review from modular prompting
