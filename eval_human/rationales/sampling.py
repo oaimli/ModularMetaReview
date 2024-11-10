@@ -86,6 +86,7 @@ for sample_modular, sample_decomposed in zip(samples_modular, samples_decomposed
     decomposed_steps = []
     for action in sample_decomposed["generated_steps"]:
         decomposed_steps.append({"action": action, "output": ""})
+    sample_new["steps_decomposed"] = decomposed_steps
 
     # generated meta-review from modular prompting
     sample_new["generation_modular"] = sample_modular[candidate_key_modular]
