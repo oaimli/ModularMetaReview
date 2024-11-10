@@ -116,6 +116,7 @@ for i, sample_sampled in enumerate(samples_sampled):
     samples_sampled[i] = sample_sampled
 
 # reproduce the intermediate output of decomposed prompting
+print(samples_sampled[0])
 
 with open("sampled.json", "w") as f:
     json.dump(samples_sampled, f)
