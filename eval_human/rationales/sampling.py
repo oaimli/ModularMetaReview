@@ -130,9 +130,9 @@ for i, sample_sampled in enumerate(samples_sampled):
     decomposed_steps = sample_sampled["steps_decomposed"]
     source_text = "\n".join(source_documents)
     output = ""
-    for i, step in enumerate(decomposed_steps):
+    for j, step in enumerate(decomposed_steps):
         action = step["action"]
-        if i == 0:
+        if j == 0:
             prompt_content = f"{source_text}\nPlease follow the instruction below and give your output.\n {action}\nThe output:"
         else:
             prompt_content = f"{output}\nPlease follow the instruction below and give your output.\n {action}\nThe output:"
@@ -156,7 +156,7 @@ for i, sample_sampled in enumerate(samples_sampled):
                     time.sleep(2)
         step["output"] = output
         print(step)
-        decomposed_steps[i] = step
+        decomposed_steps[j] = step
 
     sample_sampled["decomposed_steps"] = decomposed_steps
     samples_sampled[i] = sample_sampled
