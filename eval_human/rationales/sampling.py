@@ -133,9 +133,9 @@ for i, sample_sampled in enumerate(samples_sampled):
     for i, step in enumerate(decomposed_steps):
         action = step["action"]
         if i == 0:
-            prompt_content = f"{source_text}\nPlease follow the instruction below and give your output.\n {step}\nThe output:"
+            prompt_content = f"{source_text}\nPlease follow the instruction below and give your output.\n {action}\nThe output:"
         else:
-            prompt_content = f"{output}\nPlease follow the instruction below and give your output.\n {step}\nThe output:"
+            prompt_content = f"{output}\nPlease follow the instruction below and give your output.\n {action}\nThe output:"
         # print(prompt_format)
         while True:
             try:
