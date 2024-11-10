@@ -18,7 +18,7 @@ for sample in samples:
 print(len(samples_train), len(samples_dev), len(samples_test))
 
 
-def segment_data(samples_tmp):
+def split_data(samples_tmp):
     samples_diff = []
     samples_sim = []
     for sample in samples_tmp:
@@ -41,7 +41,7 @@ def segment_data(samples_tmp):
 
 random.seed(42)
 
-samples_diff, samples_sim = segment_data(samples_dev)
+samples_diff, samples_sim = split_data(samples_dev)
 samples_diff = random.sample(samples_diff, 25)
 samples_sim = random.sample(samples_sim, 25)
 samples_combined = []
@@ -58,7 +58,7 @@ for sample in samples_diff + samples_sim:
 with jsonlines.open("../datasets/peermeta_dev.jsonl", "w") as writer:
     writer.write_all(samples_combined)
 
-samples_diff, samples_sim = segment_data(samples_test)
+samples_diff, samples_sim = split_data(samples_test)
 samples_diff = random.sample(samples_diff, 50)
 samples_sim = random.sample(samples_sim, 50)
 samples_combined = []
