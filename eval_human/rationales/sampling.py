@@ -154,7 +154,9 @@ for i, sample_sampled in enumerate(samples_sampled):
             except Exception as e:
                 if "limit" in str(e):
                     time.sleep(2)
-        decomposed_steps[i]["output"] = output
+        step["output"] = output
+        print(step)
+        decomposed_steps[i] = step
 
     sample_sampled["decomposed_steps"] = decomposed_steps
     samples_sampled[i] = sample_sampled
