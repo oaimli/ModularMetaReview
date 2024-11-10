@@ -74,9 +74,9 @@ for sample_origin, sample_modular, sample_decomposed in zip(samples_combined, sa
     paper_id = sample_origin["paper_id"]
     source_documents = sample_origin["source_documents"]
     meta_review_origin = sample_origin["meta_review"]
-    meta_review_modular = sample_modular["meta_review"]
-    meta_review_decomposed = sample_decomposed["meta_review"]
-    assert meta_review_origin == meta_review_modular == meta_review_decomposed
+    meta_review_modular = sample_modular[reference_key_modular]
+    meta_review_decomposed = sample_decomposed[reference_key_decomposed]
+    assert meta_review_modular == meta_review_decomposed
 
     sample_new = {}
     sample_new["paper_id"] = paper_id
