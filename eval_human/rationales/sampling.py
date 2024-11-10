@@ -127,7 +127,7 @@ client = OpenAI(
 # reproduce the intermediate output of decomposed prompting
 for i, sample_sampled in enumerate(samples_sampled):
     source_documents = sample_sampled["source_documents"]
-    decomposed_steps = sample_sampled["decomposed_steps"]
+    decomposed_steps = sample_sampled["steps_decomposed"]
     source_text = "\n".join(source_documents)
     output = ""
     for i, step in enumerate(decomposed_steps):
