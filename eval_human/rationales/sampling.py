@@ -75,20 +75,22 @@ with open(generation_file_modular) as f:
 samples_all = []
 for sample_origin, sample_modular, sample_decomposed in zip(samples_combined, samples_modular, samples_decomposed):
     paper_id = sample_origin["paper_id"]
+    meta_review = sample_origin["meta_review"]
     source_documents = sample_origin["source_documents"]
-    meta_review_origin = sample_origin["meta_review"]
-    meta_review_modular = sample_modular[reference_key_modular]
-    meta_review_decomposed = sample_decomposed[reference_key_decomposed]
-    print(meta_review_origin)
-    print(meta_review_modular)
-    print(meta_review_decomposed)
-    assert meta_review_origin==meta_review_modular == meta_review_decomposed
+
+    sources_origin = sample_origin["source_documents"]
+    sources_modular = sample_modular["source_documents"]
+    sources_decomposed = sample_decomposed["source_documents"]
+    print(sources_origin[0])
+    print(sources_modular[0])
+    print(sources_decomposed[0])
+    assert sources_origin[0]==sources_modular == sources_decomposed[0]
 
     sample_new = {}
     sample_new["paper_id"] = paper_id
     sample_new["source_documents"] = source_documents
     # human-written reference
-    sample_new["meta_review"] = meta_review_origin
+    sample_new["meta_review"] = meta_review
 
     # generated meta-review from decomposed prompting
     sample_new["generation_decomposed"] = sample_decomposed[candidate_key_decomposed]
