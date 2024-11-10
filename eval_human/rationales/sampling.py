@@ -38,6 +38,7 @@ random.seed(42)  # to ensure sampled test samples are the same
 samples_diff = random.sample(samples_diff, 50)
 samples_sim = random.sample(samples_sim, 50)
 samples_combined = []
+sampled_paper_ids = []
 for sample in samples_diff + samples_sim:
     instance = {}
     instance["paper_id"] = sample["paper_id"]
@@ -49,10 +50,12 @@ for sample in samples_diff + samples_sim:
     instance["source_documents"] = source_documents
     instance["label"] = "test"
     samples_combined.append(instance)
+    sampled_paper_ids.append(sample["paper_id"])
 
 with open("info.json") as f:
     all_info = json.load(f)
 
+print(sampled_paper_ids)
 # load data for decomposed prompting
 generation_info_decomposed = all_info["peermeta"][1]
 generation_file_decomposed = generation_info_decomposed["generation_file"]
@@ -97,7 +100,7 @@ for sample_origin, sample_modular, sample_decomposed in zip(samples_combined, sa
     modular_steps = sample_modular["categorization_pairs"]
     sample_new["steps_modular"] = modular_steps
 
-    if len(source_documents) <= 6:
+    if len(source_documents) <= 10:
         samples_all.append(sample_new)
 print(len(samples_all))
 
