@@ -34,11 +34,7 @@ for sample in samples_test:
     else:
         samples_sim.append(sample)
 
-random.seed(42)  # to ensure sampled test samples are the same
-samples_diff = random.sample(samples_diff, 50)
-samples_sim = random.sample(samples_sim, 50)
 samples_combined = []
-sampled_paper_ids = []
 for sample in samples_diff + samples_sim:
     instance = {}
     instance["paper_id"] = sample["paper_id"]
@@ -50,12 +46,10 @@ for sample in samples_diff + samples_sim:
     instance["source_documents"] = source_documents
     instance["label"] = "test"
     samples_combined.append(instance)
-    sampled_paper_ids.append(sample["paper_id"])
 
 with open("info.json") as f:
     all_info = json.load(f)
 
-print(sampled_paper_ids)
 # load data for decomposed prompting
 generation_info_decomposed = all_info["peermeta"][1]
 generation_file_decomposed = generation_info_decomposed["generation_file"]
@@ -73,24 +67,18 @@ with open(generation_file_modular) as f:
     samples_modular = json.load(f)
 
 samples_all = []
-for sample_origin, sample_modular, sample_decomposed in zip(samples_combined, samples_modular, samples_decomposed):
-    paper_id = sample_origin["paper_id"]
-    meta_review = sample_origin["meta_review"]
-    source_documents = sample_origin["source_documents"]
-
-    sources_origin = sample_origin["source_documents"]
+for sample_modular, sample_decomposed in zip(samples_modular, samples_decomposed):
+    meta_review_modular = sample_modular[reference_key_modular]
+    meta_review_decomposed = sample_decomposed[reference_key_decomposed]
     sources_modular = sample_modular["source_documents"]
     sources_decomposed = sample_decomposed["source_documents"]
-    print(sources_origin[0])
-    print(sources_modular[0])
-    print(sources_decomposed[0])
-    assert sources_origin[0] == sources_modular[0] == sources_decomposed[0]
+    assert sources_modular[0] == sources_decomposed[0] and meta_review_modular == meta_review_decomposed
 
     sample_new = {}
-    sample_new["paper_id"] = paper_id
-    sample_new["source_documents"] = source_documents
+    sample_new["paper_id"] = ""
+    sample_new["source_documents"] = sources_modular
     # human-written reference
-    sample_new["meta_review"] = meta_review
+    sample_new["human_reference"] = meta_review_modular
 
     # generated meta-review from decomposed prompting
     sample_new["generation_decomposed"] = sample_decomposed[candidate_key_decomposed]
@@ -105,11 +93,26 @@ for sample_origin, sample_modular, sample_decomposed in zip(samples_combined, sa
     modular_steps = sample_modular["categorization_pairs"]
     sample_new["steps_modular"] = modular_steps
 
-    if len(source_documents) <= 10:
+    if len(sources_modular) <= 10:
         samples_all.append(sample_new)
-print(len(samples_all))
 
+print("Possible samples", len(samples_all))
+
+random.seed(42)
 samples_sampled = random.sample(samples_all, 9)
+
+# get the paper ids from the origin test set
+for i, sample_sampled in enumerate(samples_sampled):
+    human_reference = sample_sampled["human_reference"]
+    source_documents = sample_sampled["source_documents"]
+    paper_id = ""
+    for sample_test in samples_combined:
+        if sample_test["meta_review"] == human_reference and sample_test["source_documents"] == source_documents:
+            paper_id = sample_test["paper_id"]
+            break
+    assert paper_id != ""
+    sample_sampled["paper_id"] = paper_id
+    samples_sampled[i] = sample_sampled
 
 # reproduce the intermediate output of decomposed prompting
 
