@@ -1,5 +1,7 @@
 import json
 import random
+import time
+from openai import OpenAI
 
 with open("../../peermeta/data/peermeta_all.json") as f:
     samples = json.load(f)
@@ -115,8 +117,47 @@ for i, sample_sampled in enumerate(samples_sampled):
     sample_sampled["paper_id"] = paper_id
     samples_sampled[i] = sample_sampled
 
+openai_api_key = "EMPTY"
+openai_api_base = "http://localhost:8000/v1"
+client = OpenAI(
+    api_key=openai_api_key,
+    base_url=openai_api_base,
+    )
+
 # reproduce the intermediate output of decomposed prompting
-print(samples_sampled[0])
+for i, sample_sampled in enumerate(samples_sampled):
+    source_documents = sample_sampled["source_documents"]
+    decomposed_steps = sample_sampled["decomposed_steps"]
+    source_text = "\n".join(source_documents)
+    output = ""
+    for i, step in enumerate(decomposed_steps):
+        action = step["action"]
+        if i == 0:
+            prompt_content = f"{source_text}\nPlease follow the instruction below and give your output.\n {step}\nThe output:"
+        else:
+            prompt_content = f"{output}\nPlease follow the instruction below and give your output.\n {step}\nThe output:"
+        # print(prompt_format)
+        while True:
+            try:
+                output_dict = client.chat.completions.create(
+                    model="meta-llama/Meta-Llama-3.1-70B-Instruct",
+                    messages=[
+                        {"role": "system",
+                         "content": "You are requested to follow the instruction and only generate the requested output."},
+                        {"role": "user",
+                         "content": prompt_content}
+                        ],
+                    n=1
+                    )
+                output = output_dict.choices[0].message.content
+                break
+            except Exception as e:
+                if "limit" in str(e):
+                    time.sleep(2)
+        decomposed_steps[i]["output"] = output
+
+    sample_sampled["decomposed_steps"] = decomposed_steps
+    samples_sampled[i] = sample_sampled
 
 with open("sampled.json", "w") as f:
     json.dump(samples_sampled, f)
