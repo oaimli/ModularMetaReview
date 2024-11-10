@@ -163,4 +163,4 @@ for i, sample_sampled in enumerate(samples_sampled):
     samples_sampled[i] = sample_sampled
 
 with open("sampled.json", "w") as f:
-    json.dump(samples_sampled, f)
+    json.dump(samples_sampled, f, indent=4)
