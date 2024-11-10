@@ -84,7 +84,7 @@ for sample_origin, sample_modular, sample_decomposed in zip(samples_combined, sa
     print(sources_origin[0])
     print(sources_modular[0])
     print(sources_decomposed[0])
-    assert sources_origin[0]==sources_modular == sources_decomposed[0]
+    assert sources_origin[0] == sources_modular[0] == sources_decomposed[0]
 
     sample_new = {}
     sample_new["paper_id"] = paper_id
