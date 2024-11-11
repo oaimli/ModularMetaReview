@@ -159,7 +159,7 @@ for i, sample_sampled in enumerate(samples_sampled):
         print(step)
         decomposed_steps[j] = step
 
-    sample_sampled["decomposed_steps"] = decomposed_steps
+    sample_sampled["steps_decomposed"] = decomposed_steps
     samples_sampled[i] = sample_sampled
 
 with open("sampled.json", "w") as f:
