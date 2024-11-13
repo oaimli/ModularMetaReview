@@ -37,7 +37,8 @@ for generation_info in generation_infos:
 indexes = []
 for sample_key, sample_value in samples.items():
     source_documents = sample_value["source_documents"]
-    if len(source_documents) <= 8:
+    source_text_length = len("\n".join(source_documents).split())
+    if len(source_documents) <= 8 and source_text_length < 3000:
         indexes.append(sample_key)
 print(len(indexes))
 indexes_sampled = random.sample(indexes, 10)
