@@ -42,12 +42,15 @@ for sample in samples_diff + samples_sim:
     instance["paper_id"] = sample["paper_id"]
     instance["meta_review"] = sample["meta_review"]
     source_documents = []
-    source_documents.append(sample["paper_abstract"])
+    source_documents.append({"review_id": "abstract", "content": sample["paper_abstract"], "reply_to": sample["paper_id"]})
     for review in sample["reviews"]:
-        source_documents.append(review["comment"])
+        source_documents.append({"review_id": review["review_id"], "content": review["comment"], "reply_to": review["reply_to"]})
+    # source texts with conversational structures
     instance["source_documents"] = source_documents
     instance["label"] = "test"
     samples_combined.append(instance)
+
+print("samples_combined", len(samples_combined))
 
 with open("info.json") as f:
     all_info = json.load(f)
@@ -77,8 +80,17 @@ for sample_modular, sample_decomposed in zip(samples_modular, samples_decomposed
     assert sources_modular[0] == sources_decomposed[0] and meta_review_modular == meta_review_decomposed
 
     sample_new = {}
-    sample_new["paper_id"] = ""
-    sample_new["source_documents"] = sources_modular
+    for sample_test in samples_combined:
+        tmp = []
+        for source in sample_test["source_documents"]:
+            tmp.append(source["content"])
+        if sample_test["meta_review"] == meta_review_modular and tmp == sources_modular:
+            sample_new["paper_id"] = sample_test["paper_id"]
+            sample_new["source_documents"] = sample_test["source_documents"]
+            break
+    assert sample_new["paper_id"] != ""
+    assert sample_new["source_documents"] != []
+
     # human-written reference
     sample_new["human_reference"] = meta_review_modular
 
@@ -103,20 +115,21 @@ for sample_modular, sample_decomposed in zip(samples_modular, samples_decomposed
 print("Possible samples", len(samples_all))
 
 random.seed(42)
-samples_sampled = random.sample(samples_all, 9)
+# samples_sampled = random.sample(samples_all, 9)
+sampled_paper_ids = []
+with open("../meta_reviews/generations_peermeta.json") as f:
+    generations_peermeta = json.load(f)
+    for key in generations_peermeta.keys()[:9]:
+        sample = generations_peermeta[key]
+        sampled_paper_ids.append(sample["paper_id"])
 
 # get the paper ids from the origin test set
-for i, sample_sampled in enumerate(samples_sampled):
-    human_reference = sample_sampled["human_reference"]
-    source_documents = sample_sampled["source_documents"]
-    paper_id = ""
-    for sample_test in samples_combined:
-        if sample_test["meta_review"] == human_reference and sample_test["source_documents"] == source_documents:
-            paper_id = sample_test["paper_id"]
+samples_sampled = []
+for paper_id in enumerate(sampled_paper_ids):
+    for sample in samples_all:
+        if sample["paper_id"] == paper_id:
+            samples_sampled.append(sample)
             break
-    assert paper_id != ""
-    sample_sampled["paper_id"] = paper_id
-    samples_sampled[i] = sample_sampled
 
 openai_api_key = "EMPTY"
 openai_api_base = "http://localhost:8000/v1"
@@ -127,7 +140,9 @@ client = OpenAI(
 
 # reproduce the intermediate output of decomposed prompting
 for i, sample_sampled in enumerate(samples_sampled):
-    source_documents = sample_sampled["source_documents"]
+    source_documents = []
+    for source in sample_sampled["source_documents"]:
+        source_documents.append(source["content"])
     decomposed_steps = sample_sampled["steps_decomposed"]
     source_text = "\n".join(source_documents)
     output = ""
