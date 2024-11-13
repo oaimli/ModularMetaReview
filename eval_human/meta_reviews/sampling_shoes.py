@@ -38,7 +38,7 @@ indexes = []
 for sample_key, sample_value in samples.items():
     source_documents = sample_value["source_documents"]
     source_text_length = len("\n".join(source_documents).split())
-    if len(source_documents) <= 200 and source_text_length <= 4000:
+    if len(source_documents) <= 200 and source_text_length <= 5000:
         indexes.append(sample_key)
 print(len(indexes))
 indexes_sampled = random.sample(indexes, 10)
