@@ -122,6 +122,7 @@ with open("../meta_reviews/generations_peermeta.json") as f:
     for key in list(generations_peermeta.keys())[:9]:
         sample = generations_peermeta[key]
         sampled_paper_ids.append(sample["paper_id"])
+print(sampled_paper_ids)
 
 # get the paper ids from the origin test set
 samples_sampled = []
