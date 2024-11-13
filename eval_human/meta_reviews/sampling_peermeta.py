@@ -82,7 +82,7 @@ for generation_info in generation_infos:
                 sample_new["paper_id"] = sample_test["paper_id"]
                 # source documents with conversational structures
                 sample_new["source_documents"] = sample_test["source_documents"]
-        assert sample_new["paper_id"] == ""
+        assert sample_new["paper_id"] != ""
         assert sample_new["source_documents"] == []
 
         tmp = sample_new.get("generations", {})
