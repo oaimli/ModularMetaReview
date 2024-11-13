@@ -78,9 +78,8 @@ for generation_info in generation_infos:
             tmp = []
             for source in sample_test["source_documents"]:
                 tmp.append(source["content"])
-            if sample_test["meta_review"] == generation[reference_key]:
-                paper_id = sample_test["paper_id"]
-                sample_new["paper_id"] = paper_id
+            if sample_test["meta_review"] == generation[reference_key] and tmp == source_documents:
+                sample_new["paper_id"] = sample_test["paper_id"]
                 # source documents with conversational structures
                 sample_new["source_documents"] = sample_test["source_documents"]
         assert sample_new["paper_id"] == ""
