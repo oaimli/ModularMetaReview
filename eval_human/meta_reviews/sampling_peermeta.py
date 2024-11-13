@@ -69,21 +69,16 @@ for generation_info in generation_infos:
     for i, generation in enumerate(generations):
         sample_new = samples.get(f"index_{i}", {})
 
-        # only source texts
-        source_documents = []
-        for source in sample_new.get("source_documents", []):
-            source_documents.append(source["content"])
-
         for sample_test in samples_combined:
             tmp = []
             for source in sample_test["source_documents"]:
                 tmp.append(source["content"])
-            if sample_test["meta_review"] == generation[reference_key] and tmp == source_documents:
+            if sample_test["meta_review"] == generation[reference_key] and tmp == generation["source_documents"]:
                 sample_new["paper_id"] = sample_test["paper_id"]
                 # source documents with conversational structures
                 sample_new["source_documents"] = sample_test["source_documents"]
         assert sample_new["paper_id"] != ""
-        assert sample_new["source_documents"] == []
+        assert sample_new["source_documents"] != []
 
         tmp = sample_new.get("generations", {})
         tmp["human_reference"] = generation[reference_key]
