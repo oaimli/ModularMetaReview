@@ -73,12 +73,6 @@ for generation_info in generation_infos:
         source_documents = []
         for source in sample_new.get("source_documents", []):
             source_documents.append(source["content"])
-        if len(source_documents) > 0:
-            if source_documents[0] == generation["source_documents"][0]:
-                print("source documents are consistent")
-        else:
-            print("there have been no source documents yet")
-            source_documents = generation["source_documents"]
 
         for sample_test in samples_combined:
             tmp = []
