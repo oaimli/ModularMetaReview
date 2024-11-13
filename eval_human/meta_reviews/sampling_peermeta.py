@@ -70,7 +70,9 @@ for generation_info in generation_infos:
         sample_new = samples.get(f"index_{i}", {})
 
         # only source texts
-        source_documents = sample_new.get("source_documents", [])
+        source_documents = []
+        for source in sample_new.get("source_documents", []):
+            source_documents.append(source["content"])
         if len(source_documents) > 0:
             if source_documents[0] == generation["source_documents"][0]:
                 print("source documents are consistent")
