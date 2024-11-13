@@ -126,7 +126,7 @@ print(sampled_paper_ids)
 
 # get the paper ids from the origin test set
 samples_sampled = []
-for paper_id in enumerate(sampled_paper_ids):
+for paper_id in sampled_paper_ids:
     for sample in samples_all:
         if sample["paper_id"] == paper_id:
             samples_sampled.append(sample)
