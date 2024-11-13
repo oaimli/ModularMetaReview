@@ -119,7 +119,7 @@ random.seed(42)
 sampled_paper_ids = []
 with open("../meta_reviews/generations_peermeta.json") as f:
     generations_peermeta = json.load(f)
-    for key in generations_peermeta.keys()[:9]:
+    for key in list(generations_peermeta.keys())[:9]:
         sample = generations_peermeta[key]
         sampled_paper_ids.append(sample["paper_id"])
 
