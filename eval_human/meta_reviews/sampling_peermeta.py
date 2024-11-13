@@ -50,6 +50,8 @@ for sample in samples_diff + samples_sim:
     instance["label"] = "test"
     samples_combined.append(instance)
 
+print("samples_combined", len(samples_combined))
+
 
 with open("info.json") as f:
     all_info = json.load(f)
