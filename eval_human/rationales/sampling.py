@@ -109,7 +109,7 @@ for sample_modular, sample_decomposed in zip(samples_modular, samples_decomposed
     modular_steps = sample_modular["categorization_pairs"]
     sample_new["steps_modular"] = modular_steps
 
-    if len(sources_modular) <= 10:
+    if len(sources_modular) <= 8:
         samples_all.append(sample_new)
 
 print("Possible samples", len(samples_all))
@@ -130,6 +130,7 @@ for paper_id in sampled_paper_ids:
         if sample["paper_id"] == paper_id:
             samples_sampled.append(sample)
             break
+print(len(samples_sampled))
 
 openai_api_key = "EMPTY"
 openai_api_base = "http://localhost:8000/v1"
