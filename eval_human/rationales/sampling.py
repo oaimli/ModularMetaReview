@@ -115,7 +115,6 @@ for sample_modular, sample_decomposed in zip(samples_modular, samples_decomposed
 print("Possible samples", len(samples_all))
 
 random.seed(42)
-# samples_sampled = random.sample(samples_all, 9)
 sampled_paper_ids = []
 with open("../meta_reviews/generations_peermeta.json") as f:
     generations_peermeta = json.load(f)
