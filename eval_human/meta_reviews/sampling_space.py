@@ -41,7 +41,7 @@ for sample_key, sample_value in samples.items():
     if len(source_documents) <= 100 and source_text_length <= 15000:
         indexes.append(sample_key)
 print(len(indexes))
-indexes_sampled = random.sample(indexes, 12)
+indexes_sampled = random.sample(indexes, 10)
 
 samples_sampled = {}
 for sample_index in indexes_sampled:
