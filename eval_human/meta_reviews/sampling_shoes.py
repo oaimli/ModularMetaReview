@@ -30,6 +30,17 @@ for generation_info in generation_infos:
             tmp["human_reference"] = generation[reference_key][random.randint(0, 2)]
         else:
             tmp["human_reference"] = generation[reference_key]
+
+        other_references = []
+        for generation_tmp in generations:
+            if dataset_name == "space":
+                reference_tmp = generation[reference_key][random.randint(0, 2)]
+            else:
+                reference_tmp = generation[reference_key]
+            if reference_tmp != tmp["human_reference"]:
+                other_references.append(reference_tmp)
+        tmp["random_reference"] = random.choice(other_references)
+
         tmp[generation_info["model_name"]] = generation[candidate_key]
         sample_new["generations"] = tmp
         samples[f"index_{i}"] = sample_new
