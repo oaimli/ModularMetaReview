@@ -96,14 +96,14 @@ for sample_key, sample_value in samples.items():
     paper_id = sample_value["paper_id"]
 
     official_reviews = []
-    for source_document in source_documents:
+    for source_document in sample_value["source_documents"]:
         if source_document["reply_to"] == paper_id:
             official_reviews.append(source_document)
 
     first_replies = []
     for official_review in official_reviews:
         official_review_id = official_review["review_id"]
-        for source_document in source_documents:
+        for source_document in sample_value["source_documents"]:
             if source_document["reply_to"] == official_review_id:
                 first_replies.append(source_document)
 
