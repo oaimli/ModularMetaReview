@@ -92,7 +92,23 @@ for sample_key, sample_value in samples.items():
     for source in sample_value["source_documents"]:
         source_documents.append(source["content"])
     source_text_length = len("\n".join(source_documents).split())
-    if len(source_documents) <= 8 and source_text_length < 3000:
+
+    paper_id = sample_value["paper_id"]
+
+    official_reviews = []
+    for source_document in source_documents:
+        if source_document["reply_to"] == paper_id:
+            official_reviews.append(source_document)
+
+    first_replies = []
+    for official_review in official_reviews:
+        official_review_id = official_review["review_id"]
+        for source_document in source_documents:
+            if source_document["reply_to"] == official_review_id:
+                first_replies.append(source_document)
+
+
+    if len(official_reviews) <= 4 and len(first_replies) <= 4 and source_text_length < 3000:
         indexes.append(sample_key)
 print(len(indexes))
 indexes_sampled = random.sample(indexes, 10)
