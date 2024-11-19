@@ -34,9 +34,9 @@ for generation_info in generation_infos:
         other_references = []
         for generation_tmp in generations:
             if dataset_name == "space":
-                reference_tmp = generation[reference_key][random.randint(0, 2)]
+                reference_tmp = generation_tmp[reference_key][random.randint(0, 2)]
             else:
-                reference_tmp = generation[reference_key]
+                reference_tmp = generation_tmp[reference_key]
             if reference_tmp != tmp["human_reference"]:
                 other_references.append(reference_tmp)
         tmp["random_reference"] = random.choice(other_references)
