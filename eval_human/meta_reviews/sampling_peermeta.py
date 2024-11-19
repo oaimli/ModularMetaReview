@@ -108,7 +108,7 @@ for sample_key, sample_value in samples.items():
                 first_replies.append(source_document)
 
 
-    if len(official_reviews) >= 4 and len(first_replies) >= 3 and len(source_documents) <= 7 and source_text_length < 3000:
+    if len(official_reviews) + len(first_replies) == len(source_documents) and source_text_length < 3000:
         indexes.append(sample_key)
 print(len(indexes))
 indexes_sampled = random.sample(indexes, 10)
