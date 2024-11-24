@@ -1,0 +1,31 @@
+Please write a summary for the reviews on a pair of shoes, focused on the review aspects below.
+
+
+Review aspects:
+
+(1) Breathability: evaluation about breathability of the shoes.
+
+(2) Comfort: evaluation about comfort of the shoes, such as tongue padding, heel tab, and removable insole.
+
+(3) Cushioning: evaluation about cushioning of the shoes, such as heel stack and forefoot stack.
+
+(4) Durability: evaluation about durability of the shoes, such as outsole hardness and thickness.
+
+(5) Flexibility: evaluation about flexibility of the shoes, such as stiffness, stiffness in the cold, and difference in stiffness in the cold.
+
+(6) Misc: evaluation about reflective elements of the shoes.
+
+(7) Size and Fit: evaluation about size and fit of the shoes, such as internal length, toebox width at the widest part, and gusset type.
+
+(8) Stability: evaluation about stability of the shoes, such as torsional rigidity, heel counter stiffness, midsole width in the forefoot and midsole width in the heel.
+
+(9) Traction: evaluation about traction of the shoes, such as lug depth.
+
+(10) Weight: evaluation about weight of the shoes.
+
+
+Reviews on a pair of shoes:
+{{source_documents}}
+
+
+The output summary:

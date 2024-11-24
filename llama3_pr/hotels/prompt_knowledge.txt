@@ -1,0 +1,23 @@
+Please write a summary for the reviews on a hotel, focused on the review aspects below.
+
+
+Review aspects:
+
+(1) Building: analysis of how well the hotel was constructed, its design, functionality, and how these factors contribute to the success and satisfaction of its guests.
+
+(2) Cleanliness: evaluation of how well the hotel maintains a clean, sanitary, and comfortable environment for its guests, impacting their overall experience and satisfaction.
+
+(3) Food: evaluation of the dining experience including the quality and variety of the food, ultimately affecting guest satisfaction and the hotel’s reputation.
+
+(4) Location: analysis of how the hotel’s location influences the guest experience, considering factors like convenience, safety, proximity to attractions, and the overall environment.
+
+(5) Rooms: assessment of how well the room meets the guest’s needs and expectations in terms of comfort, cleanliness, amenities, and overall experience.
+
+(6) Service: assessment of how well the hotel staff and management meet the needs of their guests, impacting their comfort, convenience, and overall experience.
+
+
+Reviews on a hotel:
+{{source_documents}}
+
+
+The output summary:

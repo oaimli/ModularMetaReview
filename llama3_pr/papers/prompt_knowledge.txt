@@ -1,0 +1,21 @@
+Please write a summary for the reviews on a scientific article, focused on the review aspects below.
+
+
+Review aspects:
+
+(1) Advancement: importance of the manuscript to discipline, significance of the contributions of the manuscript, and its potential impact to the field.
+
+(2) Clarity: the readability of the writing (e.g., structure and language), reproducibility of details, and how accurately what the research question is, what was done and what was the conclusion are presented.
+
+(3) Compliance: whether the manuscript fits the venue, and all ethical and publication requirements are met.
+
+(4) Soundness: there are usually two types of soundness, empirical (how well experiments are designed and executed to support the claims, whether methods used are appropriate, and how correctly the data and results are reported, analysed, and interpreted.) and theoretical (whether arguments or claims in the manuscript are well supported by theoretical analysis, i.e., completeness, and the methodology, e.g., mathematical approach and the analysis is correct.)
+
+(5) Novelty: how original the idea (e.g., tasks, datasets, or methods) is, and how clear where the problems and methods sit with respect to existing literature (i.e., meaningful comparison).
+
+
+Reviews on a scientific article:
+{{source_documents}}
+
+
+The output summary:
