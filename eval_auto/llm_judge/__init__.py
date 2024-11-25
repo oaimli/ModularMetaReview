@@ -1,1 +1,1 @@
-# Judging faithfulness with GPT-4o with comparison
+# Judging faithfulness with GPT-4o with pair-wise comparison
