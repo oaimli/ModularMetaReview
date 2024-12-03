@@ -53,10 +53,11 @@ for sample_key, sample_value in samples.items():
         indexes.append(sample_key)
 print(len(indexes))
 indexes_sampled = random.sample(indexes, 10)
+print(indexes_sampled)
 
 samples_sampled = {}
 for sample_index in indexes_sampled:
     samples_sampled[sample_index] = samples[sample_index]
 
-with open(f"generations_{dataset_name}.json", "w") as f:
-    json.dump(samples_sampled, f, indent=4)
+# with open(f"generations_{dataset_name}.json", "w") as f:
+#     json.dump(samples_sampled, f, indent=4)
