@@ -52,12 +52,15 @@ for sample_key, sample_value in samples.items():
     if len(source_documents) <= 100 and source_text_length <= 15000:
         indexes.append(sample_key)
 print(len(indexes))
-indexes_sampled = random.sample(indexes, 10)
+print(indexes)
+
+# indexes_sampled = random.sample(indexes, 10)
+indexes_sampled = ['index_21', 'index_10', 'index_16', 'index_20', 'index_11', 'index_17', 'index_8', 'index_23', 'index_12', 'index_14']
 print(indexes_sampled)
 
 samples_sampled = {}
 for sample_index in indexes_sampled:
     samples_sampled[sample_index] = samples[sample_index]
 
-# with open(f"generations_{dataset_name}.json", "w") as f:
-#     json.dump(samples_sampled, f, indent=4)
+with open(f"generations_{dataset_name}.json", "w") as f:
+    json.dump(samples_sampled, f, indent=4)
