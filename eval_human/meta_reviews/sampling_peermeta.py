@@ -117,8 +117,8 @@ for sample_key, sample_value in samples.items():
         indexes.append(sample_key)
 print(len(indexes))
 print(indexes)
-# indexes_sampled = random.sample(indexes, 10)
-indexes_sampled = ['index_91', 'index_56', 'index_39', 'index_21', 'index_24', 'index_85', 'index_9', 'index_7', 'index_26', 'index_33']
+indexes_sampled = random.sample(indexes, 10)
+# indexes_sampled = ['index_91', 'index_56', 'index_39', 'index_21', 'index_24', 'index_85', 'index_9', 'index_7', 'index_26', 'index_33']
 print(indexes_sampled)
 
 samples_sampled = {}
