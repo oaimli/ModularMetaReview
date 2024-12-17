@@ -52,7 +52,7 @@ for sample in samples_diff + samples_sim:
 
 print("samples_combined", len(samples_combined))
 
-with open("info.json") as f:
+with open("info_scientific.json") as f:
     all_info = json.load(f)
 
 # load data for decomposed prompting
@@ -178,5 +178,5 @@ for i, sample_sampled in enumerate(samples_sampled):
     sample_sampled["steps_decomposed"] = decomposed_steps
     samples_sampled[i] = sample_sampled
 
-with open("sampled.json", "w") as f:
+with open("sampled_scientific.json", "w") as f:
     json.dump(samples_sampled, f, indent=4)
