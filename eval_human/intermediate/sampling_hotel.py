@@ -58,6 +58,7 @@ for sample_modular, sample_decomposed, sample_test in zip(samples_modular, sampl
     # generated meta-review from decomposed prompting
     sample_new["generation_decomposed"] = sample_decomposed[candidate_key_decomposed]
     # steps from decomposed prompting
+    print(sample_decomposed.keys())
     decomposed_steps = []
     for action in sample_decomposed["generated_steps"].split("\n"):
         if action.strip() != "":
