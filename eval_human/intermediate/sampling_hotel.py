@@ -42,7 +42,7 @@ with open(generation_file_modular) as f:
 
 samples_all = []
 for sample_modular, sample_decomposed, sample_test in zip(samples_modular, samples_decomposed, samples_test):
-    reference_index = random.sample([0, 1, 2], 1)
+    reference_index = random.choice([0, 1, 2])
     meta_review_modular = sample_modular[reference_key_modular][reference_index]
     meta_review_decomposed = sample_decomposed[reference_key_decomposed][reference_index]
     meta_review_test = sample_test["gold_summaries_general"][reference_index]
