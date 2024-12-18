@@ -83,7 +83,7 @@ print(sampled_indexes)
 
 # get the paper ids from the origin test set
 samples_sampled = []
-for sample_index, sample in samples_all:
+for sample_index, sample in enumerate(samples_all):
     if sample_index in sampled_indexes:
         samples_sampled.append(sample)
 print(len(samples_sampled))
