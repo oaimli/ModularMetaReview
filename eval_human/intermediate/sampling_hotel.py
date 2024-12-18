@@ -82,10 +82,10 @@ sampled_indexes = random.sample(sampled_indexes, 10)
 print(sampled_indexes)
 
 # get the paper ids from the origin test set
-samples_sampled = []
+samples_sampled = {}
 for sample_index, sample in enumerate(samples_all):
     if sample_index in sampled_indexes:
-        samples_sampled.append(sample)
+        samples_sampled[f"index_{sample_index}"] = sample
 print(len(samples_sampled))
 
 openai_api_key = "EMPTY"
@@ -96,7 +96,8 @@ client = OpenAI(
     )
 
 # reproduce the intermediate output of decomposed prompting
-for i, sample_sampled in enumerate(samples_sampled):
+for sample_sampled_key in samples_sampled.keys():
+    sample_sampled = samples_sampled[sample_sampled_key]
     decomposed_steps = sample_sampled["steps_decomposed"]
     source_text = "\n".join(sample_sampled["source_documents"])
     output = ""
@@ -129,7 +130,7 @@ for i, sample_sampled in enumerate(samples_sampled):
         decomposed_steps[j] = step
 
     sample_sampled["steps_decomposed"] = decomposed_steps
-    samples_sampled[i] = sample_sampled
+    samples_sampled[sample_sampled_key] = sample_sampled
 
 
 
