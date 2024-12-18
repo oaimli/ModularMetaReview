@@ -67,10 +67,10 @@ for sample_modular, sample_decomposed, sample_test in zip(samples_modular, sampl
 
     # generated meta-review from modular prompting
     sample_new["generation_modular"] = sample_modular[candidate_key_modular]
-    print(sample_modular.keys())
     # steps from modular prompting
     modular_steps = sample_modular["categorization_pairs"]
     sample_new["steps_modular"] = modular_steps
+    samples_all.append(sample_new)
 
 print("Possible samples", len(samples_all))
 
