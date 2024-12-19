@@ -14,6 +14,7 @@ with open("../meta_reviews/generations_space.json") as f:
 indexes_meta_reviews = []
 for sample_index in samples_meta_reviews.keys():
     indexes_meta_reviews.append(int(sample_index.split("_")[1]))
+print(indexes_meta_reviews)
 
 # load the original test dataset
 samples_test = []
