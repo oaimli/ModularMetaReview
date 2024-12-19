@@ -54,7 +54,7 @@ source_lengths = []
 for sample_key, sample in samples_sampled.items():
     source_documents = sample["source_documents"]
     for document in source_documents:
-        source_lengths.append(document.split())
+        source_lengths.append(len(document.split()))
 print("Average source length", np.mean(source_lengths))
 
 def get_generations_with_modular(samples_sampled):
