@@ -63,7 +63,7 @@ print("Average source length", np.mean(source_lengths))
 
 # get generated meta-reviews and categorization pairs with our modular approach, same as in modular_llama3
 def get_generations_with_modular(samples_sampled):
-    random.seed(42)
+    print("Our modular approach")
     nlp = spacy.load("en_core_web_sm")
     facets = ["Building", "Cleanliness", "Food", "Location", "Rooms", "Service"]
     scorer = rouge_scorer.RougeScorer(["rouge1", "rouge2", "rougeLsum"], use_stemmer=True)
@@ -195,7 +195,7 @@ def get_generations_with_modular(samples_sampled):
                 print(e)
                 if ("limit" in str(e)):
                     time.sleep(2)
-        print(meta_generated)
+        # print(meta_generated)
         return meta_generated
 
     def facet_reasoning(categorization_pairs: List) -> List:
@@ -259,6 +259,7 @@ def get_generations_with_modular(samples_sampled):
         return meta_review
 
     for sample_key, sample in samples_sampled.items():
+        print("Processing", sample_key)
         reviews = sample["source_documents"]
 
         # extract text fragments from each review
@@ -294,6 +295,7 @@ def get_generations_with_modular(samples_sampled):
 
 # get generated meta-reviews and intermediate steps with decomposed prompting, same as in llama3_pr/hotels
 def get_generations_with_decomposed(samples_sampled):
+    print("Decomposed prompting")
     openai_api_key = "EMPTY"
     openai_api_base = "http://localhost:8000/v1"
     client = OpenAI(
@@ -353,8 +355,9 @@ def get_generations_with_decomposed(samples_sampled):
                     if "limit" in str(e):
                         time.sleep(2)
             step["output"] = output
-            print(step)
+            # print(step)
             decomposed_steps.append(step)
+        print(output)
 
         sample["generation_decomposed"] = output # the output of the last step
         sample["steps_decomposed"] = decomposed_steps
