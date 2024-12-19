@@ -40,6 +40,7 @@ for sample_index, sample in enumerate(samples_all):
     if sample_index not in indexes_meta_reviews:
         sampled_indexes.append(sample_index)
 sampled_indexes = random.sample(sampled_indexes, 10)
+print(sampled_indexes)
 
 # get the samples from the test dataset
 samples_sampled = {}
