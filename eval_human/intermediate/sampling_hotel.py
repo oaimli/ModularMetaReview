@@ -29,7 +29,6 @@ for sample_test in samples_test:
     sample_new = {}
     sample_new["source_documents"] = random.sample(sources, 10)
     # human-written reference
-    sample_new["human_references"] = meta_reviews
     sample_new["generation_decomposed"] = ""
     sample_new["steps_decomposed"] = ""
     sample_new["generation_modular"] = ""
@@ -59,6 +58,7 @@ print("Average source length", np.mean(source_lengths))
 def get_generations_with_modular(samples_sampled):
     return samples_sampled
 
+# get generated meta-reviews and intermediate steps with decomposed prompting, same as in the llama3_pr/hotels
 def get_generations_with_decomposed(samples_sampled):
     openai_api_key = "EMPTY"
     openai_api_base = "http://localhost:8000/v1"
@@ -67,14 +67,35 @@ def get_generations_with_decomposed(samples_sampled):
         base_url=openai_api_base,
         )
 
-    # reproduce the intermediate output of decomposed prompting
-    for sample_sampled_key in samples_sampled.keys():
-        sample_sampled = samples_sampled[sample_sampled_key]
-        decomposed_steps = sample_sampled["steps_decomposed"]
-        source_text = "\n".join(sample_sampled["source_documents"])
+    for sample_key, sample in samples_sampled.items():
+        print("Processing", sample_key)
+        source_documents = sample["source_documents"]
+        source_text = "\n".join(source_documents)
+        prompt_content = f"Please give me sequential steps to write a summary specific for the following reviews on a hotel.\n\n Reviews on a hotel:\n {source_text}\n\nThe steps to write a summary in different lines:"
+        # print(prompt_format)
+        while True:
+            try:
+                output_dict = client.chat.completions.create(
+                    model="meta-llama/Meta-Llama-3.1-70B-Instruct",
+                    messages=[
+                        {"role": "system",
+                         "content": "You are requested to write the steps. Please output the final answer with only the steps in different lines, no other useless content."},
+                        {"role": "user",
+                         "content": prompt_content}
+                        ],
+                    n=1
+                    )
+                actions = output_dict.choices[0].message.content
+                break
+            except Exception as e:
+                if "limit" in str(e):
+                    time.sleep(2)
+
+        decomposed_steps = []
+        actions_list = actions.split("\n")
         output = ""
-        for j, step in enumerate(decomposed_steps):
-            action = step["action"]
+        for j, action in enumerate(actions_list):
+            step = {"action": action, "output": ""}
             if j == 0:
                 prompt_content = f"{source_text}\nPlease follow the instruction below and give your output.\n {action}\nThe output:"
             else:
@@ -101,13 +122,14 @@ def get_generations_with_decomposed(samples_sampled):
             print(step)
             decomposed_steps[j] = step
 
-        sample_sampled["steps_decomposed"] = decomposed_steps
-        samples_sampled[sample_sampled_key] = sample_sampled
+        sample["generation_decomposed"] = output # the output of the last step
+        sample["steps_decomposed"] = decomposed_steps
+        samples_sampled[sample_key] = sample
 
-        return samples_sampled
+    return samples_sampled
 
 
 # samples_sampled = get_generations_with_modular(samples_sampled)
-# samples_sampled = get_generations_with_decomposed(samples_sampled)
+samples_sampled = get_generations_with_decomposed(samples_sampled)
 with open("sampled_hotel.json", "w") as f:
     json.dump(samples_sampled, f, indent=4)
