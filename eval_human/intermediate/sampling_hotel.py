@@ -27,7 +27,7 @@ for sample_test in samples_test:
     sources = sample_test["source_documents"]
 
     sample_new = {}
-    sample_new["source_documents"] = random.sample(sources, 20)
+    sample_new["source_documents"] = random.sample(sources, 10)
     # human-written reference
     sample_new["human_references"] = meta_reviews
     sample_new["generation_decomposed"] = ""
