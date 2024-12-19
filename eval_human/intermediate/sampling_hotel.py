@@ -53,6 +53,7 @@ print("Sampled samples", len(samples_sampled))
 # statistics of these sampled samples
 source_lengths = []
 for sample_key, sample in samples_sampled.items():
+    print(sample_key)
     source_documents = sample["source_documents"]
     source_lengths.append(len(" ".join(source_documents).split()))
 print("Average source length", np.mean(source_lengths))
