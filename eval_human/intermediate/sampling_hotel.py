@@ -120,7 +120,7 @@ def get_generations_with_decomposed(samples_sampled):
                         time.sleep(2)
             step["output"] = output
             print(step)
-            decomposed_steps[j] = step
+            decomposed_steps.append(step)
 
         sample["generation_decomposed"] = output # the output of the last step
         sample["steps_decomposed"] = decomposed_steps
