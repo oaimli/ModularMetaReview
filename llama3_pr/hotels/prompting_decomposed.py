@@ -34,7 +34,11 @@ def meta_generation(source_documents: List, aspect: str) -> (str, str):
                 time.sleep(2)
     print(steps)
 
-    steps_list = steps.split("\n")
+    steps_list = []
+    for step in steps.split("\n"):
+        if step.strip() != "":
+            steps_list.append(step)
+
     for step_id, step in enumerate(steps_list):
         if step_id == 0:
             prompt_content = f"{source_text}\nPlease follow the instruction below and give your output.\n {step}\nThe output:"

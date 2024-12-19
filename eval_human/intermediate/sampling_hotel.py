@@ -328,7 +328,10 @@ def get_generations_with_decomposed(samples_sampled):
                     time.sleep(2)
 
         decomposed_steps = []
-        actions_list = actions.split("\n")
+        actions_list = []
+        for action in actions.split("\n"):
+            if action.strip() != "":
+                actions_list.append(action)
         output = ""
         for j, action in enumerate(actions_list):
             step = {"action": action, "output": ""}
