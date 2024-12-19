@@ -2,6 +2,7 @@ import json
 import random
 import time
 import jsonlines
+import numpy as np
 from openai import OpenAI
 
 
@@ -20,119 +21,92 @@ with jsonlines.open("../../datasets/space_test.jsonl") as reader:
     for line in reader:
         samples_test.append(line)
 
-# load the generations of the two approaches
-with open("info_hotel.json") as f:
-    all_info = json.load(f)
-
-# load data for decomposed prompting
-generation_info_decomposed = all_info["space"][1]
-generation_file_decomposed = generation_info_decomposed["generation_file"]
-candidate_key_decomposed = generation_info_decomposed["candidate_key"]
-reference_key_decomposed = generation_info_decomposed["reference_key"]
-with open(generation_file_decomposed) as f:
-    samples_decomposed = json.load(f)
-
-# load data for modular prompting
-generation_info_modular = all_info["space"][0]
-generation_file_modular = generation_info_modular["generation_file"]
-candidate_key_modular = generation_info_modular["candidate_key"]
-reference_key_modular = generation_info_modular["reference_key"]
-with open(generation_file_modular) as f:
-    samples_modular = json.load(f)
-
 samples_all = []
-for sample_modular, sample_decomposed, sample_test in zip(samples_modular, samples_decomposed, samples_test):
-    reference_index = random.choice([0, 1, 2])
-    meta_review_modular = sample_modular[reference_key_modular][reference_index]
-    meta_review_decomposed = sample_decomposed[reference_key_decomposed][reference_index]
-    meta_review_test = sample_test["gold_summaries_general"][reference_index]
-    sources_modular = sample_modular["source_documents"]
-    sources_decomposed = sample_decomposed["source_documents"]
-    sources_test = sample_test["source_documents"]
-    assert sources_modular[0] == sources_decomposed[0] == sources_test[0] and meta_review_modular == meta_review_decomposed == meta_review_test
+for sample_test in samples_test:
+    meta_reviews = sample_test["gold_summaries_general"]
+    sources = sample_test["source_documents"]
 
     sample_new = {}
-    sample_new["source_documents"] = sources_modular
+    sample_new["source_documents"] = random.sample(sources, 20)
     # human-written reference
-    sample_new["human_reference"] = meta_review_modular
-    # generated meta-review from decomposed prompting
-    sample_new["generation_decomposed"] = sample_decomposed[candidate_key_decomposed]
-    # steps from decomposed prompting
-    # print(sample_decomposed.keys())
-    decomposed_steps = []
-    for action in sample_decomposed["generated_steps_general"].split("\n"):
-        if action.strip() != "":
-            decomposed_steps.append({"action": action, "output": ""})
-    sample_new["steps_decomposed"] = decomposed_steps
-
-    # generated meta-review from modular prompting
-    sample_new["generation_modular"] = sample_modular[candidate_key_modular]
-    # steps from modular prompting
-    modular_steps = sample_modular["categorization_pairs"]
-    sample_new["steps_modular"] = modular_steps
+    sample_new["human_references"] = meta_reviews
+    sample_new["generation_decomposed"] = ""
+    sample_new["steps_decomposed"] = ""
+    sample_new["generation_modular"] = ""
+    sample_new["steps_modular"] = ""
     samples_all.append(sample_new)
-
-print("Possible samples", len(samples_all))
 
 sampled_indexes = []
 for sample_index, sample in enumerate(samples_all):
     if sample_index not in indexes_meta_reviews:
         sampled_indexes.append(sample_index)
 sampled_indexes = random.sample(sampled_indexes, 10)
-print(sampled_indexes)
 
-# get the paper ids from the origin test set
+# get the samples from the test dataset
 samples_sampled = {}
 for sample_index, sample in enumerate(samples_all):
     if sample_index in sampled_indexes:
         samples_sampled[f"index_{sample_index}"] = sample
-print(len(samples_sampled))
+print("Sampled samples", len(samples_sampled))
 
-openai_api_key = "EMPTY"
-openai_api_base = "http://localhost:8000/v1"
-client = OpenAI(
-    api_key=openai_api_key,
-    base_url=openai_api_base,
-    )
+# statistics of these sampled samples
+source_lengths = []
+for sample_key, sample_value in samples_sampled.items():
+    source_lengths.append(len(" ".join(sample_value["source_documents"])))
+print("Average source length", np.mean(source_lengths))
 
-# reproduce the intermediate output of decomposed prompting
-for sample_sampled_key in samples_sampled.keys():
-    sample_sampled = samples_sampled[sample_sampled_key]
-    decomposed_steps = sample_sampled["steps_decomposed"]
-    source_text = "\n".join(sample_sampled["source_documents"])
-    output = ""
-    for j, step in enumerate(decomposed_steps):
-        action = step["action"]
-        if j == 0:
-            prompt_content = f"{source_text}\nPlease follow the instruction below and give your output.\n {action}\nThe output:"
-        else:
-            prompt_content = f"{output}\nPlease follow the instruction below and give your output.\n {action}\nThe output:"
-        # print(prompt_format)
-        while True:
-            try:
-                output_dict = client.chat.completions.create(
-                    model="meta-llama/Meta-Llama-3.1-70B-Instruct",
-                    messages=[
-                        {"role": "system",
-                         "content": "You are requested to follow the instruction and only generate the requested output."},
-                        {"role": "user",
-                         "content": prompt_content}
-                        ],
-                    n=1
-                    )
-                output = output_dict.choices[0].message.content
-                break
-            except Exception as e:
-                if "limit" in str(e):
-                    time.sleep(2)
-        step["output"] = output
-        print(step)
-        decomposed_steps[j] = step
+def get_generations_with_modular(samples_sampled):
+    return samples_sampled
 
-    sample_sampled["steps_decomposed"] = decomposed_steps
-    samples_sampled[sample_sampled_key] = sample_sampled
+def get_generations_with_decomposed(samples_sampled):
+    openai_api_key = "EMPTY"
+    openai_api_base = "http://localhost:8000/v1"
+    client = OpenAI(
+        api_key=openai_api_key,
+        base_url=openai_api_base,
+        )
+
+    # reproduce the intermediate output of decomposed prompting
+    for sample_sampled_key in samples_sampled.keys():
+        sample_sampled = samples_sampled[sample_sampled_key]
+        decomposed_steps = sample_sampled["steps_decomposed"]
+        source_text = "\n".join(sample_sampled["source_documents"])
+        output = ""
+        for j, step in enumerate(decomposed_steps):
+            action = step["action"]
+            if j == 0:
+                prompt_content = f"{source_text}\nPlease follow the instruction below and give your output.\n {action}\nThe output:"
+            else:
+                prompt_content = f"{output}\nPlease follow the instruction below and give your output.\n {action}\nThe output:"
+            # print(prompt_format)
+            while True:
+                try:
+                    output_dict = client.chat.completions.create(
+                        model="meta-llama/Meta-Llama-3.1-70B-Instruct",
+                        messages=[
+                            {"role": "system",
+                             "content": "You are requested to follow the instruction and only generate the requested output."},
+                            {"role": "user",
+                             "content": prompt_content}
+                            ],
+                        n=1
+                        )
+                    output = output_dict.choices[0].message.content
+                    break
+                except Exception as e:
+                    if "limit" in str(e):
+                        time.sleep(2)
+            step["output"] = output
+            print(step)
+            decomposed_steps[j] = step
+
+        sample_sampled["steps_decomposed"] = decomposed_steps
+        samples_sampled[sample_sampled_key] = sample_sampled
+
+        return samples_sampled
 
 
-
+# samples_sampled = get_generations_with_modular(samples_sampled)
+# samples_sampled = get_generations_with_decomposed(samples_sampled)
 with open("sampled_hotel.json", "w") as f:
     json.dump(samples_sampled, f, indent=4)
