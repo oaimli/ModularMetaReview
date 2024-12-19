@@ -363,7 +363,7 @@ def get_generations_with_decomposed(samples_sampled):
     return samples_sampled
 
 
-# samples_sampled = get_generations_with_modular(samples_sampled)
+samples_sampled = get_generations_with_modular(samples_sampled)
 samples_sampled = get_generations_with_decomposed(samples_sampled)
 with open("sampled_hotel.json", "w") as f:
     json.dump(samples_sampled, f, indent=4)
