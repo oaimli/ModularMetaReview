@@ -41,7 +41,8 @@ if __name__ == "__main__":
             samples = json.load(f)
         review_categorizations = []
         for sample in samples:
-            review_categorizations.append(sample["review_categorization"])
+            if "comment" not in sample.keys():
+                review_categorizations.append(sample["review_categorization"])
 
         # human reference
         generation_file = generations_info[0]["generation_file"]
@@ -57,26 +58,27 @@ if __name__ == "__main__":
         references_shared = []
         source_texts_shared = []
         for sample, categorization_reviews in zip(samples, review_categorizations):
-            if isinstance(sample[reference_key], str):
-                reference = sample[reference_key]
-            else:
-                reference = sample[reference_key][0]  # SPACE has multiple references
-            references.append(reference)
-            source_texts.append("\n".join(sample[source_key]))
-            categorization_reference = sample["categorization_reference"]
-            reference_shared = []
-            source_text_shared = []
-            for facet in facets:
-                if len(categorization_reference[facet]) > 0:
-                    tmp = []
-                    for categorization_review in categorization_reviews:
-                        tmp.extend(categorization_review[facet])
-                    if len(tmp) > 0:
-                        reference_shared.extend(categorization_reference[facet])
-                        source_text_shared.extend(tmp)
-            if len(reference_shared) > 0 and len(source_text_shared) > 0:
-                references_shared.append(" ".join(reference_shared))
-                source_texts_shared.append(" ".join(source_text_shared))
+            if "comment" not in sample.keys():
+                if isinstance(sample[reference_key], str):
+                    reference = sample[reference_key]
+                else:
+                    reference = sample[reference_key][0]  # SPACE has multiple references
+                references.append(reference)
+                source_texts.append("\n".join(sample[source_key]))
+                categorization_reference = sample["categorization_reference"]
+                reference_shared = []
+                source_text_shared = []
+                for facet in facets:
+                    if len(categorization_reference[facet]) > 0:
+                        tmp = []
+                        for categorization_review in categorization_reviews:
+                            tmp.extend(categorization_review[facet])
+                        if len(tmp) > 0:
+                            reference_shared.extend(categorization_reference[facet])
+                            source_text_shared.extend(tmp)
+                if len(reference_shared) > 0 and len(source_text_shared) > 0:
+                    references_shared.append(" ".join(reference_shared))
+                    source_texts_shared.append(" ".join(source_text_shared))
 
         # reference compared with source texts
         scores_align = scorer.score(contexts=source_texts, claims=references)

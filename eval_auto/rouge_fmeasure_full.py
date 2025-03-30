@@ -85,11 +85,12 @@ if __name__ == "__main__":
             candidates = []
             references = []
             for sample in samples:
-                candidates.append(sample[candidate_key])
-                if isinstance(sample[reference_key], str):
-                    references.append(sample[reference_key])
-                else:
-                    references.append(sample[reference_key][0]) # SPACE has multiple references
+                if "comment" not in sample.keys():
+                    candidates.append(sample[candidate_key])
+                    if isinstance(sample[reference_key], str):
+                        references.append(sample[reference_key])
+                    else:
+                        references.append(sample[reference_key][0]) # SPACE has multiple references
 
             scores = rouge_corpus(references, candidates, types=['rouge1', 'rouge2', 'rougeLsum'])
 
@@ -116,11 +117,12 @@ if __name__ == "__main__":
                 references = []
                 source_texts = []
                 for sample in samples:
-                    if isinstance(sample[reference_key], str):
-                        references.append(sample[reference_key])
-                    else:
-                        references.append(sample[reference_key][0])  # SPACE has multiple references
-                    source_texts.append("\n".join(sample["source_documents"]))
+                    if "comment" not in sample.keys():
+                        if isinstance(sample[reference_key], str):
+                            references.append(sample[reference_key])
+                        else:
+                            references.append(sample[reference_key][0])  # SPACE has multiple references
+                        source_texts.append("\n".join(sample["source_documents"]))
 
                 scores = rouge_corpus(source_texts, references, types=['rouge1', 'rouge2', 'rougeLsum'])
 
@@ -159,11 +161,12 @@ if __name__ == "__main__":
                 print("human references")
                 reference_lengths = []
                 for sample in samples:
-                    if isinstance(sample[reference_key], str):
-                        reference = sample[reference_key]
-                    else:
-                        reference = sample[reference_key][0]  # SPACE has multiple references
-                    reference_lengths.append(len(reference.split()))
+                    if "comment" not in sample.keys():
+                        if isinstance(sample[reference_key], str):
+                            reference = sample[reference_key]
+                        else:
+                            reference = sample[reference_key][0]  # SPACE has multiple references
+                        reference_lengths.append(len(reference.split()))
 
                 print("Average length of generations:", np.mean(reference_lengths))
                 reference_calculation = 0

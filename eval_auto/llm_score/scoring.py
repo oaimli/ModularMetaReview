@@ -49,13 +49,13 @@ if __name__ == "__main__":
     random.seed(42)
     # pair-wise comparison on test samples in the three domains
     model_name = "gpt4"
-    client = OpenAI(api_key="sk-proj-jxdkj7TzTCWDjDU0lpEPT3BlbkFJll01Dz3fxt51wM8Rh6wm")
+    client = OpenAI(api_key="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")
 
     with open("info.json") as f:
         info = json.load(f)
 
     # dataset_names = ["space", "peermeta", "amasum_shoes"]
-    dataset_names = ["space", "peermeta"]
+    dataset_names = ["space"]
     for dataset_name in dataset_names:
         print(dataset_name)
         generation_infos = info[dataset_name]
@@ -69,12 +69,13 @@ if __name__ == "__main__":
             samples = json.load(f)
         scores = []
         for sample in samples:
-            if isinstance(sample[reference_key], str):
-                reference = sample[reference_key]
-            else:
-                reference = sample[reference_key][0]  # SPACE has multiple references
-            score = scoring_faithfulness(sample[source_key], reference, dataset_name)
-            scores.append(score)
+            if "comment" not in sample.keys():
+                if isinstance(sample[reference_key], str):
+                    reference = sample[reference_key]
+                else:
+                    reference = sample[reference_key][0]  # SPACE has multiple references
+                score = scoring_faithfulness(sample[source_key], reference, dataset_name)
+                scores.append(score)
         print("faithfulness", np.mean(scores))
         output_scores["human_reference"] = scores
 
@@ -88,10 +89,11 @@ if __name__ == "__main__":
 
             scores = []
             for sample in all_samples:
-                candidate = sample[candidate_key]
-                source_documents = sample["source_documents"]
-                score = scoring_faithfulness(source_documents, candidate, dataset_name)
-                scores.append(score)
+                if "comment" not in sample.keys():
+                    candidate = sample[candidate_key]
+                    source_documents = sample["source_documents"]
+                    score = scoring_faithfulness(source_documents, candidate, dataset_name)
+                    scores.append(score)
             print("faithfulness", np.mean(scores))
             output_scores[generation_file] = scores
 

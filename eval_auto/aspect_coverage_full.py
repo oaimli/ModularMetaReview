@@ -32,7 +32,8 @@ if __name__ == "__main__":
             samples = json.load(f)
         review_categorizations = []
         for sample in samples:
-            review_categorizations.append(sample["review_categorization"])
+            if "comment" not in sample.keys():
+                review_categorizations.append(sample["review_categorization"])
 
 
         # human reference
@@ -49,12 +50,13 @@ if __name__ == "__main__":
         references = []
         reference_categorizations = []
         for sample in samples:
-            candidates.append(sample[candidate_key])
-            if isinstance(sample[reference_key], str):
-                references.append(sample[reference_key])
-            else:
-                references.append(sample[reference_key][0])  # SPACE has multiple references
-            reference_categorizations.append(sample["categorization_reference"])
+            if "comment" not in sample.keys():
+                candidates.append(sample[candidate_key])
+                if isinstance(sample[reference_key], str):
+                    references.append(sample[reference_key])
+                else:
+                    references.append(sample[reference_key][0])  # SPACE has multiple references
+                reference_categorizations.append(sample["categorization_reference"])
 
         recalls = []
         precisions = []
@@ -100,12 +102,13 @@ if __name__ == "__main__":
             references = []
             candidate_categorizations = []
             for sample in samples:
-                candidates.append(sample[candidate_key])
-                if isinstance(sample[reference_key], str):
-                    references.append(sample[reference_key])
-                else:
-                    references.append(sample[reference_key][0])  # SPACE has multiple references
-                candidate_categorizations.append(sample["categorization_candidate"])
+                if "comment" not in sample.keys():
+                    candidates.append(sample[candidate_key])
+                    if isinstance(sample[reference_key], str):
+                        references.append(sample[reference_key])
+                    else:
+                        references.append(sample[reference_key][0])  # SPACE has multiple references
+                    candidate_categorizations.append(sample["categorization_candidate"])
 
             recalls = []
             precisions = []

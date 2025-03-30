@@ -5,9 +5,10 @@
         {"generation_file": "/home/miao4/punim0521/ModularMetaReview/results/llama3_8b_pr_peermeta/generations_llama31_8b_knowledge.json", "candidate_key": "generated_meta_review", "reference_key":  "meta_review", "model_name":  "llama3_8b_pr_knowledge"}
     ],
     "space": [
-        {"generation_file": "/home/miao4/punim0521/ModularMetaReview/results/llama3_pr_space/generations_llama31_70b_knowledge.json", "candidate_key": "generated_summary_general", "reference_key":  "gold_summaries_general", "model_name":  "llama3_pr_knowledge"},
-        {"generation_file": "/home/miao4/punim0521/ModularMetaReview/results/gpt4_pr_space/generations_gpt_4o_knowledge.json", "candidate_key": "generated_summary_general", "reference_key":  "gold_summaries_general", "model_name":  "gpt4_pr_knowledge"},
-        {"generation_file": "/home/miao4/punim0521/ModularMetaReview/results/llama3_8b_pr_space/generations_llama31_8b_knowledge.json", "candidate_key": "generated_summary_general", "reference_key":  "gold_summaries_general", "model_name":  "llama3_8b_pr_knowledge"}
+        {"generation_file": "/home/miao4/punim0521/ModularMetaReview/results/greg_gpt3_space/generations_tcg.json", "candidate_key": "generated_summary_general", "reference_key":  "gold_summaries_general", "model_name":  "greg_tcg"},
+        {"generation_file": "/home/miao4/punim0521/ModularMetaReview/results/greg_gpt3_space/generations_tcg_first.json", "candidate_key": "generated_summary_general", "reference_key":  "gold_summaries_general", "model_name":  "greg_tcg_first"},
+        {"generation_file": "/home/miao4/punim0521/ModularMetaReview/results/greg_gpt3_space/generations_qg.json", "candidate_key": "generated_summary_general", "reference_key":  "gold_summaries_general", "model_name":  "greg_qg"},
+        {"generation_file": "/home/miao4/punim0521/ModularMetaReview/results/greg_gpt3_space/generations_tqg.json", "candidate_key": "generated_summary_general", "reference_key":  "gold_summaries_general", "model_name":  "greg_tqg"}
     ],
     "amasum_shoes": [
         {"generation_file": "/home/miao4/punim0521/ModularMetaReview/results/llama3_pr_amasum_shoes/generations_llama31_70b_knowledge.json", "candidate_key": "generated_meta_review", "reference_key":  "meta_review", "model_name":  "llama3_pr_knowledge"},
