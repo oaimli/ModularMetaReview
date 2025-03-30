@@ -1,1 +1,1 @@
-# Human evaluaiton only on scientific reviews
+# Human evaluation only on scientific reviews

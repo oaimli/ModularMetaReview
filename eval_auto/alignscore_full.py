@@ -112,39 +112,40 @@ if __name__ == "__main__":
             source_texts_shared = []
 
             for sample, categorization_reviews in zip(samples, review_categorizations):
-                candidates.append(sample[candidate_key])
-                if isinstance(sample[reference_key], str):
-                    references.append(sample[reference_key])
-                else:
-                    references.append(sample[reference_key][0])  # SPACE has multiple references
-                source_texts.append("\n".join(sample[source_key]))
+                if "comment" not in sample.keys():
+                    candidates.append(sample[candidate_key])
+                    if isinstance(sample[reference_key], str):
+                        references.append(sample[reference_key])
+                    else:
+                        references.append(sample[reference_key][0])  # SPACE has multiple references
+                    source_texts.append("\n".join(sample[source_key]))
 
-                categorization_reference = sample["categorization_reference"]
-                categorization_candidate = sample["categorization_candidate"]
-                reference_shared = []
-                candidate_shared_reference = []
-                for facet in facets:
-                    if len(categorization_reference[facet]) > 0 and len(categorization_candidate[facet]) > 0:
-                        reference_shared.extend(categorization_reference[facet])
-                        candidate_shared_reference.extend(categorization_candidate[facet])
+                    categorization_reference = sample["categorization_reference"]
+                    categorization_candidate = sample["categorization_candidate"]
+                    reference_shared = []
+                    candidate_shared_reference = []
+                    for facet in facets:
+                        if len(categorization_reference[facet]) > 0 and len(categorization_candidate[facet]) > 0:
+                            reference_shared.extend(categorization_reference[facet])
+                            candidate_shared_reference.extend(categorization_candidate[facet])
 
-                if len(reference_shared) > 0 and len(candidate_shared_reference) > 0:
-                    references_shared.append(" ".join(reference_shared))
-                    candidates_shared_reference.append(" ".join(candidate_shared_reference))
+                    if len(reference_shared) > 0 and len(candidate_shared_reference) > 0:
+                        references_shared.append(" ".join(reference_shared))
+                        candidates_shared_reference.append(" ".join(candidate_shared_reference))
 
-                candidate_shared_source = []
-                source_text_shared = []
-                for facet in facets:
-                    if len(categorization_candidate[facet]) > 0:
-                        tmp = []
-                        for categorization_review in categorization_reviews:
-                            tmp.extend(categorization_review[facet])
-                        if len(tmp) > 0:
-                            candidate_shared_source.extend(categorization_candidate[facet])
-                            source_text_shared.extend(tmp)
-                if len(candidate_shared_source) > 0 and len(source_text_shared):
-                    candidates_shared_source.append(" ".join(candidate_shared_source))
-                    source_texts_shared.append(" ".join(source_text_shared))
+                    candidate_shared_source = []
+                    source_text_shared = []
+                    for facet in facets:
+                        if len(categorization_candidate[facet]) > 0:
+                            tmp = []
+                            for categorization_review in categorization_reviews:
+                                tmp.extend(categorization_review[facet])
+                            if len(tmp) > 0:
+                                candidate_shared_source.extend(categorization_candidate[facet])
+                                source_text_shared.extend(tmp)
+                    if len(candidate_shared_source) > 0 and len(source_text_shared):
+                        candidates_shared_source.append(" ".join(candidate_shared_source))
+                        source_texts_shared.append(" ".join(source_text_shared))
 
             # compared with source texts on shared aspects
             scores_align = scorer.score(contexts=source_texts_shared, claims=candidates_shared_source)

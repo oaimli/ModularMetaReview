@@ -13,3 +13,6 @@
 /eval_human/meta_reviews/generations_peermeta.json
 /eval_human/meta_reviews/generations_space.json
 /eval_human/intermediate/sampled.json
+/datasets/amasum/
+/datasets/metatomatoes/
+/datasets/space/
