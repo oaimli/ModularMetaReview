@@ -1,2 +1,1 @@
-# MultidocRetrieval
-Retrieval, reasoning and planning for meta-review generation
+# Decomposed Opinion Summarization with Verified Aspect-Aware Modules
