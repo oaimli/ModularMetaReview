@@ -25,5 +25,8 @@ This repo contains all the code to implement our approach, other baselines, huma
 ├── optimization/              --> (A little optimization of the prompts that we used for the modular approach)
 ├── plots/                     --> (Figures used in the publication)
 ├── preparation/               --> (Prepare the datasets for the three domains, including PeerSum, Space, and AmaSum)
+├── results/                   --> (Results for all the approaches)
+├── tcg/                       --> (Results for TCG, a model from Prompted Opinion Summarization with GPT-3.5)
+├── utils/                     --> (Scripts for evaluation of generation results)
 └── README.md                  --> (This readme file)
 ```
