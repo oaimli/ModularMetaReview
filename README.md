@@ -51,6 +51,8 @@ We make our annotation interface public. Our human annotation is based on Prolif
 You can download our customized Potato engine from [Googel Drive](https://drive.google.com/drive/folders/1LhmXchXC9ZXVVWKxa7ioIKpJ57NLAIVT?usp=sharing). 
 You will see the Potato engin under the folder of hiro_hosking/potato. Folders starting with meta contain our scripts for annotation on generated meta-reviews, while those folders starting with intermediate are used for annotation on the quality of the intermediate outputs.
 
+## Acknowledgement
+
 If you are going to use our data and code in your work, please cite our paper:
 
 [Li et al. 2025] Miao Li, Jey Han Lau, Eduard Hovy, and Mirella Lapata. "Decomposed Opinion Summarization with Verified Aspect-Aware Modules". Findings of ACL, 2025.
