@@ -32,7 +32,8 @@ This repo contains all the code to implement our approach, other baselines, huma
 ```
 You can easily get implementation codes for all the approaches with their requirements in specific approach folders. We combine the generation results of different approaches and put them in eval_auto and eval_human. 
 Our present results are obtained from the following files:
-
+```
+/
 /eval_auto/peermeta_generations_full.json
 /eval_auto/space_generations_full.json
 /eval_auto/amasum_shoes_generations_full.json
@@ -40,3 +41,4 @@ Our present results are obtained from the following files:
 /eval_human/meta_reviews/generations_peermeta.json
 /eval_human/meta_reviews/generations_space.json
 /eval_human/intermediate/sampled.json
+```
