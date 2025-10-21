@@ -6,7 +6,6 @@ Our approach separates the tasks of aspect identification, opinion consolidation
 
 This repo contains all the code to implement our approach, other baselines, human annotation and result analysis.
 ```
-/
 ├── ablations/                 --> (Ablation experiments with Llama3.1-70B-Instruct: detailed explanation in the code)
 ├── annotations/               --> (Annotated data for intermediate results of meta-reviews, obtained from https://aclanthology.org/2024.acl-long.547/)
 ├── competitors/               --> (Generation results from previous papers, e.g., HIRO)
@@ -30,10 +29,12 @@ This repo contains all the code to implement our approach, other baselines, huma
 ├── utils/                     --> (Scripts for evaluation of generation results)
 └── README.md                  --> (This readme file)
 ```
-You can easily get implementation codes for all the approaches with their requirements in specific approach folders. We combine the generation results of different approaches and put them in eval_auto and eval_human. 
+You can easily get implementation codes for all the approaches with their requirements in specific approach folders. 
+The experimental data for the three domains can be downloaded from [Googel Drive](https://drive.google.com/drive/folders/1LhmXchXC9ZXVVWKxa7ioIKpJ57NLAIVT?usp=sharing).
+
+We combine the generation results of different approaches and put them in eval_auto and eval_human. 
 Our present results are obtained from the following files:
 ```
-/
 /eval_auto/peermeta_generations_full.json
 /eval_auto/space_generations_full.json
 /eval_auto/amasum_shoes_generations_full.json
