@@ -30,7 +30,7 @@ This repo contains all the code to implement our approach, other baselines, huma
 └── README.md                  --> (This readme file)
 ```
 You can easily get implementation codes for all the approaches with their requirements in specific approach folders. 
-The experimental data for the three domains can be downloaded from [Googel Drive](https://drive.google.com/drive/folders/1LhmXchXC9ZXVVWKxa7ioIKpJ57NLAIVT?usp=sharing).
+The experimental data for the three domains can be downloaded from [Googel Drive](https://drive.google.com/drive/folders/1LhmXchXC9ZXVVWKxa7ioIKpJ57NLAIVT?usp=sharing) (we used the scripts in the folder of preparation to get the data in the same format).
 
 We combine the generation results of different approaches and put them in eval_auto and eval_human. 
 Our present results are obtained from the following files:
