@@ -12,7 +12,6 @@ def combine_aspects(summaries_aspect: List) -> str:
     source_text = "\n".join(summaries_aspect)
     print(source_text)
     prompt_content = f"Please write a summary for the following opinions.\n\n Opinions on a hotel:\n {source_text}\n\nThe output summary:"
-    # print(prompt_format)
     while True:
         try:
             output_dict = client.chat.completions.create(
