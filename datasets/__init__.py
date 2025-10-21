@@ -8,3 +8,5 @@
 
 # PeerMeta
 # train/dev/test: 22420/2799/2809, 22420/50/100 (sampled)
+
+# All data can be downloaded from https://drive.google.com/drive/folders/1LhmXchXC9ZXVVWKxa7ioIKpJ57NLAIVT?usp=drive_link
